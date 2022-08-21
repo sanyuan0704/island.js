@@ -3,7 +3,7 @@ import * as $$0 from "./islands/Counter";
 
 const manifest = {
   routes: {
-    "/routes/index": $0,
+    "/": $0,
   },
   islands: {
     "/islands/Counter": $$0,
