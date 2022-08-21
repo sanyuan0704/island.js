@@ -10,7 +10,5 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "tsx": "^3.8.2"
-  }
+  "devDependencies": {}
 }
