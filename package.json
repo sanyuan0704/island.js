@@ -1,22 +1,28 @@
 {
-  "name": "toy-fresh",
+  "name": "island",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "start:demo": "cd playground && npm run start"
+    "dev": "npm run start:client & npm run start:node",
+    "start:client": "cd src/client && tsc -w",
+    "start:node": "cd src/node && tsc -w",
+    "dev:island": "node ./bin/island"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cac": "^6.7.12",
     "esbuild": "^0.15.5",
+    "fast-glob": "^3.2.11",
     "fs-extra": "^10.1.0",
     "koa": "^2.13.4",
     "koa-router": "^12.0.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.3.0",
+    "vite": "^3.0.9"
   },
   "devDependencies": {
     "@types/koa": "^2.13.5",
