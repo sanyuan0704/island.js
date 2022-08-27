@@ -1,10 +1,11 @@
-# 基于 React 的 Islands 架构实现
+# 框架搭建
 
-启动方式:
+搭建 SSG 框架，运行最小 demo，功能包含:
 
-```ts
-pnpm install
-pnpm start:demo
-```
+- CLI 以及项目基本构建环境搭建
 
-访问地址: http://localhost:3000/
+- 主题 Layout 组件能够展示
+
+- 开发阶段 CSR 正常运行
+
+- 生产环境构建 SSR 产物
