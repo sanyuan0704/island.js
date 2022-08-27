@@ -3,7 +3,6 @@ import fs from 'fs-extra';
 import { join } from 'path';
 import type { RollupOutput } from 'rollup';
 import { okMark } from './bundle';
-import { TEMP_PATH } from '../constants';
 
 export async function renderPage(
   render: () => string,
@@ -36,5 +35,5 @@ export async function renderPage(
   spinner.stopAndPersist({
     symbol: okMark
   });
-  await fs.remove(join(root, TEMP_PATH));
+  // await fs.removes(join(root, TEMP_PATH));
 }

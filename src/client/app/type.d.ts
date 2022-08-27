@@ -9,3 +9,5 @@ declare module '/@island/theme*' {
 
   export default theme;
 }
+
+declare module window {}

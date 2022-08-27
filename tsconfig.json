@@ -9,7 +9,7 @@
     "skipLibCheck": true,
     "noUnusedLocals": true,
     "resolveJsonModule": true,
-    "jsx": "preserve",
+    "jsx": "react",
     "lib": ["ESNext", "DOM"]
   },
   "exclude": ["**/node_modules/**", "**/dist/**"]
