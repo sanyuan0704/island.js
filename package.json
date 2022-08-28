@@ -1,28 +1,39 @@
 {
-  "name": "toy-fresh",
+  "name": "island",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "start:demo": "cd playground && npm run start"
+    "dev": "npm run start:client & npm run start:node",
+    "start:client": "cd src/client && tsc -w",
+    "start:node": "cd src/node && tsc -w",
+    "dev:playground": "node ./bin/island playground",
+    "build:playground": "node ./bin/island build playground"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@vitejs/plugin-react": "^2.0.1",
+    "cac": "^6.7.12",
     "esbuild": "^0.15.5",
+    "fast-glob": "^3.2.11",
     "fs-extra": "^10.1.0",
     "koa": "^2.13.4",
     "koa-router": "^12.0.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.3.0",
+    "vite": "^3.0.9"
   },
   "devDependencies": {
+    "@types/fs-extra": "^9.0.13",
     "@types/koa": "^2.13.5",
     "@types/koa-router": "^7.4.4",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
+    "ora": "^6.1.2",
+    "rollup": "^2.78.1",
     "tsx": "^3.8.2",
     "typescript": "^4.7.4"
   }
