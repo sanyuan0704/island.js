@@ -1,21 +1,7 @@
 import { hydrateRoot, createRoot } from 'react-dom/client';
 import { App } from './app';
-import React, { ComponentType, createElement } from 'react';
-import { islands } from '/@island/theme';
-
-// Type shim for window.ISLANDS
-declare global {
-  interface Window {
-    ISLANDS: Record<string, ComponentType<any>>;
-    // The state for island.
-    ISLAND_PROPS: any;
-  }
-}
-
-window.ISLANDS = islands;
-window.ISLAND_PROPS = JSON.parse(
-  document.getElementById('island-props')!.textContent!
-);
+import React, { createElement } from 'react';
+import './island-inject';
 
 async function renderInBrowser() {
   const containerEl = document.getElementById('root');
