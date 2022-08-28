@@ -20,11 +20,11 @@ body {
   min-width: 320px;
   min-height: 100vh;
   line-height: 24px;
-  font-family: var(--vp-font-family-base);
+  font-family: var(--island-font-family-base);
   font-size: 16px;
   font-weight: 400;
-  color: var(--vp-c-text-1);
-  background-color: var(--vp-c-bg);
+  color: var(--island-c-text-1);
+  background-color: var(--island-c-bg);
   direction: ltr;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -104,7 +104,7 @@ pre,
 code,
 kbd,
 samp {
-  font-family: var(--vp-font-family-mono);
+  font-family: var(--island-font-family-mono);
 }
 
 img,
@@ -178,17 +178,17 @@ input {
 
 input:-ms-input-placeholder,
 textarea:-ms-input-placeholder {
-  color: var(--vp-c-text-3);
+  color: var(--island-c-text-3);
 }
 
 input::-ms-input-placeholder,
 textarea::-ms-input-placeholder {
-  color: var(--vp-c-text-3);
+  color: var(--island-c-text-3);
 }
 
 input::placeholder,
 textarea::placeholder {
-  color: var(--vp-c-text-3);
+  color: var(--island-c-text-3);
 }
 
 input::-webkit-outer-spin-button,

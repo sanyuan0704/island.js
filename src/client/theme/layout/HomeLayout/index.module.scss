@@ -1,17 +1,17 @@
 .VPHero {
-  margin-top: calc(var(--vp-nav-height) * -1);
-  padding: calc(var(--vp-nav-height) + 48px) 24px 48px;
+  margin-top: calc(var(--island-nav-height) * -1);
+  padding: calc(var(--island-nav-height) + 48px) 24px 48px;
 }
 
 @media (min-width: 640px) {
   .VPHero {
-    padding: calc(var(--vp-nav-height) + 80px) 48px 64px;
+    padding: calc(var(--island-nav-height) + 80px) 48px 64px;
   }
 }
 
 @media (min-width: 960px) {
   .VPHero {
-    padding: calc(var(--vp-nav-height) + 80px) 64px 64px;
+    padding: calc(var(--island-nav-height) + 80px) 64px 64px;
   }
 }
 
@@ -73,14 +73,14 @@
 }
 
 .name {
-  color: var(--vp-home-hero-name-color);
+  color: var(--island-home-hero-name-color);
 }
 
 .clip {
-  background: var(--vp-home-hero-name-background);
+  background: var(--island-home-hero-name-background);
   -webkit-background-clip: text;
   background-clip: text;
-  -webkit-text-fill-color: var(--vp-home-hero-name-color);
+  -webkit-text-fill-color: var(--island-home-hero-name-color);
 }
 
 @media (min-width: 640px) {
@@ -112,7 +112,7 @@
   font-size: 18px;
   font-weight: 500;
   white-space: pre-wrap;
-  color: var(--vp-c-text-2);
+  color: var(--island-c-text-2);
 }
 
 .VPHero.has-image .tagline {
@@ -219,8 +219,8 @@
   border-radius: 50%;
   width: 192px;
   height: 192px;
-  background-image: var(--vp-home-hero-image-background-image);
-  filter: var(--vp-home-hero-image-filter);
+  background-image: var(--island-home-hero-image-background-image);
+  filter: var(--island-home-hero-image-filter);
   transform: translate(-50%, -50%);
 }
 
