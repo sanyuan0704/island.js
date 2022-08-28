@@ -1,13 +1,8 @@
 /// <reference types="vite/client" />
 
 declare module '/@island/theme*' {
-  import { ComponentType } from 'react';
+  import { ComponentType, Component } from 'react';
 
-  const theme: {
-    Layout: ComponentType<any>;
-  };
-
-  export default theme;
+  export const Layout: ComponentType<any>;
+  export const islands: Record<string, ComponentType<any>>;
 }
-
-declare module window {}

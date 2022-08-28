@@ -8,12 +8,12 @@ export const okMark = '\x1b[32m✓\x1b[0m';
 export const failMark = '\x1b[31m✖\x1b[0m';
 
 export async function bundle(root: string) {
-  console.log(CLIENT_ENTRY_PATH);
   const resolveViteConfig = (isServer: boolean): InlineConfig => ({
     mode: 'production',
     root,
     plugins: [createIslandPlugins()],
     build: {
+      minify: false,
       ssr: isServer,
       outDir: isServer ? TEMP_PATH : 'dist',
       cssCodeSplit: false,

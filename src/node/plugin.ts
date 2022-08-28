@@ -7,7 +7,6 @@ import {
 } from './constants';
 import reactPlugin from '@vitejs/plugin-react';
 import fs from 'fs-extra';
-import { createContext } from 'react';
 
 export function createIslandPlugins() {
   const islandPlugin: Plugin = {

@@ -4,6 +4,7 @@
     "module": "ESNext",
     "outDir": "../../dist/client",
     "jsx": "preserve",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true
   }
 }

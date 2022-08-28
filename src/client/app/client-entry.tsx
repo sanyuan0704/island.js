@@ -1,16 +1,21 @@
 import { hydrateRoot, createRoot } from 'react-dom/client';
 import { App } from './app';
-import React, { createElement } from 'react';
-import { Counter } from '../theme/components/Counter';
+import React, { ComponentType, createElement } from 'react';
+import { islands } from '/@island/theme';
 
-// island 数据，后续单独放到一个 bundle 中
-// @ts-ignore
-window.ISLANDS = {
-  Counter
-};
+// Type shim for window.ISLANDS
+declare global {
+  interface Window {
+    ISLANDS: Record<string, ComponentType<any>>;
+    // The state for island.
+    ISLAND_PROPS: any;
+  }
+}
 
-// @ts-ignore
-window.ISLAND_PROPS = [{ count: 1 }];
+window.ISLANDS = islands;
+window.ISLAND_PROPS = JSON.parse(
+  document.getElementById('island-props')!.textContent!
+);
 
 async function renderInBrowser() {
   const containerEl = document.getElementById('root');
@@ -18,6 +23,8 @@ async function renderInBrowser() {
     throw new Error(`#root element not found`);
   }
   if (import.meta.env.DEV) {
+    // App Will be tree shaking in production.
+    // So complete application code is removed and only island component code is reserved.
     createRoot(containerEl).render(<App />);
   } else {
     const islands = document.querySelectorAll('[__island]');
@@ -26,7 +33,6 @@ async function renderInBrowser() {
       const [id, index] = island.getAttribute('__island')!.split(':');
       hydrateRoot(
         island,
-        // @ts-ignore
         createElement(window.ISLANDS[id], window.ISLAND_PROPS[index])
       );
     }

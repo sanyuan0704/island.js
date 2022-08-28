@@ -5,7 +5,7 @@ import type { RollupOutput } from 'rollup';
 import { okMark } from './bundle';
 
 export async function renderPage(
-  render: () => string,
+  render: () => { appHtml: string; propsData: string },
   root: string,
   clientBundle: RollupOutput
 ) {
@@ -15,7 +15,7 @@ export async function renderPage(
   const { default: ora } = await dynamicImport('ora');
   const spinner = ora();
   spinner.start(`Rendering page in server side...`);
-  const appHtml = render();
+  const { appHtml, propsData } = render();
   const html = `
 <!DOCTYPE html>
 <html>
@@ -27,6 +27,7 @@ export async function renderPage(
   </head>
   <body>
     <div id="root">${appHtml}</div>
+    <script id="island-props">${JSON.stringify(propsData)}</script>
     <script type="module" src="/${clientChunk?.fileName}"></script>
   </body>
 </html>`.trim();

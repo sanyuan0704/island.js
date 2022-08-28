@@ -4,7 +4,7 @@ export const Layout: React.FC = () => {
   return (
     <div>
       <h1>This is Layout page</h1>
-      <Counter count={1} __islandId="Counter" />
+      <Counter count={1} __island />
     </div>
   );
 };

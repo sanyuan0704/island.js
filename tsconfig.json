@@ -8,6 +8,7 @@
     "outDir": "dist",
     "skipLibCheck": true,
     "noUnusedLocals": true,
+    "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "jsx": "react",
     "lib": ["ESNext", "DOM"]

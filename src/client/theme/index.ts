@@ -1,2 +1,8 @@
 import { Layout } from './layout/Layout';
-export default { Layout };
+import { Counter } from './components/Counter/index';
+
+export { Layout };
+
+export const islands = {
+  Counter
+};
