@@ -11,3 +11,5 @@
 - 生产环境构建 SSR 产物
 
 - 支持主题组件 HMR
+
+- 搭建最小的 Island 架构，实现客户端的 Partial Bundle 以及 Partial Hydration
