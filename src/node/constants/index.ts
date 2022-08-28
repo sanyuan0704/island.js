@@ -19,3 +19,5 @@ export const THEME_PATH = join(
 export const TEMP_PATH = 'node_modules/.island';
 
 export const SERVER_OUTPUT_PATH = join(TEMP_PATH, 'ssr-entry.mjs');
+
+export const DEFAULT_HTML_PATH = join(__dirname, '../../../template.html');

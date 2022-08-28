@@ -1,6 +1,13 @@
 import { Plugin } from 'vite';
-import { CLIENT_ENTRY_PATH, THEME_PATH } from './constants';
+import {
+  CLIENT_ENTRY_PATH,
+  DEFAULT_HTML_PATH,
+  isProduction,
+  THEME_PATH
+} from './constants';
 import reactPlugin from '@vitejs/plugin-react';
+import fs from 'fs-extra';
+import { createContext } from 'react';
 
 export function createIslandPlugins() {
   const islandPlugin: Plugin = {
@@ -14,41 +21,56 @@ export function createIslandPlugins() {
         }
       };
     },
+    transformIndexHtml(html) {
+      if (isProduction()) {
+        return html;
+      }
+      // Insert client entry script in development
+      // And in production, we will insert it in ssr render
+      return {
+        html,
+        tags: [
+          {
+            tag: 'script',
+            attrs: {
+              type: 'module',
+              src: `/@fs/${CLIENT_ENTRY_PATH}`
+            },
+            injectTo: 'body'
+          }
+        ]
+      };
+    },
     configureServer(server) {
       return () => {
-        server.middlewares.use((req, res, next) => {
-          if (req.url?.endsWith('.html')) {
-            res.statusCode = 200;
-            res.setHeader('Content-Type', 'text/html');
-            res.end(`
-          <!DOCTYPE html>
-          <html>
-            <head>
-              <title></title>
-              <meta charset="utf-8">
-              <meta name="viewport" content="width=device-width,initial-scale=1">
-              <meta name="description" content="">
-            </head>
-            <body>
-              <div id="root"></div>
-              <script type="module" src="/@fs/${CLIENT_ENTRY_PATH}"></script>
-            </body>
-          </html>`);
-            return;
+        server.middlewares.use(async (req, res, next) => {
+          if (res.writableEnded) {
+            return next();
           }
+          if (req.url?.replace(/\?.*/, '').endsWith('.html')) {
+            let html = fs.readFileSync(DEFAULT_HTML_PATH, 'utf8');
 
-          next();
+            try {
+              html = await server.transformIndexHtml(
+                req.url,
+                html,
+                req.originalUrl
+              );
+              res.statusCode = 200;
+              res.setHeader('Content-Type', 'text/html');
+              res.end(html);
+            } catch (e) {
+              return next(e);
+            }
+          }
         });
       };
     }
   };
-  const reactImportPlugin: Plugin = {
-    name: 'internal:react-import',
-    transform(code, id) {
-      if (id.endsWith('.jsx') || id.endsWith('.tsx')) {
-        return `import React from 'react';\n${code}`;
-      }
-    }
-  };
-  return [islandPlugin];
+  return [
+    islandPlugin,
+    reactPlugin({
+      jsxRuntime: 'classic'
+    })
+  ];
 }
