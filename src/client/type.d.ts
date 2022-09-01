@@ -6,3 +6,9 @@ declare module '/@island/theme*' {
   export const Layout: ComponentType<any>;
   export const islands: Record<string, ComponentType<any>>;
 }
+
+declare module '/@island/client*' {
+  import { ComponentType } from 'react';
+
+  export const Page: ComponentType<any>;
+}

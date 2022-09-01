@@ -1,6 +1,9 @@
 import { join } from 'path';
 
 export const isProduction = () => process.env.NODE_ENV === 'production';
+
+export const CLIENT_PATH = join(__dirname, '../../../src/client/app');
+
 export const CLIENT_ENTRY_PATH = join(
   __dirname,
   '../../../src/client/app/client-entry.tsx'

@@ -8,12 +8,15 @@
     "start:client": "cd src/client && tsc -w",
     "start:node": "cd src/node && tsc -w",
     "dev:playground": "node ./bin/island playground",
-    "build:playground": "node ./bin/island build playground"
+    "build:playground": "node ./bin/island build playground",
+    "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx --quiet ./"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@mdx-js/mdx": "1",
+    "@mdx-js/react": "1",
     "@vitejs/plugin-react": "^2.0.1",
     "cac": "^6.7.12",
     "esbuild": "^0.15.5",
@@ -32,10 +35,15 @@
     "@types/koa-router": "^7.4.4",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.36.1",
+    "@typescript-eslint/parser": "^5.36.1",
+    "eslint": "^8.23.0",
+    "eslint-plugin-react": "^7.31.1",
     "ora": "^6.1.2",
     "rollup": "^2.78.1",
     "sass": "^1.54.5",
     "tsx": "^3.8.2",
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "vite-plugin-mdx": "^3.5.10"
   }
 }

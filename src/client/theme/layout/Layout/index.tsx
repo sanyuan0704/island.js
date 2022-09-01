@@ -1,5 +1,6 @@
 import React from 'react';
-import { HomeLayout } from '../HomeLayout/index';
+import { HomeLayout } from '../HomeLayout';
+
 export const Layout: React.FC = () => {
   return (
     <div>

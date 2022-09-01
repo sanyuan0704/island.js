@@ -1,7 +1,7 @@
+import { resolve } from 'path';
 import { cac } from 'cac';
 import { build } from './build';
 import { createDevServer } from './dev';
-import { resolve } from 'path';
 
 const cli = cac('island').version('0.0.0').help();
 

@@ -1,5 +1,5 @@
 import { Layout } from './layout/Layout';
-import { Counter } from './components/Counter/index';
+import { Counter } from './components/Counter';
 import './styles/base.css';
 import './styles/vars.css';
 
