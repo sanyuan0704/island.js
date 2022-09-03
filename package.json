@@ -17,6 +17,7 @@
   "dependencies": {
     "@mdx-js/mdx": "1",
     "@mdx-js/react": "1",
+    "@svgr/core": "^6.3.1",
     "@vitejs/plugin-react": "^2.0.1",
     "cac": "^6.7.12",
     "esbuild": "^0.15.5",

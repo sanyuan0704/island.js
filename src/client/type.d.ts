@@ -12,3 +12,10 @@ declare module '/@island/client*' {
 
   export const Page: ComponentType<any>;
 }
+
+declare module '*.svg' {
+  export const ReactComponent: React.FunctionComponent<
+    React.SVGProps<SVGSVGElement>
+  >;
+  export = ReactComponent;
+}

@@ -3,7 +3,7 @@
   "compilerOptions": {
     "module": "ESNext",
     "outDir": "../../dist/client",
-    "jsx": "preserve",
+    "jsx": "react",
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true
   }

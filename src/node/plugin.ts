@@ -9,6 +9,7 @@ import {
   isProduction,
   THEME_PATH
 } from './constants';
+import viteSvgrPlugin from './plugin-svgr';
 
 // function siteDataPlugin(): Plugin {
 //   return {
@@ -79,6 +80,9 @@ export function createIslandPlugins() {
     islandPlugin,
     reactPlugin({
       jsxRuntime: 'classic'
+    }),
+    viteSvgrPlugin({
+      defaultExport: 'component'
     }),
     mdx()
   ];
