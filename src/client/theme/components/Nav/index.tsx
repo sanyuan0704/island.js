@@ -3,6 +3,7 @@ import styles from './index.module.scss';
 import { Link } from '../Link/index';
 import { SwitchAppearance } from '../SwitchAppearance/index';
 import GithubSvg from './icons/github.svg';
+import { Search } from '../Search/index';
 // export function NavMenuList() {}
 console.log(styles);
 export function NavBar() {
@@ -36,13 +37,16 @@ export function NavBar() {
   };
   return (
     <div className={styles.navBar}>
-      <div className={styles.container}>
-        <div className={styles.navBarTitle}>
+      <div className={`${styles.container}`}>
+        <div className={`${styles.navBarTitle} ${styles.hasSidebar}`}>
           <a href="/" className={styles.title}>
             Island
           </a>
         </div>
         <div className={styles.content}>
+          <div className={styles.search}>
+            <Search />
+          </div>
           <div className={styles.menu}>{renderMenuList()}</div>
           <div className={styles.appearance}>
             <SwitchAppearance />
@@ -62,7 +66,7 @@ export function NavBar() {
 
 export function Nav() {
   return (
-    <header>
+    <header className={styles.nav}>
       <NavBar />
     </header>
   );

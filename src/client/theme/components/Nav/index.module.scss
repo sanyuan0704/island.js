@@ -1,12 +1,44 @@
-.navBarTitle {
-  flex-shrink: 0;
-  border-bottom: 1px solid transparent;
+.nav {
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: var(--island-z-index-nav);
+  width: 100%;
 }
 
 @media (min-width: 960px) {
-  .navBarTitle.has-sidebar {
-    margin-right: 32px;
-    width: calc(var(--island-sidebar-width) - 64px);
+  .nav {
+    position: fixed;
+    -webkit-backdrop-filter: saturate(50%) blur(8px);
+    backdrop-filter: saturate(50%) blur(8px);
+  }
+
+  :global(.dark) .nav {
+    background: rgba(36, 36, 36, 0.7);
+  }
+
+  @supports not (backdrop-filter: saturate(50%) blur(8px)) {
+    .nav {
+      background: rgba(255, 255, 255, 0.95);
+    }
+
+    :global(.dark) .nav {
+      background: rgba(36, 36, 36, 0.95);
+    }
+  }
+}
+
+.nav-bar-title {
+  flex-shrink: 0;
+  border-bottom: 1px solid transparent;
+  z-index: 2;
+}
+
+@media (min-width: 960px) {
+  .nav-bar-title.has-sidebar {
+    margin-left: -64px;
+    padding-left: 64px;
+    width: calc(var(--island-sidebar-width) + 32px);
     border-bottom-color: var(--island-c-divider-light);
     background-color: var(--island-c-bg-alt);
   }
@@ -33,12 +65,12 @@
   }
 }
 
-:deep(.logo) {
+.logo {
   margin-right: 8px;
   height: 24px;
 }
 
-.navBar {
+.nav-bar {
   position: relative;
   border-bottom: 1px solid var(--island-c-divider-light);
   padding: 0 8px 0 24px;
@@ -47,18 +79,18 @@
 }
 
 @media (min-width: 768px) {
-  .navBar {
+  .nav-bar {
     padding: 0 32px;
   }
 }
 
 @media (min-width: 960px) {
-  .navBar {
+  .nav-bar {
     height: var(--island-nav-height-desktop);
     border-bottom: 0;
   }
 
-  .navBar.has-sidebar .content {
+  .nav-bar.has-sidebar .content {
     margin-right: -32px;
     padding-right: 32px;
     -webkit-backdrop-filter: saturate(50%) blur(8px);
@@ -66,16 +98,16 @@
     background: rgba(255, 255, 255, 0.7);
   }
 
-  .dark .navBar.has-sidebar .content {
+  :global(.dark) .nav-bar.has-sidebar .content {
     background: rgba(36, 36, 36, 0.7);
   }
 
   @supports not (backdrop-filter: saturate(50%) blur(8px)) {
-    .navBar.has-sidebar .content {
+    .nav-bar.has-sidebar .content {
       background: rgba(255, 255, 255, 0.95);
     }
 
-    .dark .navBar.has-sidebar .content {
+    :global(.dark) .nav-bar.has-sidebar .content {
       background: rgba(36, 36, 36, 0.95);
     }
   }
@@ -161,5 +193,10 @@
   .appearance {
     display: flex;
     align-items: center;
+  }
+
+  .search {
+    flex: 1;
+    padding-left: 32px;
   }
 }

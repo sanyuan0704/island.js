@@ -5,7 +5,7 @@ import logo from './island.png';
 
 export function HomeHero() {
   return (
-    <div className={`${styles.VPHero} ${styles['has-image']}`}>
+    <div className={`${styles.hero} ${styles['hasImage']}`}>
       <div className={styles.container}>
         <div className={styles.main}>
           <h1 className={styles.name}>

@@ -27,6 +27,11 @@ export function createIslandPlugins() {
             '/@island/theme': `/@fs/${THEME_PATH}`,
             '/@island/client': `/@fs/${CLIENT_PATH}`
           }
+        },
+        css: {
+          modules: {
+            localsConvention: 'camelCaseOnly'
+          }
         }
       };
     },

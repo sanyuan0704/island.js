@@ -1,0 +1,178 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: var(--island-z-index-sidebar);
+  padding: 32px 32px 96px;
+  width: calc(100vw - 64px);
+  max-width: 320px;
+  background-color: var(--island-c-bg);
+  opacity: 0;
+  box-shadow: var(--island-c-shadow-3);
+  overflow-x: hidden;
+  overflow-y: auto;
+  transform: translateX(-100%);
+  transition: opacity 0.5s, transform 0.25s ease;
+}
+
+.sidebar.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+  transition: opacity 0.25s, transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.dark .sidebar {
+  box-shadow: var(--island-shadow-1);
+}
+
+@media (min-width: 960px) {
+  .sidebar {
+    z-index: 1;
+    padding-top: var(--island-nav-height-desktop);
+    padding-bottom: 128px;
+    width: var(--island-sidebar-width);
+    max-width: 100%;
+    background-color: var(--island-c-bg-alt);
+    opacity: 1;
+    visibility: visible;
+    box-shadow: none;
+    transform: translateX(0);
+  }
+}
+
+@media (min-width: 1440px) {
+  .sidebar {
+    padding-left: max(
+      32px,
+      calc((100% - (var(--island-layout-max-width) - 64px)) / 2)
+    );
+    width: calc(
+      (100% - (var(--island-layout-max-width) - 64px)) / 2 +
+        var(--island-sidebar-width) - 32px
+    );
+  }
+}
+
+.nav {
+  outline: 0;
+}
+
+.group + .group {
+  margin-top: 32px;
+  border-top: 1px solid var(--island-c-divider-light);
+  padding-top: 10px;
+}
+
+@media (min-width: 960px) {
+  .group {
+    padding-top: 10px;
+    width: calc(var(--island-sidebar-width) - 64px);
+  }
+
+  .group + .group {
+    margin-top: 24px;
+  }
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  z-index: 2;
+}
+
+.titleText {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  line-height: 20px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--island-c-text-1);
+}
+
+.action {
+  display: none;
+  position: relative;
+  margin-right: -8px;
+  border-radius: 4px;
+  width: 32px;
+  height: 32px;
+  color: var(--island-c-text-3);
+  transition: color 0.25s;
+}
+
+.sideBarGroup.collapsible .action {
+  display: block;
+}
+
+.title:hover .action {
+  color: var(--island-c-text-2);
+}
+
+.icon {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.icon.minus {
+  opacity: 1;
+}
+.icon.plus {
+  opacity: 0;
+}
+
+.sideBarGroup.collapsed .icon.minus {
+  opacity: 0;
+}
+.sideBarGroup.collapsed .icon.plus {
+  opacity: 1;
+}
+
+.items {
+  overflow: hidden;
+}
+
+.sideBarGroup.collapsed .items {
+  margin-bottom: -22px;
+  max-height: 0;
+}
+
+@media (min-width: 960px) {
+  .sideBarGroup.collapsed .items {
+    margin-bottom: -14px;
+  }
+}
+
+.link {
+  display: block;
+  margin: 4px 0;
+  color: var(--island-c-text-2);
+  transition: color 0.5s;
+  line-height: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.link.offset {
+  padding-left: 16px;
+}
+
+.link:hover {
+  color: var(--island-c-text-1);
+}
+
+.link.active {
+  color: var(--island-c-brand);
+}
+
+.link :deep(.icon) {
+  width: 12px;
+  height: 12px;
+  fill: currentColor;
+}
