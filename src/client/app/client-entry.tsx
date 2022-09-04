@@ -10,7 +10,8 @@ async function renderInBrowser() {
     throw new Error('#root element not found');
   }
   if (import.meta.env.DEV) {
-    // App 组件的代码会在生产环境被 Tree Shaking 掉
+    // The App code will will be tree-shaking in production
+    // So there is no need to worry that the complete hydration will be executed in production
     await waitForApp('/');
     createRoot(containerEl).render(
       <BrowserRouter>

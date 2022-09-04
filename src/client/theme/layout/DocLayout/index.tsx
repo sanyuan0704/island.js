@@ -1,7 +1,7 @@
 import React from 'react';
 import { SideBar } from '../../components/Siderbar/index';
 import styles from './index.module.scss';
-import { Page } from '/@island/client/Page';
+import { Content } from '/@island/client/Content';
 import { Aside } from '../../components/Aside/index';
 import { DocFooter } from '../../components/DocFooter/index';
 
@@ -15,7 +15,7 @@ export function DocLayout() {
         <div className={styles.container}>
           <div className={styles.contentContainer}>
             <main className={styles.main}>
-              <Page />
+              <Content />
               <DocFooter />
             </main>
           </div>

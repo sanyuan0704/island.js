@@ -10,7 +10,7 @@ declare module '/@island/theme*' {
 declare module '/@island/client*' {
   import { ComponentType } from 'react';
 
-  export const Page: ComponentType<any>;
+  export const Content: ComponentType<any>;
 }
 
 declare module '*.svg' {

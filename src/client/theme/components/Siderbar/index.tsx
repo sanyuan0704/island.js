@@ -61,10 +61,10 @@ export function SideBar() {
       <section className={`${styles.sideBarGroup} ${styles.collapsible}`}>
         <div className={styles.title}>
           <h2 className={styles.titleText}>{item.text}</h2>
-          <div className={styles.action}>
+          {/* <div className={styles.action}>
             <MinusSvg className={`${styles.icon} ${styles.minus}`}></MinusSvg>
             <PlusSvg className={`${styles.icon} ${styles.plus}`}></PlusSvg>
-          </div>
+          </div> */}
         </div>
         <div className={styles.items}>
           {item.items.map((item) => (

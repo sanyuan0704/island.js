@@ -14,7 +14,7 @@ const routes = [
     element: <MD1 />
   }
 ];
-export const Page = () => {
+export const Content = () => {
   const routesElement = useRoutes(routes);
   return routesElement;
 };

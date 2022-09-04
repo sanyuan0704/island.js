@@ -4,8 +4,7 @@ import { Link } from '../Link/index';
 import { SwitchAppearance } from '../SwitchAppearance/index';
 import GithubSvg from './icons/github.svg';
 import { Search } from '../Search/index';
-// export function NavMenuList() {}
-console.log(styles);
+
 export function NavBar() {
   const menuItems = [
     {
