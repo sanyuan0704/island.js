@@ -1,20 +1,8 @@
 import { useRoutes } from 'react-router-dom';
+import { routes } from 'virtual:routes';
 import React from 'react';
-import MD1 from '../../../playground/src/1.md';
 
-interface Route {
-  path: string;
-  component: () => Promise<React.ComponentType<any>>;
-  element: React.ReactElement;
-}
-
-const routes = [
-  {
-    path: '/',
-    element: <MD1 />
-  }
-];
 export const Content = () => {
   const routesElement = useRoutes(routes);
-  return routesElement;
+  return <>{routesElement}</>;
 };

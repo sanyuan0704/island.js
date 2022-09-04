@@ -13,6 +13,12 @@ declare module '/@island/client*' {
   export const Content: ComponentType<any>;
 }
 
+declare module 'virtual:routes' {
+  import { Route } from 'react-router-dom';
+
+  export const routes: Route[];
+}
+
 declare module '*.svg' {
   export const ReactComponent: React.FunctionComponent<
     React.SVGProps<SVGSVGElement>

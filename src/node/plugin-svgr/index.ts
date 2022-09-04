@@ -2,10 +2,10 @@ import { Plugin } from 'vite';
 import * as fs from 'fs';
 
 interface SvgrOptions {
-  defaultExport: 'url' | 'component';
+  defaultExport?: 'url' | 'component';
 }
 
-export default function viteSvgrPlugin(options: SvgrOptions): Plugin {
+export function pluginSvgr(options: SvgrOptions = {}): Plugin {
   const { defaultExport = 'component' } = options;
 
   return {
