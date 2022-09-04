@@ -15,6 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@loadable/component": "^5.15.2",
     "@mdx-js/mdx": "1",
     "@mdx-js/react": "1",
     "@svgr/core": "^6.3.1",
@@ -34,6 +35,7 @@
     "@types/fs-extra": "^9.0.13",
     "@types/koa": "^2.13.5",
     "@types/koa-router": "^7.4.4",
+    "@types/loadable__component": "^5.13.4",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
