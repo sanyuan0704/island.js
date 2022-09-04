@@ -1,4 +1,4 @@
-.Button {
+.button {
   display: inline-block;
   border: 1px solid transparent;
   text-align: center;
@@ -7,73 +7,73 @@
   transition: color 0.25s, border-color 0.25s, background-color 0.25s;
 }
 
-.Button:active {
+.button:active {
   transition: color 0.1s, border-color 0.1s, background-color 0.1s;
 }
 
-.Button.medium {
+.button.medium {
   border-radius: 20px;
   padding: 0 20px;
   line-height: 38px;
   font-size: 14px;
 }
 
-.Button.big {
+.button.big {
   border-radius: 24px;
   padding: 0 24px;
   line-height: 46px;
   font-size: 16px;
 }
 
-.Button.brand {
+.button.brand {
   border-color: var(--island-button-brand-border);
   color: var(--island-button-brand-text);
   background-color: var(--island-button-brand-bg);
 }
 
-.Button.brand:hover {
+.button.brand:hover {
   border-color: var(--island-button-brand-hover-border);
   color: var(--island-button-brand-hover-text);
   background-color: var(--island-button-brand-hover-bg);
 }
 
-.Button.brand:active {
+.button.brand:active {
   border-color: var(--island-button-brand-active-border);
   color: var(--island-button-brand-active-text);
   background-color: var(--island-button-brand-active-bg);
 }
 
-.Button.alt {
+.button.alt {
   border-color: var(--island-button-alt-border);
   color: var(--island-button-alt-text);
   background-color: var(--island-button-alt-bg);
 }
 
-.Button.alt:hover {
+.button.alt:hover {
   border-color: var(--island-button-alt-hover-border);
   color: var(--island-button-alt-hover-text);
   background-color: var(--island-button-alt-hover-bg);
 }
 
-.Button.alt:active {
+.button.alt:active {
   border-color: var(--island-button-alt-active-border);
   color: var(--island-button-alt-active-text);
   background-color: var(--island-button-alt-active-bg);
 }
 
-.Button.sponsor {
+.button.sponsor {
   border-color: var(--island-button-sponsor-border);
   color: var(--island-button-sponsor-text);
   background-color: var(--island-button-sponsor-bg);
 }
 
-.Button.sponsor:hover {
+.button.sponsor:hover {
   border-color: var(--island-button-sponsor-hover-border);
   color: var(--island-button-sponsor-hover-text);
   background-color: var(--island-button-sponsor-hover-bg);
 }
 
-.Button.sponsor:active {
+.button.sponsor:active {
   border-color: var(--island-button-sponsor-active-border);
   color: var(--island-button-sponsor-active-text);
   background-color: var(--island-button-sponsor-active-bg);

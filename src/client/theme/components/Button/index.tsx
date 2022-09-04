@@ -14,7 +14,7 @@ export function Button(props: ButtonProps) {
   return React.createElement(
     type,
     {
-      className: `${styles.Button} ${styles[theme]} ${styles[size]}`,
+      className: `${styles.button} ${styles[theme]} ${styles[size]}`,
       href
     },
     props.text

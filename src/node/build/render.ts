@@ -1,7 +1,7 @@
-import { dynamicImport } from '../utils';
-import fs from 'fs-extra';
 import { join } from 'path';
+import fs from 'fs-extra';
 import type { RollupOutput } from 'rollup';
+import { dynamicImport } from '../utils';
 import { okMark } from './bundle';
 
 export async function renderPage(
@@ -14,7 +14,7 @@ export async function renderPage(
   );
   const { default: ora } = await dynamicImport('ora');
   const spinner = ora();
-  spinner.start(`Rendering page in server side...`);
+  spinner.start('Rendering page in server side...');
   const { appHtml, propsData } = render();
   const html = `
 <!DOCTYPE html>

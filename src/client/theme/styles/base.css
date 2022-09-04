@@ -213,3 +213,7 @@ fieldset {
   margin: 0;
   padding: 0;
 }
+
+.visually-hidden {
+  visibility: hidden;
+}

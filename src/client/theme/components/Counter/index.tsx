@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import React from 'react';
+import React, { useState } from 'react';
 
 export function Counter(props: { count?: number; __island: boolean }) {
   const [count, setCount] = useState(props.count || 0);

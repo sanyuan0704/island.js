@@ -1,12 +1,21 @@
 import { Plugin } from 'vite';
+import reactPlugin from '@vitejs/plugin-react';
+import fs from 'fs-extra';
+import mdx from 'vite-plugin-mdx';
 import {
   CLIENT_ENTRY_PATH,
+  CLIENT_PATH,
   DEFAULT_HTML_PATH,
   isProduction,
   THEME_PATH
 } from './constants';
-import reactPlugin from '@vitejs/plugin-react';
-import fs from 'fs-extra';
+import viteSvgrPlugin from './plugin-svgr';
+
+// function siteDataPlugin(): Plugin {
+//   return {
+//     name: 'internal:site-data'
+//   };
+// }
 
 export function createIslandPlugins() {
   const islandPlugin: Plugin = {
@@ -15,7 +24,13 @@ export function createIslandPlugins() {
       return {
         resolve: {
           alias: {
-            '/@island/theme': `/@fs/${THEME_PATH}`
+            '/@island/theme': `/@fs/${THEME_PATH}`,
+            '/@island/client': `/@fs/${CLIENT_PATH}`
+          }
+        },
+        css: {
+          modules: {
+            localsConvention: 'camelCaseOnly'
           }
         }
       };
@@ -70,6 +85,10 @@ export function createIslandPlugins() {
     islandPlugin,
     reactPlugin({
       jsxRuntime: 'classic'
-    })
+    }),
+    viteSvgrPlugin({
+      defaultExport: 'component'
+    }),
+    mdx()
   ];
 }

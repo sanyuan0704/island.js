@@ -26,7 +26,7 @@ export async function bundle(root: string) {
   // `ora` is a pure esm package.
   const { default: ora } = await dynamicImport('ora');
   const spinner = ora();
-  spinner.start(`Building client + server bundles...`);
+  spinner.start('Building client + server bundles...');
   try {
     const [clientBundle, serverBundle] = await Promise.all([
       // client build

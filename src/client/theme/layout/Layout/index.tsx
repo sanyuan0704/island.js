@@ -1,9 +1,14 @@
 import React from 'react';
-import { HomeLayout } from '../HomeLayout/index';
+import { HomeLayout } from '../HomeLayout';
+import { Nav } from '../../components/Nav';
+import { DocLayout } from '../DocLayout';
+
 export const Layout: React.FC = () => {
   return (
     <div>
-      <HomeLayout />
+      <Nav />
+      {/* <HomeLayout /> */}
+      <DocLayout></DocLayout>
     </div>
   );
 };
