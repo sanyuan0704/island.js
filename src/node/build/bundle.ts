@@ -3,6 +3,8 @@ import { build, InlineConfig } from 'vite';
 import { CLIENT_ENTRY_PATH, SERVER_ENTRY_PATH, TEMP_PATH } from '../constants';
 import { createIslandPlugins } from '../plugin';
 import { dynamicImport } from '../utils';
+import { join } from 'path';
+import { copy } from 'fs-extra';
 
 export const okMark = '\x1b[32m✓\x1b[0m';
 export const failMark = '\x1b[31m✖\x1b[0m';
@@ -12,10 +14,13 @@ export async function bundle(root: string) {
     mode: 'production',
     root,
     plugins: [createIslandPlugins()],
+    esbuild: {
+      // Reserve island component name
+      minifyIdentifiers: !isServer
+    },
     build: {
-      minify: false,
       ssr: isServer,
-      outDir: isServer ? TEMP_PATH : 'dist',
+      outDir: isServer ? join(TEMP_PATH, 'ssr') : 'dist',
       cssCodeSplit: false,
       ssrManifest: !isServer,
       rollupOptions: {
@@ -37,6 +42,10 @@ export async function bundle(root: string) {
     spinner.stopAndPersist({
       symbol: okMark
     });
+    await copy(
+      join(root, TEMP_PATH, 'ssr', 'assets'),
+      join(root, 'dist', 'assets')
+    );
     return [clientBundle, serverBundle] as [RollupOutput, RollupOutput];
   } catch (e) {
     spinner.stopAndPersist({

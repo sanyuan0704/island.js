@@ -1,5 +1,5 @@
-import { ComponentType } from 'react';
-import { islands } from '/@island/theme';
+import type { ComponentType } from 'react';
+import islands from 'island:islands';
 
 // Type shim for window.ISLANDS
 declare global {

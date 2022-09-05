@@ -4,7 +4,7 @@ import styles from './index.module.scss';
 import SunSvg from './sun.svg';
 import MoonSvg from './moon.svg';
 
-export function SwitchAppearance() {
+export function SwitchAppearance(props: { __island?: boolean }) {
   const handleClick = () => {
     const classList = document.documentElement.classList;
     if (classList.contains('dark')) {

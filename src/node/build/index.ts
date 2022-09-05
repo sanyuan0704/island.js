@@ -9,8 +9,8 @@ export async function build(root = process.cwd()) {
   if (!bundleResult) {
     return;
   }
-  const [clientBundle, _serverBundle] = bundleResult;
+  const [clientBundle, serverBundle] = bundleResult;
   const serverEntryPath = join(root, SERVER_OUTPUT_PATH);
   const { render } = await dynamicImport(serverEntryPath);
-  await renderPage(render, root, clientBundle);
+  await renderPage(render, root, clientBundle, serverBundle);
 }

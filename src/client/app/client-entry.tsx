@@ -1,8 +1,6 @@
 import { hydrateRoot, createRoot } from 'react-dom/client';
 import React, { createElement } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { App, waitForApp } from './app';
-import './island-inject';
 
 async function renderInBrowser() {
   const containerEl = document.getElementById('root');
@@ -12,6 +10,8 @@ async function renderInBrowser() {
   if (import.meta.env.DEV) {
     // The App code will will be tree-shaking in production
     // So there is no need to worry that the complete hydration will be executed in production
+    const { waitForApp, App } = await import('./app');
+
     await waitForApp('/');
     createRoot(containerEl).render(
       <BrowserRouter>
@@ -19,6 +19,7 @@ async function renderInBrowser() {
       </BrowserRouter>
     );
   } else {
+    await import('./island-inject');
     const islands = document.querySelectorAll('[__island]');
     for (let i = 0; i < islands.length; i++) {
       const island = islands[i];

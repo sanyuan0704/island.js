@@ -1,6 +1,7 @@
 import fastGlob from 'fast-glob';
 import path from 'path';
-
+import { isProduction, ROUTE_PATH, TEMP_PATH } from '../constants';
+import { writeFile, ensureDir } from 'fs-extra';
 export interface RouteMeta {
   routePath: string;
   basePath: string;
@@ -12,16 +13,19 @@ export const addLeadingSlash = (str: string) => {
 };
 
 export const normalizeRoutePath = (routePath: string) => {
-  console.log(routePath);
   routePath = routePath.replace(/\.(.*)?$/, '').replace(/index$/, '');
   return addLeadingSlash(routePath);
 };
 
 export class RouteService {
   #routeData: RouteMeta[] = [];
-  constructor(private scanDir: string, private extensions: string[]) {}
+  constructor(
+    private scanDir: string,
+    private extensions: string[],
+    private root: string
+  ) {}
 
-  init() {
+  async init() {
     const files = fastGlob.sync(`**/*.{${this.extensions.join(',')}}`, {
       cwd: this.scanDir,
       absolute: false,
@@ -35,17 +39,25 @@ export class RouteService {
         absolutePath: path.join(this.scanDir, fileRelativePath)
       };
     });
+    const routeCode = this.generateRoutesCode();
+    try {
+      await ensureDir(path.join(this.root, TEMP_PATH));
+      await writeFile(path.join(this.root, ROUTE_PATH), routeCode);
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   generateRoutesCode() {
     return `
-import loadable from '@loadable/component';
+${isProduction() ? '' : `import loadable from '@loadable/component';`}
 import React from 'react';
 ${this.#routeData
-  .map(
-    (route, index) =>
-      `const Route${index} = loadable(() => import('${route.absolutePath}'))`
-  )
+  .map((route, index) => {
+    return isProduction()
+      ? `import Route${index} from '${route.absolutePath}';`
+      : `const Route${index} = loadable(() => import('${route.absolutePath}'))`;
+  })
   .join('\n')}
 export const routes = [
 ${this.#routeData
@@ -53,6 +65,7 @@ ${this.#routeData
     return `{ path: '${route.routePath}', element: React.createElement(Route${index}) },`;
   })
   .join('\n')}
-];`;
+];
+`;
   }
 }
