@@ -20,9 +20,8 @@ export class RouteService {
   #routeData: RouteMeta[] = [];
   constructor(
     private scanDir: string,
-    private extensions: string[]
-  ) // private root: string
-  {}
+    private extensions: string[] // private root: string
+  ) {}
 
   async init() {
     const files = fastGlob.sync(`**/*.{${this.extensions.join(',')}}`, {
@@ -48,7 +47,6 @@ export class RouteService {
   }
 
   generateRoutesCode() {
-    console.log(this.#routeData);
     return `
 ${isProduction() ? '' : `import loadable from '@loadable/component'`};
 import React from 'react';

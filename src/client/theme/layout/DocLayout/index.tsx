@@ -4,6 +4,9 @@ import styles from './index.module.scss';
 import { Content } from 'island:client/Content';
 import { Aside } from '../../components/Aside/index';
 import { DocFooter } from '../../components/DocFooter/index';
+import { usePageData } from 'island:client/data';
+
+console.log(usePageData());
 
 export function DocLayout() {
   return (

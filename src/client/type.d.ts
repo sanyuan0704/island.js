@@ -10,10 +10,15 @@ declare module 'island:islands' {
   export default Record<string, ComponentType<any>>;
 }
 
+declare module 'island:page-data' {
+  export default any;
+}
+
 declare module 'island:client*' {
   import { ComponentType } from 'react';
 
   export const Content: ComponentType<any>;
+  export const usePageData: () => any;
 }
 
 declare module 'virtual:routes' {

@@ -12,14 +12,19 @@ import fs from 'fs-extra';
 import { join } from 'path';
 import { SiteConfig } from '../../shared/types';
 
+export const PAGE_DATA_ID = 'island:page-data';
+
 /**
- * The plugin for island framework
+ * The plugin for island framework:
+ * 1. Handle module alias
+ * 2. Response page data
+ * 3. Generate html template for development
  */
 export function pluginIsland(config: SiteConfig): Plugin {
+  const { pageData } = config;
   return {
     name: 'island:vite-plugin-internal',
     config(c) {
-      console.log(join(c.root!, ROUTE_PATH));
       return {
         resolve: {
           alias: {
@@ -36,7 +41,16 @@ export function pluginIsland(config: SiteConfig): Plugin {
         }
       };
     },
-
+    resolveId(id) {
+      if (id === PAGE_DATA_ID) {
+        return '\0' + PAGE_DATA_ID;
+      }
+    },
+    load(id) {
+      if (id === '\0' + PAGE_DATA_ID) {
+        return `export default ${JSON.stringify(pageData)}`;
+      }
+    },
     transformIndexHtml(html) {
       if (isProduction()) {
         return html;
