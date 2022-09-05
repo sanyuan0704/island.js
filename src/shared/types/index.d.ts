@@ -23,27 +23,26 @@ export type HeadConfig =
 export interface UserConfig<ThemeConfig = any> {
   /**
    * Base path of the site.
-   * @default '/'
    */
   base?: string;
   /**
+   * Source directory of the site.
+   */
+  srcDir?: string;
+  /**
    * Language of the site.
-   * @default 'en-US'
    */
   lang?: string;
   /**
    * Title of the site.
-   * @default 'Island'
    */
   title?: string;
   /**
    * Description of the site.
-   * @default 'Island SSG'
    */
   description?: string;
   /**
    * Custom head config.
-   * @default []
    */
   head?: HeadConfig[];
   /**
@@ -57,7 +56,11 @@ export interface UserConfig<ThemeConfig = any> {
   /**
    * Output directory of the site.
    */
-  outdir?: string;
+  outDir?: string;
+  /**
+   * Temporary directory of the site.
+   */
+  tempDir?: string;
   /**
    * Vite Configuration
    */
@@ -68,9 +71,12 @@ export interface UserConfig<ThemeConfig = any> {
   mpa?: boolean;
   /**
    * Whether to fail builds when there are dead links.
-   * @default false
    */
   allowDeadLinks?: boolean;
+  /**
+   * Whether to fail builds when there are dead links.
+   */
+  scrollOffset?: string | number;
 }
 
 export interface LocaleConfig {
@@ -83,13 +89,27 @@ export interface LocaleConfig {
   selectText?: string;
 }
 
-export interface SiteConfig<ThemeConfig = any> extends UserConfig {
+export interface PageData<ThemeConfig = any> {
+  base: string;
+  lang: string;
+  title: string;
+  description: string;
+  head: HeadConfig[];
+  themeConfig: ThemeConfig;
+  scrollOffset: number | string;
+  locales: Record<string, LocaleConfig>;
+  // TODO: Available languages
+  // langs: Record<string, { lang: string; label: string }>;
+}
+
+export interface SiteConfig<ThemeConfig = any>
+  extends Omit<UserConfig, 'themeConfig'> {
   root: string;
   srcDir: string;
   configPath?: string;
   configDeps?: string[];
   themeDir?: string;
   outDir?: string;
-  themeConfig: ThemeConfig;
-  pages: string[];
+  // Current page data
+  pageData?: PageData<ThemeConfig>;
 }

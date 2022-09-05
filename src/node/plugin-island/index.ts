@@ -6,15 +6,16 @@ import {
   isProduction,
   ROUTE_PATH,
   THEME_ISLANDS_PATH,
-  THEME_PATH
+  DEFAULT_THEME_PATH
 } from '../constants';
 import fs from 'fs-extra';
 import { join } from 'path';
+import { SiteConfig } from '../../shared/types';
 
 /**
- * The plugin for island framework, it will inject client code into html.
+ * The plugin for island framework
  */
-export function pluginIsland(): Plugin {
+export function pluginIsland(config: SiteConfig): Plugin {
   return {
     name: 'island:vite-plugin-internal',
     config(c) {
@@ -22,7 +23,7 @@ export function pluginIsland(): Plugin {
       return {
         resolve: {
           alias: {
-            'island:theme': `/@fs/${THEME_PATH}`,
+            'island:theme': `/@fs/${DEFAULT_THEME_PATH}`,
             'island:client': `/@fs/${CLIENT_PATH}`,
             'island:routes': join(c.root!, ROUTE_PATH),
             'island:islands': join(`/@fs/${THEME_ISLANDS_PATH}`)
@@ -35,6 +36,7 @@ export function pluginIsland(): Plugin {
         }
       };
     },
+
     transformIndexHtml(html) {
       if (isProduction()) {
         return html;

@@ -3,11 +3,13 @@ import pluginMdx from 'vite-plugin-mdx';
 import { pluginSvgr } from './plugin-svgr';
 import { pluginIsland } from './plugin-island';
 import { pluginRoutes } from './plugin-routes';
+import pluginInspect from 'vite-plugin-inspect';
+import { SiteConfig } from '../shared/types';
 
-export function createIslandPlugins() {
+export function createIslandPlugins(config: SiteConfig) {
   return [
     // For island internal use
-    pluginIsland(),
+    pluginIsland(config),
     // React hmr support
     pluginReact({
       jsxRuntime: 'classic',
@@ -20,8 +22,8 @@ export function createIslandPlugins() {
     // Md(x) compile
     pluginMdx(),
     // Conventional Route
-    pluginRoutes({ prefix: '' })
+    pluginRoutes({ prefix: '' }),
     // Inspect transformation
-    // pluginInspect({})
+    pluginInspect({})
   ];
 }

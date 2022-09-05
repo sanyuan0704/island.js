@@ -16,6 +16,7 @@ specifiers:
   '@typescript-eslint/parser': ^5.36.1
   '@vitejs/plugin-react': 2.0.1
   cac: 6.7.12
+  debug: ^4.3.4
   esbuild: 0.15.5
   eslint: ^8.23.0
   eslint-plugin-react: ^7.31.1
@@ -40,6 +41,7 @@ dependencies:
   '@svgr/core': registry.npmmirror.com/@svgr/core/6.3.1
   '@vitejs/plugin-react': registry.npmmirror.com/@vitejs/plugin-react/2.0.1_vite@3.0.9
   cac: registry.npmmirror.com/cac/6.7.12
+  debug: 4.3.4
   esbuild: registry.npmmirror.com/esbuild/0.15.5
   fast-glob: registry.npmmirror.com/fast-glob/3.2.11
   fs-extra: registry.npmmirror.com/fs-extra/10.1.0
@@ -3196,7 +3198,7 @@ packages:
       '@babel/traverse': registry.npmmirror.com/@babel/traverse/7.18.13
       '@babel/types': registry.npmmirror.com/@babel/types/7.18.13
       convert-source-map: registry.npmmirror.com/convert-source-map/1.8.0
-      debug: registry.npmmirror.com/debug/4.3.4
+      debug: 4.3.4
       gensync: registry.npmmirror.com/gensync/1.0.0-beta.2
       json5: registry.npmmirror.com/json5/2.2.1
       semver: registry.npmmirror.com/semver/6.3.0
@@ -3469,7 +3471,7 @@ packages:
       '@babel/helper-split-export-declaration': registry.npmmirror.com/@babel/helper-split-export-declaration/7.18.6
       '@babel/parser': registry.npmmirror.com/@babel/parser/7.18.13
       '@babel/types': registry.npmmirror.com/@babel/types/7.18.13
-      debug: registry.npmmirror.com/debug/4.3.4
+      debug: 4.3.4
       globals: registry.npmmirror.com/globals/11.12.0
     transitivePeerDependencies:
       - supports-color
@@ -3862,20 +3864,6 @@ packages:
       yaml: registry.npmmirror.com/yaml/1.10.2
     dev: false
 
-  registry.npmmirror.com/debug/4.3.4:
-    resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/debug/-/debug-4.3.4.tgz}
-    name: debug
-    version: 4.3.4
-    engines: {node: '>=6.0'}
-    peerDependencies:
-      supports-color: '*'
-    peerDependenciesMeta:
-      supports-color:
-        optional: true
-    dependencies:
-      ms: registry.npmmirror.com/ms/2.1.2
-    dev: false
-
   registry.npmmirror.com/electron-to-chromium/1.4.233:
     resolution: {integrity: sha512-ejwIKXTg1wqbmkcRJh9Ur3hFGHFDZDw1POzdsVrB2WZjgRuRMHIQQKNpe64N/qh3ZtH2otEoRoS+s6arAAuAAw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/electron-to-chromium/-/electron-to-chromium-1.4.233.tgz}
     name: electron-to-chromium
@@ -4181,12 +4169,6 @@ packages:
     dependencies:
       braces: registry.npmmirror.com/braces/3.0.2
       picomatch: registry.npmmirror.com/picomatch/2.3.1
-
-  registry.npmmirror.com/ms/2.1.2:
-    resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/ms/-/ms-2.1.2.tgz}
-    name: ms
-    version: 2.1.2
-    dev: false
 
   registry.npmmirror.com/node-releases/2.0.6:
     resolution: {integrity: sha512-PiVXnNuFm5+iYkLBNeq5211hvO38y63T0i2KKh2KnUs3RpzJ+JtODFjkD8yjLwnDkTYF1eKXheUwdssR+NRZdg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/node-releases/-/node-releases-2.0.6.tgz}

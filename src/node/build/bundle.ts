@@ -5,15 +5,17 @@ import { createIslandPlugins } from '../plugin';
 import { dynamicImport } from '../utils';
 import { join } from 'path';
 import { copy } from 'fs-extra';
+import { resolveConfig } from '../config';
 
 export const okMark = '\x1b[32m✓\x1b[0m';
 export const failMark = '\x1b[31m✖\x1b[0m';
 
 export async function bundle(root: string) {
+  const config = await resolveConfig(root, 'build', 'production');
   const resolveViteConfig = (isServer: boolean): InlineConfig => ({
     mode: 'production',
     root,
-    plugins: [createIslandPlugins()],
+    plugins: [createIslandPlugins(config)],
     esbuild: {
       // Reserve island component name
       minifyIdentifiers: !isServer

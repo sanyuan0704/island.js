@@ -21,6 +21,7 @@
     "@svgr/core": "6.3.1",
     "@vitejs/plugin-react": "2.0.1",
     "cac": "6.7.12",
+    "debug": "^4.3.4",
     "esbuild": "0.15.5",
     "fast-glob": "3.2.11",
     "fs-extra": "10.1.0",

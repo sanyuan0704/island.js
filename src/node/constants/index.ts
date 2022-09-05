@@ -14,7 +14,10 @@ export const SERVER_ENTRY_PATH = join(
   '../../../src/client/app/ssr-entry.tsx'
 );
 
-export const THEME_PATH = join(__dirname, '../../../src/client/theme/index.ts');
+export const DEFAULT_THEME_PATH = join(
+  __dirname,
+  '../../../src/client/theme/index.ts'
+);
 
 export const THEME_ISLANDS_PATH = join(
   __dirname,
