@@ -1,5 +1,5 @@
 import { useRoutes } from 'react-router-dom';
-import { routes } from 'virtual:routes';
+import { routes } from 'island:routes';
 import React from 'react';
 
 export const Content = () => {

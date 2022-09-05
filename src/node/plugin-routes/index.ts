@@ -46,8 +46,8 @@ export function pluginRoutes(options: PluginOptions = {}): Plugin {
       scanDir = path.isAbsolute(srcDir)
         ? path.join(srcDir, prefix)
         : path.join(config.root, srcDir, prefix);
-      routeService = new RouteService(scanDir, extensions);
-      routeService.init();
+      routeService = new RouteService(scanDir, extensions, config.root);
+      await routeService.init();
     },
 
     resolveId(id: string) {

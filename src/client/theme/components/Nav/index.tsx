@@ -48,7 +48,7 @@ export function NavBar() {
           </div>
           <div className={styles.menu}>{renderMenuList()}</div>
           <div className={styles.appearance}>
-            <SwitchAppearance />
+            <SwitchAppearance __island />
           </div>
           <div className={styles.socialLinks}>
             <div className={styles.socialLink}>

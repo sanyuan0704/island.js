@@ -4,9 +4,12 @@ import {
   CLIENT_PATH,
   DEFAULT_HTML_PATH,
   isProduction,
+  ROUTE_PATH,
+  THEME_ISLANDS_PATH,
   THEME_PATH
 } from '../constants';
 import fs from 'fs-extra';
+import { join } from 'path';
 
 /**
  * The plugin for island framework, it will inject client code into html.
@@ -14,12 +17,15 @@ import fs from 'fs-extra';
 export function pluginIsland(): Plugin {
   return {
     name: 'island:vite-plugin-internal',
-    config() {
+    config(c) {
+      console.log(join(c.root!, ROUTE_PATH));
       return {
         resolve: {
           alias: {
-            '/@island/theme': `/@fs/${THEME_PATH}`,
-            '/@island/client': `/@fs/${CLIENT_PATH}`
+            'island:theme': `/@fs/${THEME_PATH}`,
+            'island:client': `/@fs/${CLIENT_PATH}`,
+            'island:routes': join(c.root!, ROUTE_PATH),
+            'island:islands': join(`/@fs/${THEME_ISLANDS_PATH}`)
           }
         },
         css: {
