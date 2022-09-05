@@ -1,6 +1,6 @@
 import { Layout } from 'island:theme';
 import React from 'react';
-import { routes } from 'island:routes';
+import { routes } from 'virtual:routes';
 import { matchRoutes } from 'react-router-dom';
 
 export async function waitForApp(path: string) {

@@ -7,7 +7,8 @@ async function renderInBrowser() {
   if (!containerEl) {
     throw new Error('#root element not found');
   }
-  if (import.meta.env.DEV) {
+  // TODO: add SPA mode support
+  if (import.meta.env.DEV || import.meta.env.SPA) {
     // The App code will will be tree-shaking in production
     // So there is no need to worry that the complete hydration will be executed in production
     const { waitForApp, App } = await import('./app');

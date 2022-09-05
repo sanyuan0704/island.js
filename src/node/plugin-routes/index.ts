@@ -8,7 +8,7 @@ import { RouteService } from './RouteService';
  * Implementation details:
  * 1. Find all files under src/pages (or the configured directory)
  * 2. Convert the file path to a route object
- * 3. Merge the route objects
+ * 3. Merge the route objects and generate route module code
  */
 interface PluginOptions {
   /**
@@ -42,11 +42,11 @@ export function pluginRoutes(options: PluginOptions = {}): Plugin {
   let routeService: RouteService;
   return {
     name: 'island:vite-plugin-routes',
-    async configResolved(config) {
+    async configResolved(c) {
       scanDir = path.isAbsolute(srcDir)
         ? path.join(srcDir, prefix)
-        : path.join(config.root, srcDir, prefix);
-      routeService = new RouteService(scanDir, extensions, config.root);
+        : path.join(c.root!, srcDir, prefix);
+      routeService = new RouteService(scanDir, extensions);
       await routeService.init();
     },
 

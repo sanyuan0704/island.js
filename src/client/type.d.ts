@@ -16,7 +16,7 @@ declare module 'island:client*' {
   export const Content: ComponentType<any>;
 }
 
-declare module 'island:routes' {
+declare module 'virtual:routes' {
   import { Route } from 'react-router-dom';
 
   export const routes: Route[];
