@@ -1,54 +1,26 @@
 import styles from './index.module.scss';
 import React from 'react';
-import MinusSvg from './icons/minus.svg';
-import PlusSvg from './icons/plus.svg';
 import { Link } from '../Link/index';
-
-export type SidebarItem =
-  | { text: string; link: string }
-  | { text: string; link?: string; items: SidebarItem[] };
-
-interface SideBarData {
-  text: string;
-  items: SidebarItem[];
-  collapsible?: boolean;
-  collapsed?: boolean;
-}
+import { DefaultTheme } from '../../../../shared/types';
+import { usePageData } from 'island:client';
 
 export function SideBar() {
-  const data: SideBarData[] = [
-    {
-      text: 'Home',
-      items: [{ text: 'Home', link: '/' }]
-    },
-    {
-      text: 'Docs',
-      items: [
-        {
-          text: 'Getting Started',
-          link: '/docs/getting-started'
-        },
-        {
-          text: 'Guides',
-          items: [
-            {
-              text: 'Introduction',
-              link: '/docs/guides/introduction'
-            }
-          ]
-        }
-      ]
-    }
-  ];
-  const renderGroupItem = (item: SidebarItem, depth = 0) => {
+  const pageData = usePageData();
+  const sidebar = pageData.themeConfig.sidebar || {};
+  const sidebarData = Object.keys(sidebar)
+    .filter((item) => window.location.pathname.startsWith(item))
+    .map((item) => sidebar[item])[0] as DefaultTheme.SidebarGroup[];
+
+  const renderGroupItem = (item: DefaultTheme.SidebarItem, depth = 0) => {
     const marginLeft = `${depth * 20}px`;
     let children: React.ReactElement[] = [];
     if ('items' in item) {
       children = item.items.map((child) => renderGroupItem(child, depth + 1));
     }
+    const isActive = item.text.includes('CLI');
     return (
       <div style={{ marginLeft }}>
-        <div className={styles.link}>
+        <div className={`${styles.link} ${isActive ? styles.active : ''}`}>
           <Link>{item.text}</Link>
         </div>
         {children}
@@ -56,9 +28,13 @@ export function SideBar() {
     );
   };
 
-  const renderGroup = (item: SideBarData) => {
+  const renderGroup = (item: DefaultTheme.SidebarGroup) => {
+    console.log(item);
     return (
-      <section className={`${styles.sideBarGroup} ${styles.collapsible}`}>
+      <section
+        key={item.text}
+        className={`${styles.sideBarGroup} ${styles.collapsible}`}
+      >
         <div className={styles.title}>
           <h2 className={styles.titleText}>{item.text}</h2>
           {/* <div className={styles.action}>
@@ -79,7 +55,7 @@ export function SideBar() {
     <aside className={styles.sidebar}>
       <nav className={styles.nav}>
         <div className={styles.group}>
-          {data.map((item) => renderGroup(item))}
+          {sidebarData.map((item) => renderGroup(item))}
         </div>
       </nav>
     </aside>

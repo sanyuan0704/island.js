@@ -4,33 +4,32 @@ import { Link } from '../Link/index';
 import { SwitchAppearance } from '../SwitchAppearance/index';
 import GithubSvg from './icons/github.svg';
 import { Search } from '../Search/index';
+import { usePageData } from 'island:client';
+import { DefaultTheme } from '../../../../shared/types';
 
-export function NavBar() {
-  const menuItems = [
-    {
-      text: 'Home',
-      href: '/'
-    },
-    {
-      text: 'Home',
-      href: '/'
-    },
-    {
-      text: 'Home',
-      href: '/'
-    }
-  ];
+interface NavBarProps {
+  nav: DefaultTheme.NavItem[];
+}
+
+export function NavBar(props: NavBarProps) {
+  const menuItems = props.nav;
+
   const renderMenuList = () => {
     return (
       <div className={styles.menu}>
-        {menuItems.map((item) => (
-          <div
-            key={item.text}
-            className={`${styles.menuLink} ${styles.active}`}
-          >
-            <Link href="/">123</Link>
-          </div>
-        ))}
+        {menuItems.map((item) => {
+          const isActive = new RegExp(item.activeMatch || '').test(
+            window.location.pathname
+          );
+          return (
+            <div
+              key={item.text}
+              className={`${styles.menuLink} ${isActive ? styles.active : ''}`}
+            >
+              <Link href="/">{item.text}</Link>
+            </div>
+          );
+        })}
       </div>
     );
   };
@@ -64,9 +63,11 @@ export function NavBar() {
 }
 
 export function Nav() {
+  const pageData = usePageData();
+  const nav = pageData.themeConfig.nav || [];
   return (
     <header className={styles.nav}>
-      <NavBar />
+      <NavBar nav={nav} />
     </header>
   );
 }

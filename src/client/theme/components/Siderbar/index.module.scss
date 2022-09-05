@@ -87,7 +87,7 @@
   padding-top: 6px;
   padding-bottom: 6px;
   line-height: 20px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--island-c-text-1);
 }
@@ -150,8 +150,8 @@
 }
 
 .link {
+  padding: 5px;
   display: block;
-  margin: 4px 0;
   color: var(--island-c-text-2);
   transition: color 0.5s;
   line-height: 20px;
@@ -164,7 +164,8 @@
 }
 
 .link:hover {
-  color: var(--island-c-text-1);
+  background-color: var(--island-c-blue-1);
+  transition: background-color 0.5s;
 }
 
 .link.active {
