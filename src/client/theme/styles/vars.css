@@ -59,6 +59,15 @@
   --island-c-blue-dimm-2: rgba(26, 150, 221, 0.25);
   --island-c-blue-dimm-3: rgba(31, 156, 219, 0.05);
 
+  --island-c-green: #42b883;
+  --island-c-green-light: #42d392;
+  --island-c-green-lighter: #35eb9a;
+  --island-c-green-dark: #33a06f;
+  --island-c-green-darker: #155f3e;
+  --island-c-green-dimm-1: rgba(66, 184, 131, 0.5);
+  --island-c-green-dimm-2: rgba(66, 184, 131, 0.25);
+  --island-c-green-dimm-3: rgba(66, 184, 131, 0.05);
+
   --island-c-yellow: #ffc517;
   --island-c-yellow-light: #fcd253;
   --island-c-yellow-lighter: #fcfc7c;
@@ -106,11 +115,11 @@
 
   --island-c-text-code: var(--island-c-indigo-soft);
 
-  --island-c-brand: var(--island-c-blue);
-  --island-c-brand-light: var(--island-c-blue-light);
-  --island-c-brand-lighter: var(--island-c-blue-lighter);
-  --island-c-brand-dark: var(--island-c-blue-dark);
-  --island-c-brand-darker: var(--island-c-blue-darker);
+  --island-c-brand: var(--island-c-green);
+  --island-c-brand-light: var(--island-c-green-light);
+  --island-c-brand-lighter: var(--island-c-green-lighter);
+  --island-c-brand-dark: var(--island-c-green-dark);
+  --island-c-brand-darker: var(--island-c-green-darker);
 
   --island-c-sponsor: #fd1d7c;
 }
