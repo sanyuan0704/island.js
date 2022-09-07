@@ -3,6 +3,7 @@ import remarkPluginGFM from 'remark-gfm';
 import rehypePluginAutolinkHeadings from 'rehype-autolink-headings';
 import rehypePluginSlug from 'rehype-slug';
 import rehypePluginExternalLinks from 'rehype-external-links';
+import rehypeHighlight from 'rehype-highlight';
 
 export function createMDXOptions() {
   return {
@@ -29,7 +30,8 @@ export function createMDXOptions() {
           target: '_blank'
         }
       ],
-      rehypePluginPreWrapper
+      rehypePluginPreWrapper,
+      rehypeHighlight
     ]
   };
 }

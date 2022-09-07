@@ -76,19 +76,16 @@ Islands 架构模型早在 2019 年就被提出来了，并在 2021 年被 Preac
 
 ```jsx
 // index.astro
-import MyReactComponent from '../components/MyReactComponent.jsx';
----
-<MyReactComponent />
+export const a = 2;
 ```
 
 值得注意的是，这种写法不会在浏览器添加任何的 JS 代码。但有时我们需要在组件中绑定一些交互事件，那么这时就需要`激活孤岛组件`了，在 Astro 如何来激活呢？其实很简单，在使用组件时加上`client:load`指令即可:
 
 ```jsx
 // index.astro
----
-import MyReactComponent from '../components/MyReactComponent.jsx';
----
-<MyReactComponent client:load />
+function get() {
+  return <MyReactComponent client:load />;
+}
 ```
 
 如此一来，Astro 会给浏览器传输一部分 JS 代码供这个组件完成 hydration，以便后续的交互。

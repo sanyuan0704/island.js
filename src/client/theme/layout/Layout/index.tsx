@@ -1,5 +1,5 @@
 import React from 'react';
-import { HomeLayout } from '../HomeLayout';
+// import { HomeLayout } from '../HomeLayout';
 import { Nav } from '../../components/Nav';
 import { DocLayout } from '../DocLayout';
 

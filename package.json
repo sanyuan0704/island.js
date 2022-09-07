@@ -35,6 +35,7 @@
     "react-router-dom": "^6.3.0",
     "rehype-autolink-headings": "^6.1.1",
     "rehype-external-links": "^2.0.1",
+    "rehype-highlight": "^5.0.2",
     "rehype-slug": "^5.0.1",
     "remark-gfm": "^3.0.1",
     "vite": "^3.0.9"
@@ -52,6 +53,7 @@
     "@typescript-eslint/parser": "^5.36.1",
     "eslint": "^8.23.0",
     "eslint-plugin-react": "^7.31.1",
+    "highlight.js": "^11.6.0",
     "ora": "^6.1.2",
     "rollup": "^2.78.1",
     "sass": "^1.54.5",

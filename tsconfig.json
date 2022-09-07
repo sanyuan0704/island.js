@@ -19,7 +19,6 @@
   "exclude": [
     "**/node_modules/**",
     "**/dist/**",
-    "**/client/**",
     "**/playground/**",
     "tsup.config.ts"
   ]
