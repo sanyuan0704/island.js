@@ -12,6 +12,7 @@ export default defineConfig({
       },
       { text: '生态', link: '/eco/plugin-vue', activeMatch: '^/eco/' }
     ],
+
     sidebar: {
       '/build/': getBuildSidebar(),
       '/eco/': getEcosystemSidebar(),

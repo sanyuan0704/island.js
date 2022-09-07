@@ -95,7 +95,7 @@ export async function resolveConfig(
   return siteConfig;
 }
 
-export function defineConfig<ThemeConfig = any>(
+export function defineConfig<ThemeConfig = DefaultTheme.Config>(
   config: UserConfig<ThemeConfig>
 ) {
   return config;

@@ -13,6 +13,10 @@ export async function createIslandPlugins(
   // Import pure esm package
   const { default: pluginMdx } = await dynamicImport('@mdx-js/rollup');
   const { default: remarkPluginGFM } = await dynamicImport('remark-gfm');
+  const { default: rehypePluginSlug } = await dynamicImport('rehype-slug');
+  const { default: rehypePluginAutolinkHeadings } = await dynamicImport(
+    'rehype-autolink-headings'
+  );
   return [
     // For island internal use
     pluginIsland(config),
@@ -28,7 +32,23 @@ export async function createIslandPlugins(
     // Md(x) compile
     // @ts-ignore
     pluginMdx({
-      remarkPlugins: [remarkPluginGFM]
+      remarkPlugins: [remarkPluginGFM],
+      rehypePlugins: [
+        rehypePluginSlug,
+        [
+          rehypePluginAutolinkHeadings,
+          {
+            properties: {
+              class: 'header-anchor',
+              ariaHidden: 'true'
+            },
+            content: {
+              type: 'text',
+              value: '#'
+            }
+          }
+        ]
+      ]
     }),
     // Conventional Route
     pluginRoutes({ prefix: '' }),
