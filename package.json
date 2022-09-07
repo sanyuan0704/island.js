@@ -27,10 +27,12 @@
     "esbuild": "0.15.5",
     "fast-glob": "3.2.11",
     "fs-extra": "10.1.0",
+    "hast": "^1.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
     "rehype-autolink-headings": "^6.1.1",
+    "rehype-external-links": "^2.0.1",
     "rehype-slug": "^5.0.1",
     "remark-gfm": "^3.0.1",
     "vite": "^3.0.9"
@@ -38,6 +40,7 @@
   "devDependencies": {
     "@loadable/babel-plugin": "^5.13.2",
     "@types/fs-extra": "^9.0.13",
+    "@types/hast": "^2.3.4",
     "@types/koa": "^2.13.5",
     "@types/koa-router": "^7.4.4",
     "@types/loadable__component": "^5.13.4",
@@ -53,6 +56,8 @@
     "tsup": "^6.2.3",
     "tsx": "^3.8.2",
     "typescript": "^4.7.4",
+    "unified": "^10.1.2",
+    "unist-util-visit": "^4.1.1",
     "vite-plugin-inspect": "^0.6.1"
   }
 }

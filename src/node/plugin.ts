@@ -6,6 +6,7 @@ import { pluginRoutes } from './plugin-routes';
 import pluginInspect from 'vite-plugin-inspect';
 import { SiteConfig } from '../shared/types';
 import { dynamicImport } from './utils';
+import { rehypePluginPreWrapper } from './plugin-mdx/rehypePlugins/preWrapper';
 
 export async function createIslandPlugins(
   config: SiteConfig
@@ -16,6 +17,9 @@ export async function createIslandPlugins(
   const { default: rehypePluginSlug } = await dynamicImport('rehype-slug');
   const { default: rehypePluginAutolinkHeadings } = await dynamicImport(
     'rehype-autolink-headings'
+  );
+  const { default: rehypePluginExternalLinks } = await dynamicImport(
+    'rehype-external-links'
   );
   return [
     // For island internal use
@@ -47,7 +51,15 @@ export async function createIslandPlugins(
               value: '#'
             }
           }
-        ]
+        ],
+        [
+          // Open new window then click external link
+          rehypePluginExternalLinks,
+          {
+            target: '_blank'
+          }
+        ],
+        rehypePluginPreWrapper
       ]
     }),
     // Conventional Route
