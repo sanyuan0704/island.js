@@ -1,12 +1,18 @@
+import type { PluginOption } from 'vite';
 import pluginReact from '@vitejs/plugin-react';
-import pluginMdx from 'vite-plugin-mdx';
 import { pluginSvgr } from './plugin-svgr';
 import { pluginIsland } from './plugin-island';
 import { pluginRoutes } from './plugin-routes';
 import pluginInspect from 'vite-plugin-inspect';
 import { SiteConfig } from '../shared/types';
+import { dynamicImport } from './utils';
 
-export function createIslandPlugins(config: SiteConfig) {
+export async function createIslandPlugins(
+  config: SiteConfig
+): Promise<PluginOption[]> {
+  // Import pure esm package
+  const { default: pluginMdx } = await dynamicImport('@mdx-js/rollup');
+  const { default: remarkPluginGFM } = await dynamicImport('remark-gfm');
   return [
     // For island internal use
     pluginIsland(config),
@@ -20,7 +26,10 @@ export function createIslandPlugins(config: SiteConfig) {
     // Svg component support
     pluginSvgr(),
     // Md(x) compile
-    pluginMdx(),
+    // @ts-ignore
+    pluginMdx({
+      remarkPlugins: [remarkPluginGFM]
+    }),
     // Conventional Route
     pluginRoutes({ prefix: '' }),
     // Inspect transformation

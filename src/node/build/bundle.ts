@@ -12,10 +12,12 @@ export const failMark = '\x1b[31m✖\x1b[0m';
 
 export async function bundle(root: string) {
   const config = await resolveConfig(root, 'build', 'production');
-  const resolveViteConfig = (isServer: boolean): InlineConfig => ({
+  const resolveViteConfig = async (
+    isServer: boolean
+  ): Promise<InlineConfig> => ({
     mode: 'production',
     root,
-    plugins: [createIslandPlugins(config)],
+    plugins: [await createIslandPlugins(config)],
     esbuild: {
       // Reserve island component name
       minifyIdentifiers: !isServer
@@ -37,9 +39,9 @@ export async function bundle(root: string) {
   try {
     const [clientBundle, serverBundle] = await Promise.all([
       // client build
-      build(resolveViteConfig(false)),
+      build(await resolveViteConfig(false)),
       // server build
-      build(resolveViteConfig(true))
+      build(await resolveViteConfig(true))
     ]);
     spinner.stopAndPersist({
       symbol: okMark

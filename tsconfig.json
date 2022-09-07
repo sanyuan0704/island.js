@@ -1,11 +1,14 @@
 {
   "compilerOptions": {
-    "module": "esnext",
+    "module": "CommonJS",
     "target": "esnext",
+    "baseUrl": "src",
     "moduleResolution": "node",
     "esModuleInterop": true,
+    "declaration": true,
     "strict": true,
     "outDir": "dist",
+    "rootDir": "src",
     "skipLibCheck": true,
     "noUnusedLocals": true,
     "allowSyntheticDefaultImports": true,
@@ -13,5 +16,10 @@
     "jsx": "react",
     "lib": ["ESNext", "DOM"]
   },
-  "exclude": ["**/node_modules/**", "**/dist/**"]
+  "exclude": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/client/**",
+    "**/playground/**"
+  ]
 }

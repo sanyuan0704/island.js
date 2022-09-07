@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "npm run start:node",
+    "dev:tsup": "tsup src/node/cli.ts --watch --dts --format esm",
+    "dev": "tsc -w",
     "start:client": "cd src/client && tsc -w",
     "start:node": "cd src/node && tsc -w",
     "dev:playground": "node ./bin/island playground",
@@ -18,6 +19,7 @@
     "@loadable/component": "5.15.2",
     "@mdx-js/mdx": "1",
     "@mdx-js/react": "1",
+    "@mdx-js/rollup": "2",
     "@svgr/core": "6.3.1",
     "@vitejs/plugin-react": "2.0.1",
     "cac": "6.7.12",
@@ -28,6 +30,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
+    "remark-gfm": "^3.0.1",
     "vite": "^3.0.9"
   },
   "devDependencies": {
@@ -45,9 +48,9 @@
     "ora": "^6.1.2",
     "rollup": "^2.78.1",
     "sass": "^1.54.5",
+    "tsup": "^6.2.3",
     "tsx": "^3.8.2",
     "typescript": "^4.7.4",
-    "vite-plugin-inspect": "^0.6.1",
-    "vite-plugin-mdx": "^3.5.10"
+    "vite-plugin-inspect": "^0.6.1"
   }
 }

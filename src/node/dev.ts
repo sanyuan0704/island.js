@@ -7,6 +7,6 @@ export async function createDevServer(root = process.cwd()) {
   return createViteDevServer({
     root,
     base: '/',
-    plugins: [createIslandPlugins(config)]
+    plugins: [await createIslandPlugins(config)]
   });
 }

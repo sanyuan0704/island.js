@@ -5,9 +5,11 @@ import {
   UserConfig,
   PageData
 } from '../shared/types';
-import { pathExistsSync } from 'fs-extra';
+import fs from 'fs-extra';
 import { loadConfigFromFile } from 'vite';
 import { DEFAULT_THEME_PATH } from './constants/index';
+
+const { pathExistsSync } = fs;
 
 type RawConfig<ThemeConfig = any> =
   | UserConfig<ThemeConfig>

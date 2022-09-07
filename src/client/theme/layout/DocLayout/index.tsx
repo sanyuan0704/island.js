@@ -15,7 +15,9 @@ export function DocLayout() {
         <div className={styles.container}>
           <div className={styles.contentContainer}>
             <main className={styles.main}>
-              <Content />
+              <div className="island-doc">
+                <Content />
+              </div>
               <DocFooter />
             </main>
           </div>
