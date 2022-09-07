@@ -1,6 +1,7 @@
 import { hydrateRoot, createRoot } from 'react-dom/client';
 import React, { createElement } from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import './sideEffects';
 
 async function renderInBrowser() {
   const containerEl = document.getElementById('root');
