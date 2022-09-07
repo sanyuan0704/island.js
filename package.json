@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev:tsup": "tsup src/node/cli.ts --watch --dts --format esm",
     "dev": "tsc -w",

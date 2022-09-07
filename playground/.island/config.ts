@@ -1,6 +1,4 @@
-import { defineConfig } from '../../dist/node/index';
-
-export default defineConfig({
+export default {
   lang: 'zh-CN',
   themeConfig: {
     nav: [
@@ -19,7 +17,7 @@ export default defineConfig({
       '/': getArchSidebar()
     }
   }
-});
+};
 
 function getArchSidebar() {
   return [

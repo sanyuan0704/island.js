@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "module": "CommonJS",
-    "target": "esnext",
+    "module": "ESNext",
+    "target": "ESNext",
     "baseUrl": "src",
     "moduleResolution": "node",
     "esModuleInterop": true,
@@ -20,6 +20,7 @@
     "**/node_modules/**",
     "**/dist/**",
     "**/client/**",
-    "**/playground/**"
+    "**/playground/**",
+    "tsup.config.ts"
   ]
 }
