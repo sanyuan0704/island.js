@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './index.module.scss';
-
+import { throttle } from 'lodash-es';
+import { useLocation } from 'react-router-dom';
 interface Header {
   text: string;
   link: string;
@@ -8,7 +9,16 @@ interface Header {
   hidden: boolean;
 }
 
+function isBottom() {
+  return (
+    document.documentElement.scrollTop + window.innerHeight >=
+    document.documentElement.scrollHeight
+  );
+}
+
 export function Aside() {
+  const [activeIndex, setActiveIndex] = React.useState(0);
+  const markerRef = React.useRef<HTMLDivElement>(null);
   const headers = [
     {
       text: 'Introduction',
@@ -43,6 +53,42 @@ export function Aside() {
       hidden: false
     }
   ];
+  const SCROLL_INTO_HEIGHT = 150;
+  useEffect(() => {
+    const links = document.querySelectorAll('.island-doc .header-anchor');
+
+    const onScroll = () => {
+      if (isBottom()) {
+        setActiveIndex(links.length - 1);
+      } else {
+        // Compute current index
+        for (let i = 0; i < links.length; i++) {
+          if (links[i].getBoundingClientRect().top < SCROLL_INTO_HEIGHT) {
+            if (
+              i < links.length - 1 &&
+              links[i + 1].getBoundingClientRect().top < SCROLL_INTO_HEIGHT
+            ) {
+              continue;
+            } else {
+              setActiveIndex(i);
+            }
+            break;
+          }
+        }
+      }
+    };
+    window.addEventListener('scroll', throttle(onScroll, 200));
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (markerRef.current) {
+      markerRef.current.style.top = `${33 + activeIndex * 28}px`;
+    }
+  }, [activeIndex]);
 
   const renderHeader = (header: Header) => {
     let children = null;
@@ -76,7 +122,7 @@ export function Aside() {
     <div className={styles.docAside}>
       <div className={styles.docsAsideOutline}>
         <div className={styles.content}>
-          <div className={styles.outlineMarker}></div>
+          <div className={styles.outlineMarker} ref={markerRef}></div>
           <div className={styles.outlineTitle}>目录</div>
           <nav>
             <ul className={styles.root}>{headers.map(renderHeader)}</ul>

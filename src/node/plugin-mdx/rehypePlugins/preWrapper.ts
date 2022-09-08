@@ -37,14 +37,6 @@ export const rehypePluginPreWrapper: Plugin<[], import('hast').Root> = () => {
         node.children = [
           {
             type: 'element',
-            tagName: 'button',
-            properties: {
-              className: 'copy'
-            },
-            children: []
-          },
-          {
-            type: 'element',
             tagName: 'span',
             properties: {
               className: 'lang'

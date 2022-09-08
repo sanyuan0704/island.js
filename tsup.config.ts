@@ -1,6 +1,7 @@
 import { defineConfig } from 'tsup';
 
 export default defineConfig({
+  bundle: true,
   platform: 'node',
   format: 'esm',
   sourcemap: true,

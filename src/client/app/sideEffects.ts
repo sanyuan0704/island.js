@@ -2,6 +2,7 @@ import { inBrowser } from './utils';
 
 const DEFAULT_NAV_HEIGHT = 72;
 
+// Control the scroll behavior of the browser when user clicks on a link
 if (inBrowser) {
   function scrollTo(el: HTMLElement, hash: string, smooth = false) {
     let target: HTMLElement | null = null;
@@ -41,18 +42,8 @@ if (inBrowser) {
       if (link) {
         const { origin, pathname, hash, search, target } = link;
         const currentUrl = window.location;
-        const extMatch = pathname.match(/\.\w+$/);
         // only intercept inbound links
-        if (
-          !e.ctrlKey &&
-          !e.shiftKey &&
-          !e.altKey &&
-          !e.metaKey &&
-          target !== `_blank` &&
-          origin === currentUrl.origin &&
-          // don't intercept if non-html extension is present
-          !(extMatch && extMatch[0] !== '.html')
-        ) {
+        if (hash && target !== `_blank` && origin === currentUrl.origin) {
           e.preventDefault();
           if (
             pathname === currentUrl.pathname &&

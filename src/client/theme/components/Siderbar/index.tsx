@@ -21,7 +21,7 @@ export function SideBar() {
     return (
       <div style={{ marginLeft }}>
         <div className={`${styles.link} ${isActive ? styles.active : ''}`}>
-          <Link>{item.text}</Link>
+          <Link href={item.link}>{item.text}</Link>
         </div>
         {children}
       </div>
