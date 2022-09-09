@@ -2,6 +2,7 @@ import { hydrateRoot, createRoot } from 'react-dom/client';
 import React, { createElement } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import './sideEffects';
+import { DataContext } from './hooks';
 
 async function renderInBrowser() {
   const containerEl = document.getElementById('root');
@@ -14,11 +15,13 @@ async function renderInBrowser() {
     // So there is no need to worry that the complete hydration will be executed in production
     const { waitForApp, App } = await import('./app');
 
-    await waitForApp('/');
+    const mod = await waitForApp('/');
     createRoot(containerEl).render(
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <DataContext.Provider value={mod}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </DataContext.Provider>
     );
   } else {
     await import('./island-inject');

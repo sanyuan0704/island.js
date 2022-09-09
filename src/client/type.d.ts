@@ -21,6 +21,7 @@ declare module 'island:client' {
 
   export const Content: ComponentType<any>;
   export const usePageData: <T = DefaultTheme.Config>() => PageData<T>;
+  export const useDataContext: () => any;
 }
 
 declare module 'virtual:routes' {

@@ -1,11 +1,13 @@
 import { Layout } from 'island:theme';
 import React from 'react';
 import { routes } from 'virtual:routes';
-import { matchRoutes } from 'react-router-dom';
+import { matchRoutes, Route } from 'react-router-dom';
 
 export async function waitForApp(path: string) {
   const matched = matchRoutes(routes, path)!;
-  return matched;
+  // @ts-ignore
+  const mod = await import(matched[0].route.componentPath);
+  return mod;
 }
 
 export function App() {

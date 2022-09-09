@@ -6,7 +6,6 @@ const DEFAULT_NAV_HEIGHT = 72;
 if (inBrowser) {
   function scrollTo(el: HTMLElement, hash: string, smooth = false) {
     let target: HTMLElement | null = null;
-
     try {
       target = el.classList.contains('header-anchor')
         ? el
@@ -45,19 +44,19 @@ if (inBrowser) {
         // only intercept inbound links
         if (hash && target !== `_blank` && origin === currentUrl.origin) {
           e.preventDefault();
-          if (
-            pathname === currentUrl.pathname &&
-            search === currentUrl.search
-          ) {
-            // scroll between hash anchors in the same page
-            if (hash && hash !== currentUrl.hash) {
-              history.pushState(null, '', hash);
-              // still emit the event so we can listen to it in themes
-              window.dispatchEvent(new Event('hashchange'));
-              // use smooth scroll when clicking on header anchor links
-              scrollTo(link, hash, link.classList.contains('header-anchor'));
-            }
+          // if (
+          //   pathname === currentUrl.pathname &&
+          //   search === currentUrl.search
+          // ) {
+          // scroll between hash anchors in the same page
+          if (hash && hash !== currentUrl.hash) {
+            history.pushState(null, '', hash);
+            // still emit the event so we can listen to it in themes
+            window.dispatchEvent(new Event('hashchange'));
+            // use smooth scroll when clicking on header anchor links
+            scrollTo(link, hash, link.classList.contains('header-anchor'));
           }
+          // }
         }
       }
     },

@@ -1,13 +1,7 @@
 import React, { useEffect } from 'react';
 import styles from './index.module.scss';
 import { throttle } from 'lodash-es';
-import { useLocation } from 'react-router-dom';
-interface Header {
-  text: string;
-  link: string;
-  children: Header[];
-  hidden: boolean;
-}
+import { useDataContext } from 'island:client';
 
 function isBottom() {
   return (
@@ -17,102 +11,67 @@ function isBottom() {
 }
 
 export function Aside() {
+  // For outline text highlight
   const [activeIndex, setActiveIndex] = React.useState(0);
   const markerRef = React.useRef<HTMLDivElement>(null);
-  const headers = [
-    {
-      text: 'Introduction',
-      link: '/introduction',
-      children: [
-        {
-          text: 'Getting Started',
-          link: '/introduction/getting-started',
-          children: [],
-          hidden: false
-        },
-        {
-          text: 'Why Island',
-          link: '/introduction/why-island',
-          children: [
-            {
-              text: 'Why 123',
-              link: '/introduction/why-island',
-              children: [],
-              hidden: false
-            }
-          ],
-          hidden: false
-        },
-        {
-          text: 'Features',
-          link: '/introduction/features',
-          children: [],
-          hidden: false
-        }
-      ],
-      hidden: false
-    }
-  ];
+  const data = useDataContext();
+  const headers = data.toc;
   const SCROLL_INTO_HEIGHT = 150;
-  useEffect(() => {
-    const links = document.querySelectorAll('.island-doc .header-anchor');
+  const normalizeHref = (href: string) => {
+    return href.toLocaleLowerCase().replace(/ +/g, '-').replace(/\./g, '');
+  };
 
-    const onScroll = () => {
-      if (isBottom()) {
-        setActiveIndex(links.length - 1);
-      } else {
-        // Compute current index
-        for (let i = 0; i < links.length; i++) {
-          if (links[i].getBoundingClientRect().top < SCROLL_INTO_HEIGHT) {
-            if (
-              i < links.length - 1 &&
-              links[i + 1].getBoundingClientRect().top < SCROLL_INTO_HEIGHT
-            ) {
-              continue;
-            } else {
-              setActiveIndex(i);
+  useEffect(() => {
+    const onScroll = throttle(
+      function listen() {
+        const links = document.querySelectorAll<HTMLAnchorElement>(
+          '.island-doc .header-anchor'
+        );
+        if (isBottom()) {
+          setActiveIndex(links.length - 1);
+          markerRef.current!.style.top = `${33 + (headers.length - 1) * 28}px`;
+        } else {
+          // Compute current index
+          for (let i = 0; i < links.length; i++) {
+            const topDistance = links[i].getBoundingClientRect().top;
+            if (topDistance > 0 && topDistance < SCROLL_INTO_HEIGHT) {
+              const id = links[i].getAttribute('href');
+              const index = headers.findIndex(
+                (item: any) => normalizeHref(item.text) === id?.slice(1)
+              );
+              if (index > -1 && index !== activeIndex) {
+                setActiveIndex(index);
+                markerRef.current!.style.top = `${33 + index * 28}px`;
+              } else {
+                setActiveIndex(0);
+                markerRef.current!.style.top = '33px';
+              }
+              break;
             }
-            break;
           }
         }
-      }
-    };
-    window.addEventListener('scroll', throttle(onScroll, 200));
+      },
+      100,
+      { trailing: true }
+    );
+    window.addEventListener('scroll', onScroll);
 
     return () => {
       window.removeEventListener('scroll', onScroll);
     };
   }, []);
 
-  useEffect(() => {
-    if (markerRef.current) {
-      markerRef.current.style.top = `${33 + activeIndex * 28}px`;
-    }
-  }, [activeIndex]);
-
-  const renderHeader = (header: Header) => {
-    let children = null;
-    if (header.children.length) {
-      children = (
-        <ul>
-          {header.children.map((child) => (
-            <li key={child.link}>
-              <a
-                href={child.link}
-                className={`${styles.outlineLink} ${styles.nested}`}
-              >
-                {child.text}
-              </a>
-            </li>
-          ))}
-        </ul>
-      );
-    }
+  const renderHeader = (header: any, index: number) => {
+    const isNested = header.depth > 2;
     return (
-      <li>
-        <a href={header.link} className={styles.outlineLink}>
+      <li key={header.text}>
+        <a
+          href={`#${normalizeHref(header.text)}`}
+          className={`${styles.outlineLink} ${
+            index == activeIndex ? styles.active : ''
+          } ${isNested ? styles.nested : ''}`}
+        >
           {header.text}
-          {children}
         </a>
       </li>
     );
