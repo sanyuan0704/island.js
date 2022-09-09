@@ -17,9 +17,6 @@ export function Aside() {
   const data = useDataContext();
   const headers = data.toc;
   const SCROLL_INTO_HEIGHT = 150;
-  const normalizeHref = (href: string) => {
-    return href.toLocaleLowerCase().replace(/ +/g, '-').replace(/\./g, '');
-  };
 
   useEffect(() => {
     const onScroll = throttle(
@@ -37,7 +34,7 @@ export function Aside() {
             if (topDistance > 0 && topDistance < SCROLL_INTO_HEIGHT) {
               const id = links[i].getAttribute('href');
               const index = headers.findIndex(
-                (item: any) => normalizeHref(item.text) === id?.slice(1)
+                (item: any) => item.id === id?.slice(1)
               );
               if (index > -1 && index !== activeIndex) {
                 setActiveIndex(index);
@@ -66,7 +63,7 @@ export function Aside() {
     return (
       <li key={header.text}>
         <a
-          href={`#${normalizeHref(header.text)}`}
+          href={`#${header.id}`}
           className={`${styles.outlineLink} ${
             index == activeIndex ? styles.active : ''
           } ${isNested ? styles.nested : ''}`}

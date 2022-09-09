@@ -1,6 +1,6 @@
 import { hydrateRoot, createRoot } from 'react-dom/client';
 import React, { createElement } from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, useLocation } from 'react-router-dom';
 import './sideEffects';
 import { DataContext } from './hooks';
 
@@ -14,8 +14,7 @@ async function renderInBrowser() {
     // The App code will will be tree-shaking in production
     // So there is no need to worry that the complete hydration will be executed in production
     const { waitForApp, App } = await import('./app');
-
-    const mod = await waitForApp('/');
+    const mod = await waitForApp(window.location.pathname);
     createRoot(containerEl).render(
       <DataContext.Provider value={mod}>
         <BrowserRouter>

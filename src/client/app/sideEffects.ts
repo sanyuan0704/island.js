@@ -9,7 +9,9 @@ if (inBrowser) {
     try {
       target = el.classList.contains('header-anchor')
         ? el
-        : document.querySelector(decodeURIComponent(hash));
+        : document.getElementById(decodeURIComponent(hash.slice(1)));
+
+      console.log(target);
     } catch (e) {
       console.warn(e);
     }

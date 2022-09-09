@@ -9,6 +9,7 @@ specifiers:
   '@mdx-js/rollup': '2'
   '@svgr/core': 6.3.1
   '@types/fs-extra': ^9.0.13
+  '@types/github-slugger': ^1.3.0
   '@types/hast': ^2.3.4
   '@types/koa': ^2.13.5
   '@types/koa-router': ^7.4.4
@@ -27,6 +28,7 @@ specifiers:
   eslint-plugin-react: ^7.31.1
   fast-glob: 3.2.11
   fs-extra: 10.1.0
+  github-slugger: ^1.4.0
   hast: ^1.0.0
   hast-util-from-html: ^1.0.0
   highlight.js: ^11.6.0
@@ -69,6 +71,7 @@ dependencies:
   esbuild: registry.npmmirror.com/esbuild/0.15.5
   fast-glob: registry.npmmirror.com/fast-glob/3.2.11
   fs-extra: registry.npmmirror.com/fs-extra/10.1.0
+  github-slugger: 1.4.0
   hast: 1.0.0
   hast-util-from-html: 1.0.0
   lodash-es: 4.17.21
@@ -90,6 +93,7 @@ devDependencies:
   '@leafac/rehype-shiki': 2.1.2_shiki@0.11.1
   '@loadable/babel-plugin': 5.13.2
   '@types/fs-extra': 9.0.13
+  '@types/github-slugger': 1.3.0
   '@types/hast': 2.3.4
   '@types/koa': 2.13.5
   '@types/koa-router': 7.4.4
@@ -645,6 +649,10 @@ packages:
     resolution: {integrity: sha512-nEnwB++1u5lVDM2UI4c1+5R+FYaKfaAzS4OococimjVm3nQw3TuzH5UNsocrcTBbhnerblyHj4A49qXbIiZdpA==}
     dependencies:
       '@types/node': 18.7.8
+    dev: true
+
+  /@types/github-slugger/1.3.0:
+    resolution: {integrity: sha512-J/rMZa7RqiH/rT29TEVZO4nBoDP9XJOjnbbIofg7GQKs4JIduEO3WLpte+6WeUz/TcrXKlY+bM7FYrp8yFB+3g==}
     dev: true
 
   /@types/hast/2.3.4:
