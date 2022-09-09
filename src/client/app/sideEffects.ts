@@ -11,7 +11,7 @@ if (inBrowser) {
         ? el
         : document.getElementById(decodeURIComponent(hash.slice(1)));
 
-      console.log(target);
+      target;
     } catch (e) {
       console.warn(e);
     }
@@ -41,15 +41,11 @@ if (inBrowser) {
       // Only handle a tag click
       const link = (e.target as Element).closest('a');
       if (link) {
-        const { origin, pathname, hash, search, target } = link;
+        const { origin, hash, target } = link;
         const currentUrl = window.location;
         // only intercept inbound links
         if (hash && target !== `_blank` && origin === currentUrl.origin) {
           e.preventDefault();
-          // if (
-          //   pathname === currentUrl.pathname &&
-          //   search === currentUrl.search
-          // ) {
           // scroll between hash anchors in the same page
           if (hash && hash !== currentUrl.hash) {
             history.pushState(null, '', hash);
@@ -58,7 +54,6 @@ if (inBrowser) {
             // use smooth scroll when clicking on header anchor links
             scrollTo(link, hash, link.classList.contains('header-anchor'));
           }
-          // }
         }
       }
     },

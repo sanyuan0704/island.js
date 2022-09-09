@@ -17,7 +17,7 @@ export async function bundle(root: string) {
   ): Promise<InlineConfig> => ({
     mode: 'production',
     root,
-    plugins: [await createIslandPlugins(config)],
+    plugins: [createIslandPlugins(config)],
     esbuild: {
       // Reserve island component name
       minifyIdentifiers: !isServer
@@ -28,6 +28,9 @@ export async function bundle(root: string) {
       cssCodeSplit: false,
       ssrManifest: !isServer,
       rollupOptions: {
+        output: {
+          entryFileNames: isServer ? '[name].mjs' : undefined
+        },
         input: isServer ? SERVER_ENTRY_PATH : CLIENT_ENTRY_PATH
       }
     }

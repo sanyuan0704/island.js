@@ -3,12 +3,14 @@ import React from 'react';
 import { Link } from '../Link/index';
 import { DefaultTheme } from '../../../../shared/types';
 import { usePageData } from 'island:client';
+import { useLocation } from 'react-router-dom';
 
 export function SideBar() {
+  const location = useLocation();
   const pageData = usePageData();
   const sidebar = pageData.themeConfig.sidebar || {};
   const sidebarData = Object.keys(sidebar)
-    .filter((item) => window.location.pathname.startsWith(item))
+    .filter((item) => location.pathname.startsWith(item))
     .map((item) => sidebar[item])[0] as DefaultTheme.SidebarGroup[];
 
   const renderGroupItem = (item: DefaultTheme.SidebarItem, depth = 0) => {

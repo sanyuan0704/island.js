@@ -6,20 +6,20 @@ import GithubSvg from './icons/github.svg';
 import { Search } from '../Search/index';
 import { usePageData } from 'island:client';
 import { DefaultTheme } from '../../../../shared/types';
-
+import { useLocation } from 'react-router-dom';
 interface NavBarProps {
   nav: DefaultTheme.NavItem[];
 }
 
 export function NavBar(props: NavBarProps) {
   const menuItems = props.nav;
-
+  const location = useLocation();
   const renderMenuList = () => {
     return (
       <div className={styles.menu}>
         {menuItems.map((item) => {
           const isActive = new RegExp(item.activeMatch || '').test(
-            window.location.pathname
+            location.pathname
           );
           return (
             <div

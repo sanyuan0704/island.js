@@ -6,7 +6,7 @@ import { okMark } from './bundle';
 import { TEMP_PATH } from '../constants';
 
 export async function renderPage(
-  render: () => { appHtml: string; propsData: string },
+  render: (pagePath: string) => { appHtml: string; propsData: string },
   root: string,
   clientBundle: RollupOutput,
   serverBundle: RollupOutput
@@ -22,7 +22,7 @@ export async function renderPage(
   const { default: ora } = await dynamicImport('ora');
   const spinner = ora();
   spinner.start('Rendering page in server side...');
-  const { appHtml, propsData } = render();
+  const { appHtml, propsData } = await render('/');
   const html = `
 <!DOCTYPE html>
 <html>

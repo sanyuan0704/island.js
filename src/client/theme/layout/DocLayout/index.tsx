@@ -3,9 +3,12 @@ import { SideBar } from '../../components/Siderbar/index';
 import styles from './index.module.scss';
 import { Aside } from '../../components/Aside/index';
 import { DocFooter } from '../../components/DocFooter/index';
-import { Content } from 'island:client';
+import { Content, useDataContext } from 'island:client';
 
 export function DocLayout() {
+  const data = useDataContext();
+  const headers = data.toc;
+
   return (
     <div className={styles.doc}>
       <div className={styles.sideBar}>
@@ -26,7 +29,7 @@ export function DocLayout() {
           <div className={styles.asideCurtain} />
           <div className={styles.asideContainer}>
             <div className={styles.asideContent}>
-              <Aside />
+              <Aside __island headers={headers} />
             </div>
           </div>
         </div>

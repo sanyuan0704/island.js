@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import styles from './index.module.scss';
 import { throttle } from 'lodash-es';
-import { useDataContext } from 'island:client';
 
 function isBottom() {
   return (
@@ -10,12 +9,11 @@ function isBottom() {
   );
 }
 
-export function Aside() {
+export function Aside(props: { __island: boolean; headers: any[] }) {
+  const { headers } = props;
   // For outline text highlight
   const [activeIndex, setActiveIndex] = React.useState(0);
   const markerRef = React.useRef<HTMLDivElement>(null);
-  const data = useDataContext();
-  const headers = data.toc;
   const SCROLL_INTO_HEIGHT = 150;
 
   useEffect(() => {

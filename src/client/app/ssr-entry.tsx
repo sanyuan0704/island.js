@@ -1,7 +1,8 @@
 import { renderToString } from 'react-dom/server';
 import React from 'react';
-import { App } from './app';
+import { App, waitForApp } from './app';
 import { StaticRouter } from 'react-router-dom/server';
+import { DataContext } from './hooks';
 
 let ISLAND_PROPS: any[] = [];
 const originalCreateElement = React.createElement;
@@ -25,12 +26,18 @@ React.createElement = (type: ElementType, props: any, ...children: any[]) => {
 };
 
 // For ssr component render
-export function render(): { appHtml: string; propsData: any[] } {
+export async function render(
+  pagePath: string
+): Promise<{ appHtml: string; propsData: any[] }> {
+  const mod = await waitForApp(pagePath);
+
   ISLAND_PROPS = [];
   const appHtml = renderToString(
-    <StaticRouter location={'/'}>
-      <App />
-    </StaticRouter>
+    <DataContext.Provider value={mod}>
+      <StaticRouter location={pagePath}>
+        <App />
+      </StaticRouter>
+    </DataContext.Provider>
   );
   return {
     appHtml,

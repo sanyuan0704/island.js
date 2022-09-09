@@ -10,21 +10,19 @@ interface TocItem {
   id: string;
   text: string;
   depth: number;
-  order: number;
 }
 
 export const remarkPluginToc: Plugin = () => {
   return (tree: any) => {
     const toc: TocItem[] = [];
-    let order = 0;
+    slugger.reset();
     visitChildren((node: any) => {
       // Collect h2 ~ h5
-
       if (node.type === 'heading' && node.depth > 1 && node.depth < 5) {
         const originText = node.children[0].value;
         const id = slugger.slug(originText);
         const depth = node.depth;
-        toc.push({ id, text: originText, depth, order });
+        toc.push({ id, text: originText, depth });
       }
     })(tree);
     const insertedCode = `export const toc = ${JSON.stringify(toc, null, 2)}`;
