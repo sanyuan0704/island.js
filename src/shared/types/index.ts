@@ -113,3 +113,5 @@ export interface SiteConfig<ThemeConfig = any>
   // Current page data
   pageData?: PageData<ThemeConfig>;
 }
+
+export type ComponentPropsWithIsland<T = any> = T & { __island: boolean };

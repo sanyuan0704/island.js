@@ -6,11 +6,15 @@ import {
   isProduction,
   ROUTE_PATH,
   THEME_ISLANDS_PATH,
-  DEFAULT_THEME_PATH
+  DEFAULT_THEME_PATH,
+  DEFAULT_EXTERNALS
 } from '../constants';
 import fs from 'fs-extra';
 import { join } from 'path';
 import { SiteConfig } from '../../shared/types';
+import { transformAsync } from '@babel/core';
+import babelPluginIsland from '../babel-plugin-island';
+import { transformWithEsbuild } from 'vite';
 
 export const PAGE_DATA_ID = 'island:page-data';
 
@@ -20,10 +24,14 @@ export const PAGE_DATA_ID = 'island:page-data';
  * 2. Response page data
  * 3. Generate html template for development
  */
-export function pluginIsland(config: SiteConfig): Plugin {
+export function pluginIsland(
+  config: SiteConfig,
+  isServer: boolean = false
+): Plugin {
   const { pageData } = config;
   return {
     name: 'island:vite-plugin-internal',
+    enforce: 'pre',
     config(c) {
       return {
         resolve: {
@@ -41,14 +49,36 @@ export function pluginIsland(config: SiteConfig): Plugin {
         }
       };
     },
-    resolveId(id) {
+    async resolveId(id) {
       if (id === PAGE_DATA_ID) {
         return '\0' + PAGE_DATA_ID;
+      }
+      if (DEFAULT_EXTERNALS.includes(id)) {
+        return {
+          id,
+          external: true
+        };
       }
     },
     load(id) {
       if (id === '\0' + PAGE_DATA_ID) {
         return `export default ${JSON.stringify(pageData)}`;
+      }
+    },
+    async transform(code, id) {
+      if (id.endsWith('tsx')) {
+        let strippedTypes = await transformWithEsbuild(code, id, {
+          jsx: 'preserve'
+        });
+        const result = await transformAsync((await strippedTypes).code, {
+          filename: id,
+          presets: ['@babel/preset-react'],
+          plugins: [babelPluginIsland]
+        });
+        return {
+          code: result?.code || code,
+          map: result?.map
+        };
       }
     },
     transformIndexHtml(html) {
@@ -95,6 +125,7 @@ export function pluginIsland(config: SiteConfig): Plugin {
           }
         });
       };
-    }
+    },
+    banner: isServer ? 'import React from "react";' : ''
   };
 }

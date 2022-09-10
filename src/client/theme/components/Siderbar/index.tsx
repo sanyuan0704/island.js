@@ -31,7 +31,6 @@ export function SideBar() {
   };
 
   const renderGroup = (item: DefaultTheme.SidebarGroup) => {
-    console.log(item);
     return (
       <section
         key={item.text}

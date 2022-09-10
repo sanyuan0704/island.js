@@ -16,10 +16,7 @@ export const SERVER_ENTRY_PATH = join(
   'src/client/app/ssr-entry.tsx'
 );
 
-export const DEFAULT_THEME_PATH = join(
-  PACKAGE_ROOT_PATH,
-  'src/client/theme/index.ts'
-);
+export const DEFAULT_THEME_PATH = join(PACKAGE_ROOT_PATH, 'src/client/theme');
 
 export const THEME_ISLANDS_PATH = join(
   PACKAGE_ROOT_PATH,
@@ -33,3 +30,12 @@ export const SERVER_OUTPUT_PATH = join(TEMP_PATH, 'ssr', 'ssr-entry.mjs');
 export const ROUTE_PATH = join(TEMP_PATH, 'routes.tsx');
 
 export const DEFAULT_HTML_PATH = join(PACKAGE_ROOT_PATH, 'template.html');
+
+export const MASK_SPLITTER = '!!ISLAND!!';
+
+export const DEFAULT_EXTERNALS = [
+  'react',
+  'react-dom',
+  'react-dom/server',
+  'react-dom/client'
+];

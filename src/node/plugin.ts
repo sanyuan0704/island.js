@@ -7,19 +7,22 @@ import pluginInspect from 'vite-plugin-inspect';
 import { SiteConfig } from '../shared/types';
 import pluginMdx from '@mdx-js/rollup';
 import { createMDXOptions } from './plugin-mdx';
+import babelPluginIsland from './babel-plugin-island';
 
 export async function createIslandPlugins(
-  config: SiteConfig
+  config: SiteConfig,
+  isServer: boolean = false
 ): Promise<PluginOption[]> {
   const mdxOptions = createMDXOptions();
   return [
     // For island internal use
-    pluginIsland(config),
+    pluginIsland(config, isServer),
     // React hmr support
     pluginReact({
+      include: [/theme/],
       jsxRuntime: 'classic',
       babel: {
-        // plugins: ['@loadable/babel-plugin']
+        plugins: [babelPluginIsland]
       }
     }),
     // Svg component support
