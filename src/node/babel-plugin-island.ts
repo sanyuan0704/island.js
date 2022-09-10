@@ -15,7 +15,7 @@ import type { Visitor } from '@babel/traverse';
 import {} from 'vite';
 import { MASK_SPLITTER } from './constants';
 
-const TRACE_ID = '__island';
+const ID = '__island';
 
 export default declare((api) => {
   api.assertVersion(7);
@@ -23,19 +23,32 @@ export default declare((api) => {
   const visitor: Visitor<PluginPass> = {
     JSXOpeningElement(path, state) {
       const name = path.node.name;
-      if (name.type === 'JSXIdentifier') {
-        const binding = path.scope.getBinding(name.name);
-        if (binding?.path.parent.type === 'ImportDeclaration') {
-          const source = (binding?.path.parent as t.ImportDeclaration).source;
-          const attributes = (path.container as t.JSXElement).openingElement
-            .attributes;
-          for (let i = 0; i < attributes.length; i++) {
-            const name = (attributes[i] as t.JSXAttribute).name;
-            if (name?.name === TRACE_ID) {
-              (attributes[i] as t.JSXAttribute).value = t.stringLiteral(
-                `${source.value}${MASK_SPLITTER}${state.filename}`
-              );
-            }
+      let bindingName: string;
+      if (t.isJSXIdentifier(name)) {
+        bindingName = name.name;
+      } else if (t.isJSXMemberExpression(name)) {
+        let object = name.object;
+        while (t.isJSXMemberExpression(object)) {
+          object = object.object;
+        }
+        bindingName = object.name;
+      } else if (t.isJSXNamespacedName(name)) {
+        bindingName = name.namespace.name;
+      } else {
+        return;
+      }
+
+      const binding = path.scope.getBinding(bindingName);
+      if (binding?.path.parent.type === 'ImportDeclaration') {
+        const source = (binding?.path.parent as t.ImportDeclaration).source;
+        const attributes = (path.container as t.JSXElement).openingElement
+          .attributes;
+        for (let i = 0; i < attributes.length; i++) {
+          const name = (attributes[i] as t.JSXAttribute).name;
+          if (name?.name === ID) {
+            (attributes[i] as t.JSXAttribute).value = t.stringLiteral(
+              `${source.value}${MASK_SPLITTER}${state.filename}`
+            );
           }
         }
       }

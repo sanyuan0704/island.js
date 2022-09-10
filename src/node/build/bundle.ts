@@ -1,4 +1,4 @@
-import { OutputBundle, RollupOutput } from 'rollup';
+import { RollupOutput } from 'rollup';
 import { build, InlineConfig } from 'vite';
 import { CLIENT_ENTRY_PATH, SERVER_ENTRY_PATH, TEMP_PATH } from '../constants';
 import { createIslandPlugins } from '../plugin';

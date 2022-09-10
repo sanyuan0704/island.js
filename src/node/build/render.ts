@@ -1,5 +1,5 @@
 import { join } from 'path';
-import fs from 'fs-extra';
+import fs, { remove } from 'fs-extra';
 import type { RollupOutput } from 'rollup';
 import { dynamicImport } from '../utils';
 import { okMark, Builder } from './bundle';
@@ -125,5 +125,5 @@ export async function renderPages(
     symbol: okMark
   });
   // Render ended, remove temp files
-  // await remove(join(root, TEMP_PATH));
+  await remove(join(root, TEMP_PATH));
 }
