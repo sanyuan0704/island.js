@@ -26,7 +26,7 @@ export const PAGE_DATA_ID = 'island:page-data';
  */
 export function pluginIsland(
   config: SiteConfig,
-  isServer: boolean = false
+  _isServer: boolean = false
 ): Plugin {
   const { pageData } = config;
   return {
