@@ -1,6 +1,6 @@
 import { hydrateRoot, createRoot } from 'react-dom/client';
 import React, { createElement } from 'react';
-import { BrowserRouter, useLocation } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import './sideEffects';
 import { DataContext } from './hooks';
 
@@ -10,7 +10,7 @@ async function renderInBrowser() {
     throw new Error('#root element not found');
   }
   // TODO: add SPA mode support
-  if (import.meta.env.DEV || import.meta.env.SPA) {
+  if (import.meta.env.DEV) {
     // The App code will will be tree-shaking in production
     // So there is no need to worry that the complete hydration will be executed in production
     const { waitForApp, App } = await import('./app');
@@ -23,7 +23,6 @@ async function renderInBrowser() {
       </DataContext.Provider>
     );
   } else {
-    await import('./island-inject');
     const islands = document.querySelectorAll('[__island]');
     for (let i = 0; i < islands.length; i++) {
       const island = islands[i];

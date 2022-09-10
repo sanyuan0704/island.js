@@ -6,14 +6,17 @@ import { DataContext } from './hooks';
 
 let ISLAND_PROPS: any[] = [];
 const originalCreateElement = React.createElement;
+const islandToPathMap: Record<string, string> = {};
 
 // @ts-expect-error Intercept React.createElement to flag island components
 React.createElement = (type: ElementType, props: any, ...children: any[]) => {
   if (props && props.__island) {
-    debugger;
     ISLAND_PROPS.push(props || {});
-    delete props.__island;
     const id = type.name;
+    // The __island prop has been transformed to component path string by babel-plugin-island
+    islandToPathMap[id] = props.__island;
+    delete props.__island;
+
     return originalCreateElement(
       'div',
       {
@@ -25,10 +28,14 @@ React.createElement = (type: ElementType, props: any, ...children: any[]) => {
   return originalCreateElement(type, props, ...children);
 };
 
+export const pagesData = [];
+
 // For ssr component render
-export async function render(
-  pagePath: string
-): Promise<{ appHtml: string; propsData: any[] }> {
+export async function render(pagePath: string): Promise<{
+  appHtml: string;
+  propsData: any[];
+  islandToPathMap: Record<string, string>;
+}> {
   const mod = await waitForApp(pagePath);
 
   ISLAND_PROPS = [];
@@ -41,6 +48,7 @@ export async function render(
   );
   return {
     appHtml,
+    islandToPathMap,
     propsData: ISLAND_PROPS
   };
 }

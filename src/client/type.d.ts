@@ -36,3 +36,8 @@ declare module '*.svg' {
   >;
   export = ReactComponent;
 }
+
+declare module '*?id' {
+  const id: string;
+  export default id;
+}
