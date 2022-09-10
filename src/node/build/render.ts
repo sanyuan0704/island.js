@@ -79,7 +79,6 @@ export async function renderPages(
               {
                 name: 'island-inject',
                 enforce: 'post',
-                banner: 'import React from "react";',
                 resolveId(id) {
                   if (id.includes(MASK_SPLITTER)) {
                     const [originId, importer] = id.split(MASK_SPLITTER);
@@ -117,11 +116,13 @@ export async function renderPages(
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>title</title>
         <meta name="description" content="xxx">
+        <link rel="icon" href="/public/icon.png" type="image/svg+xml">
+
         <script type="importmap">
           {
             "imports": {
               "react": "https://esm.sh/stable/react@18.2.0/es2022/react.js",
-              "react-dom": "https://esm.sh/v92/react-dom@18.2.0/es2022/react-dom.bundle.js",
+              "react-dom": "https://esm.sh/v94/react-dom@18.2.0/es2022/react-dom.js",
               "react-dom/client": "https://esm.sh/v94/react-dom@18.2.0/es2022/client.js"
             }
           }

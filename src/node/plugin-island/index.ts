@@ -5,9 +5,9 @@ import {
   DEFAULT_HTML_PATH,
   isProduction,
   ROUTE_PATH,
-  THEME_ISLANDS_PATH,
   DEFAULT_THEME_PATH,
-  DEFAULT_EXTERNALS
+  DEFAULT_EXTERNALS,
+  TS_REGEX
 } from '../constants';
 import fs from 'fs-extra';
 import { join } from 'path';
@@ -52,7 +52,7 @@ export function pluginIsland(
       if (id === PAGE_DATA_ID) {
         return '\0' + PAGE_DATA_ID;
       }
-      if (DEFAULT_EXTERNALS.includes(id)) {
+      if (isProduction() && DEFAULT_EXTERNALS.includes(id)) {
         return {
           id,
           external: true
@@ -65,7 +65,12 @@ export function pluginIsland(
       }
     },
     async transform(code, id) {
-      if (id.endsWith('tsx')) {
+      // In production, we should transform the __island props for collecting island components
+      if (
+        isProduction() &&
+        TS_REGEX.test(id) &&
+        id.includes(DEFAULT_THEME_PATH)
+      ) {
         let strippedTypes = await transformWithEsbuild(code, id, {
           jsx: 'preserve'
         });
@@ -125,6 +130,6 @@ export function pluginIsland(
         });
       };
     },
-    banner: isServer ? 'import React from "react";' : ''
+    banner: 'import React from "react";'
   };
 }

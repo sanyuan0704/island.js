@@ -38,7 +38,8 @@ export function NavBar(props: NavBarProps) {
       <div className={`${styles.container}`}>
         <div className={`${styles.navBarTitle} ${styles.hasSidebar}`}>
           <a href="/" className={styles.title}>
-            Island
+            <span className={styles.logo}>🏝️</span>
+            <span>Island</span>
           </a>
         </div>
         <div className={styles.content}>

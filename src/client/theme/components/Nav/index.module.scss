@@ -53,6 +53,9 @@
   font-weight: 600;
   color: var(--island-c-text-1);
   transition: opacity 0.25s;
+  .logo {
+    margin-top: 2px;
+  }
 }
 
 .title:hover {
