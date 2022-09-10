@@ -28,6 +28,12 @@ export function Aside(props: ComponentPropsWithIsland<{ headers: Header[] }>) {
         const links = document.querySelectorAll<HTMLAnchorElement>(
           '.island-doc .header-anchor'
         );
+        if (!headers.length) {
+          if (markerRef.current) {
+            markerRef.current.style.display = 'none';
+          }
+          return;
+        }
         if (isBottom()) {
           setActiveIndex(links.length - 1);
           markerRef.current!.style.top = `${33 + (headers.length - 1) * 28}px`;

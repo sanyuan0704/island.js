@@ -28,8 +28,6 @@ React.createElement = (type: ElementType, props: any, ...children: any[]) => {
   return originalCreateElement(type, props, ...children);
 };
 
-export const pagesData = [];
-
 // For ssr component render
 export async function render(pagePath: string): Promise<{
   appHtml: string;
@@ -52,3 +50,6 @@ export async function render(pagePath: string): Promise<{
     propsData: ISLAND_PROPS
   };
 }
+
+// For ssr renderer crawler all pages
+export { routes } from 'virtual:routes';

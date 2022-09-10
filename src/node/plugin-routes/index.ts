@@ -10,7 +10,7 @@ import { RouteService } from './RouteService';
  * 2. Convert the file path to a route object
  * 3. Merge the route objects and generate route module code
  */
-interface PluginOptions {
+export interface PluginOptions {
   /**
    * The directory to search for pages
    * @default 'src'
@@ -26,6 +26,12 @@ interface PluginOptions {
    * @default ['js','jsx','ts','tsx','md','mdx']
    */
   extensions?: string[];
+}
+
+export interface Route {
+  path: string;
+  element: React.ReactElement;
+  preload: () => Promise<React.ReactElement>;
 }
 
 export const CONVENTIONAL_ROUTE_ID = 'virtual:routes';

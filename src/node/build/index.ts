@@ -11,6 +11,6 @@ export async function build(root = process.cwd()) {
   }
   const [clientBundle, serverBundle, builder] = bundleResult;
   const serverEntryPath = join(root, SERVER_OUTPUT_PATH);
-  const { render } = await dynamicImport(serverEntryPath);
-  await renderPages(render, root, clientBundle, serverBundle, builder);
+  const { render, routes } = await dynamicImport(serverEntryPath);
+  await renderPages(render, routes, root, clientBundle, serverBundle, builder);
 }

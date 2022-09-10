@@ -25,6 +25,8 @@ export const THEME_ISLANDS_PATH = join(
 
 export const TEMP_PATH = 'node_modules/.island';
 
+export const DIST_PATH = 'dist';
+
 export const SERVER_OUTPUT_PATH = join(TEMP_PATH, 'ssr', 'ssr-entry.mjs');
 
 export const ROUTE_PATH = join(TEMP_PATH, 'routes.tsx');

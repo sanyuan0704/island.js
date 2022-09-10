@@ -1,6 +1,11 @@
 import { RollupOutput } from 'rollup';
 import { build, InlineConfig } from 'vite';
-import { CLIENT_ENTRY_PATH, SERVER_ENTRY_PATH, TEMP_PATH } from '../constants';
+import {
+  CLIENT_ENTRY_PATH,
+  DIST_PATH,
+  SERVER_ENTRY_PATH,
+  TEMP_PATH
+} from '../constants';
 import { createIslandPlugins } from '../plugin';
 import { dynamicImport } from '../utils';
 import { join } from 'path';
@@ -67,7 +72,7 @@ export async function bundle(root: string) {
     });
     await copy(
       join(root, TEMP_PATH, 'ssr', 'assets'),
-      join(root, 'dist', 'assets')
+      join(root, DIST_PATH, 'assets')
     );
     return [clientBundle, serverBundle, builder] as [
       RollupOutput,
