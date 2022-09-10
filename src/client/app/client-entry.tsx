@@ -1,6 +1,6 @@
 import { hydrateRoot, createRoot } from 'react-dom/client';
-import React, { ComponentType, createElement } from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import React, { createElement } from 'react';
+import { BrowserRouter, useLocation } from 'react-router-dom';
 import './sideEffects';
 import { DataContext } from './hooks';
 
