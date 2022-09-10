@@ -36,9 +36,9 @@ export function pluginIsland(
       return {
         resolve: {
           alias: {
-            'island:theme': `/@fs/${DEFAULT_THEME_PATH}`,
-            'island:client': `/@fs/${CLIENT_PATH}`,
-            'island:routes': join(c.root!, ROUTE_PATH)
+            'island/theme': `/@fs/${DEFAULT_THEME_PATH}`,
+            'island/client': `/@fs/${CLIENT_PATH}`,
+            'island/routes': join(c.root!, ROUTE_PATH)
           }
         },
         css: {

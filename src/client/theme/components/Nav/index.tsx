@@ -4,7 +4,7 @@ import { Link } from '../Link/index';
 import { SwitchAppearance } from '../SwitchAppearance/index';
 import GithubSvg from './icons/github.svg';
 import { Search } from '../Search/index';
-import { usePageData } from 'island:client';
+import { usePageData } from 'island/client';
 import { DefaultTheme } from '../../../../shared/types';
 import { useLocation } from 'react-router-dom';
 interface NavBarProps {

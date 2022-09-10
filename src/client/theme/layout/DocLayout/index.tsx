@@ -4,7 +4,7 @@ import styles from './index.module.scss';
 import { Aside } from '../../components/Aside/index';
 
 import { DocFooter } from '../../components/DocFooter/index';
-import { Content, useDataContext } from 'island:client';
+import { Content, useDataContext } from 'island/client';
 
 export function DocLayout() {
   const data = useDataContext();
