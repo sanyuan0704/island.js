@@ -1,17 +1,26 @@
 {
   "compilerOptions": {
-    "module": "esnext",
-    "target": "esnext",
+    "module": "ESNext",
+    "target": "ESNext",
+    "baseUrl": "src",
     "moduleResolution": "node",
     "esModuleInterop": true,
+    "declaration": true,
     "strict": true,
+    "allowJs": true,
     "outDir": "dist",
+    "rootDir": "src",
     "skipLibCheck": true,
     "noUnusedLocals": true,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "lib": ["ESNext", "DOM"]
   },
-  "exclude": ["**/node_modules/**", "**/dist/**"]
+  "exclude": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/playground/**",
+    "tsup.config.ts"
+  ]
 }

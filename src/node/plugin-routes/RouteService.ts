@@ -1,7 +1,6 @@
 import fastGlob from 'fast-glob';
 import path from 'path';
-import { isProduction, ROUTE_PATH, TEMP_PATH } from '../constants';
-import { writeFile, ensureDir } from 'fs-extra';
+
 export interface RouteMeta {
   routePath: string;
   basePath: string;
@@ -21,8 +20,7 @@ export class RouteService {
   #routeData: RouteMeta[] = [];
   constructor(
     private scanDir: string,
-    private extensions: string[],
-    private root: string
+    private extensions: string[] // private root: string
   ) {}
 
   async init() {
@@ -39,22 +37,22 @@ export class RouteService {
         absolutePath: path.join(this.scanDir, fileRelativePath)
       };
     });
-    const routeCode = this.generateRoutesCode();
-    try {
-      await ensureDir(path.join(this.root, TEMP_PATH));
-      await writeFile(path.join(this.root, ROUTE_PATH), routeCode);
-    } catch (e) {
-      console.log(e);
-    }
+    // const routeCode = this.generateRoutesCode();
+    // try {
+    //   await ensureDir(path.join(this.root, TEMP_PATH));
+    //   await writeFile(path.join(this.root, ROUTE_PATH), routeCode);
+    // } catch (e) {
+    //   console.log(e);
+    // }
   }
 
-  generateRoutesCode() {
+  generateRoutesCode(ssr?: boolean) {
     return `
-${isProduction() ? '' : `import loadable from '@loadable/component';`}
+${ssr ? '' : `import loadable from '@loadable/component'`};
 import React from 'react';
 ${this.#routeData
   .map((route, index) => {
-    return isProduction()
+    return ssr
       ? `import Route${index} from '${route.absolutePath}';`
       : `const Route${index} = loadable(() => import('${route.absolutePath}'))`;
   })
@@ -62,7 +60,7 @@ ${this.#routeData
 export const routes = [
 ${this.#routeData
   .map((route, index) => {
-    return `{ path: '${route.routePath}', element: React.createElement(Route${index}) },`;
+    return `{ path: '${route.routePath}', element: React.createElement(Route${index}), preload: () => import('${route.absolutePath}') },`;
   })
   .join('\n')}
 ];

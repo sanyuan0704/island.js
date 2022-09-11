@@ -10,10 +10,16 @@ cli
   .alias('dev')
   .action(async (root: string) => {
     try {
-      const server = await createDevServer(root);
-      await server.listen();
-      console.log();
-      server.printUrls();
+      const createServer = async () => {
+        const server = await createDevServer(root, async () => {
+          await server.close();
+          await createServer();
+        });
+        await server.listen();
+        console.log();
+        server.printUrls();
+      };
+      await createServer();
     } catch (e) {
       console.log(e);
     }
