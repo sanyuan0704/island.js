@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev:tsup": "tsup src/node/cli.ts --watch --dts --format esm",
+    "dev:tsup": "tsup --watch --dts --format esm",
     "dev": "tsc -w",
     "start:client": "cd src/client && tsc -w",
     "start:node": "cd src/node && tsc -w",
@@ -82,6 +82,7 @@
     "typescript": "^4.7.4",
     "unified": "^10.1.2",
     "unist-util-visit": "^4.1.1",
+    "vite-plugin-chunk-split": "^0.3.0",
     "vite-plugin-inspect": "^0.6.1",
     "vitest": "^0.23.1"
   }

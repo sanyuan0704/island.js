@@ -8,6 +8,7 @@ import { SiteConfig } from '../shared/types';
 import pluginMdx from '@mdx-js/rollup';
 import { createMDXOptions } from './plugin-mdx';
 import babelPluginIsland from './babel-plugin-island';
+import { ISLAND_JSX_RUNTIME_PATH } from './constants/index';
 
 export async function createIslandPlugins(
   config: SiteConfig,
@@ -20,7 +21,8 @@ export async function createIslandPlugins(
     // React hmr support
     pluginReact({
       include: [/theme/],
-      jsxRuntime: 'classic',
+      jsxRuntime: 'automatic',
+      jsxImportSource: isServer ? ISLAND_JSX_RUNTIME_PATH : 'react',
       babel: {
         plugins: [babelPluginIsland]
       }
@@ -34,5 +36,11 @@ export async function createIslandPlugins(
     pluginRoutes({ prefix: '' }),
     // Inspect transformation
     pluginInspect({})
+    // pluginChunkSplit({
+    //   strategy: 'single-vendor',
+    //   customSplitting: {
+    //     react_vendor: ['react', 'react-dom', 'react-router-dom']
+    //   }
+    // })
   ];
 }

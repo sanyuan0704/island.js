@@ -63,6 +63,7 @@ specifiers:
   unist-util-visit: ^4.1.1
   unist-util-visit-children: ^2.0.0
   vite: ^3.0.9
+  vite-plugin-chunk-split: ^0.3.0
   vite-plugin-inspect: ^0.6.1
   vitest: ^0.23.1
 
@@ -131,6 +132,7 @@ devDependencies:
   typescript: 4.7.4
   unified: 10.1.2
   unist-util-visit: 4.1.1
+  vite-plugin-chunk-split: 0.3.0_vite@3.0.9
   vite-plugin-inspect: 0.6.1_vite@3.0.9
   vitest: 0.23.1_sass@1.54.5
 
@@ -4867,6 +4869,14 @@ packages:
       is-buffer: 2.0.5
       unist-util-stringify-position: 3.0.2
       vfile-message: 3.1.2
+
+  /vite-plugin-chunk-split/0.3.0_vite@3.0.9:
+    resolution: {integrity: sha512-2+AltyaVnKx33HRKwRQBWzmt3RHGJvDEUp+HDUbPcl4xpKXbWLvMCezlspXun9hL+3sEmqp3nF89uXknPtkc6A==}
+    peerDependencies:
+      vite: '>=2.0.0'
+    dependencies:
+      vite: 3.0.9_sass@1.54.5
+    dev: true
 
   /vite-plugin-inspect/0.6.1_vite@3.0.9:
     resolution: {integrity: sha512-MQzIgMoPyiPDuHoO6p7QBOrmheBU/ntg0cgtgcnm21S/Xds5oak1CbVLSAvv4fK1ZpetLK+tlJ+2mlFO9fG3SQ==}

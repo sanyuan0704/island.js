@@ -6,10 +6,6 @@ declare module 'island/theme*' {
   export const Layout: ComponentType<any>;
 }
 
-declare module 'island:islands' {
-  export default Record<string, ComponentType<any>>;
-}
-
 declare module 'island:page-data' {
   export default any;
 }
@@ -24,6 +20,10 @@ declare module 'island/client' {
   export const useDataContext: () => any;
 }
 
+declare module 'island/jsx-runtime' {
+  export const data = any;
+}
+
 declare module 'virtual:routes' {
   import { Route } from 'react-router-dom';
 
@@ -35,9 +35,4 @@ declare module '*.svg' {
     React.SVGProps<SVGSVGElement>
   >;
   export = ReactComponent;
-}
-
-declare module '*?id' {
-  const id: string;
-  export default id;
 }

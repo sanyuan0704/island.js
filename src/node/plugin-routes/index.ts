@@ -62,9 +62,9 @@ export function pluginRoutes(options: PluginOptions = {}): Plugin {
         return '\0' + CONVENTIONAL_ROUTE_ID;
       }
     },
-    load(id: string) {
+    load(id: string, options) {
       if (id === '\0' + CONVENTIONAL_ROUTE_ID) {
-        return routeService.generateRoutesCode();
+        return routeService.generateRoutesCode(options?.ssr);
       }
     }
   };

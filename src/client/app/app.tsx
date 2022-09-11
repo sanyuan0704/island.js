@@ -1,5 +1,4 @@
 import { Layout } from 'island/theme';
-import React from 'react';
 import { routes } from 'virtual:routes';
 import { matchRoutes } from 'react-router-dom';
 

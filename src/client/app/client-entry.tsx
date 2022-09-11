@@ -1,5 +1,5 @@
 import { hydrateRoot, createRoot } from 'react-dom/client';
-import React, { ComponentType, createElement } from 'react';
+import { ComponentType } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import './sideEffects';
 import { DataContext } from './hooks';
@@ -36,10 +36,8 @@ async function renderInBrowser() {
     for (let i = 0; i < islands.length; i++) {
       const island = islands[i];
       const [id, index] = island.getAttribute('__island')!.split(':');
-      hydrateRoot(
-        island,
-        createElement(window.ISLANDS[id], window.ISLAND_PROPS[index])
-      );
+      const Element = window.ISLANDS[id];
+      hydrateRoot(island, <Element {...window.ISLAND_PROPS[index]}></Element>);
     }
   }
 }

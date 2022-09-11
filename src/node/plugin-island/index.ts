@@ -7,7 +7,8 @@ import {
   ROUTE_PATH,
   DEFAULT_THEME_PATH,
   DEFAULT_EXTERNALS,
-  TS_REGEX
+  TS_REGEX,
+  ISLAND_JSX_RUNTIME_PATH
 } from '../constants';
 import fs from 'fs-extra';
 import { join } from 'path';
@@ -26,7 +27,7 @@ export const PAGE_DATA_ID = 'island:page-data';
  */
 export function pluginIsland(
   config: SiteConfig,
-  _isServer: boolean = false
+  isServer: boolean = false
 ): Plugin {
   const { pageData } = config;
   return {
@@ -38,7 +39,11 @@ export function pluginIsland(
           alias: {
             'island/theme': `/@fs/${DEFAULT_THEME_PATH}`,
             'island/client': `/@fs/${CLIENT_PATH}`,
-            'island/routes': join(c.root!, ROUTE_PATH)
+            'island/routes': join(c.root!, ROUTE_PATH),
+            'island/jsx-runtime': join(
+              ISLAND_JSX_RUNTIME_PATH,
+              'jsx-runtime.js'
+            )
           }
         },
         css: {
@@ -64,10 +69,10 @@ export function pluginIsland(
         return `export default ${JSON.stringify(pageData)}`;
       }
     },
-    async transform(code, id) {
+    async transform(code, id, options) {
       // In production, we should transform the __island props for collecting island components
       if (
-        isProduction() &&
+        options?.ssr &&
         TS_REGEX.test(id) &&
         id.includes(DEFAULT_THEME_PATH)
       ) {
@@ -76,7 +81,15 @@ export function pluginIsland(
         });
         const result = await transformAsync((await strippedTypes).code, {
           filename: id,
-          presets: ['@babel/preset-react'],
+          presets: [
+            [
+              '@babel/preset-react',
+              {
+                runtime: 'automatic',
+                importSource: isServer ? ISLAND_JSX_RUNTIME_PATH : 'react'
+              }
+            ]
+          ],
           plugins: [babelPluginIsland]
         });
         return {
@@ -129,7 +142,7 @@ export function pluginIsland(
           }
         });
       };
-    },
-    banner: 'import React from "react";'
+    }
+    // banner: 'import React from "react";'
   };
 }

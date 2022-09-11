@@ -37,9 +37,14 @@ export const DEFAULT_HTML_PATH = join(PACKAGE_ROOT_PATH, 'template.html');
 
 export const MASK_SPLITTER = '!!ISLAND!!';
 
-export const DEFAULT_EXTERNALS = [
+export const DEFAULT_EXTERNALS: string[] = [
   'react',
   'react-dom',
-  'react-dom/server',
-  'react-dom/client'
+  'react-dom/client',
+  'scheduler',
+  'react/jsx-runtime'
 ];
+
+export const ISLAND_JSX_RUNTIME_PATH = join(PACKAGE_ROOT_PATH, DIST_PATH);
+
+export const VENDOR_PATH = join(PACKAGE_ROOT_PATH, 'vendors');

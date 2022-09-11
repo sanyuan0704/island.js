@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styles from './index.module.scss';
 import { throttle } from 'lodash-es';
 import { ComponentPropsWithIsland } from '../../../../shared/types/index';

@@ -46,13 +46,13 @@ export class RouteService {
     // }
   }
 
-  generateRoutesCode() {
+  generateRoutesCode(ssr?: boolean) {
     return `
-${isProduction() ? '' : `import loadable from '@loadable/component'`};
+${ssr ? '' : `import loadable from '@loadable/component'`};
 import React from 'react';
 ${this.#routeData
   .map((route, index) => {
-    return isProduction()
+    return ssr
       ? `import Route${index} from '${route.absolutePath}';`
       : `const Route${index} = loadable(() => import('${route.absolutePath}'))`;
   })

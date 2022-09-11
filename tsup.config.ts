@@ -8,15 +8,21 @@ const external = [
 ];
 
 export default defineConfig({
+  entry: {
+    'jsx-runtime': 'src/client/app/island-jsx-runtime.js',
+    'jsx-dev-runtime': 'src/client/app/island-jsx-dev-runtime.js',
+    cli: 'src/node/cli.ts'
+  },
   bundle: true,
   platform: 'node',
   format: 'esm',
   sourcemap: true,
-  external,
+  splitting: false,
+  skipNodeModulesBundle: true,
   // https://github.com/evanw/esbuild/issues/1921
   banner() {
     return {
-      js: `import { createRequire } from 'module';const require = createRequire(import.meta.url);`
+      // js: `import { createRequire } from 'module';const require = createRequire(import.meta.url);`
     };
   }
 });

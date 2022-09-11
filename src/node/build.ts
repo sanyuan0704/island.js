@@ -14,11 +14,13 @@ import { SiteConfig } from '../shared/types';
 import { resolveConfig } from './config';
 import {
   CLIENT_ENTRY_PATH,
+  DEFAULT_EXTERNALS,
   DIST_PATH,
   MASK_SPLITTER,
   SERVER_ENTRY_PATH,
   SERVER_OUTPUT_PATH,
-  TEMP_PATH
+  TEMP_PATH,
+  VENDOR_PATH
 } from './constants';
 import { createIslandPlugins } from './plugin';
 import { join, dirname } from 'path';
@@ -27,6 +29,7 @@ import { createHash, dynamicImport } from './utils';
 import { Route } from './plugin-routes';
 import fs, { copy, remove } from 'fs-extra';
 import ora from 'ora';
+import React from 'react';
 
 const islandInjectId = `island:inject`;
 export const okMark = '\x1b[32m✓\x1b[0m';
@@ -104,6 +107,7 @@ class SSGBuilder {
     const { default: ora } = await dynamicImport('ora');
     const spinner = ora();
     spinner.start('Rendering page in server side...');
+    global.React = React;
     await Promise.all(
       routes.map((route) =>
         this.#renderPage(render, route, clientChunkCode, styleAssets)
@@ -125,12 +129,7 @@ class SSGBuilder {
         outDir: TEMP_PATH,
         ssrManifest: false,
         rollupOptions: {
-          external: [
-            'react',
-            'react-dom',
-            'react-dom/client',
-            'react-dom/server'
-          ],
+          external: [],
           input: islandInjectId
         }
       },
@@ -179,6 +178,8 @@ class SSGBuilder {
     styleAssets: (OutputChunk | OutputAsset)[]
   ) {
     const { appHtml, propsData, islandToPathMap } = await render(route.path);
+    console.log(islandToPathMap);
+
     const islandHash = createHash(JSON.stringify(islandToPathMap));
     let injectBundlePromise = this.#islandsInjectCache.get(islandHash);
 
@@ -204,12 +205,13 @@ class SSGBuilder {
       <script type="importmap">
         {
           "imports": {
-            "react": "https://esm.sh/stable/react@18.2.0/es2022/react.js",
-            "react-dom": "https://esm.sh/v94/react-dom@18.2.0/es2022/react-dom.js",
-            "react-dom/client": "https://esm.sh/v94/react-dom@18.2.0/es2022/client.js"
+            ${DEFAULT_EXTERNALS.map(
+              (name) => `"${name}": "/${name.replaceAll('/', '_')}.js"`
+            ).join(',')}
           }
         }
       </script>
+
       ${styleAssets
         .map((item) => `<link rel="stylesheet" href="/${item.fileName}">`)
         .join('\n')}
@@ -224,6 +226,7 @@ class SSGBuilder {
     const fileName =
       route.path === '/' ? 'index.html' : `${route.path.slice(1)}.html`;
     await fs.ensureDir(join(this.#root, DIST_PATH, dirname(fileName)));
+    await fs.copy(VENDOR_PATH, join(this.#root, DIST_PATH));
     await fs.writeFile(join(this.#root, DIST_PATH, fileName), html);
   }
 
@@ -257,6 +260,7 @@ class SSGBuilder {
         minifyIdentifiers: !isServer
       },
       build: {
+        minify: false,
         ssr: isServer,
         outDir: isServer ? join(TEMP_PATH, 'ssr') : 'dist',
         cssCodeSplit: false,
@@ -282,5 +286,5 @@ export async function build(root: string) {
 
   await builder.renderPages(render as RenderFn, routes as Route[]);
 
-  await builder.end();
+  // await builder.end();
 }
