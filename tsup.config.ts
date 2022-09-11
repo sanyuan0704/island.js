@@ -18,11 +18,11 @@ export default defineConfig({
   dts: true,
   sourcemap: true,
   splitting: false,
-  skipNodeModulesBundle: true,
+  skipNodeModulesBundle: true
   // https://github.com/evanw/esbuild/issues/1921
-  banner() {
-    return {
-      // js: `import { createRequire } from 'module';const require = createRequire(import.meta.url);`
-    };
-  }
+  // banner() {
+  //   return {
+  //     // js: `import { createRequire } from 'module';const require = createRequire(import.meta.url);`
+  //   };
+  // }
 });
