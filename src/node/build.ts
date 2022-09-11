@@ -178,7 +178,6 @@ class SSGBuilder {
     styleAssets: (OutputChunk | OutputAsset)[]
   ) {
     const { appHtml, propsData, islandToPathMap } = await render(route.path);
-    console.log(islandToPathMap);
 
     const islandHash = createHash(JSON.stringify(islandToPathMap));
     let injectBundlePromise = this.#islandsInjectCache.get(islandHash);
@@ -226,7 +225,9 @@ class SSGBuilder {
     const fileName =
       route.path === '/' ? 'index.html' : `${route.path.slice(1)}.html`;
     await fs.ensureDir(join(this.#root, DIST_PATH, dirname(fileName)));
-    await fs.copy(VENDOR_PATH, join(this.#root, DIST_PATH));
+    try {
+      await fs.copy(VENDOR_PATH, join(this.#root, DIST_PATH));
+    } catch (e) {}
     await fs.writeFile(join(this.#root, DIST_PATH, fileName), html);
   }
 

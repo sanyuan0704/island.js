@@ -7,11 +7,14 @@ import { useLocation } from 'react-router-dom';
 
 export function SideBar() {
   const location = useLocation();
-  const pageData = usePageData();
-  const sidebar = pageData.themeConfig.sidebar || {};
-  const sidebarData = Object.keys(sidebar)
-    .filter((item) => location.pathname.startsWith(item))
-    .map((item) => sidebar[item])[0] as DefaultTheme.SidebarGroup[];
+  const { siteData } = usePageData();
+  const sidebar = siteData.themeConfig.sidebar || {};
+
+  const sidebarData = Array.isArray(sidebar)
+    ? sidebar[0]
+    : (Object.keys(sidebar)
+        .filter((item) => location.pathname.startsWith(item))
+        .map((item) => sidebar[item])[0] as DefaultTheme.SidebarGroup[]);
 
   const renderGroupItem = (item: DefaultTheme.SidebarItem, depth = 0) => {
     const marginLeft = `${depth * 20}px`;
@@ -56,7 +59,7 @@ export function SideBar() {
     <aside className={styles.sidebar}>
       <nav className={styles.nav}>
         <div className={styles.group}>
-          {sidebarData.map((item) => renderGroup(item))}
+          {[sidebarData].flat().map((item) => renderGroup(item))}
         </div>
       </nav>
     </aside>

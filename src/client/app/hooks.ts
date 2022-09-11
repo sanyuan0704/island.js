@@ -1,12 +1,8 @@
-import data from 'island:page-data';
 import { createContext, useContext } from 'react';
+import { DefaultTheme, PageData, SiteData } from '../../shared/types';
 
 export const DataContext = createContext({});
 
 export const usePageData = () => {
-  return data;
-};
-
-export const useDataContext = () => {
-  return useContext(DataContext);
+  return useContext(DataContext) as PageData;
 };

@@ -1,6 +1,6 @@
 import fastGlob from 'fast-glob';
 import path from 'path';
-import { isProduction } from '../constants';
+
 export interface RouteMeta {
   routePath: string;
   basePath: string;

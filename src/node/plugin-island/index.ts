@@ -11,13 +11,16 @@ import {
   ISLAND_JSX_RUNTIME_PATH
 } from '../constants';
 import fs from 'fs-extra';
-import { join } from 'path';
+import { join, relative } from 'path';
 import { SiteConfig } from '../../shared/types';
 import { transformAsync } from '@babel/core';
 import babelPluginIsland from '../babel-plugin-island';
 import { transformWithEsbuild } from 'vite';
+import pc from 'picocolors';
 
-export const PAGE_DATA_ID = 'island:page-data';
+const { green } = pc;
+
+export const PAGE_DATA_ID = 'island:site-data';
 
 /**
  * The plugin for island framework:
@@ -27,9 +30,10 @@ export const PAGE_DATA_ID = 'island:page-data';
  */
 export function pluginIsland(
   config: SiteConfig,
-  isServer: boolean = false
+  isServer: boolean = false,
+  restartServer?: () => Promise<void>
 ): Plugin {
-  const { pageData } = config;
+  const { siteData } = config;
   return {
     name: 'island:vite-plugin-internal',
     enforce: 'pre',
@@ -66,7 +70,7 @@ export function pluginIsland(
     },
     load(id) {
       if (id === '\0' + PAGE_DATA_ID) {
-        return `export default ${JSON.stringify(pageData)}`;
+        return `export default ${JSON.stringify(siteData)}`;
       }
     },
     async transform(code, id, options) {
@@ -118,7 +122,24 @@ export function pluginIsland(
         ]
       };
     },
+    async handleHotUpdate(ctx) {
+      if (config.configPath === ctx.file) {
+        console.log(
+          green(
+            `\n${relative(config.root, ctx.file)} changed, restarting server...`
+          )
+        );
+        await restartServer!();
+        return [];
+      }
+    },
     configureServer(server) {
+      if (config.configPath) {
+        server.watcher.add(config.configPath);
+        config.configDeps?.forEach((dep) => {
+          server.watcher.add(dep);
+        });
+      }
       return () => {
         server.middlewares.use(async (req, res, next) => {
           if (res.writableEnded) {
@@ -143,6 +164,5 @@ export function pluginIsland(
         });
       };
     }
-    // banner: 'import React from "react";'
   };
 }

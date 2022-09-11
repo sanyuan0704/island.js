@@ -10,7 +10,6 @@ const external = [
 export default defineConfig({
   entry: {
     'jsx-runtime': 'src/client/app/island-jsx-runtime.js',
-    'jsx-dev-runtime': 'src/client/app/island-jsx-dev-runtime.js',
     cli: 'src/node/cli.ts'
   },
   bundle: true,

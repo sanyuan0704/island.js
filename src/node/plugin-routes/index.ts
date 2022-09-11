@@ -1,4 +1,5 @@
 import path from 'path';
+import { PageModule } from '../../shared/types';
 import type { Plugin } from 'vite';
 import { RouteService } from './RouteService';
 
@@ -31,7 +32,7 @@ export interface PluginOptions {
 export interface Route {
   path: string;
   element: React.ReactElement;
-  preload: () => Promise<React.ReactElement>;
+  preload: () => Promise<PageModule>;
 }
 
 export const CONVENTIONAL_ROUTE_ID = 'virtual:routes';

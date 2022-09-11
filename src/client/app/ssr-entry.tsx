@@ -2,10 +2,6 @@ import { renderToString } from 'react-dom/server';
 import { App, waitForApp } from './app';
 import { StaticRouter } from 'react-router-dom/server';
 import { DataContext } from './hooks';
-import {
-  ISLAND_JSX_RUNTIME_PATH,
-  PACKAGE_ROOT_PATH
-} from '../../node/constants';
 
 // For ssr component render
 export async function render(pagePath: string): Promise<{

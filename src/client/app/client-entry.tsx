@@ -23,9 +23,9 @@ async function renderInBrowser() {
     // The App code will will be tree-shaking in production
     // So there is no need to worry that the complete hydration will be executed in production
     const { waitForApp, App } = await import('./app');
-    const mod = await waitForApp(window.location.pathname);
+    const pageData = await waitForApp(window.location.pathname);
     createRoot(containerEl).render(
-      <DataContext.Provider value={mod}>
+      <DataContext.Provider value={pageData}>
         <BrowserRouter>
           <App />
         </BrowserRouter>

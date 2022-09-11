@@ -1,14 +1,14 @@
+import { ReactElement } from 'react';
 import { UserConfig as ViteConfiguration } from 'vite';
+import { DefaultTheme } from './default-theme';
 
 export { DefaultTheme } from './default-theme';
 
-export interface Header {
-  level: number;
-  title: string;
-  slug: string;
+interface Header {
+  id: string;
+  text: string;
 }
-
-export interface SitePageData {
+export interface SiteSiteData {
   title: string;
   description: string;
   frontmatter: Record<string, any>;
@@ -89,7 +89,7 @@ export interface LocaleConfig {
   selectText?: string;
 }
 
-export interface PageData<ThemeConfig = any> {
+export interface SiteData<ThemeConfig = any> {
   base: string;
   lang: string;
   title: string;
@@ -111,7 +111,17 @@ export interface SiteConfig<ThemeConfig = any>
   themeDir?: string;
   outDir?: string;
   // Current page data
-  pageData?: PageData<ThemeConfig>;
+  siteData?: SiteData<ThemeConfig>;
 }
 
 export type ComponentPropsWithIsland<T = any> = T & { __island: boolean };
+
+export interface PageModule {
+  default: ReactElement;
+  [key: string]: unknown;
+}
+
+export interface PageData {
+  siteData: SiteData<DefaultTheme.Config>;
+  toc: Header[];
+}

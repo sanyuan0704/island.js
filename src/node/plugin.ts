@@ -12,12 +12,13 @@ import { ISLAND_JSX_RUNTIME_PATH } from './constants/index';
 
 export async function createIslandPlugins(
   config: SiteConfig,
-  isServer: boolean = false
+  isServer: boolean = false,
+  restartServer?: () => Promise<void>
 ): Promise<PluginOption[]> {
   const mdxOptions = createMDXOptions();
   return [
     // For island internal use
-    pluginIsland(config, isServer),
+    pluginIsland(config, isServer, restartServer),
     // React hmr support
     pluginReact({
       include: [/theme/],

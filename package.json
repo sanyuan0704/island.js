@@ -9,8 +9,8 @@
     "dev": "tsc -w",
     "start:client": "cd src/client && tsc -w",
     "start:node": "cd src/node && tsc -w",
-    "dev:playground": "node ./bin/island playground",
-    "build:playground": "node ./bin/island build playground",
+    "dev:docs": "node ./bin/island docs",
+    "build:docs": "node ./bin/island build docs",
     "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx --quiet ./",
     "test": "vitest run"
   },
@@ -38,6 +38,7 @@
     "hast": "^1.0.0",
     "hast-util-from-html": "^1.0.0",
     "lodash-es": "^4.17.21",
+    "picocolors": "^1.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",

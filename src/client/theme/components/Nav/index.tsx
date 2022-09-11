@@ -1,12 +1,11 @@
-import React from 'react';
 import styles from './index.module.scss';
 import { Link } from '../Link/index';
 import { SwitchAppearance } from '../SwitchAppearance/index';
 import GithubSvg from './icons/github.svg';
 import { Search } from '../Search/index';
-import { usePageData } from 'island/client';
 import { DefaultTheme } from '../../../../shared/types';
 import { useLocation } from 'react-router-dom';
+import { usePageData } from 'island/client';
 interface NavBarProps {
   nav: DefaultTheme.NavItem[];
 }
@@ -64,8 +63,8 @@ export function NavBar(props: NavBarProps) {
 }
 
 export function Nav() {
-  const pageData = usePageData();
-  const nav = pageData.themeConfig.nav || [];
+  const { siteData } = usePageData();
+  const nav = siteData.themeConfig.nav || [];
   return (
     <header className={styles.nav}>
       <NavBar nav={nav} />

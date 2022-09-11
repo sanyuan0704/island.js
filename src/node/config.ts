@@ -3,7 +3,7 @@ import {
   SiteConfig,
   DefaultTheme,
   UserConfig,
-  PageData
+  SiteData
 } from '../shared/types';
 import fs from 'fs-extra';
 import { loadConfigFromFile } from 'vite';
@@ -49,7 +49,7 @@ export async function resolveUserConfig(
   }
 }
 
-export function resolvePageData(userConfig: UserConfig): PageData {
+export function resolveSiteData(userConfig: UserConfig): SiteData {
   return {
     lang: userConfig.lang || 'en-US',
     title: userConfig.title || 'Island',
@@ -89,7 +89,7 @@ export async function resolveConfig(
     tempDir: resolve(root, 'node_modules', '.island'),
     vite: userConfig.vite || {},
     allowDeadLinks: userConfig.allowDeadLinks || false,
-    pageData: resolvePageData(userConfig)
+    siteData: resolveSiteData(userConfig)
   };
 
   return siteConfig;
