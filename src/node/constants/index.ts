@@ -41,7 +41,6 @@ export const DEFAULT_EXTERNALS: string[] = [
   'react',
   'react-dom',
   'react-dom/client',
-  'scheduler',
   'react/jsx-runtime'
 ];
 

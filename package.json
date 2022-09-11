@@ -14,7 +14,7 @@
     "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx --quiet ./",
     "test": "vitest run"
   },
-  "keywords": [],
+  "keywords": ["vite", "ssg", "island architecture", "docs", "framework"],
   "author": "",
   "license": "ISC",
   "dependencies": {
