@@ -24,12 +24,14 @@ specifiers:
   '@types/lodash-es': ^4.17.6
   '@types/react': ^18.0.17
   '@types/react-dom': ^18.0.6
+  '@types/resolve': ^1.20.2
   '@typescript-eslint/eslint-plugin': ^5.36.1
   '@typescript-eslint/parser': ^5.36.1
   '@vitejs/plugin-react': 2.0.1
   acorn: ^8.8.0
   cac: 6.7.12
   debug: ^4.3.4
+  es-module-lexer: ^1.0.3
   esbuild: 0.15.5
   eslint: ^8.23.0
   eslint-plugin-react: ^7.31.1
@@ -54,6 +56,7 @@ specifiers:
   remark-frontmatter: ^4.0.1
   remark-gfm: ^3.0.1
   remark-mdx-frontmatter: ^2.0.3
+  resolve: ^1.22.1
   rollup: ^2.78.1
   sass: ^1.54.5
   shiki: ^0.11.1
@@ -119,13 +122,16 @@ devDependencies:
   '@types/lodash-es': 4.17.6
   '@types/react': 18.0.17
   '@types/react-dom': 18.0.6
+  '@types/resolve': 1.20.2
   '@typescript-eslint/eslint-plugin': 5.36.1_uoznksvaqimddkvahx6c3yyzku
   '@typescript-eslint/parser': 5.36.1_sorwav4hsh5vncerguqybud76i
+  es-module-lexer: 1.0.3
   eslint: 8.23.0
   eslint-plugin-react: 7.31.1_eslint@8.23.0
   highlight.js: 11.6.0
   mdast-util-mdxjs-esm: 1.3.0
   ora: 6.1.2
+  resolve: 1.22.1
   rollup: 2.78.1
   sass: 1.54.5
   shiki: 0.11.1
@@ -1004,6 +1010,10 @@ packages:
       csstype: 3.1.0
     dev: true
 
+  /@types/resolve/1.20.2:
+    resolution: {integrity: sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==}
+    dev: true
+
   /@types/scheduler/0.16.2:
     resolution: {integrity: sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==}
     dev: true
@@ -1627,6 +1637,10 @@ packages:
       string.prototype.trimend: 1.0.5
       string.prototype.trimstart: 1.0.5
       unbox-primitive: 1.0.2
+    dev: true
+
+  /es-module-lexer/1.0.3:
+    resolution: {integrity: sha512-iC67eXHToclrlVhQfpRawDiF8D8sQxNxmbqw5oebegOaJkyx/w9C/k57/5e6yJR2zIByRt9OXdqX50DV2t6ZKw==}
     dev: true
 
   /es-shim-unscopables/1.0.0:

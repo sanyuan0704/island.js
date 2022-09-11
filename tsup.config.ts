@@ -15,6 +15,7 @@ export default defineConfig({
   bundle: true,
   platform: 'node',
   format: 'esm',
+  dts: true,
   sourcemap: true,
   splitting: false,
   skipNodeModulesBundle: true,
