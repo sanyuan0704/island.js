@@ -1,15 +1,8 @@
 import { defineConfig } from 'tsup';
 
-const pkgInfo = require('./package.json');
-
-const external = [
-  ...Object.keys(pkgInfo.dependencies),
-  ...Object.keys(pkgInfo.devDependencies)
-];
-
 export default defineConfig({
   entry: {
-    'jsx-runtime': 'src/client/app/island-jsx-runtime.js',
+    'jsx-runtime': 'src/client/runtime/island-jsx-runtime.js',
     cli: 'src/node/cli.ts'
   },
   bundle: true,

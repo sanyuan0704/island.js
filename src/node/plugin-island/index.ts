@@ -17,6 +17,7 @@ import { transformAsync } from '@babel/core';
 import babelPluginIsland from '../babel-plugin-island';
 import { transformWithEsbuild } from 'vite';
 import pc from 'picocolors';
+import { ISLAND_CLI_PATH } from '../constants/index';
 
 const { green } = pc;
 
@@ -123,7 +124,12 @@ export function pluginIsland(
       };
     },
     async handleHotUpdate(ctx) {
-      if (config.configPath === ctx.file) {
+      const customWatchedFiles = [
+        ...(config.configDeps || []),
+        config.configPath,
+        ISLAND_CLI_PATH
+      ];
+      if (customWatchedFiles.includes(ctx.file)) {
         console.log(
           green(
             `\n${relative(config.root, ctx.file)} changed, restarting server...`
@@ -139,6 +145,7 @@ export function pluginIsland(
         config.configDeps?.forEach((dep) => {
           server.watcher.add(dep);
         });
+        server.watcher.add(ISLAND_CLI_PATH);
       }
       return () => {
         server.middlewares.use(async (req, res, next) => {

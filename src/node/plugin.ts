@@ -15,13 +15,12 @@ export async function createIslandPlugins(
   isServer: boolean = false,
   restartServer?: () => Promise<void>
 ): Promise<PluginOption[]> {
-  const mdxOptions = createMDXOptions();
+  const mdxOptions = await createMDXOptions();
   return [
     // For island internal use
     pluginIsland(config, isServer, restartServer),
     // React hmr support
     pluginReact({
-      include: [/theme/],
       jsxRuntime: 'automatic',
       jsxImportSource: isServer ? ISLAND_JSX_RUNTIME_PATH : 'react',
       babel: {

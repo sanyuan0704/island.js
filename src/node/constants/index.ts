@@ -6,23 +6,15 @@ export const TS_REGEX = /(c|m)?tsx?$/;
 
 export const PACKAGE_ROOT_PATH = join(fileURLToPath(import.meta.url), '../..');
 
-export const CLIENT_PATH = join(PACKAGE_ROOT_PATH, 'src/client/app');
+export const CLIENT_PATH = join(PACKAGE_ROOT_PATH, 'src/client/runtime');
 
-export const CLIENT_ENTRY_PATH = join(
+export const CLIENT_ENTRY_PATH = join(CLIENT_PATH, 'client-entry.tsx');
+
+export const SERVER_ENTRY_PATH = join(CLIENT_PATH, 'ssr-entry.tsx');
+
+export const DEFAULT_THEME_PATH = join(
   PACKAGE_ROOT_PATH,
-  'src/client/app/client-entry.tsx'
-);
-
-export const SERVER_ENTRY_PATH = join(
-  PACKAGE_ROOT_PATH,
-  'src/client/app/ssr-entry.tsx'
-);
-
-export const DEFAULT_THEME_PATH = join(PACKAGE_ROOT_PATH, 'src/client/theme');
-
-export const THEME_ISLANDS_PATH = join(
-  PACKAGE_ROOT_PATH,
-  'src/client/theme/islands.ts'
+  'src/client/theme-default'
 );
 
 export const TEMP_PATH = 'node_modules/.island';
@@ -45,5 +37,7 @@ export const DEFAULT_EXTERNALS: string[] = [
 ];
 
 export const ISLAND_JSX_RUNTIME_PATH = join(PACKAGE_ROOT_PATH, DIST_PATH);
+
+export const ISLAND_CLI_PATH = join(PACKAGE_ROOT_PATH, DIST_PATH, 'cli.js');
 
 export const VENDOR_PATH = join(PACKAGE_ROOT_PATH, 'vendors');

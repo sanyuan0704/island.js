@@ -247,13 +247,15 @@ class SSGBuilder {
     `;
   }
 
-  #baseBuild(isServer: boolean, options: InlineConfig = {}) {
-    const resolveViteConfig = (isServer: boolean): InlineConfig => ({
+  async #baseBuild(isServer: boolean, options: InlineConfig = {}) {
+    const resolveViteConfig = async (
+      isServer: boolean
+    ): Promise<InlineConfig> => ({
       ...options,
       mode: 'production',
       root: this.#root,
       plugins: [
-        createIslandPlugins(this.#config, isServer),
+        await createIslandPlugins(this.#config, isServer),
         ...(options?.plugins || [])
       ],
       esbuild: {
@@ -275,7 +277,9 @@ class SSGBuilder {
         ...options?.build
       }
     });
-    return viteBuild(resolveViteConfig(isServer)) as Promise<RollupOutput>;
+    return viteBuild(
+      await resolveViteConfig(isServer)
+    ) as Promise<RollupOutput>;
   }
 }
 
@@ -287,5 +291,5 @@ export async function build(root: string) {
 
   await builder.renderPages(render as RenderFn, routes as Route[]);
 
-  // await builder.end();
+  await builder.end();
 }

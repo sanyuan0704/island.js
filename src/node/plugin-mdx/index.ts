@@ -7,8 +7,11 @@ import rehypePluginSlug from 'rehype-slug';
 import rehypePluginExternalLinks from 'rehype-external-links';
 import type { Options } from '@mdx-js/rollup';
 import { remarkPluginToc } from './remarkPlugins/toc';
+import rehypeShiki from '@leafac/rehype-shiki';
+import shiki from 'shiki';
+import { rehypePluginShiki } from './rehypePlugins/shiki';
 
-export function createMDXOptions(): Options {
+export async function createMDXOptions(): Promise<Options> {
   return {
     remarkPlugins: [
       remarkPluginGFM,
@@ -37,6 +40,12 @@ export function createMDXOptions(): Options {
         rehypePluginExternalLinks,
         {
           target: '_blank'
+        }
+      ],
+      [
+        rehypePluginShiki,
+        {
+          highlighter: await shiki.getHighlighter({ theme: 'github-dark' })
         }
       ],
       rehypePluginPreWrapper

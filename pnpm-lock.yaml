@@ -51,7 +51,6 @@ specifiers:
   rehype-autolink-headings: ^6.1.1
   rehype-external-links: ^2.0.1
   rehype-highlight: ^5.0.2
-  rehype-shiki: ^0.0.9
   rehype-slug: ^5.0.1
   remark-frontmatter: ^4.0.1
   remark-gfm: ^3.0.1
@@ -99,7 +98,6 @@ dependencies:
   rehype-autolink-headings: 6.1.1
   rehype-external-links: 2.0.1
   rehype-highlight: 5.0.2
-  rehype-shiki: 0.0.9
   rehype-slug: 5.0.1
   remark-frontmatter: 4.0.1
   remark-gfm: 3.0.1
@@ -2580,10 +2578,6 @@ packages:
       zwitch: 1.0.5
     dev: false
 
-  /hast-util-to-string/1.0.4:
-    resolution: {integrity: sha512-eK0MxRX47AV2eZ+Lyr18DCpQgodvaS3fAQO2+b9Two9F5HEoRPhiUMNzoXArMJfZi2yieFzUBMRl3HNJ3Jus3w==}
-    dev: false
-
   /hast-util-to-string/2.0.0:
     resolution: {integrity: sha512-02AQ3vLhuH3FisaMM+i/9sm4OXGSq1UhOOCpTLLQtHdL3tZt7qil69r8M8iDkZYyC0HCFylcYoP+8IO7ddta1A==}
     dependencies:
@@ -3024,12 +3018,6 @@ packages:
       '@types/hast': 2.3.4
       fault: 2.0.1
       highlight.js: 11.6.0
-    dev: false
-
-  /lru-cache/5.1.1:
-    resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
-    dependencies:
-      yallist: 3.1.1
     dev: false
 
   /lru-cache/6.0.0:
@@ -3707,12 +3695,6 @@ packages:
       mimic-fn: 2.1.0
     dev: true
 
-  /onigasm/2.2.5:
-    resolution: {integrity: sha512-F+th54mPc0l1lp1ZcFMyL/jTs2Tlq4SqIHKIXGZOR/VkHkF9A7Fr5rRr5+ZG/lWeRsyrClLYRq7s/yFQ/XhWCA==}
-    dependencies:
-      lru-cache: 5.1.1
-    dev: false
-
   /optionator/0.9.1:
     resolution: {integrity: sha512-74RlY5FCnhq4jRxVUPKDaRwrVNXMqsGsiW6AJw4XK8hmtm10wC0ypZBLw5IIp85NZMr91+qd1RvvENwg7jjRFw==}
     engines: {node: '>= 0.8.0'}
@@ -4008,19 +3990,6 @@ packages:
       unified: 10.1.2
     dev: true
 
-  /rehype-shiki/0.0.9:
-    resolution: {integrity: sha512-jyatOsBu0A8ZUnQig0QK0xq7CFZpeEukr0DZazg/zFLZATbdcbnIlO779pIW2El/C2S5An33sN2d4w2kmdS+Bw==}
-    dependencies:
-      hast-util-to-string: 1.0.4
-      shiki: 0.1.7
-      shiki-languages: 0.1.6
-      unist-builder: 2.0.3
-      unist-util-visit: 2.0.3
-    transitivePeerDependencies:
-      - onigasm
-      - oniguruma
-    dev: false
-
   /rehype-slug/5.0.1:
     resolution: {integrity: sha512-X5v3wV/meuOX9NFcGhJvUpEjIvQl2gDvjg3z40RVprYFt7q3th4qMmYLULiu3gXvbNX1ppx+oaa6JyY1W67pTA==}
     dependencies:
@@ -4261,45 +4230,6 @@ packages:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
     dev: true
-
-  /shiki-languages/0.1.6:
-    resolution: {integrity: sha512-rMu+z97UCPKMtPBkzLBItReawXnlOgXZmELFwI/s3ATxd9VzJgSQTtQW/hmW5EYCrzF2kAUjoOnn+50/MPWjgQ==}
-    dependencies:
-      vscode-textmate: github.com/octref/vscode-textmate/e65aabe2227febda7beaad31dd0fca1228c5ddf3
-    transitivePeerDependencies:
-      - onigasm
-      - oniguruma
-    dev: false
-
-  /shiki-languages/0.1.6_onigasm@2.2.5:
-    resolution: {integrity: sha512-rMu+z97UCPKMtPBkzLBItReawXnlOgXZmELFwI/s3ATxd9VzJgSQTtQW/hmW5EYCrzF2kAUjoOnn+50/MPWjgQ==}
-    dependencies:
-      vscode-textmate: github.com/octref/vscode-textmate/e65aabe2227febda7beaad31dd0fca1228c5ddf3_onigasm@2.2.5
-    transitivePeerDependencies:
-      - onigasm
-      - oniguruma
-    dev: false
-
-  /shiki-themes/0.1.7_onigasm@2.2.5:
-    resolution: {integrity: sha512-mpF/VynGun/uNdjOIPnyPv4boN/QYDh+zE94SavgvmatMHkXXjZhls19Xv9rcRwuxUrWfXjaPkEZj7VAk94GGg==}
-    dependencies:
-      json5: 2.2.1
-      vscode-textmate: github.com/octref/vscode-textmate/e65aabe2227febda7beaad31dd0fca1228c5ddf3_onigasm@2.2.5
-    transitivePeerDependencies:
-      - onigasm
-      - oniguruma
-    dev: false
-
-  /shiki/0.1.7:
-    resolution: {integrity: sha512-9J0PhAdXv6tt3FZf82oKZkcV8c8NRZYJEOH0eIrrxfcyNzMuB79tJFGFSI3OhhiYFL5namob/Ii0Ri4iDoF15A==}
-    dependencies:
-      onigasm: 2.2.5
-      shiki-languages: 0.1.6_onigasm@2.2.5
-      shiki-themes: 0.1.7_onigasm@2.2.5
-      vscode-textmate: github.com/octref/vscode-textmate/e65aabe2227febda7beaad31dd0fca1228c5ddf3_onigasm@2.2.5
-    transitivePeerDependencies:
-      - oniguruma
-    dev: false
 
   /shiki/0.11.1:
     resolution: {integrity: sha512-EugY9VASFuDqOexOgXR18ZV+TbFrQHeCpEYaXamO+SZlsnT/2LxuLBX25GGtIrwaEVFXUAbUQ601SWE2rMwWHA==}
@@ -5043,10 +4973,6 @@ packages:
     engines: {node: '>=0.4'}
     dev: false
 
-  /yallist/3.1.1:
-    resolution: {integrity: sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==}
-    dev: false
-
   /yallist/4.0.0:
     resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}
     dev: true
@@ -5072,27 +4998,6 @@ packages:
 
   /zwitch/2.0.2:
     resolution: {integrity: sha512-JZxotl7SxAJH0j7dN4pxsTV6ZLXoLdGME+PsjkL/DaBrVryK9kTGq06GfKrwcSOqypP+fdXGoCHE36b99fWVoA==}
-
-  github.com/octref/vscode-textmate/e65aabe2227febda7beaad31dd0fca1228c5ddf3:
-    resolution: {tarball: https://codeload.github.com/octref/vscode-textmate/tar.gz/e65aabe2227febda7beaad31dd0fca1228c5ddf3}
-    name: vscode-textmate
-    version: 4.0.1
-    peerDependencies:
-      onigasm: ^2.1.0
-      oniguruma: ^7.0.0
-    dev: false
-
-  github.com/octref/vscode-textmate/e65aabe2227febda7beaad31dd0fca1228c5ddf3_onigasm@2.2.5:
-    resolution: {tarball: https://codeload.github.com/octref/vscode-textmate/tar.gz/e65aabe2227febda7beaad31dd0fca1228c5ddf3}
-    id: github.com/octref/vscode-textmate/e65aabe2227febda7beaad31dd0fca1228c5ddf3
-    name: vscode-textmate
-    version: 4.0.1
-    peerDependencies:
-      onigasm: ^2.1.0
-      oniguruma: ^7.0.0
-    dependencies:
-      onigasm: 2.2.5
-    dev: false
 
   registry.npmmirror.com/@babel/code-frame/7.18.6:
     resolution: {integrity: sha512-TDCmlK5eOvH+eH7cdAFlNXeVJqWIQ7gW9tY1GJIpUtFb6CmjVyq2VM3u71bOyR8CRihcCgMUYoDNyLXao3+70Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@babel/code-frame/-/code-frame-7.18.6.tgz}
