@@ -9,21 +9,21 @@ export async function render(pagePath: string): Promise<{
   propsData: any[];
   islandToPathMap: Record<string, string>;
 }> {
-  const mod = await waitForApp(pagePath);
+  const pageData = await waitForApp(pagePath);
   const { data } = await import('island/jsx-runtime');
-  data.ISLAND_PROPS = [];
+  data.islandProps = [];
   const appHtml = renderToString(
-    <DataContext.Provider value={mod}>
+    <DataContext.Provider value={pageData}>
       <StaticRouter location={pagePath}>
         <App />
       </StaticRouter>
     </DataContext.Provider>
   );
-  const { islandToPathMap, ISLAND_PROPS } = data;
+  const { islandToPathMap, islandProps } = data;
   return {
     appHtml,
     islandToPathMap,
-    propsData: ISLAND_PROPS
+    propsData: islandProps
   };
 }
 

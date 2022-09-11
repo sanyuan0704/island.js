@@ -10,7 +10,7 @@
     "start:client": "cd src/client && tsc -w",
     "start:node": "cd src/node && tsc -w",
     "dev:docs": "node ./bin/island docs",
-    "build:docs": "node ./bin/island build docs",
+    "build:docs": "pnpm build && node ./bin/island build docs",
     "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx --quiet ./",
     "test": "vitest run"
   },

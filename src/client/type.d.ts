@@ -21,7 +21,10 @@ declare module 'island/client' {
 }
 
 declare module 'island/jsx-runtime' {
-  export const data = any;
+  export const data = {
+    islandToPathMap: MediaRecord<string, string>,
+    islandProps: unknown
+  };
 }
 
 declare module 'virtual:routes' {
