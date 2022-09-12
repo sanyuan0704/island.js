@@ -75,6 +75,7 @@ export function pluginIsland(
       }
     },
     async transform(code, id, options) {
+      // Note: @vitejs/plugin-react cannot compile files in node_modules, so we need to compile them manually.
       // In production, we should transform the __island props for collecting island components
       if (
         options?.ssr &&

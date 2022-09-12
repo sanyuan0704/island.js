@@ -102,6 +102,23 @@ export interface SiteData<ThemeConfig = any> {
   // langs: Record<string, { lang: string; label: string }>;
 }
 
+export interface Hero {
+  name: string;
+  text: string;
+  tagline: string;
+  actions: {
+    text: string;
+    link: string;
+    theme: 'brand' | 'alt';
+  }[];
+}
+
+export interface Feature {
+  icon: string;
+  title: string;
+  details: string;
+}
+
 export interface SiteConfig<ThemeConfig = any>
   extends Omit<UserConfig, 'themeConfig'> {
   root: string;
@@ -124,4 +141,7 @@ export interface PageModule {
 export interface PageData {
   siteData: SiteData<DefaultTheme.Config>;
   toc: Header[];
+  pageType: 'home' | 'doc' | 'custom' | '404';
+  features: Feature[];
+  hero: Hero;
 }

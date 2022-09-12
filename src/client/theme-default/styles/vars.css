@@ -365,8 +365,12 @@
  * -------------------------------------------------------------------------- */
 
 :root {
-  --island-home-hero-name-color: var(--island-c-brand);
-  --island-home-hero-name-background: transparent;
+  --island-home-hero-name-color: transparent;
+  --island-home-hero-name-background: -webkit-linear-gradient(
+    120deg,
+    #bd34fe 30%,
+    #41d1ff
+  );
 
   --island-home-hero-image-background-image: none;
   --island-home-hero-image-filter: none;

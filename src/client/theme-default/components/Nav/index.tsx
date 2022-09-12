@@ -8,6 +8,7 @@ import { useLocation } from 'react-router-dom';
 import { usePageData } from 'island/client';
 interface NavBarProps {
   nav: DefaultTheme.NavItem[];
+  hasSidebar: boolean;
 }
 
 export function NavBar(props: NavBarProps) {
@@ -35,7 +36,11 @@ export function NavBar(props: NavBarProps) {
   return (
     <div className={styles.navBar}>
       <div className={`${styles.container}`}>
-        <div className={`${styles.navBarTitle} ${styles.hasSidebar}`}>
+        <div
+          className={`${styles.navBarTitle} ${
+            props.hasSidebar ? styles.hasSidebar : ''
+          }`}
+        >
           <a href="/" className={styles.title}>
             <span className={styles.logo}>🏝️</span>
             <span>Island</span>
@@ -63,11 +68,12 @@ export function NavBar(props: NavBarProps) {
 }
 
 export function Nav() {
-  const { siteData } = usePageData();
+  const { siteData, pageType } = usePageData();
   const nav = siteData.themeConfig.nav || [];
+  const hasSidebar = pageType === 'doc';
   return (
     <header className={styles.nav}>
-      <NavBar nav={nav} />
+      <NavBar nav={nav} hasSidebar={hasSidebar} />
     </header>
   );
 }

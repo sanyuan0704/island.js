@@ -60,21 +60,3 @@
   color: var(--island-button-alt-active-text);
   background-color: var(--island-button-alt-active-bg);
 }
-
-.button.sponsor {
-  border-color: var(--island-button-sponsor-border);
-  color: var(--island-button-sponsor-text);
-  background-color: var(--island-button-sponsor-bg);
-}
-
-.button.sponsor:hover {
-  border-color: var(--island-button-sponsor-hover-border);
-  color: var(--island-button-sponsor-hover-text);
-  background-color: var(--island-button-sponsor-hover-bg);
-}
-
-.button.sponsor:active {
-  border-color: var(--island-button-sponsor-active-border);
-  color: var(--island-button-sponsor-active-text);
-  background-color: var(--island-button-sponsor-active-bg);
-}
