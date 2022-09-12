@@ -33,7 +33,7 @@ export async function createIslandPlugins(
     // @ts-ignore
     pluginMdx(mdxOptions),
     // Conventional Route
-    pluginRoutes({ prefix: '' }),
+    pluginRoutes({ prefix: '', root: config.srcDir }),
     // Inspect transformation
     pluginInspect({})
     // pluginChunkSplit({

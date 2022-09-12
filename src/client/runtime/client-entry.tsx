@@ -1,3 +1,4 @@
+
 import { hydrateRoot, createRoot } from 'react-dom/client';
 import { ComponentType } from 'react';
 import { BrowserRouter } from 'react-router-dom';

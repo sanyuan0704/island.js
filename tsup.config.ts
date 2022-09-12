@@ -3,7 +3,8 @@ import { defineConfig } from 'tsup';
 export default defineConfig({
   entry: {
     'jsx-runtime': 'src/client/runtime/island-jsx-runtime.js',
-    cli: 'src/node/cli.ts'
+    cli: 'src/node/cli.ts',
+    index: 'src/node/index.ts'
   },
   bundle: true,
   platform: 'node',
