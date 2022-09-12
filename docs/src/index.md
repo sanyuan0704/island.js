@@ -4,13 +4,13 @@ pageType: 'home'
 title: Island SSG
 
 hero:
-  name: Island
-  text: Vite & React Powered Static Site Generator
+  name: Island SSG
+  text: Vite & Islands Arch Static Site Generator
   tagline: Simple, powerful, and performant. Meet the modern SSG framework you've always wanted.
   actions:
     - theme: brand
       text: Get Started
-      link: /guide/getting-started
+      link: /
     - theme: alt
       text: View on GitHub
       link: https://github.com/sanyuan0704/island

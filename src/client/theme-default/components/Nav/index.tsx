@@ -14,22 +14,28 @@ interface NavBarProps {
 export function NavBar(props: NavBarProps) {
   const menuItems = props.nav;
   const location = useLocation();
+  const renderMenuItem = (item: DefaultTheme.NavItemWithLink) => {
+    const isActive = new RegExp(item.activeMatch || '').test(location.pathname);
+    return (
+      <div
+        key={item.text}
+        className={`${styles.menuLink} ${isActive ? styles.active : ''}`}
+      >
+        <Link href="/">{item.text}</Link>
+      </div>
+    );
+  };
+
+  const renderMenuItemGroup = (item: DefaultTheme.NavItemWithChildren) => {
+    return <div>...</div>;
+  };
+
   const renderMenuList = () => {
     return (
       <div className={styles.menu}>
-        {menuItems.map((item) => {
-          const isActive = new RegExp(item.activeMatch || '').test(
-            location.pathname
-          );
-          return (
-            <div
-              key={item.text}
-              className={`${styles.menuLink} ${isActive ? styles.active : ''}`}
-            >
-              <Link href="/">{item.text}</Link>
-            </div>
-          );
-        })}
+        {menuItems.map((item) =>
+          'link' in item ? renderMenuItem(item) : renderMenuItemGroup(item)
+        )}
       </div>
     );
   };

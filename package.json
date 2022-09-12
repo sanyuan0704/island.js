@@ -1,9 +1,12 @@
 {
   "name": "island-ssg",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.0-alpha.0",
+  "description": "Vite & Island architecture SSG framework",
   "main": "index.js",
   "type": "module",
+  "bin": {
+    "island": "./bin/island.js"
+  },
   "scripts": {
     "dev": "tsup --watch",
     "build": "tsup --minify && tsx scripts/pre-bundle.cts",
@@ -12,11 +15,12 @@
     "dev:docs": "node ./bin/island docs",
     "build:docs": "pnpm build && node ./bin/island build docs",
     "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx --quiet ./",
-    "test": "vitest run"
+    "test": "vitest run",
+    "prepublishOnly": "pnpm build"
   },
   "keywords": ["vite", "ssg", "island architecture", "docs", "framework"],
-  "author": "",
-  "license": "ISC",
+  "author": "Sanyuan0704",
+  "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.19.0",
     "@babel/helper-plugin-utils": "^7.19.0",
@@ -88,5 +92,11 @@
     "vite-plugin-chunk-split": "^0.3.0",
     "vite-plugin-inspect": "^0.6.1",
     "vitest": "^0.23.1"
-  }
+  },
+  "files": [
+    "bin",
+    "src/client",
+    "dist",
+    "vendors"
+  ]
 }
