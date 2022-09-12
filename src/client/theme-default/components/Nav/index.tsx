@@ -21,7 +21,7 @@ export function NavBar(props: NavBarProps) {
         key={item.text}
         className={`${styles.menuLink} ${isActive ? styles.active : ''}`}
       >
-        <Link href="/">{item.text}</Link>
+        <Link href={item.link}>{item.text}</Link>
       </div>
     );
   };
