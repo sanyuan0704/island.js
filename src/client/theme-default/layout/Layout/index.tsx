@@ -2,28 +2,31 @@ import React from 'react';
 import { HomeLayout } from '../HomeLayout';
 import { Nav } from '../../components/Nav';
 import { DocLayout } from '../DocLayout';
-import { usePageData } from 'island/client';
+import { usePageData, Content } from 'island/client';
 import { NotFoundLayout } from 'island/theme';
 
 export const Layout: React.FC = () => {
   const { pageType } = usePageData();
   // Use doc layout by default
   const getContentLayout = () => {
-    if (pageType === 'home') {
-      return <HomeLayout />;
-    } else if (pageType === 'doc') {
-      return <DocLayout />;
-    } else if (pageType === '404') {
-      return <NotFoundLayout />;
-    } else {
-      return <DocLayout />;
+    switch (pageType) {
+      case 'home':
+        return <HomeLayout />;
+      case 'doc':
+        return <DocLayout />;
+      case '404':
+        return <NotFoundLayout />;
+      case 'custom':
+        return <Content />;
+      default:
+        return <DocLayout />;
     }
   };
 
   return (
-    <div>
+    <div style={{ height: '100%' }}>
       <Nav />
-      {getContentLayout()}
+      <section style={{ paddingTop: '72px' }}>{getContentLayout()}</section>
     </div>
   );
 };
