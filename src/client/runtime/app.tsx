@@ -8,12 +8,19 @@ import { PageData } from '../../shared/types';
 
 export async function waitForApp(path: string): Promise<PageData> {
   const matched = matchRoutes(routes, path)!;
-  const mod = await (matched[0].route as Route).preload();
+  if (matched) {
+    const mod = await (matched[0].route as Route).preload();
 
-  return {
-    siteData,
-    ...omit(mod, ['default'])
-  } as PageData;
+    return {
+      siteData,
+      ...omit(mod, ['default'])
+    } as PageData;
+  } else {
+    return {
+      siteData,
+      pageType: '404'
+    };
+  }
 }
 
 export function App() {

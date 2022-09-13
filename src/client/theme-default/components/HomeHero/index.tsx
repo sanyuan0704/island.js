@@ -1,27 +1,35 @@
-import React from 'react';
+import { usePageData } from 'island/client';
 import { Button } from '../Button';
 import styles from './index.module.scss';
 import logo from './island.png';
 
 export function HomeHero() {
+  const { hero } = usePageData();
   return (
-    <div className={`${styles.hero} ${styles['hasImage']}`}>
+    <div className={`${styles.hero} ${styles.hasImage}`}>
       <div className={styles.container}>
         <div className={styles.main}>
           <h1 className={styles.name}>
-            <span className={styles.clip}>Island</span>
+            <span className={styles.clip}>{hero.name}</span>
           </h1>
-          <p className={styles.text}>基于 Vite 的 SSG 框架</p>
-          <p className={styles.tagline}>提供极致的渲染性能</p>
+          <p className={styles.text}>{hero.text}</p>
+          <p className={styles.tagline}>{hero.tagline}</p>
           <div className={styles.actions}>
-            <div className={styles.action}>
-              <Button type="a" text="点击开始" href="/"></Button>
-            </div>
+            {hero.actions.map((action) => (
+              <div className={styles.action}>
+                <Button
+                  type="a"
+                  text={action.text}
+                  href={action.link}
+                  theme={action.theme}
+                ></Button>
+              </div>
+            ))}
           </div>
         </div>
         <div className={styles.image}>
-          <div className={styles['image-container']}>
-            <div className={styles['image-bg']} />
+          <div className={styles.imageContainer}>
+            <div className={styles.imageBg} />
             <img src={logo} alt="" />
           </div>
         </div>

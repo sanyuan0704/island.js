@@ -47,7 +47,7 @@ export function SideBar() {
           </div> */}
         </div>
         <div className={styles.items}>
-          {item.items.map((item) => (
+          {item?.items?.map((item) => (
             <div key={item.link}>{renderGroupItem(item)}</div>
           ))}
         </div>

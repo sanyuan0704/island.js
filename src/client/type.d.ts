@@ -5,6 +5,7 @@ declare module 'island/theme*' {
   import { ComponentType, Component } from 'react';
 
   export const Layout: ComponentType<any>;
+  export const NotFoundLayout: ComponentType<any>;
 }
 
 declare module 'island:site-data' {

@@ -1,14 +1,15 @@
 import type { Plugin } from 'vite';
 import {
   CLIENT_ENTRY_PATH,
-  CLIENT_PATH,
+  CLIENT_RUNTIME_PATH,
   DEFAULT_HTML_PATH,
   isProduction,
   ROUTE_PATH,
   DEFAULT_THEME_PATH,
   DEFAULT_EXTERNALS,
   TS_REGEX,
-  ISLAND_JSX_RUNTIME_PATH
+  ISLAND_JSX_RUNTIME_PATH,
+  PACKAGE_ROOT_PATH
 } from '../constants';
 import fs from 'fs-extra';
 import { join, relative } from 'path';
@@ -40,10 +41,26 @@ export function pluginIsland(
     enforce: 'pre',
     config(c) {
       return {
+        root: PACKAGE_ROOT_PATH,
+        optimizeDeps: {
+          include: [
+            'react',
+            'react-dom',
+            'react-dom/client',
+            'react/jsx-runtime',
+            '@loadable/component'
+          ],
+          exclude: ['islang-ssg']
+        },
+        server: {
+          fs: {
+            allow: [CLIENT_RUNTIME_PATH, DEFAULT_THEME_PATH, process.cwd()]
+          }
+        },
         resolve: {
           alias: {
-            'island/theme': `/@fs/${DEFAULT_THEME_PATH}`,
-            'island/client': `/@fs/${CLIENT_PATH}`,
+            'island/theme': config.themeDir!,
+            'island/client': `/@fs/${CLIENT_RUNTIME_PATH}`,
             'island/routes': join(c.root!, ROUTE_PATH),
             'island/jsx-runtime': join(
               ISLAND_JSX_RUNTIME_PATH,
@@ -75,6 +92,7 @@ export function pluginIsland(
       }
     },
     async transform(code, id, options) {
+      // Note: @vitejs/plugin-react cannot compile files in node_modules, so we need to compile them manually.
       // In production, we should transform the __island props for collecting island components
       if (
         options?.ssr &&
@@ -145,8 +163,8 @@ export function pluginIsland(
         config.configDeps?.forEach((dep) => {
           server.watcher.add(dep);
         });
-        server.watcher.add(ISLAND_CLI_PATH);
       }
+      server.watcher.add(ISLAND_CLI_PATH);
       return () => {
         server.middlewares.use(async (req, res, next) => {
           if (res.writableEnded) {

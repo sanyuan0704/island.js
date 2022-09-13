@@ -110,9 +110,10 @@ class SSGBuilder {
     global.React = React;
     await Promise.all(
       routes.map((route) =>
-        this.#renderPage(render, route, clientChunkCode, styleAssets)
+        this.#renderPage(render, route.path, clientChunkCode, styleAssets)
       )
     );
+    await this.#render404Page(render, clientChunkCode, styleAssets);
     spinner.stopAndPersist({
       symbol: okMark
     });
@@ -173,24 +174,27 @@ class SSGBuilder {
 
   async #renderPage(
     render: RenderFn,
-    route: Route,
+    routePath: string,
     clientChunkCode: string,
     styleAssets: (OutputChunk | OutputAsset)[]
   ) {
-    const { appHtml, propsData, islandToPathMap } = await render(route.path);
+    const { appHtml, propsData, islandToPathMap } = await render(routePath);
+    const hasIsland = Object.keys(islandToPathMap).length > 0;
+    let injectIslandsCode = '';
+    if (hasIsland) {
+      const islandHash = createHash(JSON.stringify(islandToPathMap));
+      let injectBundlePromise = this.#islandsInjectCache.get(islandHash);
 
-    const islandHash = createHash(JSON.stringify(islandToPathMap));
-    let injectBundlePromise = this.#islandsInjectCache.get(islandHash);
-
-    if (!injectBundlePromise) {
-      const rawInjectCode = this.#generateIslandInjectCode(islandToPathMap);
-      injectBundlePromise = (async () => {
-        const injectBundle = await this.islandsBuild(rawInjectCode);
-        return injectBundle.output[0].code;
-      })();
-      this.#islandsInjectCache.set(islandHash, injectBundlePromise);
+      if (!injectBundlePromise) {
+        const rawInjectCode = this.#generateIslandInjectCode(islandToPathMap);
+        injectBundlePromise = (async () => {
+          const injectBundle = await this.islandsBuild(rawInjectCode);
+          return injectBundle.output[0].code;
+        })();
+        this.#islandsInjectCache.set(islandHash, injectBundlePromise);
+      }
+      injectIslandsCode = await injectBundlePromise;
     }
-    const injectCode = await injectBundlePromise;
     const html = `
   <!DOCTYPE html>
   <html>
@@ -217,18 +221,35 @@ class SSGBuilder {
     </head>
     <body>
       <div id="root">${appHtml}</div>
-      <script id="island-props">${JSON.stringify(propsData)}</script>
-      <script type="module">${injectCode}</script>
-      <script type="module">${clientChunkCode}</script>
+      ${
+        hasIsland
+          ? `<script id="island-props">${JSON.stringify(
+              propsData
+            )}</script><script type="module">${injectIslandsCode}</script>`
+          : ''
+      }
+      ${
+        clientChunkCode && hasIsland
+          ? `<script type="module">${clientChunkCode}</script>`
+          : ''
+      }
     </body>
   </html>`.trim();
     const fileName =
-      route.path === '/' ? 'index.html' : `${route.path.slice(1)}.html`;
+      routePath === '/' ? 'index.html' : `${routePath.slice(1)}.html`;
     await fs.ensureDir(join(this.#root, DIST_PATH, dirname(fileName)));
     try {
       await fs.copy(VENDOR_PATH, join(this.#root, DIST_PATH));
     } catch (e) {}
     await fs.writeFile(join(this.#root, DIST_PATH, fileName), html);
+  }
+
+  #render404Page(
+    render: RenderFn,
+    clientChunkCode: string,
+    styleAssets: (OutputChunk | OutputAsset)[]
+  ) {
+    return this.#renderPage(render, '/404', clientChunkCode, styleAssets);
   }
 
   #generateIslandInjectCode(islandToPathMap: Record<string, string>) {
@@ -262,15 +283,21 @@ class SSGBuilder {
         // Reserve island component name
         minifyIdentifiers: !isServer
       },
+      ssr: {
+        noExternal: ['lodash-es', 'react-router-dom']
+      },
       build: {
         minify: false,
         ssr: isServer,
-        outDir: isServer ? join(TEMP_PATH, 'ssr') : 'dist',
+        outDir: isServer
+          ? join(this.#root, TEMP_PATH, 'ssr')
+          : join(this.#root, 'dist'),
         cssCodeSplit: false,
         ssrManifest: !isServer,
         rollupOptions: {
           output: {
-            entryFileNames: isServer ? '[name].mjs' : undefined
+            entryFileNames: isServer ? '[name].js' : undefined,
+            format: isServer ? 'cjs' : 'es'
           },
           input: isServer ? SERVER_ENTRY_PATH : CLIENT_ENTRY_PATH
         },
@@ -291,5 +318,5 @@ export async function build(root: string) {
 
   await builder.renderPages(render as RenderFn, routes as Route[]);
 
-  await builder.end();
+  // await builder.end();
 }

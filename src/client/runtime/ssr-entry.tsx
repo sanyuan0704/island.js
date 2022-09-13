@@ -11,7 +11,9 @@ export async function render(pagePath: string): Promise<{
 }> {
   const pageData = await waitForApp(pagePath);
   const { data } = await import('island/jsx-runtime');
+  // ----------------Start if ssr rendering -------------
   data.islandProps = [];
+  data.islandToPathMap = {};
   const appHtml = renderToString(
     <DataContext.Provider value={pageData}>
       <StaticRouter location={pagePath}>
@@ -20,6 +22,8 @@ export async function render(pagePath: string): Promise<{
     </DataContext.Provider>
   );
   const { islandToPathMap, islandProps } = data;
+  // ----------------End if ssr rendering -------------
+  // Above process is strictly synchronous, so there is no concurrency race problem about island.
   return {
     appHtml,
     islandToPathMap,

@@ -7,7 +7,6 @@ import rehypePluginSlug from 'rehype-slug';
 import rehypePluginExternalLinks from 'rehype-external-links';
 import type { Options } from '@mdx-js/rollup';
 import { remarkPluginToc } from './remarkPlugins/toc';
-import rehypeShiki from '@leafac/rehype-shiki';
 import shiki from 'shiki';
 import { rehypePluginShiki } from './rehypePlugins/shiki';
 

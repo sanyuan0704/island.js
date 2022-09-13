@@ -2,6 +2,7 @@ import { Layout } from './layout/Layout';
 import './styles/base.css';
 import './styles/vars.css';
 import './styles/doc.css';
-import 'highlight.js/styles/github-dark.css';
+import { NotFoundLayout } from './layout/NotFountLayout/index';
+
 // Tree Shaking
-export { Layout };
+export { Layout, NotFoundLayout };

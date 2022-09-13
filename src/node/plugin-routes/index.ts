@@ -14,12 +14,10 @@ import { RouteService } from './RouteService';
 export interface PluginOptions {
   /**
    * The directory to search for pages
-   * @default 'src'
    */
-  srcDir?: string;
+  root?: string;
   /**
    * The prefix of the filepath that will be converted to a route
-   * @default 'pages'
    */
   prefix?: string;
   /**
@@ -41,18 +39,18 @@ const DEFAULT_PAGE_EXTENSIONS = ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'];
 
 export function pluginRoutes(options: PluginOptions = {}): Plugin {
   const {
-    srcDir = 'src',
-    prefix = 'pages',
+    root = 'src',
+    prefix = '',
     extensions = DEFAULT_PAGE_EXTENSIONS
   } = options;
   let scanDir: string;
   let routeService: RouteService;
   return {
     name: 'island:vite-plugin-routes',
-    async configResolved(c) {
-      scanDir = path.isAbsolute(srcDir)
-        ? path.join(srcDir, prefix)
-        : path.join(c.root!, srcDir, prefix);
+    async configResolved() {
+      scanDir = path.isAbsolute(root)
+        ? path.join(root, prefix)
+        : path.join(process.cwd(), root, prefix);
       routeService = new RouteService(scanDir, extensions);
       await routeService.init();
     },
@@ -67,6 +65,33 @@ export function pluginRoutes(options: PluginOptions = {}): Plugin {
       if (id === '\0' + CONVENTIONAL_ROUTE_ID) {
         return routeService.generateRoutesCode(options?.ssr);
       }
+    },
+
+    configureServer(server) {
+      const fileChange = () => {
+        const virtualRouteMod = server.moduleGraph.getModuleById(
+          `\0${CONVENTIONAL_ROUTE_ID}`
+        );
+        if (virtualRouteMod) {
+          server.moduleGraph.invalidateModule(virtualRouteMod!);
+          server.ws.send({
+            type: 'full-reload'
+          });
+        }
+      };
+      server.watcher
+        .on('add', async (file) => {
+          if (file.startsWith(scanDir)) {
+            await routeService.addRoute(file);
+            fileChange();
+          }
+        })
+        .on('unlink', async (file) => {
+          if (file.startsWith(scanDir)) {
+            await routeService.removeRoute(file);
+            fileChange();
+          }
+        });
     }
   };
 }

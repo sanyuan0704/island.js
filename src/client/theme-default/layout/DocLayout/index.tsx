@@ -7,7 +7,7 @@ import { Content, usePageData } from 'island/client';
 
 export function DocLayout() {
   const data = usePageData();
-  const headers = data.toc;
+  const headers = data.toc || [];
 
   return (
     <div className={styles.doc}>

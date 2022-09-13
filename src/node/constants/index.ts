@@ -6,11 +6,14 @@ export const TS_REGEX = /(c|m)?tsx?$/;
 
 export const PACKAGE_ROOT_PATH = join(fileURLToPath(import.meta.url), '../..');
 
-export const CLIENT_PATH = join(PACKAGE_ROOT_PATH, 'src/client/runtime');
+export const CLIENT_RUNTIME_PATH = join(
+  PACKAGE_ROOT_PATH,
+  'src/client/runtime'
+);
 
-export const CLIENT_ENTRY_PATH = join(CLIENT_PATH, 'client-entry.tsx');
+export const CLIENT_ENTRY_PATH = join(CLIENT_RUNTIME_PATH, 'client-entry.tsx');
 
-export const SERVER_ENTRY_PATH = join(CLIENT_PATH, 'ssr-entry.tsx');
+export const SERVER_ENTRY_PATH = join(CLIENT_RUNTIME_PATH, 'ssr-entry.tsx');
 
 export const DEFAULT_THEME_PATH = join(
   PACKAGE_ROOT_PATH,
@@ -21,7 +24,9 @@ export const TEMP_PATH = 'node_modules/.island';
 
 export const DIST_PATH = 'dist';
 
-export const SERVER_OUTPUT_PATH = join(TEMP_PATH, 'ssr', 'ssr-entry.mjs');
+export const SERVER_BUNDLE_FILE = 'ssr-entry.js';
+
+export const SERVER_OUTPUT_PATH = join(TEMP_PATH, 'ssr', SERVER_BUNDLE_FILE);
 
 export const ROUTE_PATH = join(TEMP_PATH, 'routes.tsx');
 
