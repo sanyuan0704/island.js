@@ -59,7 +59,7 @@ export function pluginIsland(
         },
         resolve: {
           alias: {
-            'island/theme': `/@fs/${DEFAULT_THEME_PATH}`,
+            'island/theme': config.themeDir!,
             'island/client': `/@fs/${CLIENT_RUNTIME_PATH}`,
             'island/routes': join(c.root!, ROUTE_PATH),
             'island/jsx-runtime': join(

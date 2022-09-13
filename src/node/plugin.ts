@@ -36,11 +36,5 @@ export async function createIslandPlugins(
     pluginRoutes({ prefix: '', root: config.srcDir }),
     // Inspect transformation
     pluginInspect({})
-    // pluginChunkSplit({
-    //   strategy: 'single-vendor',
-    //   customSplitting: {
-    //     react_vendor: ['react', 'react-dom', 'react-router-dom']
-    //   }
-    // })
   ];
 }

@@ -4,7 +4,7 @@ import { DefaultTheme } from './default-theme';
 
 export { DefaultTheme } from './default-theme';
 
-interface Header {
+export interface Header {
   id: string;
   text: string;
 }
@@ -140,8 +140,8 @@ export interface PageModule {
 
 export interface PageData {
   siteData: SiteData<DefaultTheme.Config>;
-  toc: Header[];
   pageType: 'home' | 'doc' | 'custom' | '404';
-  features: Feature[];
-  hero: Hero;
+  toc?: Header[];
+  features?: Feature[];
+  hero?: Hero;
 }

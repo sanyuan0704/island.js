@@ -12,6 +12,7 @@ export async function render(pagePath: string): Promise<{
   const pageData = await waitForApp(pagePath);
   const { data } = await import('island/jsx-runtime');
   data.islandProps = [];
+  data.islandToPathMap = {};
   const appHtml = renderToString(
     <DataContext.Provider value={pageData}>
       <StaticRouter location={pagePath}>

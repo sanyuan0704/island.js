@@ -2,6 +2,7 @@ import { resolve } from 'path';
 import { cac } from 'cac';
 import { build } from './build';
 import { createDevServer } from './dev';
+import { serve } from './serve';
 
 const cli = cac('island').version('0.0.0').help();
 
@@ -31,6 +32,18 @@ cli
     try {
       root = resolve(root);
       await build(root);
+    } catch (e) {
+      console.log(e);
+    }
+  });
+
+cli
+  .command('start [root]', 'serve for production') // default command
+  .option('--port <port>', 'port to use for serve')
+  .action(async (root: string, { port }: { port: number }) => {
+    try {
+      root = resolve(root);
+      await serve(root, port);
     } catch (e) {
       console.log(e);
     }

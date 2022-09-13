@@ -1,18 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 import styles from './index.module.scss';
 import { throttle } from 'lodash-es';
-import { ComponentPropsWithIsland } from '../../../../shared/types/index';
+import { ComponentPropsWithIsland, Header } from 'shared/types/index';
 
 function isBottom() {
   return (
     document.documentElement.scrollTop + window.innerHeight >=
     document.documentElement.scrollHeight
   );
-}
-
-interface Header {
-  id: string;
-  text: string;
 }
 
 export function Aside(props: ComponentPropsWithIsland<{ headers: Header[] }>) {
