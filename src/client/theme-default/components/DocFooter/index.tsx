@@ -3,7 +3,7 @@ import { usePageData } from 'island/client';
 
 export function DocFooter() {
   const { siteData } = usePageData();
-  const { editLink } = siteData?.themeConfig;
+  const { editLink } = siteData?.themeConfig || {};
   return (
     <footer className={styles.footer}>
       <div className={styles.editInfo}>
@@ -11,10 +11,14 @@ export function DocFooter() {
           <button className={styles.editLinkButton}>Edit Link</button>
         </div>
         <div className={styles.lastUpdated}>
-          <p className={styles.lastUpdated}>
-            {editLink?.text || 'Last Updated: '}
-          </p>
-          <span>{editLink?.pattern} || '2022.09.12 12:30'</span>
+          {editLink ? (
+            <>
+              <p className={styles.lastUpdated}>
+                {editLink?.text || 'Last Updated: '}
+              </p>
+              <span>{editLink?.pattern}</span>
+            </>
+          ) : null}
         </div>
       </div>
 

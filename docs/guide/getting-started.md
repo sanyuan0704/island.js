@@ -21,33 +21,29 @@ yarn add island-ssg
 pnpm add island-ssg
 ```
 
-Then you can create a `index.md` file in the root directory of your project:
+Then you can create file:
 
-```markdown
-# Title
-
-Hello world
+```bash
+`mkdir docs && echo '# Hello World' > docs/index.md`
 ```
 
-And then you can run the following command to start the development server:
+And then you can add the following scripts in `package.json`:
 
 ```json
 // package.json
 {
   "scripts": {
-    "dev": "island dev"
+    "dev": "island dev docs",
+    "build": "island build docs",
+    "preview": "island start docs"
   }
 }
 ```
 
-Finally, you will see the following output in the console:
+Serve the documentation site in the local server.
 
 ```bash
-$ island dev
-vite v2.3.8 dev server running at:
-
-  > Local:    http://localhost:3000/
-  > Network:
+yarn dev
 ```
 
-can open `http://localhost:3000` in your browser to see the result.
+Island will start a development server at http://localhost:5173.

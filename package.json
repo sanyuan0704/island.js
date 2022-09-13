@@ -1,6 +1,6 @@
 {
   "name": "island-ssg",
-  "version": "0.0.0-alpha.9",
+  "version": "0.0.0-alpha.11",
   "description": "Vite & Island architecture SSG framework",
   "main": "dist/index.js",
   "type": "module",
