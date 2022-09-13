@@ -229,7 +229,7 @@ class SSGBuilder {
           : ''
       }
       ${
-        clientChunkCode
+        clientChunkCode && hasIsland
           ? `<script type="module">${clientChunkCode}</script>`
           : ''
       }
