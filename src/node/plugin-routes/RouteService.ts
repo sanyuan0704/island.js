@@ -24,26 +24,36 @@ export class RouteService {
   ) {}
 
   async init() {
-    const files = fastGlob.sync(`**/*.{${this.extensions.join(',')}}`, {
-      cwd: this.scanDir,
-      absolute: false,
-      ignore: ['**/node_modules/**', '**/.*', '**/dist/**']
+    const files = fastGlob
+      .sync(`**/*.{${this.extensions.join(',')}}`, {
+        cwd: this.scanDir,
+        absolute: true,
+        ignore: ['**/node_modules/**', '**/.*', '**/dist/**']
+      })
+      .sort();
+    files.forEach((file) => this.addRoute(file));
+  }
+
+  addRoute(filePath: string) {
+    const fileRelativePath = path.relative(this.scanDir, filePath);
+    const routePath = normalizeRoutePath(fileRelativePath);
+    this.#routeData.push({
+      routePath,
+      basePath: this.scanDir,
+      absolutePath: path.join(this.scanDir, fileRelativePath)
     });
-    this.#routeData = files.map((fileRelativePath) => {
-      const routePath = normalizeRoutePath(fileRelativePath);
-      return {
-        routePath,
-        basePath: this.scanDir,
-        absolutePath: path.join(this.scanDir, fileRelativePath)
-      };
-    });
-    // const routeCode = this.generateRoutesCode();
-    // try {
-    //   await ensureDir(path.join(this.root, TEMP_PATH));
-    //   await writeFile(path.join(this.root, ROUTE_PATH), routeCode);
-    // } catch (e) {
-    //   console.log(e);
-    // }
+  }
+
+  removeRoute(filePath: string) {
+    const fileRelativePath = path.relative(this.scanDir, filePath);
+    const routePath = normalizeRoutePath(fileRelativePath);
+    this.#routeData = this.#routeData.filter(
+      (route) => route.routePath !== routePath
+    );
+  }
+
+  getRoutes() {
+    return this.#routeData;
   }
 
   generateRoutesCode(ssr?: boolean) {

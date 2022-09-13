@@ -163,8 +163,8 @@ export function pluginIsland(
         config.configDeps?.forEach((dep) => {
           server.watcher.add(dep);
         });
-        server.watcher.add(ISLAND_CLI_PATH);
       }
+      server.watcher.add(ISLAND_CLI_PATH);
       return () => {
         server.middlewares.use(async (req, res, next) => {
           if (res.writableEnded) {

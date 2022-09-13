@@ -53,7 +53,7 @@ export function Aside(props: ComponentPropsWithIsland<{ headers: Header[] }>) {
           }
         }
       },
-      100,
+      200,
       { trailing: true }
     );
     window.addEventListener('scroll', onScroll);

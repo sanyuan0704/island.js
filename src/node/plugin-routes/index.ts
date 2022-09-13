@@ -39,7 +39,7 @@ const DEFAULT_PAGE_EXTENSIONS = ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'];
 
 export function pluginRoutes(options: PluginOptions = {}): Plugin {
   const {
-    root = process.cwd(),
+    root = 'src',
     prefix = '',
     extensions = DEFAULT_PAGE_EXTENSIONS
   } = options;
@@ -65,6 +65,33 @@ export function pluginRoutes(options: PluginOptions = {}): Plugin {
       if (id === '\0' + CONVENTIONAL_ROUTE_ID) {
         return routeService.generateRoutesCode(options?.ssr);
       }
+    },
+
+    configureServer(server) {
+      const fileChange = () => {
+        const virtualRouteMod = server.moduleGraph.getModuleById(
+          `\0${CONVENTIONAL_ROUTE_ID}`
+        );
+        if (virtualRouteMod) {
+          server.moduleGraph.invalidateModule(virtualRouteMod!);
+          server.ws.send({
+            type: 'full-reload'
+          });
+        }
+      };
+      server.watcher
+        .on('add', async (file) => {
+          if (file.startsWith(scanDir)) {
+            await routeService.addRoute(file);
+            fileChange();
+          }
+        })
+        .on('unlink', async (file) => {
+          if (file.startsWith(scanDir)) {
+            await routeService.removeRoute(file);
+            fileChange();
+          }
+        });
     }
   };
 }
