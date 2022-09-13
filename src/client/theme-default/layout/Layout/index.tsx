@@ -26,7 +26,9 @@ export const Layout: React.FC = () => {
   return (
     <div style={{ height: '100%' }}>
       <Nav />
-      <section style={{ paddingTop: '72px' }}>{getContentLayout()}</section>
+      <section style={{ paddingTop: 'var(--island-nav-height)' }}>
+        {getContentLayout()}
+      </section>
     </div>
   );
 };

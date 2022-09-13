@@ -19,7 +19,7 @@ features:
   - title: "Vite: The DX that can't be beat"
     details: With Markdown-centered content, it's built to help you focus on writing and deployed with minimum configuration.
     icon: 🚀
-  - title: "Vite: The DX that can't be beat"
-    details: With Markdown-centered content, it's built to help you focus on writing and deployed with minimum configuration.
-    icon: 🚀
+  - title: 'MDX: The flexible way to write content'
+    details: MDX is a powerful way to write content. You can write React components in Markdown.
+    icon: 📦
 ---

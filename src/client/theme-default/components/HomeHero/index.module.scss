@@ -1,16 +1,16 @@
 .hero {
-  padding: calc(var(--island-nav-height) + 48px) 24px 48px;
+  padding: calc(48px) 24px 48px;
 }
 
 @media (min-width: 640px) {
   .hero {
-    padding: calc(var(--island-nav-height) + 80px) 48px 64px;
+    padding: calc(80px) 48px 64px;
   }
 }
 
 @media (min-width: 960px) {
   .hero {
-    padding: calc(var(--island-nav-height) + 80px) 64px 64px;
+    padding: calc(80px) 64px 64px;
   }
 }
 

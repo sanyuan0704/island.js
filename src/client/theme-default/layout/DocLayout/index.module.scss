@@ -16,10 +16,6 @@
 }
 
 @media (min-width: 960px) {
-  .content {
-    padding-top: var(--island-nav-height);
-  }
-
   .content.has-sidebar {
     margin: 0;
     padding-left: var(--island-sidebar-width);
