@@ -9,7 +9,8 @@ import {
   DEFAULT_EXTERNALS,
   TS_REGEX,
   ISLAND_JSX_RUNTIME_PATH,
-  PACKAGE_ROOT_PATH
+  PACKAGE_ROOT_PATH,
+  CLIENT_EXPORTS_PATH
 } from '../constants';
 import fs from 'fs-extra';
 import { join, relative } from 'path';
@@ -50,7 +51,13 @@ export function pluginIsland(
             'react/jsx-runtime',
             '@loadable/component'
           ],
-          exclude: ['islang-ssg']
+          exclude: [
+            'island-ssg',
+            'island/theme',
+            'island/client',
+            'island/routes',
+            'island/jsx-runtime'
+          ]
         },
         server: {
           fs: {
@@ -60,7 +67,7 @@ export function pluginIsland(
         resolve: {
           alias: {
             'island/theme': config.themeDir!,
-            'island/client': `/@fs/${CLIENT_RUNTIME_PATH}`,
+            'island/client': `/@fs/${CLIENT_EXPORTS_PATH}`,
             'island/routes': join(c.root!, ROUTE_PATH),
             'island/jsx-runtime': join(
               ISLAND_JSX_RUNTIME_PATH,

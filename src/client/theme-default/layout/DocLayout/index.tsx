@@ -7,14 +7,21 @@ import { Content, usePageData } from 'island/client';
 
 export function DocLayout() {
   const data = usePageData();
-  const headers = data.toc || [];
+  const headers = data?.toc || [];
+  const sidebar = data?.siteData?.themeConfig?.sidebar || [];
+
+  const hasSidebar =
+    (Array.isArray(sidebar) && sidebar.length > 0) ||
+    Object.keys(sidebar).length > 0;
+
+  const hasAside = headers.length > 0;
 
   return (
     <div className={styles.doc}>
-      <div className={styles.sideBar}>
-        <SideBar />
-      </div>
-      <div className={`${styles.content} ${styles.hasSidebar}`}>
+      <div className={styles.sideBar}>{hasSidebar ? <SideBar /> : null}</div>
+      <div
+        className={`${styles.content} ${hasSidebar ? styles.hasSidebar : ''}`}
+      >
         <div className={styles.container}>
           <div className={styles.contentContainer}>
             <main className={styles.main}>
@@ -29,7 +36,7 @@ export function DocLayout() {
           <div className={styles.asideCurtain} />
           <div className={styles.asideContainer}>
             <div className={styles.asideContent}>
-              <Aside __island headers={headers} />
+              {hasAside ? <Aside __island headers={headers} /> : null}
             </div>
           </div>
         </div>

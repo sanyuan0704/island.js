@@ -3,7 +3,6 @@ import pluginReact from '@vitejs/plugin-react';
 import { pluginSvgr } from './plugin-svgr';
 import { pluginIsland } from './plugin-island';
 import { pluginRoutes } from './plugin-routes';
-import pluginInspect from 'vite-plugin-inspect';
 import { SiteConfig } from '../shared/types';
 import pluginMdx from '@mdx-js/rollup';
 import { createMDXOptions } from './plugin-mdx';
@@ -33,8 +32,6 @@ export async function createIslandPlugins(
     // @ts-ignore
     pluginMdx(mdxOptions),
     // Conventional Route
-    pluginRoutes({ prefix: '', root: config.srcDir }),
-    // Inspect transformation
-    pluginInspect({})
+    pluginRoutes({ prefix: '', root: config.root })
   ];
 }

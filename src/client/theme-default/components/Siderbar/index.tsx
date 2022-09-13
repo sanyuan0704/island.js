@@ -8,7 +8,8 @@ import { useLocation } from 'react-router-dom';
 export function SideBar() {
   const location = useLocation();
   const { siteData } = usePageData();
-  const sidebar = siteData.themeConfig.sidebar || {};
+
+  const sidebar = siteData?.themeConfig?.sidebar || [];
 
   const sidebarData = Array.isArray(sidebar)
     ? sidebar[0]
@@ -59,7 +60,10 @@ export function SideBar() {
     <aside className={styles.sidebar}>
       <nav className={styles.nav}>
         <div className={styles.group}>
-          {[sidebarData].flat().map((item) => renderGroup(item))}
+          {[sidebarData]
+            .filter(Boolean)
+            .flat()
+            .map((item) => renderGroup(item))}
         </div>
       </nav>
     </aside>

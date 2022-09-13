@@ -72,7 +72,7 @@ export async function resolveConfig(
     command,
     mode
   );
-  const srcDir = path.resolve(root, userConfig.srcDir || 'src');
+  const srcDir = path.resolve(root, userConfig.srcDir || '');
   const outDir = path.resolve(root, userConfig.outDir || 'dist');
   const userThemeDir = resolve(root, 'theme');
   const themeDir = pathExistsSync(userThemeDir)
