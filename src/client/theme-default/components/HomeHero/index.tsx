@@ -3,8 +3,16 @@ import { Button } from '../Button';
 import styles from './index.module.scss';
 import logo from './island.png';
 
+const DEFAULT_HERO = {
+  name: 'Island',
+  text: 'Island ssg',
+  tagline: 'Island ssg',
+  actions: []
+};
+
 export function HomeHero() {
-  const { hero } = usePageData();
+  const { hero = DEFAULT_HERO } = usePageData();
+
   return (
     <div className={`${styles.hero} ${styles.hasImage}`}>
       <div className={styles.container}>

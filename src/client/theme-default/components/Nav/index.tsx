@@ -53,9 +53,7 @@ export function NavBar(props: NavBarProps) {
           </a>
         </div>
         <div className={styles.content}>
-          <div className={styles.search}>
-            <Search />
-          </div>
+          <div className={styles.search}>{/* <Search /> */}</div>
           <div className={styles.menu}>{renderMenuList()}</div>
           <div className={styles.appearance}>
             <SwitchAppearance __island />
