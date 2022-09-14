@@ -16,7 +16,6 @@ export const Layout: React.FC = () => {
   } = usePageData();
   // Priority page title > site title > default title
   const title = pageTitle || siteData?.title;
-  const icon = pageIcon || siteData?.icon;
   // Use doc layout by default
   const getContentLayout = () => {
     switch (pageType) {

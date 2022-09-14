@@ -44,7 +44,7 @@ export async function createMDXOptions(): Promise<Options> {
       [
         rehypePluginShiki,
         {
-          highlighter: await shiki.getHighlighter({ theme: 'github-dark' })
+          highlighter: await shiki.getHighlighter({ theme: 'nord' })
         }
       ],
       rehypePluginPreWrapper
