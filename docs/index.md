@@ -1,10 +1,8 @@
 ---
 pageType: 'home'
 
-title: Island SSG
-
 hero:
-  name: Island SSG
+  name: Island
   text: Vite & Islands Arch Static Site Generator
   tagline: Simple, powerful, and performant. Meet the modern SSG framework you've always wanted.
   actions:

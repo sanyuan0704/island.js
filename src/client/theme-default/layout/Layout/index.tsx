@@ -4,9 +4,19 @@ import { Nav } from '../../components/Nav';
 import { DocLayout } from '../DocLayout';
 import { usePageData, Content } from 'island/client';
 import { NotFoundLayout } from 'island/theme';
+import { Helmet } from 'react-helmet-async';
 
 export const Layout: React.FC = () => {
-  const { pageType } = usePageData();
+  const {
+    pageType,
+    title: pageTitle,
+    description,
+    siteData,
+    icon: pageIcon
+  } = usePageData();
+  // Priority page title > site title > default title
+  const title = pageTitle || siteData?.title;
+  const icon = pageIcon || siteData?.icon;
   // Use doc layout by default
   const getContentLayout = () => {
     switch (pageType) {
@@ -25,6 +35,10 @@ export const Layout: React.FC = () => {
 
   return (
     <div style={{ height: '100%' }}>
+      <Helmet>
+        {title ? <title>{title}</title> : null}
+        {description ? <meta name="description" content={description} /> : null}
+      </Helmet>
       <Nav />
       <section style={{ paddingTop: 'var(--island-nav-height)' }}>
         {getContentLayout()}
