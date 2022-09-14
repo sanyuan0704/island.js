@@ -1,5 +1,5 @@
 .doc {
-  padding: 32px 24px 96px;
+  padding: 0 24px 96px;
 }
 
 .content {
@@ -16,14 +16,14 @@
 }
 
 @media (min-width: 960px) {
-  .content.has-sidebar {
+  .content {
     margin: 0;
     padding-left: var(--island-sidebar-width);
   }
 }
 
 @media (min-width: 1440px) {
-  .content.has-sidebar {
+  .content {
     padding-right: calc((100vw - var(--island-layout-max-width)) / 2);
     padding-left: calc(
       (100vw - var(--island-layout-max-width)) / 2 + var(--island-sidebar-width)

@@ -291,7 +291,7 @@ class SSGBuilder {
         ssr: isServer,
         outDir: isServer
           ? join(this.#root, TEMP_PATH, 'ssr')
-          : join(this.#root, 'dist'),
+          : join(this.#root, DIST_PATH),
         cssCodeSplit: false,
         ssrManifest: !isServer,
         rollupOptions: {

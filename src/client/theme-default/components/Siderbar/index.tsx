@@ -4,11 +4,13 @@ import { Link } from '../Link/index';
 import { DefaultTheme } from '../../../../shared/types';
 import { usePageData } from 'island/client';
 import { useLocation } from 'react-router-dom';
+import { normalizeHref } from '../../logic/index';
 
 export function SideBar() {
   const location = useLocation();
   const { siteData } = usePageData();
-  const sidebar = siteData.themeConfig.sidebar || {};
+
+  const sidebar = siteData?.themeConfig?.sidebar || [];
 
   const sidebarData = Array.isArray(sidebar)
     ? sidebar[0]
@@ -26,7 +28,7 @@ export function SideBar() {
     return (
       <div style={{ marginLeft }}>
         <div className={`${styles.link} ${isActive ? styles.active : ''}`}>
-          <Link href={item.link}>{item.text}</Link>
+          <Link href={normalizeHref(item.link!)}>{item.text}</Link>
         </div>
         {children}
       </div>
@@ -59,7 +61,10 @@ export function SideBar() {
     <aside className={styles.sidebar}>
       <nav className={styles.nav}>
         <div className={styles.group}>
-          {[sidebarData].flat().map((item) => renderGroup(item))}
+          {[sidebarData]
+            .filter(Boolean)
+            .flat()
+            .map((item) => renderGroup(item))}
         </div>
       </nav>
     </aside>

@@ -70,7 +70,6 @@ specifiers:
   unist-util-visit-children: ^2.0.0
   vite: ^3.0.9
   vite-plugin-chunk-split: ^0.3.0
-  vite-plugin-inspect: ^0.6.1
   vitest: ^0.23.1
 
 dependencies:
@@ -109,6 +108,7 @@ dependencies:
   remark-frontmatter: 4.0.1
   remark-gfm: 3.0.1
   remark-mdx-frontmatter: 2.0.3
+  sass: 1.54.5
   shiki: 0.11.1
   sirv: 2.0.2
   unified: 10.1.2
@@ -116,7 +116,6 @@ dependencies:
   unist-util-visit-children: 2.0.0
   vite: 3.0.9_sass@1.54.5
   vite-plugin-chunk-split: 0.3.0_vite@3.0.9
-  vite-plugin-inspect: 0.6.1_vite@3.0.9
 
 devDependencies:
   '@loadable/babel-plugin': 5.13.2_@babel+core@7.19.0
@@ -142,7 +141,6 @@ devDependencies:
   eslint-plugin-react: 7.31.1_eslint@8.23.0
   resolve: 1.22.1
   rollup: 2.78.1
-  sass: 1.54.5
   tsup: 6.2.3_typescript@4.7.4
   tsx: 3.8.2
   typescript: 4.7.4
@@ -3006,10 +3004,6 @@ packages:
     engines: {node: '>=6'}
     dev: false
 
-  /kolorist/1.5.1:
-    resolution: {integrity: sha512-lxpCM3HTvquGxKGzHeknB/sUjuVoUElLlfYnXZT73K8geR9jQbroGlSCFBax9/0mpGoD3kzcMLnOlGQPJJNyqQ==}
-    dev: false
-
   /levn/0.4.1:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
     engines: {node: '>= 0.8.0'}
@@ -4722,10 +4716,6 @@ packages:
     hasBin: true
     dev: true
 
-  /ufo/0.8.5:
-    resolution: {integrity: sha512-e4+UtA5IRO+ha6hYklwj6r7BjiGMxS0O+UaSg9HbaTefg4kMkzj4tXzEBajRR+wkxf+golgAWKzLbytCUDMJAA==}
-    dev: false
-
   /unbox-primitive/1.0.2:
     resolution: {integrity: sha512-61pPlCD9h51VoreyJ0BReideM3MDKMKnh6+V9L08331ipq6Q8OFXZYiqP6n/tbHx4s5I9uRhcye6BrbkizkBDw==}
     dependencies:
@@ -4967,22 +4957,6 @@ packages:
       vite: '>=2.0.0'
     dependencies:
       vite: 3.0.9_sass@1.54.5
-    dev: false
-
-  /vite-plugin-inspect/0.6.1_vite@3.0.9:
-    resolution: {integrity: sha512-MQzIgMoPyiPDuHoO6p7QBOrmheBU/ntg0cgtgcnm21S/Xds5oak1CbVLSAvv4fK1ZpetLK+tlJ+2mlFO9fG3SQ==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      vite: ^3.0.0
-    dependencies:
-      '@rollup/pluginutils': 4.2.1
-      debug: 4.3.4
-      kolorist: 1.5.1
-      sirv: 2.0.2
-      ufo: 0.8.5
-      vite: 3.0.9_sass@1.54.5
-    transitivePeerDependencies:
-      - supports-color
     dev: false
 
   /vite/3.0.9_sass@1.54.5:

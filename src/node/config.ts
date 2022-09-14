@@ -7,7 +7,7 @@ import {
 } from '../shared/types';
 import fs from 'fs-extra';
 import { loadConfigFromFile } from 'vite';
-import { DEFAULT_THEME_PATH } from './constants/index';
+import { DEFAULT_THEME_PATH, DIST_PATH } from './constants/index';
 
 const { pathExistsSync } = fs;
 
@@ -72,8 +72,8 @@ export async function resolveConfig(
     command,
     mode
   );
-  const srcDir = path.resolve(root, userConfig.srcDir || 'src');
-  const outDir = path.resolve(root, userConfig.outDir || 'dist');
+  const srcDir = path.resolve(root, userConfig.srcDir || '');
+  const outDir = path.resolve(root, userConfig.outDir || DIST_PATH);
   const userThemeDir = resolve(root, 'theme');
   const themeDir = pathExistsSync(userThemeDir)
     ? userThemeDir

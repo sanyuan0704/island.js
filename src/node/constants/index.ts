@@ -11,6 +11,8 @@ export const CLIENT_RUNTIME_PATH = join(
   'src/client/runtime'
 );
 
+export const CLIENT_EXPORTS_PATH = join(CLIENT_RUNTIME_PATH, 'index.ts');
+
 export const CLIENT_ENTRY_PATH = join(CLIENT_RUNTIME_PATH, 'client-entry.tsx');
 
 export const SERVER_ENTRY_PATH = join(CLIENT_RUNTIME_PATH, 'ssr-entry.tsx');
@@ -20,9 +22,9 @@ export const DEFAULT_THEME_PATH = join(
   'src/client/theme-default'
 );
 
-export const TEMP_PATH = 'node_modules/.island';
+export const TEMP_PATH = join('node_modules', '.island');
 
-export const DIST_PATH = 'dist';
+export const DIST_PATH = join('.island', 'dist');
 
 export const SERVER_BUNDLE_FILE = 'ssr-entry.js';
 
@@ -41,7 +43,7 @@ export const DEFAULT_EXTERNALS: string[] = [
   'react/jsx-runtime'
 ];
 
-export const ISLAND_JSX_RUNTIME_PATH = join(PACKAGE_ROOT_PATH, DIST_PATH);
+export const ISLAND_JSX_RUNTIME_PATH = join(PACKAGE_ROOT_PATH, 'dist');
 
 export const ISLAND_CLI_PATH = join(PACKAGE_ROOT_PATH, DIST_PATH, 'cli.js');
 

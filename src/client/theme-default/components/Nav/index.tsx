@@ -2,17 +2,18 @@ import styles from './index.module.scss';
 import { Link } from '../Link/index';
 import { SwitchAppearance } from '../SwitchAppearance/index';
 import GithubSvg from './icons/github.svg';
-import { Search } from '../Search/index';
+// import { Search } from '../Search/index';
 import { DefaultTheme } from '../../../../shared/types';
 import { useLocation } from 'react-router-dom';
 import { usePageData } from 'island/client';
+import { normalizeHref } from '../../logic/index';
 interface NavBarProps {
   nav: DefaultTheme.NavItem[];
   hasSidebar: boolean;
 }
 
 export function NavBar(props: NavBarProps) {
-  const menuItems = props.nav;
+  const menuItems = props.nav || [];
   const location = useLocation();
   const renderMenuItem = (item: DefaultTheme.NavItemWithLink) => {
     const isActive = new RegExp(item.activeMatch || '').test(location.pathname);
@@ -21,7 +22,7 @@ export function NavBar(props: NavBarProps) {
         key={item.text}
         className={`${styles.menuLink} ${isActive ? styles.active : ''}`}
       >
-        <Link href={item.link}>{item.text}</Link>
+        <Link href={normalizeHref(item.link)}>{item.text}</Link>
       </div>
     );
   };
@@ -73,7 +74,7 @@ export function NavBar(props: NavBarProps) {
 
 export function Nav() {
   const { siteData, pageType } = usePageData();
-  const nav = siteData.themeConfig.nav || [];
+  const nav = siteData?.themeConfig?.nav || [];
   const hasSidebar = pageType === 'doc';
   return (
     <header className={styles.nav}>
