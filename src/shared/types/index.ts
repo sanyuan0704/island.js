@@ -26,6 +26,10 @@ export interface UserConfig<ThemeConfig = any> {
    */
   base?: string;
   /**
+   * Path to html icon file.
+   */
+  icon?: string;
+  /**
    * Source directory of the site.
    */
   srcDir?: string;
@@ -94,6 +98,7 @@ export interface SiteData<ThemeConfig = any> {
   lang: string;
   title: string;
   description: string;
+  icon: string;
   head: HeadConfig[];
   themeConfig: ThemeConfig;
   scrollOffset: number | string;
@@ -140,8 +145,11 @@ export interface PageModule {
 
 export interface PageData {
   siteData: SiteData<DefaultTheme.Config>;
+  title?: string;
+  description?: string;
   pageType: 'home' | 'doc' | 'custom' | '404';
   toc?: Header[];
   features?: Feature[];
   hero?: Hero;
+  icon?: string;
 }

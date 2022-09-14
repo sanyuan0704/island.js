@@ -5,9 +5,7 @@ export const data = {
   islandToPathMap: {}
 };
 
-//@ts-ignore
 const originJsx = jsxRuntime.jsx;
-//@ts-ignore
 const originJsxs = jsxRuntime.jsxs;
 
 const internalJsx = (jsx, type, props, ...args) => {

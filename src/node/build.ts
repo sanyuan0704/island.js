@@ -17,6 +17,7 @@ import {
   DEFAULT_EXTERNALS,
   DIST_PATH,
   MASK_SPLITTER,
+  PUBLIC_DIR,
   SERVER_ENTRY_PATH,
   SERVER_OUTPUT_PATH,
   TEMP_PATH,
@@ -30,12 +31,16 @@ import { Route } from './plugin-routes';
 import fs, { copy, remove } from 'fs-extra';
 import ora from 'ora';
 import React from 'react';
+import { HelmetData } from 'react-helmet-async';
 
 const islandInjectId = `island:inject`;
 export const okMark = '\x1b[32m✓\x1b[0m';
 export const failMark = '\x1b[31m✖\x1b[0m';
 
-export type RenderFn = (url: string) => Promise<{
+export type RenderFn = (
+  url: string,
+  helmetContext: object
+) => Promise<{
   appHtml: string;
   propsData: string;
   islandToPathMap: Record<string, string>;
@@ -73,10 +78,14 @@ class SSGBuilder {
       this.#clientBundle = clientBundle;
       this.#serverBundle = serverBundle;
 
+      // Get complete css from server bundle
       await copy(
         join(this.#root, TEMP_PATH, 'ssr', 'assets'),
         join(this.#root, DIST_PATH, 'assets')
       );
+
+      // Copy public assets
+      await copy(join(this.#root, PUBLIC_DIR), join(this.#root, DIST_PATH));
 
       const serverEntryPath = join(this.#root, SERVER_OUTPUT_PATH);
       const { render, routes } = (await dynamicImport(
@@ -114,6 +123,11 @@ class SSGBuilder {
       )
     );
     await this.#render404Page(render, clientChunkCode, styleAssets);
+    // await fs.copy(
+    //   join(this.#root, 'public'),
+    //   join(this.#root, DIST_PATH),
+    //   'public'
+    // );
     spinner.stopAndPersist({
       symbol: okMark
     });
@@ -178,7 +192,13 @@ class SSGBuilder {
     clientChunkCode: string,
     styleAssets: (OutputChunk | OutputAsset)[]
   ) {
-    const { appHtml, propsData, islandToPathMap } = await render(routePath);
+    const helmetContext: HelmetData = {
+      context: {}
+    } as HelmetData;
+    const { appHtml, propsData, islandToPathMap } = await render(
+      routePath,
+      helmetContext.context
+    );
     const hasIsland = Object.keys(islandToPathMap).length > 0;
     let injectIslandsCode = '';
     if (hasIsland) {
@@ -195,16 +215,21 @@ class SSGBuilder {
       }
       injectIslandsCode = await injectBundlePromise;
     }
+    const { helmet } = helmetContext?.context;
     const html = `
   <!DOCTYPE html>
   <html>
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
-      <title>title</title>
-      <meta name="description" content="xxx">
-      <link rel="icon" href="/public/icon.png" type="image/svg+xml">
+      <link rel="icon" href="${
+        this.#config.siteData!.icon
+      }" type="image/svg+xml"></link>
 
+      ${helmet?.title.toString() || ''}
+      ${helmet?.meta.toString() || ''}
+      ${helmet?.link.toString() || ''}
+      ${helmet?.style.toString() || ''}
       <script type="importmap">
         {
           "imports": {
@@ -318,5 +343,5 @@ export async function build(root: string) {
 
   await builder.renderPages(render as RenderFn, routes as Route[]);
 
-  // await builder.end();
+  await builder.end();
 }

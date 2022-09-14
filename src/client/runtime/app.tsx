@@ -5,6 +5,7 @@ import siteData from 'island:site-data';
 import { Route } from '../../node/plugin-routes';
 import { omit } from './utils';
 import { PageData } from '../../shared/types';
+import { HelmetProvider } from 'react-helmet-async';
 
 export async function waitForApp(path: string): Promise<PageData> {
   const matched = matchRoutes(routes, path)!;
@@ -23,6 +24,10 @@ export async function waitForApp(path: string): Promise<PageData> {
   }
 }
 
-export function App() {
-  return <Layout />;
+export function App({ helmetContext }: { helmetContext?: object }) {
+  return (
+    <HelmetProvider context={helmetContext}>
+      <Layout />
+    </HelmetProvider>
+  );
 }

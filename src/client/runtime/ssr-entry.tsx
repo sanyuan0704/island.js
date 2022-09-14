@@ -4,7 +4,10 @@ import { StaticRouter } from 'react-router-dom/server';
 import { DataContext } from './hooks';
 
 // For ssr component render
-export async function render(pagePath: string): Promise<{
+export async function render(
+  pagePath: string,
+  helmetContext: object
+): Promise<{
   appHtml: string;
   propsData: any[];
   islandToPathMap: Record<string, string>;
@@ -17,7 +20,7 @@ export async function render(pagePath: string): Promise<{
   const appHtml = renderToString(
     <DataContext.Provider value={pageData}>
       <StaticRouter location={pagePath}>
-        <App />
+        <App helmetContext={helmetContext} />
       </StaticRouter>
     </DataContext.Provider>
   );

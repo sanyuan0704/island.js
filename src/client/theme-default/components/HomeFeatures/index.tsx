@@ -1,7 +1,7 @@
 import styles from './index.module.scss';
 import { usePageData } from 'island/client';
 
-const getGridClass = (count: number) => {
+const getGridClass = (count?: number) => {
   if (!count) {
     return '';
   } else if (count === 2) {
@@ -17,12 +17,12 @@ const getGridClass = (count: number) => {
 
 export function HomeFeature() {
   const { features } = usePageData();
-  const gridClass = getGridClass(features.length);
+  const gridClass = getGridClass(features?.length);
   return (
     <div className={styles.features}>
       <div className={styles.container}>
         <div className={styles.items}>
-          {features.map((feature) => {
+          {features?.map((feature) => {
             const { icon, title, details } = feature;
             return (
               <div

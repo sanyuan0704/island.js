@@ -22,6 +22,8 @@ export const DEFAULT_THEME_PATH = join(
   'src/client/theme-default'
 );
 
+export const PUBLIC_DIR = 'public';
+
 export const TEMP_PATH = join('node_modules', '.island');
 
 export const DIST_PATH = join('.island', 'dist');

@@ -58,7 +58,8 @@ export function resolveSiteData(userConfig: UserConfig): SiteData {
     head: userConfig.head || [],
     base: userConfig.base || '/',
     scrollOffset: userConfig.scrollOffset || 90,
-    locales: userConfig.locales || {}
+    locales: userConfig.locales || {},
+    icon: userConfig.icon || ''
   };
 }
 
