@@ -6,6 +6,7 @@ import GithubSvg from './icons/github.svg';
 import { DefaultTheme } from '../../../../shared/types';
 import { useLocation } from 'react-router-dom';
 import { usePageData } from 'island/client';
+import { normalizeHref } from '../../logic/index';
 interface NavBarProps {
   nav: DefaultTheme.NavItem[];
   hasSidebar: boolean;
@@ -21,7 +22,7 @@ export function NavBar(props: NavBarProps) {
         key={item.text}
         className={`${styles.menuLink} ${isActive ? styles.active : ''}`}
       >
-        <Link href={item.link}>{item.text}</Link>
+        <Link href={normalizeHref(item.link)}>{item.text}</Link>
       </div>
     );
   };

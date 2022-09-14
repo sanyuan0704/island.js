@@ -2,6 +2,7 @@ import { usePageData } from 'island/client';
 import { Button } from '../Button';
 import styles from './index.module.scss';
 import logo from './island.png';
+import { normalizeHref } from '../../logic/index';
 
 const DEFAULT_HERO = {
   name: 'Island',
@@ -28,7 +29,7 @@ export function HomeHero() {
                 <Button
                   type="a"
                   text={action.text}
-                  href={action.link}
+                  href={normalizeHref(action.link)}
                   theme={action.theme}
                 ></Button>
               </div>

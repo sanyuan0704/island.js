@@ -15,7 +15,7 @@ export function Button(props: ButtonProps) {
     type,
     {
       className: `${styles.button} ${styles[theme]} ${styles[size]}`,
-      href
+      href: href
     },
     props.text
   );

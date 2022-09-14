@@ -4,6 +4,7 @@ import { Link } from '../Link/index';
 import { DefaultTheme } from '../../../../shared/types';
 import { usePageData } from 'island/client';
 import { useLocation } from 'react-router-dom';
+import { normalizeHref } from '../../logic/index';
 
 export function SideBar() {
   const location = useLocation();
@@ -27,7 +28,7 @@ export function SideBar() {
     return (
       <div style={{ marginLeft }}>
         <div className={`${styles.link} ${isActive ? styles.active : ''}`}>
-          <Link href={item.link}>{item.text}</Link>
+          <Link href={normalizeHref(item.link!)}>{item.text}</Link>
         </div>
         {children}
       </div>
