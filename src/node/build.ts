@@ -142,7 +142,7 @@ class SSGBuilder {
         outDir: TEMP_PATH,
         ssrManifest: false,
         rollupOptions: {
-          external: [],
+          external: DEFAULT_EXTERNALS,
           input: islandInjectId
         }
       },

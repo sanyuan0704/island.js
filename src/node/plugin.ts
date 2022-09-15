@@ -27,7 +27,7 @@ export async function createIslandPlugins(
     // Svg component support
     pluginSvgr(),
     // Md(x) compile
-    pluginMdx(config),
+    await pluginMdx(config),
     // Conventional Route
     pluginRoutes({ prefix: '', root: config.root })
   ];

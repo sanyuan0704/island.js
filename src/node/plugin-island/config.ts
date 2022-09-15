@@ -19,6 +19,7 @@ const { green } = pc;
 export function pluginConfig(config: SiteConfig): Plugin {
   return {
     name: 'island:vite-config',
+    enforce: 'pre',
     // Set external
     async resolveId(id) {
       if (isProduction() && DEFAULT_EXTERNALS.includes(id)) {

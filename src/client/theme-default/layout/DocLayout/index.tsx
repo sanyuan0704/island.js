@@ -36,7 +36,9 @@ export function DocLayout() {
           <div className={styles.asideCurtain} />
           <div className={styles.asideContainer}>
             <div className={styles.asideContent}>
-              {hasAside ? <Aside __island headers={headers} /> : null}
+              {hasAside ? (
+                <Aside __island headers={headers} pagePath={data.pagePath} />
+              ) : null}
             </div>
           </div>
         </div>
