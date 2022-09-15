@@ -30,6 +30,7 @@ export interface PluginOptions {
 export interface Route {
   path: string;
   element: React.ReactElement;
+  filePath: string;
   preload: () => Promise<PageModule>;
 }
 

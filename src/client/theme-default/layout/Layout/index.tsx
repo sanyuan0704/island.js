@@ -7,14 +7,8 @@ import { NotFoundLayout } from 'island/theme';
 import { Helmet } from 'react-helmet-async';
 
 export const Layout: React.FC = () => {
-  const {
-    pageType,
-    title: pageTitle,
-    description,
-    siteData,
-    icon: pageIcon
-  } = usePageData();
-  // Priority page title > site title > default title
+  const { pageType, title: pageTitle, description, siteData } = usePageData();
+  // Priority page title > site title
   const title = pageTitle || siteData?.title;
   // Use doc layout by default
   const getContentLayout = () => {

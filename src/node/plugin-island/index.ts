@@ -23,7 +23,7 @@ import { ISLAND_CLI_PATH } from '../constants/index';
 
 const { green } = pc;
 
-export const PAGE_DATA_ID = 'island:site-data';
+export const SITE_DATA_ID = 'island:site-data';
 
 /**
  * The plugin for island framework:
@@ -35,9 +35,28 @@ export function pluginIsland(
   config: SiteConfig,
   isServer: boolean = false,
   restartServer?: () => Promise<void>
-): Plugin {
+): Plugin[] {
   const { siteData } = config;
-  return {
+  const siteDataPlugin: Plugin = {
+    name: 'island:site-data',
+    async resolveId(id) {
+      if (id === SITE_DATA_ID) {
+        return '\0' + SITE_DATA_ID;
+      }
+      if (isProduction() && DEFAULT_EXTERNALS.includes(id)) {
+        return {
+          id,
+          external: true
+        };
+      }
+    },
+    load(id) {
+      if (id === '\0' + SITE_DATA_ID) {
+        return `export default ${JSON.stringify(siteData)}`;
+      }
+    }
+  };
+  const internalPlugin: Plugin = {
     name: 'island:vite-plugin-internal',
     enforce: 'pre',
     config(c) {
@@ -83,19 +102,11 @@ export function pluginIsland(
       };
     },
     async resolveId(id) {
-      if (id === PAGE_DATA_ID) {
-        return '\0' + PAGE_DATA_ID;
-      }
       if (isProduction() && DEFAULT_EXTERNALS.includes(id)) {
         return {
           id,
           external: true
         };
-      }
-    },
-    load(id) {
-      if (id === '\0' + PAGE_DATA_ID) {
-        return `export default ${JSON.stringify(siteData)}`;
       }
     },
     async transform(code, id, options) {
@@ -163,6 +174,13 @@ export function pluginIsland(
         await restartServer!();
         return [];
       }
+
+      if (/\.mdx?/.test(ctx.file)) {
+        ctx.server.ws!.send({
+          type: 'custom',
+          event: 'md(x)-changed'
+        });
+      }
     },
     configureServer(server) {
       if (config.configPath) {
@@ -197,4 +215,6 @@ export function pluginIsland(
       };
     }
   };
+
+  return [siteDataPlugin, internalPlugin];
 }

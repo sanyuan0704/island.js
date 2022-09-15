@@ -12,7 +12,13 @@
 
 ### 1. Init project
 
-First, you can use `npm init -y` to init a new project.Then you can install Island with npm, yarn or pnpm:
+First, you can use create a new directory by following command:
+
+```bash
+mkdir island-app && cd island-app
+```
+
+Execute `npm init -y` to init a project.You can install Island with npm, yarn or pnpm:
 
 ```bash
 // npm

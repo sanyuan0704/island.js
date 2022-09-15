@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import styles from './index.module.scss';
 import { throttle } from 'lodash-es';
 import { ComponentPropsWithIsland, Header } from 'shared/types/index';
+import { usePageData } from 'island/client';
 
 function isBottom() {
   return (
@@ -11,11 +12,26 @@ function isBottom() {
 }
 
 export function Aside(props: ComponentPropsWithIsland<{ headers: Header[] }>) {
-  const { headers } = props;
+  const [headers, setHeaders] = useState(props.headers || []);
+  const { pagePath } = usePageData();
+
   // For outline text highlight
   const [activeIndex, setActiveIndex] = useState(0);
   const markerRef = useRef<HTMLDivElement>(null);
   const SCROLL_INTO_HEIGHT = 150;
+
+  useEffect(() => {
+    // handle hmr
+    if (import.meta.hot) {
+      import.meta.hot.on('md(x)-changed', () => {
+        import(/* @vite-ignore */ `${pagePath}?import&t=${Date.now()}`).then(
+          (mod) => {
+            setHeaders(mod.toc);
+          }
+        );
+      });
+    }
+  }, []);
 
   useEffect(() => {
     if (!headers.length && markerRef.current) {

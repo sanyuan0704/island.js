@@ -9,16 +9,19 @@ import { HelmetProvider } from 'react-helmet-async';
 
 export async function waitForApp(path: string): Promise<PageData> {
   const matched = matchRoutes(routes, path)!;
+  const pagePath = (matched[0].route as Route).filePath;
   if (matched) {
     const mod = await (matched[0].route as Route).preload();
 
     return {
       siteData,
+      pagePath: (matched[0].route as Route).filePath,
       ...omit(mod, ['default'])
     } as PageData;
   } else {
     return {
       siteData,
+      pagePath,
       pageType: '404'
     };
   }
