@@ -7,13 +7,18 @@ import { DefaultTheme } from '../../../../shared/types';
 import { useLocation } from 'react-router-dom';
 import { usePageData } from 'island/client';
 import { normalizeHref } from '../../logic/index';
-interface NavBarProps {
-  nav: DefaultTheme.NavItem[];
-  hasSidebar: boolean;
-}
 
-export function NavBar(props: NavBarProps) {
-  const menuItems = props.nav || [];
+const IconMap = {
+  github: GithubSvg
+};
+
+export function NavBar() {}
+
+export function Nav() {
+  const { siteData, pageType } = usePageData();
+  const hasSidebar = pageType === 'doc';
+  const menuItems = siteData?.themeConfig?.nav || [];
+  const socialLinks = siteData?.themeConfig?.socialLinks || [];
   const location = useLocation();
   const renderMenuItem = (item: DefaultTheme.NavItemWithLink) => {
     const isActive = new RegExp(item.activeMatch || '').test(location.pathname);
@@ -41,44 +46,40 @@ export function NavBar(props: NavBarProps) {
     );
   };
   return (
-    <div className={styles.navBar}>
-      <div className={`${styles.container}`}>
-        <div
-          className={`${styles.navBarTitle} ${
-            props.hasSidebar ? styles.hasSidebar : ''
-          }`}
-        >
-          <a href="/" className={styles.title}>
-            <span className={styles.logo}>🏝️</span>
-            <span>Island</span>
-          </a>
-        </div>
-        <div className={styles.content}>
-          <div className={styles.search}>{/* <Search /> */}</div>
-          <div className={styles.menu}>{renderMenuList()}</div>
-          <div className={styles.appearance}>
-            <SwitchAppearance __island />
+    <header className={styles.nav}>
+      <div className={styles.navBar}>
+        <div className={`${styles.container}`}>
+          <div
+            className={`${styles.navBarTitle} ${
+              hasSidebar ? styles.hasSidebar : ''
+            }`}
+          >
+            <a href="/" className={styles.title}>
+              <span className={styles.logo}>🏝️</span>
+              <span>Island</span>
+            </a>
           </div>
-          <div className={styles.socialLinks}>
-            <div className={styles.socialLink}>
-              <a href="/" target="_blank" rel="noopener">
-                <GithubSvg />
-              </a>
+          <div className={styles.content}>
+            <div className={styles.search}>{/* <Search /> */}</div>
+            <div className={styles.menu}>{renderMenuList()}</div>
+            <div className={styles.appearance}>
+              <SwitchAppearance __island />
+            </div>
+            <div className={styles.socialLinks}>
+              <div className={styles.socialLink}>
+                {socialLinks.map((item) => {
+                  const IconComp = IconMap[item.icon as keyof typeof IconMap];
+                  return (
+                    <a href={item.link} target="_blank" rel="noopener">
+                      <IconComp />
+                    </a>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  );
-}
-
-export function Nav() {
-  const { siteData, pageType } = usePageData();
-  const nav = siteData?.themeConfig?.nav || [];
-  const hasSidebar = pageType === 'doc';
-  return (
-    <header className={styles.nav}>
-      <NavBar nav={nav} hasSidebar={hasSidebar} />
     </header>
   );
 }
