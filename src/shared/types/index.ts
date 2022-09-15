@@ -145,6 +145,7 @@ export interface PageModule {
 
 export interface PageData {
   siteData: SiteData<DefaultTheme.Config>;
+  pagePath: string;
   title?: string;
   description?: string;
   pageType: 'home' | 'doc' | 'custom' | '404';

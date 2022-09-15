@@ -30,7 +30,6 @@ import { createHash, dynamicImport } from './utils';
 import { Route } from './plugin-routes';
 import fs, { copy, remove } from 'fs-extra';
 import ora from 'ora';
-import React from 'react';
 import { HelmetData } from 'react-helmet-async';
 
 const islandInjectId = `island:inject`;
@@ -116,7 +115,6 @@ class SSGBuilder {
     const { default: ora } = await dynamicImport('ora');
     const spinner = ora();
     spinner.start('Rendering page in server side...');
-    global.React = React;
     await Promise.all(
       routes.map((route) =>
         this.#renderPage(render, route.path, clientChunkCode, styleAssets)
@@ -144,7 +142,7 @@ class SSGBuilder {
         outDir: TEMP_PATH,
         ssrManifest: false,
         rollupOptions: {
-          external: [],
+          external: DEFAULT_EXTERNALS,
           input: islandInjectId
         }
       },

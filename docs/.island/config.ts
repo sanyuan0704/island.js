@@ -1,8 +1,15 @@
 import { defineConfig } from '../../dist';
+
 export default defineConfig({
   lang: 'en-US',
   icon: '/icon.png',
   themeConfig: {
+    socialLinks: [
+      {
+        icon: 'github',
+        link: 'https://github.com/sanyuan0704/island'
+      }
+    ],
     lastUpdatedText: 'Last Updated',
     editLink: '',
     nav: [

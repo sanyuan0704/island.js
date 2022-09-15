@@ -4,8 +4,7 @@ import { pluginSvgr } from './plugin-svgr';
 import { pluginIsland } from './plugin-island';
 import { pluginRoutes } from './plugin-routes';
 import { SiteConfig } from '../shared/types';
-import pluginMdx from '@mdx-js/rollup';
-import { createMDXOptions } from './plugin-mdx';
+import { pluginMdx } from './plugin-mdx';
 import babelPluginIsland from './babel-plugin-island';
 import { ISLAND_JSX_RUNTIME_PATH } from './constants/index';
 
@@ -14,7 +13,6 @@ export async function createIslandPlugins(
   isServer: boolean = false,
   restartServer?: () => Promise<void>
 ): Promise<PluginOption[]> {
-  const mdxOptions = await createMDXOptions();
   return [
     // For island internal use
     pluginIsland(config, isServer, restartServer),
@@ -29,8 +27,7 @@ export async function createIslandPlugins(
     // Svg component support
     pluginSvgr(),
     // Md(x) compile
-    // @ts-ignore
-    pluginMdx(mdxOptions),
+    await pluginMdx(config),
     // Conventional Route
     pluginRoutes({ prefix: '', root: config.root })
   ];

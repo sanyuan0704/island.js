@@ -10,7 +10,15 @@
 
 ## Quick Start
 
-First, you can use `npm init -y` to init a new project.Then you can install Island with npm, yarn or pnpm:
+### 1. Init project
+
+First, you can use create a new directory by following command:
+
+```bash
+mkdir island-app && cd island-app
+```
+
+Execute `npm init -y` to init a project.You can install Island with npm, yarn or pnpm:
 
 ```bash
 // npm
@@ -24,7 +32,7 @@ pnpm add island-ssg
 Then you can create file:
 
 ```bash
-`mkdir docs && echo '# Hello World' > docs/index.md`
+mkdir docs && echo '# Hello World' > docs/index.md
 ```
 
 And then you can add the following scripts in `package.json`:
@@ -40,6 +48,8 @@ And then you can add the following scripts in `package.json`:
 }
 ```
 
+### 2. Start dev server
+
 Serve the documentation site in the local server.
 
 ```bash
@@ -47,3 +57,23 @@ yarn dev
 ```
 
 Island will start a development server at http://localhost:5173.
+
+### 3. Build for production
+
+Build the documentation site for production.
+
+```bash
+yarn build
+```
+
+Island will generate a static site in the `.island/dist` directory.
+
+### 4. Preview locally
+
+Preview the production build locally.
+
+```bash
+yarn preview
+```
+
+Island will start a production server at http://localhost:4173.
