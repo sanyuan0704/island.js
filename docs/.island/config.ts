@@ -3,6 +3,7 @@ import { defineConfig } from '../../dist';
 export default defineConfig({
   lang: 'en-US',
   icon: '/icon.png',
+  enableSpa: true,
   themeConfig: {
     socialLinks: [
       {
@@ -30,8 +31,12 @@ function getTutorialSidebar() {
   return [
     {
       text: 'Guide',
-      items: [{ text: 'Getting Started', link: '/guide/getting-started' }]
+      items: [
+        { text: 'Getting Started', link: '/guide/getting-started' },
+        { text: 'Fresh', link: '/fresh' }
+      ]
     }
+
     // {
     //   text: 'Advance',
     //   items: []

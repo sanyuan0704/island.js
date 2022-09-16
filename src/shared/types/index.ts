@@ -70,9 +70,9 @@ export interface UserConfig<ThemeConfig = any> {
    */
   vite?: ViteConfiguration;
   /**
-   * Enable island architecture.
+   * Enable single page application in production.
    */
-  mpa?: boolean;
+  enableSpa?: boolean;
   /**
    * Whether to fail builds when there are dead links.
    */

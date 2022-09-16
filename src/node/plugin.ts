@@ -19,9 +19,11 @@ export async function createIslandPlugins(
     // React hmr support
     pluginReact({
       jsxRuntime: 'automatic',
-      jsxImportSource: isServer ? ISLAND_JSX_RUNTIME_PATH : 'react',
+      jsxImportSource:
+        isServer && !config.enableSpa ? ISLAND_JSX_RUNTIME_PATH : 'react',
       babel: {
-        plugins: [babelPluginIsland]
+        // Babel plugin for island(mpa) mode
+        plugins: [...(config.enableSpa ? [] : [babelPluginIsland])]
       }
     }),
     // Svg component support

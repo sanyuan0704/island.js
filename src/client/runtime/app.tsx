@@ -10,6 +10,7 @@ import { HelmetProvider } from 'react-helmet-async';
 export async function waitForApp(path: string): Promise<PageData> {
   const matched = matchRoutes(routes, path)!;
   if (matched) {
+    // Preload route component
     const mod = await (matched[0].route as Route).preload();
     return {
       siteData,

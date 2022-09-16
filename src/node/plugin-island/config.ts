@@ -64,6 +64,9 @@ export function pluginConfig(config: SiteConfig): Plugin {
             )
           }
         },
+        define: {
+          'import.meta.env.ENABLE_SPA': config.enableSpa
+        },
         css: {
           modules: {
             localsConvention: 'camelCaseOnly'

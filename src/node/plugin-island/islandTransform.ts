@@ -6,8 +6,12 @@ import {
 import { Plugin, transformWithEsbuild } from 'vite';
 import { transformAsync } from '@babel/core';
 import babelPluginIsland from '../babel-plugin-island';
+import { SiteConfig } from 'shared/types/index';
 
-export function pluginIslandTransform(isServer: boolean): Plugin {
+export function pluginIslandTransform(
+  config: SiteConfig,
+  isServer: boolean
+): Plugin {
   return {
     name: 'island:vite-plugin-internal',
     enforce: 'pre',
@@ -17,7 +21,8 @@ export function pluginIslandTransform(isServer: boolean): Plugin {
       if (
         options?.ssr &&
         TS_REGEX.test(id) &&
-        id.includes(DEFAULT_THEME_PATH)
+        id.includes(DEFAULT_THEME_PATH) &&
+        !config.enableSpa
       ) {
         let strippedTypes = await transformWithEsbuild(code, id, {
           jsx: 'preserve'

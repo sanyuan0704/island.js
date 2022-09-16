@@ -6,11 +6,13 @@ import { DataContext } from './hooks';
 // For ssr component render
 export async function render(
   pagePath: string,
-  helmetContext: object
+  helmetContext: object,
+  enableSpa: boolean
 ): Promise<{
   appHtml: string;
   propsData: any[];
   islandToPathMap: Record<string, string>;
+  pageData: any;
 }> {
   const pageData = await waitForApp(pagePath);
   const { data } = await import('island/jsx-runtime');
@@ -30,7 +32,9 @@ export async function render(
   return {
     appHtml,
     islandToPathMap,
-    propsData: islandProps
+    propsData: islandProps,
+    // Only spa need the hydrate data on window
+    pageData: enableSpa ? pageData : null
   };
 }
 

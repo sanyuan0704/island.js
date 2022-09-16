@@ -25,6 +25,11 @@ async function preBundle(deps: PreBundleItem[]) {
     minify: true,
     splitting: true,
     format: 'esm',
+    define: {
+      'process.env.NODE_ENV': JSON.stringify(
+        process.env.NODE_ENV || 'production'
+      )
+    },
     platform: 'browser',
     plugins: [
       {

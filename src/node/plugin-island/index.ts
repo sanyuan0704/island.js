@@ -14,6 +14,6 @@ export function pluginIsland(
     pluginSiteData(config),
     pluginConfig(config),
     pluginIndexHtml(config),
-    pluginIslandTransform(isServer)
+    pluginIslandTransform(config, isServer)
   ];
 }

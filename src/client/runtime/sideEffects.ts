@@ -3,7 +3,7 @@ import { inBrowser } from './utils';
 const DEFAULT_NAV_HEIGHT = 72;
 
 // Control the scroll behavior of the browser when user clicks on a link
-if (inBrowser) {
+if (inBrowser()) {
   function scrollTo(el: HTMLElement, hash: string, smooth = false) {
     let target: HTMLElement | null = null;
     try {

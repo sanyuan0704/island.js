@@ -79,7 +79,6 @@ export async function resolveConfig(
   const themeDir = pathExistsSync(userThemeDir)
     ? userThemeDir
     : DEFAULT_THEME_PATH;
-
   const siteConfig: SiteConfig<DefaultTheme.Config> = {
     root,
     srcDir,
@@ -90,7 +89,8 @@ export async function resolveConfig(
     tempDir: resolve(root, 'node_modules', '.island'),
     vite: userConfig.vite || {},
     allowDeadLinks: userConfig.allowDeadLinks || false,
-    siteData: resolveSiteData(userConfig)
+    siteData: resolveSiteData(userConfig),
+    enableSpa: userConfig.enableSpa || false
   };
 
   return siteConfig;

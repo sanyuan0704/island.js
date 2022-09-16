@@ -38,11 +38,13 @@ export const failMark = '\x1b[31m✖\x1b[0m';
 
 export type RenderFn = (
   url: string,
-  helmetContext: object
+  helmetContext: object,
+  enableSpa: boolean
 ) => Promise<{
   appHtml: string;
   propsData: string;
   islandToPathMap: Record<string, string>;
+  pageData: any;
 }>;
 
 interface ServerEntryExports {
@@ -115,17 +117,16 @@ class SSGBuilder {
     const { default: ora } = await dynamicImport('ora');
     const spinner = ora();
     spinner.start('Rendering page in server side...');
+    const clientChunkInfo = {
+      code: clientChunkCode,
+      fileName: clientEntryChunk!.fileName
+    };
     await Promise.all(
       routes.map((route) =>
-        this.#renderPage(render, route.path, clientChunkCode, styleAssets)
+        this.#renderPage(render, route.path, clientChunkInfo, styleAssets)
       )
     );
-    await this.#render404Page(render, clientChunkCode, styleAssets);
-    // await fs.copy(
-    //   join(this.#root, 'public'),
-    //   join(this.#root, DIST_PATH),
-    //   'public'
-    // );
+    await this.#render404Page(render, clientChunkInfo, styleAssets);
     spinner.stopAndPersist({
       symbol: okMark
     });
@@ -187,19 +188,21 @@ class SSGBuilder {
   async #renderPage(
     render: RenderFn,
     routePath: string,
-    clientChunkCode: string,
+    clientChunk: { code?: string; fileName?: string },
     styleAssets: (OutputChunk | OutputAsset)[]
   ) {
     const helmetContext: HelmetData = {
       context: {}
     } as HelmetData;
-    const { appHtml, propsData, islandToPathMap } = await render(
+    const { appHtml, propsData, islandToPathMap, pageData } = await render(
       routePath,
-      helmetContext.context
+      helmetContext.context,
+      this.#config.enableSpa!
     );
     const hasIsland = Object.keys(islandToPathMap).length > 0;
     let injectIslandsCode = '';
-    if (hasIsland) {
+    // In island mode, we will bundle and inject island components code to html
+    if (hasIsland && !this.#config.enableSpa) {
       const islandHash = createHash(JSON.stringify(islandToPathMap));
       let injectBundlePromise = this.#islandsInjectCache.get(islandHash);
 
@@ -223,7 +226,6 @@ class SSGBuilder {
       <link rel="icon" href="${
         this.#config.siteData!.icon
       }" type="image/svg+xml"></link>
-
       ${helmet?.title.toString() || ''}
       ${helmet?.meta.toString() || ''}
       ${helmet?.link.toString() || ''}
@@ -245,16 +247,23 @@ class SSGBuilder {
     <body>
       <div id="root">${appHtml}</div>
       ${
-        hasIsland
+        this.#config.enableSpa
+          ? `<script>window.ISLAND_PAGE_DATA=${JSON.stringify(
+              pageData
+            )};</script>`
+          : ''
+      }
+      ${
+        !this.#config.enableSpa && hasIsland
           ? `<script id="island-props">${JSON.stringify(
               propsData
             )}</script><script type="module">${injectIslandsCode}</script>`
           : ''
       }
       ${
-        clientChunkCode && hasIsland
-          ? `<script type="module">${clientChunkCode}</script>`
-          : ''
+        this.#config.enableSpa
+          ? `<script type="module" src="/${clientChunk.fileName}"></script>`
+          : `<script type="module">${clientChunk.code}</script>`
       }
     </body>
   </html>`.trim();
@@ -269,10 +278,10 @@ class SSGBuilder {
 
   #render404Page(
     render: RenderFn,
-    clientChunkCode: string,
+    clientChunk: { code: string; fileName: string },
     styleAssets: (OutputChunk | OutputAsset)[]
   ) {
-    return this.#renderPage(render, '/404', clientChunkCode, styleAssets);
+    return this.#renderPage(render, '/404', clientChunk, styleAssets);
   }
 
   #generateIslandInjectCode(islandToPathMap: Record<string, string>) {
