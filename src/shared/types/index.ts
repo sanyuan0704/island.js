@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { ComponentType, ReactElement } from 'react';
 import { UserConfig as ViteConfiguration } from 'vite';
 import { DefaultTheme } from './default-theme';
 
@@ -138,8 +138,8 @@ export interface SiteConfig<ThemeConfig = any>
 
 export type ComponentPropsWithIsland<T = any> = T & { __island: boolean };
 
-export interface PageModule {
-  default: ReactElement;
+export interface PageModule<T extends ComponentType<any>> {
+  default: T;
   [key: string]: unknown;
 }
 

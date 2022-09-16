@@ -1,9 +1,8 @@
 import { hydrateRoot, createRoot } from 'react-dom/client';
-import { ComponentType } from 'react';
+import { ComponentType, useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import './sideEffects';
 import { DataContext } from './hooks';
-import { loadableReady } from '@loadable/component';
 
 // Type shim for window.ISLANDS
 declare global {
@@ -23,27 +22,30 @@ async function renderInBrowser() {
 
   const enhancedApp = async () => {
     const { waitForApp, App } = await import('./app');
-    const pageData = await waitForApp(window.location.pathname);
-    return (
-      <DataContext.Provider value={pageData}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </DataContext.Provider>
-    );
+    const initialPageData = await waitForApp(window.location.pathname);
+    return () => {
+      const [pageData, setPageData] = useState(initialPageData);
+
+      return (
+        <DataContext.Provider value={pageData}>
+          <BrowserRouter>
+            <App setPageData={setPageData} />
+          </BrowserRouter>
+        </DataContext.Provider>
+      );
+    };
   };
   if (import.meta.env.DEV) {
     // The App code will will be tree-shaking in production
     // So there is no need to worry that the complete hydration will be executed in island mode
-    createRoot(containerEl).render(await enhancedApp());
+    const RootApp = await enhancedApp();
+    createRoot(containerEl).render(<RootApp />);
   } else {
     // In production
     // SPA mode
     if (import.meta.env.ENABLE_SPA) {
-      const rootApp = await enhancedApp();
-      loadableReady(() => {
-        hydrateRoot(containerEl, rootApp);
-      });
+      const RootApp = await enhancedApp();
+      hydrateRoot(containerEl, <RootApp />);
     } else {
       // MPA mode or island mode
       const islands = document.querySelectorAll('[__island]');

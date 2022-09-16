@@ -31,7 +31,7 @@ export interface Route {
   path: string;
   element: React.ReactElement;
   filePath: string;
-  preload: () => Promise<PageModule>;
+  preload: () => Promise<PageModule<any>>;
 }
 
 export const CONVENTIONAL_ROUTE_ID = 'virtual:routes';

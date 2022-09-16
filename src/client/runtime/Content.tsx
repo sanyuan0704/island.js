@@ -1,7 +1,8 @@
 import { useRoutes } from 'react-router-dom';
 import { routes } from 'virtual:routes';
+import { ReactElement, Suspense } from 'react';
 
-export const Content = () => {
+export const Content = ({ fallback }: { fallback: ReactElement }) => {
   const routesElement = useRoutes(routes);
-  return <>{routesElement}</>;
+  return <Suspense fallback={fallback}>{routesElement}</Suspense>;
 };

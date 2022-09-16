@@ -26,7 +26,7 @@ export function DocLayout() {
           <div className={styles.contentContainer}>
             <main className={styles.main}>
               <div className="island-doc">
-                <Content />
+                <Content fallback={<div>Loading...</div>} />
               </div>
               <DocFooter />
             </main>

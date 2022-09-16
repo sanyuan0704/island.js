@@ -33,7 +33,7 @@ export async function render(
     appHtml,
     islandToPathMap,
     propsData: islandProps,
-    // Only spa need the hydrate data on window
+    // Only spa need the data on window
     pageData: enableSpa ? pageData : null
   };
 }
