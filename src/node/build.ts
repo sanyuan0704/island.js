@@ -127,6 +127,12 @@ class SSGBuilder {
       )
     );
     await this.#render404Page(render, clientChunkInfo, styleAssets);
+    try {
+      await fs.copy(VENDOR_PATH, join(this.#root, DIST_PATH));
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
     spinner.stopAndPersist({
       symbol: okMark
     });
@@ -267,15 +273,10 @@ class SSGBuilder {
       }
     </body>
   </html>`.trim();
+    console.log('route:', routePath);
     const fileName =
       routePath === '/' ? 'index.html' : `${routePath.slice(1)}.html`;
     await fs.ensureDir(join(this.#root, DIST_PATH, dirname(fileName)));
-    try {
-      await fs.copy(VENDOR_PATH, join(this.#root, DIST_PATH));
-    } catch (e) {
-      console.log(e);
-      throw e;
-    }
     await fs.writeFile(join(this.#root, DIST_PATH, fileName), html);
   }
 
