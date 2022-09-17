@@ -3,7 +3,7 @@ import { defineConfig } from 'tsup';
 export default defineConfig([
   {
     entry: {
-      'jsx-runtime': 'src/client/runtime/island-jsx-runtime.js',
+      'jsx-runtime': 'src/runtime/island-jsx-runtime.js',
       cli: 'src/node/cli.ts',
       index: 'src/node/index.ts'
     },
@@ -21,7 +21,7 @@ export default defineConfig([
   },
   {
     entry: {
-      lazyWithPreload: 'src/client/runtime/lazyWithPreload.tsx'
+      lazyWithPreload: 'src/runtime/lazyWithPreload.tsx'
     },
     format: 'esm',
     clean: true,

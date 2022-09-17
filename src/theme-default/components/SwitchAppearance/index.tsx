@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './index.module.scss';
 import SunSvg from './sun.svg';
 import MoonSvg from './moon.svg';
-import { ComponentPropsWithIsland } from '../../../../shared/types';
+import { ComponentPropsWithIsland } from '../../../shared/types';
 
 export function SwitchAppearance(_props: ComponentPropsWithIsland) {
   const handleClick = () => {
