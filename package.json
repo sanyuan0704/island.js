@@ -3,6 +3,7 @@
   "version": "0.0.0-alpha.11",
   "description": "Vite & Island architecture SSG framework",
   "main": "dist/index.js",
+  "packageManager": "pnpm@7.9.2",
   "type": "module",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
