@@ -39,8 +39,8 @@ export function App({
 
   useLayoutEffect(() => {
     async function refetchData() {
-      const pageData = await waitForApp(pathname);
       try {
+        const pageData = await waitForApp(pathname);
         setPageData(pageData);
       } catch (e) {
         console.log(e);

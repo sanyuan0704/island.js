@@ -24,7 +24,7 @@ export function pluginIslandTransform(
         id.includes(DEFAULT_THEME_PATH) &&
         !config.enableSpa
       ) {
-        let strippedTypes = await transformWithEsbuild(code, id, {
+        const strippedTypes = await transformWithEsbuild(code, id, {
           jsx: 'preserve'
         });
         const result = await transformAsync((await strippedTypes).code, {

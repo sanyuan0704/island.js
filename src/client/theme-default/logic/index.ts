@@ -14,3 +14,5 @@ export function normalizeHref(url?: string) {
   const suffix = import.meta.env.ENABLE_SPA ? '' : '.html';
   return addLeadingSlash(`${url}${suffix}`);
 }
+
+export { useAsideAnchor } from './useAsideAnchor';

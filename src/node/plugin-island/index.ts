@@ -7,7 +7,7 @@ import { pluginSiteData } from './siteDataPlugin';
 
 export function pluginIsland(
   config: SiteConfig,
-  isServer: boolean = false,
+  isServer = false,
   restartServer?: () => Promise<void>
 ): Plugin[] {
   return [

@@ -1,6 +1,6 @@
 import { visit } from 'unist-util-visit';
 import type { Plugin } from 'unified';
-import type { Text, Parent } from 'hast';
+import type { Text } from 'hast';
 import { fromHtml } from 'hast-util-from-html';
 import shiki from 'shiki';
 
