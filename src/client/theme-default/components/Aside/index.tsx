@@ -17,7 +17,9 @@ export function Aside(
   }, [props.headers]);
 
   useEffect(() => {
-    // handle hmr
+    // Handle aside hmr:
+    // When mdx file changed, server will send a custom event to client.
+    // Then we listen the event and pull the latest page module so we can get and render the new headers.
     if (import.meta.env.DEV) {
       import.meta.hot?.on('md(x)-changed', () => {
         import(
