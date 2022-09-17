@@ -1,7 +1,7 @@
 import styles from './index.module.scss';
 import React from 'react';
 import { Link } from '../Link/index';
-import { DefaultTheme } from '../../../../shared/types';
+import { DefaultTheme } from '../../../shared/types';
 import { usePageData } from 'island/client';
 import { useLocation } from 'react-router-dom';
 import { normalizeHref } from '../../logic/index';

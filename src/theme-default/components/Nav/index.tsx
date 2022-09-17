@@ -3,7 +3,7 @@ import { Link } from '../Link/index';
 import { SwitchAppearance } from '../SwitchAppearance/index';
 import GithubSvg from './icons/github.svg';
 // import { Search } from '../Search/index';
-import { DefaultTheme } from '../../../../shared/types';
+import { DefaultTheme } from '../../../shared/types';
 import { useLocation } from 'react-router-dom';
 import { usePageData } from 'island/client';
 import { normalizeHref } from '../../logic/index';

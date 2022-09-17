@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import { PageData } from '../../shared/types';
+import { PageData } from '../shared/types';
 import { inBrowser } from './utils';
 
 export const DataContext = createContext({
