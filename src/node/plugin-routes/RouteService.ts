@@ -1,6 +1,7 @@
 import fastGlob from 'fast-glob';
+import fs from 'fs-extra';
+import { CLI_BUNDLE_OUTDIR } from '../constants';
 import path from 'path';
-import { lazyWithPreload } from './lazyWithPreload';
 
 export interface RouteMeta {
   routePath: string;
@@ -16,6 +17,11 @@ export const normalizeRoutePath = (routePath: string) => {
   routePath = routePath.replace(/\.(.*)?$/, '').replace(/index$/, '');
   return addLeadingSlash(routePath);
 };
+
+const lazyWithPreloadRuntimeCode = fs.readFileSync(
+  path.join(CLI_BUNDLE_OUTDIR, 'lazyWithPreload.js'),
+  'utf-8'
+);
 
 export class RouteService {
   #routeData: RouteMeta[] = [];
@@ -59,14 +65,7 @@ export class RouteService {
 
   generateRoutesCode(ssr?: boolean) {
     return `
-${
-  ssr
-    ? ''
-    : `import loadable from '@loadable/component';
-import { ComponentType, forwardRef, lazy, useRef } from 'react';
-import { jsx } from 'react/jsx-runtime';
-${lazyWithPreload.toString()};`
-};
+${lazyWithPreloadRuntimeCode.toString()};
 import React from 'react';
 ${this.#routeData
   .map((route, index) => {
@@ -85,7 +84,7 @@ ${this.#routeData
      * For SSR, example:
      * {
      *   route: '/',
-     *   element: React.createElement(Route0),
+     *   element: jsx(Route0),
      *   preload: Route0.preload,
      *   filePath: '/Users/xxx/xxx/index.md'
      * }
@@ -93,7 +92,7 @@ ${this.#routeData
      * For client render, example:
      * {
      *   route: '/',
-     *   element: React.createElement(Route0.default),
+     *   element: jsx(Route0.default),
      *   preload: Route0.preload,
      *   filePath: '/Users/xxx/xxx/index.md'
      * }

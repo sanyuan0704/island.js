@@ -31,7 +31,7 @@ export function Aside(
 
   useAsideAnchor(prevActiveLinkRef, headers, asideRef, markerRef);
 
-  const renderHeader = (header: any, index: number) => {
+  const renderHeader = (header: Header) => {
     const isNested = header.depth > 2;
     return (
       <li key={header.text}>

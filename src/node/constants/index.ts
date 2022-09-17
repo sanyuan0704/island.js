@@ -45,7 +45,9 @@ export const DEFAULT_EXTERNALS: string[] = [
   'react/jsx-runtime'
 ];
 
-export const ISLAND_JSX_RUNTIME_PATH = join(PACKAGE_ROOT_PATH, 'dist');
+export const CLI_BUNDLE_OUTDIR = join(PACKAGE_ROOT_PATH, 'dist');
+
+export const ISLAND_JSX_RUNTIME_PATH = CLI_BUNDLE_OUTDIR;
 
 export const ISLAND_CLI_PATH = join(PACKAGE_ROOT_PATH, DIST_PATH, 'cli.js');
 

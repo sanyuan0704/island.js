@@ -5,7 +5,6 @@ export type PreloadableComponent<T extends ComponentType<any>> = T & {
   preload: () => Promise<PageModule<T>>;
 };
 
-// Runtime code
 // Inspired by https://github.com/ianschmitz/react-lazy-with-preload/blob/master/src/index.ts
 export function lazyWithPreload<T extends ComponentType<any>>(
   factory: () => Promise<{ default: T }>

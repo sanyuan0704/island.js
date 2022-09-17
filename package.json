@@ -23,7 +23,7 @@
   },
   "scripts": {
     "dev": "tsup --watch",
-    "build": "tsup --minify && tsx scripts/pre-bundle.cts",
+    "build": "NODE_ENV=production tsup && tsx scripts/pre-bundle.cts",
     "start:client": "cd src/client && tsc -w",
     "start:node": "cd src/node && tsc -w",
     "dev:docs": "node ./bin/island docs",

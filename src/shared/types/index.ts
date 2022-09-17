@@ -7,6 +7,7 @@ export { DefaultTheme } from './default-theme';
 export interface Header {
   id: string;
   text: string;
+  depth: number;
 }
 export interface SiteSiteData {
   title: string;
