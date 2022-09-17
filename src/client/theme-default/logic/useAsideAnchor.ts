@@ -60,6 +60,12 @@ export function useAsideAnchor(
           const scrollTop = window.scrollY;
           const currentAnchorTop =
             currentAnchor.parentElement!.offsetTop - NAV_HEIGHT;
+
+          if (!nextAnchor) {
+            activate(links, i);
+            break;
+          }
+
           const nextAnchorTop =
             nextAnchor.parentElement!.offsetTop - NAV_HEIGHT;
 
