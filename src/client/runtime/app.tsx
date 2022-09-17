@@ -6,14 +6,14 @@ import { Route } from '../../node/plugin-routes';
 import { omit } from './utils';
 import { PageData } from '../../shared/types';
 import { HelmetProvider } from 'react-helmet-async';
-import { useEffect } from 'react';
+import { useContext, useEffect, useLayoutEffect } from 'react';
+import { DataContext, useSetPageData } from './hooks';
 
 export async function waitForApp(path: string): Promise<PageData> {
   const matched = matchRoutes(routes, path)!;
   if (matched) {
     // Preload route component
     const mod = await (matched[0].route as Route).preload();
-    console.log(mod);
     return {
       siteData,
       pagePath: (matched[0].route as Route).filePath,
@@ -29,19 +29,25 @@ export async function waitForApp(path: string): Promise<PageData> {
 }
 
 export function App({
-  helmetContext,
-  setPageData
+  helmetContext
 }: {
   helmetContext?: object;
   setPageData?: React.Dispatch<React.SetStateAction<PageData>>;
 }) {
   const { pathname } = useLocation();
-  useEffect(() => {
+  const setPageData = useContext(DataContext).setData;
+
+  useLayoutEffect(() => {
     async function refetchData() {
-      setPageData && setPageData(await waitForApp(pathname));
+      const pageData = await waitForApp(pathname);
+      try {
+        setPageData(pageData);
+      } catch (e) {
+        console.log(e);
+      }
     }
     refetchData();
-  }, [pathname]);
+  }, [pathname, setPageData]);
 
   return (
     <HelmetProvider context={helmetContext}>

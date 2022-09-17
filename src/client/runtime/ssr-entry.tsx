@@ -20,7 +20,7 @@ export async function render(
   data.islandProps = [];
   data.islandToPathMap = {};
   const appHtml = renderToString(
-    <DataContext.Provider value={pageData}>
+    <DataContext.Provider value={{ data: pageData, setData: () => {} }}>
       <StaticRouter location={pagePath}>
         <App helmetContext={helmetContext} />
       </StaticRouter>

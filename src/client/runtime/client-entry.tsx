@@ -23,13 +23,12 @@ async function renderInBrowser() {
   const enhancedApp = async () => {
     const { waitForApp, App } = await import('./app');
     const initialPageData = await waitForApp(window.location.pathname);
-    return () => {
+    return function RootApp() {
       const [pageData, setPageData] = useState(initialPageData);
-
       return (
-        <DataContext.Provider value={pageData}>
+        <DataContext.Provider value={{ data: pageData, setData: setPageData }}>
           <BrowserRouter>
-            <App setPageData={setPageData} />
+            <App />
           </BrowserRouter>
         </DataContext.Provider>
       );
