@@ -31,10 +31,7 @@ function getTutorialSidebar() {
   return [
     {
       text: 'Guide',
-      items: [
-        { text: 'Getting Started', link: '/guide/getting-started' },
-        { text: 'Fresh', link: '/fresh' }
-      ]
+      items: [{ text: 'Getting Started', link: '/guide/getting-started' }]
     }
 
     // {

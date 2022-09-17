@@ -29,7 +29,7 @@ export function Nav() {
       </div>
     );
   };
-
+  // TODO: add menu dropdown group
   const renderMenuItemGroup = (item: DefaultTheme.NavItemWithChildren) => {
     return <div>...</div>;
   };
