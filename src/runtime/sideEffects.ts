@@ -11,6 +11,8 @@ if (inBrowser()) {
       target = el.classList.contains('header-anchor')
         ? el
         : document.getElementById(decodeURIComponent(hash.slice(1)));
+
+      target;
     } catch (e) {
       console.warn(e);
     }

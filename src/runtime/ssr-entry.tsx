@@ -11,7 +11,7 @@ export async function render(
   enableSpa: boolean
 ): Promise<{
   appHtml: string;
-  propsData: unknown | unknown[];
+  propsData: unknown[];
   islandToPathMap: Record<string, string>;
   pageData: PageData | null;
 }> {
@@ -29,8 +29,8 @@ export async function render(
     </DataContext.Provider>
   );
   const { islandToPathMap, islandProps } = data;
-  // ----------------end if ssr rendering -------------
-  // above process is strictly synchronous, so there is no concurrency race problem about island.
+  // ----------------End if ssr rendering -------------
+  // Above process is strictly synchronous, so there is no concurrency race problem about island.
   return {
     appHtml,
     islandToPathMap,
