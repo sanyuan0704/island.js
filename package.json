@@ -1,6 +1,6 @@
 {
-  "name": "islandjs",
-  "version": "0.0.0-alpha.11",
+  "name": "island-ssg",
+  "version": "0.0.1",
   "description": "Vite & Island architecture SSG framework",
   "main": "dist/index.js",
   "packageManager": "pnpm@7.9.2",
@@ -88,7 +88,8 @@
     "unified": "^10.1.2",
     "unist-util-visit": "^4.1.1",
     "unist-util-visit-children": "^2.0.0",
-    "vite": "^3.0.9"
+    "vite": "^3.0.9",
+    "husky": "^8.0.1"
   },
   "devDependencies": {
     "@babel/traverse": "^7.19.0",
@@ -120,7 +121,6 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.1",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "resolve": "^1.22.1",
