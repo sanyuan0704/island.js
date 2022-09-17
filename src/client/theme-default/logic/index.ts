@@ -11,5 +11,8 @@ export function normalizeHref(url?: string) {
   if (!isProduction() || url.startsWith('http')) {
     return url;
   }
-  return addLeadingSlash(`${url}.html`);
+  const suffix = import.meta.env.ENABLE_SPA ? '' : '.html';
+  return addLeadingSlash(`${url}${suffix}`);
 }
+
+export { useAsideAnchor } from './useAsideAnchor';

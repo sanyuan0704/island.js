@@ -1,4 +1,6 @@
 import fastGlob from 'fast-glob';
+import fs from 'fs-extra';
+import { CLI_BUNDLE_OUTDIR } from '../constants';
 import path from 'path';
 
 export interface RouteMeta {
@@ -15,6 +17,11 @@ export const normalizeRoutePath = (routePath: string) => {
   routePath = routePath.replace(/\.(.*)?$/, '').replace(/index$/, '');
   return addLeadingSlash(routePath);
 };
+
+const lazyWithPreloadRuntimeCode = fs.readFileSync(
+  path.join(CLI_BUNDLE_OUTDIR, 'lazyWithPreload.js'),
+  'utf-8'
+);
 
 export class RouteService {
   #routeData: RouteMeta[] = [];
@@ -58,21 +65,41 @@ export class RouteService {
 
   generateRoutesCode(ssr?: boolean) {
     return `
-${ssr ? '' : `import loadable from '@loadable/component'`};
+${lazyWithPreloadRuntimeCode.toString()};
 import React from 'react';
 ${this.#routeData
   .map((route, index) => {
     return ssr
-      ? `import Route${index} from '${route.absolutePath}';`
-      : `const Route${index} = loadable(() => import('${route.absolutePath}'))`;
+      ? `import * as Route${index} from '${route.absolutePath}';`
+      : `const Route${index} = lazyWithPreload(() => import('${route.absolutePath}'))`;
   })
   .join('\n')}
 export const routes = [
 ${this.#routeData
   .map((route, index) => {
-    return `{ path: '${route.routePath}', element: React.createElement(Route${index}), filePath: '${route.absolutePath}', preload: () => import('${route.absolutePath}') },`;
+    // In ssr, we don't need to import component dynamically.
+    const preload = ssr ? `() => Route${index}` : `Route${index}.preload`;
+    const component = ssr ? `Route${index}.default` : `Route${index}`;
+    /**
+     * For SSR, example:
+     * {
+     *   route: '/',
+     *   element: jsx(Route0),
+     *   preload: Route0.preload,
+     *   filePath: '/Users/xxx/xxx/index.md'
+     * }
+     *
+     * For client render, example:
+     * {
+     *   route: '/',
+     *   element: jsx(Route0.default),
+     *   preload: Route0.preload,
+     *   filePath: '/Users/xxx/xxx/index.md'
+     * }
+     */
+    return `{ path: '${route.routePath}', element: React.createElement(${component}), filePath: '${route.absolutePath}', preload: ${preload} }`;
   })
-  .join('\n')}
+  .join(',\n')}
 ];
 `;
   }

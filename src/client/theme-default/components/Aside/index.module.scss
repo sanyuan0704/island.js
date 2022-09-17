@@ -51,7 +51,7 @@
 }
 
 .outline-link:hover,
-.outline-link.active {
+.outline-link:global(.aside-active) {
   color: var(--island-c-text-1);
   transition: color 0.25s;
 }

@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { ComponentType } from 'react';
 import { UserConfig as ViteConfiguration } from 'vite';
 import { DefaultTheme } from './default-theme';
 
@@ -7,6 +7,7 @@ export { DefaultTheme } from './default-theme';
 export interface Header {
   id: string;
   text: string;
+  depth: number;
 }
 export interface SiteSiteData {
   title: string;
@@ -70,9 +71,9 @@ export interface UserConfig<ThemeConfig = any> {
    */
   vite?: ViteConfiguration;
   /**
-   * Enable island architecture.
+   * Enable single page application in production.
    */
-  mpa?: boolean;
+  enableSpa?: boolean;
   /**
    * Whether to fail builds when there are dead links.
    */
@@ -138,8 +139,8 @@ export interface SiteConfig<ThemeConfig = any>
 
 export type ComponentPropsWithIsland<T = any> = T & { __island: boolean };
 
-export interface PageModule {
-  default: ReactElement;
+export interface PageModule<T extends ComponentType<any>> {
+  default: T;
   [key: string]: unknown;
 }
 

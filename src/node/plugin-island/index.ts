@@ -7,13 +7,13 @@ import { pluginSiteData } from './siteDataPlugin';
 
 export function pluginIsland(
   config: SiteConfig,
-  isServer: boolean = false,
+  isServer = false,
   restartServer?: () => Promise<void>
 ): Plugin[] {
   return [
     pluginSiteData(config),
     pluginConfig(config),
     pluginIndexHtml(config),
-    pluginIslandTransform(isServer)
+    pluginIslandTransform(config, isServer)
   ];
 }

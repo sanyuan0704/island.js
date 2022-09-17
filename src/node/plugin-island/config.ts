@@ -61,8 +61,12 @@ export function pluginConfig(config: SiteConfig): Plugin {
             'island/jsx-runtime': join(
               ISLAND_JSX_RUNTIME_PATH,
               'jsx-runtime.js'
-            )
+            ),
+            'island/theme-default': DEFAULT_THEME_PATH
           }
+        },
+        define: {
+          'import.meta.env.ENABLE_SPA': config.enableSpa
         },
         css: {
           modules: {

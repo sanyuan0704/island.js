@@ -1,6 +1,6 @@
 import { visit } from 'unist-util-visit';
 import type { Plugin } from 'unified';
-import type { Text, Parent } from 'hast';
+import type { Text } from 'hast';
 import { fromHtml } from 'hast-util-from-html';
 import shiki from 'shiki';
 
@@ -33,6 +33,7 @@ export const rehypePluginShiki: Plugin<[Options], import('hast').Root> = ({
 
         const highlightedCode = highlighter.codeToHtml(codeContent, { lang });
         const fragmentAst = fromHtml(highlightedCode, { fragment: true });
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore Reserve the class name `language-xxx` in the code tag
         fragmentAst.children[0].children[0].properties.className =
           codeClassName;

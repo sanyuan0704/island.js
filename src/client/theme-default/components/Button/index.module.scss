@@ -32,6 +32,7 @@
 }
 
 .button.brand:hover {
+  opacity: 1;
   border-color: var(--island-button-brand-hover-border);
   color: var(--island-button-brand-hover-text);
   background-color: var(--island-button-brand-hover-bg);

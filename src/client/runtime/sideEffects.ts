@@ -3,8 +3,9 @@ import { inBrowser } from './utils';
 const DEFAULT_NAV_HEIGHT = 72;
 
 // Control the scroll behavior of the browser when user clicks on a link
-if (inBrowser) {
-  function scrollTo(el: HTMLElement, hash: string, smooth = false) {
+if (inBrowser()) {
+  // eslint-disable-next-line no-inner-declarations
+  function scrollTo(el: HTMLElement, hash: string, isSmooth = false) {
     let target: HTMLElement | null = null;
     try {
       target = el.classList.contains('header-anchor')
@@ -26,11 +27,11 @@ if (inBrowser) {
         target.getBoundingClientRect().top -
         DEFAULT_NAV_HEIGHT +
         targetPadding;
-
+      // Only scroll smoothly in page header anchor
       window.scrollTo({
         left: 0,
         top: targetTop,
-        behavior: 'smooth'
+        ...(isSmooth ? { behavior: 'smooth' } : {})
       });
     }
   }
@@ -44,7 +45,7 @@ if (inBrowser) {
         const { origin, hash, target } = link;
         const currentUrl = window.location;
         // only intercept inbound links
-        if (hash && target !== `_blank` && origin === currentUrl.origin) {
+        if (hash && target !== '_blank' && origin === currentUrl.origin) {
           e.preventDefault();
           // scroll between hash anchors in the same page
           if (hash && hash !== currentUrl.hash) {
