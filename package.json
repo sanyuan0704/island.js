@@ -1,6 +1,6 @@
 {
   "name": "island-ssg",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Vite & Island architecture SSG framework",
   "main": "dist/index.js",
   "packageManager": "pnpm@7.9.2",
@@ -132,7 +132,8 @@
   },
   "files": [
     "bin",
-    "src/client",
+    "src/runtime",
+    "src/theme-default",
     "dist",
     "vendors",
     "template.html"
