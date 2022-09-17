@@ -34,7 +34,7 @@ export async function render(
   return {
     appHtml,
     islandToPathMap,
-    propsData: islandProps,
+    propsData: islandProps as unknown[],
     // Only spa need the data on window
     pageData: enableSpa ? pageData : null
   };
