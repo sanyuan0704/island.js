@@ -7,8 +7,11 @@ import path from 'path';
 import resolve from 'resolve';
 import { performance } from 'perf_hooks';
 import { green } from 'picocolors';
+import { remove, pathExists } from 'fs-extra';
 
 type PreBundleItem = string;
+
+const PRE_BUNDLE_DIR = 'vendors';
 
 async function preBundle(deps: PreBundleItem[]) {
   const startTime = performance.now();
@@ -17,10 +20,14 @@ async function preBundle(deps: PreBundleItem[]) {
     const flattedName = item.replace(/\//g, '_');
     flattenDepMap[flattedName] = item;
   });
+  const outputAbsolutePath = path.resolve(process.cwd(), PRE_BUNDLE_DIR);
+  if (await pathExists(outputAbsolutePath)) {
+    await remove(path.join(process.cwd(), PRE_BUNDLE_DIR));
+  }
   await init;
   await build({
     entryPoints: flattenDepMap,
-    outdir: 'vendors',
+    outdir: PRE_BUNDLE_DIR,
     bundle: true,
     minify: true,
     splitting: true,
@@ -57,9 +64,10 @@ async function preBundle(deps: PreBundleItem[]) {
             const entryPath = args.path;
             const code = await fs.readFile(entryPath, 'utf-8');
             const [imports, exports] = await parse(code);
-            let proxyModule = [];
+            const proxyModule = [];
             // cjs
             if (!imports.length && !exports.length) {
+              // eslint-disable-next-line @typescript-eslint/no-var-requires
               const res = require(entryPath);
               const specifiers = Object.keys(res);
               proxyModule.push(
