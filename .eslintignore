@@ -4,3 +4,4 @@ package.json
 *.d.ts
 .eslintrc.cjs
 tsconfig.json
+vendors

@@ -8,7 +8,7 @@ interface ImportMeta {
   readonly env: ImportMetaEnv
 }
 
-declare module 'island/theme/*' {
+declare module 'island/theme*' {
   import { ComponentType, Component } from 'react';
 
   export const Layout: ComponentType<any>;

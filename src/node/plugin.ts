@@ -10,7 +10,7 @@ import { ISLAND_JSX_RUNTIME_PATH } from './constants/index';
 
 export async function createIslandPlugins(
   config: SiteConfig,
-  isServer: boolean = false,
+  isServer = false,
   restartServer?: () => Promise<void>
 ): Promise<PluginOption[]> {
   return [

@@ -33,6 +33,7 @@ export const rehypePluginShiki: Plugin<[Options], import('hast').Root> = ({
 
         const highlightedCode = highlighter.codeToHtml(codeContent, { lang });
         const fragmentAst = fromHtml(highlightedCode, { fragment: true });
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore Reserve the class name `language-xxx` in the code tag
         fragmentAst.children[0].children[0].properties.className =
           codeClassName;

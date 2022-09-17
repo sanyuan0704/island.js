@@ -25,7 +25,7 @@ export function HomeHero() {
           <p className={styles.tagline}>{hero.tagline}</p>
           <div className={styles.actions}>
             {hero.actions.map((action) => (
-              <div className={styles.action}>
+              <div className={styles.action} key={action.link}>
                 <Button
                   type="a"
                   text={action.text}

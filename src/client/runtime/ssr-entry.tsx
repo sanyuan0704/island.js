@@ -2,6 +2,7 @@ import { renderToString } from 'react-dom/server';
 import { App, waitForApp } from './app';
 import { StaticRouter } from 'react-router-dom/server';
 import { DataContext } from './hooks';
+import { PageData } from 'shared/types';
 
 // For ssr component render
 export async function render(
@@ -10,16 +11,17 @@ export async function render(
   enableSpa: boolean
 ): Promise<{
   appHtml: string;
-  propsData: any[];
+  propsData: unknown[];
   islandToPathMap: Record<string, string>;
-  pageData: any;
+  pageData: PageData | null;
 }> {
-  const pageData = await waitForApp(pagePath);
+  const pageData = (await waitForApp(pagePath)) as PageData;
   const { data } = await import('island/jsx-runtime');
   // ----------------Start if ssr rendering -------------
   data.islandProps = [];
   data.islandToPathMap = {};
   const appHtml = renderToString(
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     <DataContext.Provider value={{ data: pageData, setData: () => {} }}>
       <StaticRouter location={pagePath}>
         <App helmetContext={helmetContext} />

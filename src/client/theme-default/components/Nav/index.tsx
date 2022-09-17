@@ -12,8 +12,6 @@ const IconMap = {
   github: GithubSvg
 };
 
-export function NavBar() {}
-
 export function Nav() {
   const { siteData, pageType } = usePageData();
   const hasSidebar = pageType === 'doc';
@@ -70,7 +68,12 @@ export function Nav() {
                 {socialLinks.map((item) => {
                   const IconComp = IconMap[item.icon as keyof typeof IconMap];
                   return (
-                    <a href={item.link} target="_blank" rel="noopener">
+                    <a
+                      key={item.link}
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <IconComp />
                     </a>
                   );

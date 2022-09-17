@@ -4,6 +4,7 @@ import { inBrowser } from './utils';
 
 export const DataContext = createContext({
   data: inBrowser() ? window?.ISLAND_PAGE_DATA : null,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   setData: (_data: PageData) => {}
 });
 

@@ -1,4 +1,4 @@
-import { ComponentType, ReactElement } from 'react';
+import { ComponentType } from 'react';
 import { UserConfig as ViteConfiguration } from 'vite';
 import { DefaultTheme } from './default-theme';
 

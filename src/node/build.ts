@@ -32,7 +32,7 @@ import fs, { copy, remove } from 'fs-extra';
 import ora from 'ora';
 import { HelmetData } from 'react-helmet-async';
 
-const islandInjectId = `island:inject`;
+const islandInjectId = 'island:inject';
 export const okMark = '\x1b[32m✓\x1b[0m';
 export const failMark = '\x1b[31m✖\x1b[0m';
 
@@ -216,7 +216,7 @@ class SSGBuilder {
       }
       injectIslandsCode = await injectBundlePromise;
     }
-    const { helmet } = helmetContext?.context;
+    const { helmet } = helmetContext.context!;
     const html = `
   <!DOCTYPE html>
   <html>
@@ -272,7 +272,10 @@ class SSGBuilder {
     await fs.ensureDir(join(this.#root, DIST_PATH, dirname(fileName)));
     try {
       await fs.copy(VENDOR_PATH, join(this.#root, DIST_PATH));
-    } catch (e) {}
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
     await fs.writeFile(join(this.#root, DIST_PATH, fileName), html);
   }
 

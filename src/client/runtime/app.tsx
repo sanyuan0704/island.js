@@ -28,14 +28,9 @@ export async function waitForApp(path: string): Promise<PageData> {
   }
 }
 
-export function App({
-  helmetContext
-}: {
-  helmetContext?: object;
-  setPageData?: React.Dispatch<React.SetStateAction<PageData>>;
-}) {
+export function App({ helmetContext }: { helmetContext?: object }) {
   const { pathname } = useLocation();
-  const setPageData = useContext(DataContext).setData;
+  const { setData: setPageData } = useContext(DataContext);
 
   useLayoutEffect(() => {
     async function refetchData() {
