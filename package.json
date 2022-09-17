@@ -22,7 +22,7 @@
       "default": "./src/client/theme-default/index.ts"
     }
   },
-  "scripts": { 
+  "scripts": {
     "dev": "tsup --watch",
     "build": "NODE_ENV=production tsup && tsx scripts/pre-bundle.cts",
     "start:client": "cd src/client && tsc -w",
@@ -34,7 +34,8 @@
     "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx --quiet ./",
     "test": "vitest run",
     "prepublishOnly": "pnpm build",
-    "postinstall": "husky install"
+    "postinstall": "husky install",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "keywords": [
     "vite",
@@ -112,6 +113,7 @@
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
     "commitlint": "^17.1.2",
+    "conventional-changelog-cli": "^2.2.2",
     "es-module-lexer": "^1.0.3",
     "eslint": "^8.23.0",
     "eslint-config-prettier": "^8.5.0",
