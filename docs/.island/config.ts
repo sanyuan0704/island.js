@@ -3,7 +3,6 @@ import { defineConfig } from '../../dist';
 export default defineConfig({
   lang: 'en-US',
   icon: '/icon.png',
-  enableSpa: true,
   themeConfig: {
     socialLinks: [
       {

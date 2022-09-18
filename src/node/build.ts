@@ -28,7 +28,7 @@ import { join, dirname } from 'path';
 import { OutputAsset, OutputChunk, RollupOutput } from 'rollup';
 import { createHash, dynamicImport } from './utils';
 import { Route } from './plugin-routes';
-import fs, { copy, remove } from 'fs-extra';
+import fs, { copy, pathExists, remove } from 'fs-extra';
 import ora from 'ora';
 import { HelmetData } from 'react-helmet-async';
 
@@ -86,7 +86,10 @@ class SSGBuilder {
       );
 
       // Copy public assets
-      await copy(join(this.#root, PUBLIC_DIR), join(this.#root, DIST_PATH));
+      const publicDirInRoot = join(this.#root, PUBLIC_DIR);
+      if (await pathExists(publicDirInRoot)) {
+        await copy(publicDirInRoot, join(this.#root, DIST_PATH));
+      }
 
       const serverEntryPath = join(this.#root, SERVER_OUTPUT_PATH);
       const { render, routes } = (await dynamicImport(

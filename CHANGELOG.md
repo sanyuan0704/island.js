@@ -1,4 +1,10 @@
-# 0.1.0 (2022-09-17)
+## 0.1.1 (2022-09-18)
+
+### Bug Fixes
+
+- build error when public dir not exist ([f56c518](https://github.com/sanyuan0704/island.js/commit/f56c5180ed919d1f6aca14ecaa859f60fa1392b0))
+
+## 0.1.0 (2022-09-18)
 
 ### Bug Fixes
 

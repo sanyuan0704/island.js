@@ -26,4 +26,4 @@ The theme system references [VitePress](https://vitepress.vuejs.org/) and [VuePr
 
 [MIT](https://github.com/sanyuan0704/island.js/blob/master/LICENSE)
 
-Copyright (c) 2022-present, Yangxingyuan
+Copyright (c) 2022-present, Xingyuan Yang
