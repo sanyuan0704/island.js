@@ -29,7 +29,7 @@ declare module 'island/client' {
 }
 
 declare module 'island/jsx-runtime' {
-  export const data = {
+  export const data : {
     islandToPathMap: MediaRecord<string, string>,
     islandProps: unknown
   };
