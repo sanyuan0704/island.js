@@ -12,7 +12,7 @@ export function pluginIsland(
 ): Plugin[] {
   return [
     pluginSiteData(config),
-    pluginConfig(config),
+    pluginConfig(config, restartServer),
     pluginIndexHtml(config),
     pluginIslandTransform(config, isServer)
   ];

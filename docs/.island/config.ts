@@ -2,6 +2,7 @@ import { defineConfig } from '../../dist';
 
 export default defineConfig({
   lang: 'en-US',
+  title: '666',
   icon: '/icon.png',
   themeConfig: {
     socialLinks: [
@@ -29,13 +30,18 @@ export default defineConfig({
 function getTutorialSidebar() {
   return [
     {
-      text: 'Guide',
-      items: [{ text: 'Getting Started', link: '/guide/getting-started' }]
+      text: 'Introduction',
+      items: [
+        { text: 'Getting Started', link: '/guide/getting-started' },
+        { text: 'Configure Your Site', link: '/guide/configure-site' }
+      ]
+    },
+    {
+      text: 'Concepts',
+      items: [
+        { text: 'SPA vs MPA', link: '/guide/spa-vs-mpa' },
+        { text: 'Islands Architecture', link: '/guide/islands-arch' }
+      ]
     }
-
-    // {
-    //   text: 'Advance',
-    //   items: []
-    // }
   ];
 }

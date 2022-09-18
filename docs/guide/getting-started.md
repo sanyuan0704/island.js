@@ -2,15 +2,15 @@
 
 ## Why Island.js?
 
-🏝️ Island.js is a static site generator that builds on top of Vite and Mdx. It is designed to be simple, powerful, and performant. It is built to help you focus on writing and deployed with minimum configuration.It has the following features:
+🏝️ Island.js is a static site generator that builds on top of Vite, React and Mdx. It is designed to be simple, powerful, and performant. It is built to help you focus on writing and deployed with minimum configuration.It has the following features:
 
 - **Fast**: Island is built on top of Vite, which is a modern build tool that aims to provide a faster and leaner development experience.
 - **Flexible**: It has internal Mdx language support, which is a powerful way to write content. You can write, import and use React components in Markdown file.
 - **Performant**: It is designed to be [island architecture](https://jasonformat.com/islands-architecture/), which means less javascript bundle, partial hydration and better performance about FCP, TTI.
 
-## Quick Start
+Next we will walk you through the steps to create a new Island.js doc site.
 
-### 1. Init project
+## 1. Init project
 
 First, you can use create a new directory by following command:
 
@@ -48,7 +48,7 @@ And then you can add the following scripts in `package.json`:
 }
 ```
 
-### 2. Start dev server
+## 2. Start dev server
 
 Serve the documentation site in the local server.
 
@@ -58,7 +58,7 @@ yarn dev
 
 Island will start a development server at http://localhost:5173.
 
-### 3. Build for production
+## 3. Build for production
 
 Build the documentation site for production.
 
@@ -68,7 +68,7 @@ yarn build
 
 Island will generate a static site in the `.island/dist` directory.
 
-### 4. Preview locally
+## 4. Preview locally
 
 Preview the production build locally.
 
