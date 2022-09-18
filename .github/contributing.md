@@ -42,7 +42,7 @@ $ pnpm run dev
 And then you can execute:
 
 ```sh
-$ pnpm run docs:dev
+$ pnpm run dev:docs
 ```
 
 Visit http://localhost:5173 and try modifying the source code. You'll get live update.

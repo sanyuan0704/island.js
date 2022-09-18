@@ -16,7 +16,10 @@ import pc from 'picocolors';
 
 const { green } = pc;
 
-export function pluginConfig(config: SiteConfig): Plugin {
+export function pluginConfig(
+  config: SiteConfig,
+  restartServer?: () => Promise<void>
+): Plugin {
   return {
     name: 'island:vite-config',
     enforce: 'pre',
@@ -90,6 +93,8 @@ export function pluginConfig(config: SiteConfig): Plugin {
             `\n${relative(config.root, ctx.file)} changed, restarting server...`
           )
         );
+        // `restartServer` always exist in current plugin hook
+        await restartServer!();
         return [];
       }
     }

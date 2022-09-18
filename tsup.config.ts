@@ -15,7 +15,6 @@ export default defineConfig([
     sourcemap: true,
     splitting: false,
     keepNames: true,
-    clean: true,
     minify: process.env.NODE_ENV === 'production',
     skipNodeModulesBundle: true
   },
@@ -24,7 +23,6 @@ export default defineConfig([
       lazyWithPreload: 'src/runtime/lazyWithPreload.tsx'
     },
     format: 'esm',
-    clean: true,
     dts: false,
     minify: false
   }

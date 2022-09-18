@@ -24,7 +24,7 @@ export function SideBar() {
     if ('items' in item) {
       children = item.items.map((child) => renderGroupItem(child, depth + 1));
     }
-    const isActive = item.text.includes('CLI');
+    const isActive = location.pathname.startsWith(item.link!);
     return (
       <div style={{ marginLeft }}>
         <div className={`${styles.link} ${isActive ? styles.active : ''}`}>

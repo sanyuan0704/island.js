@@ -15,7 +15,7 @@ export async function createIslandPlugins(
   restartServer?: () => Promise<void>
 ): Promise<PluginOption[]> {
   return [
-    pluginInspect({}),
+    // pluginInspect({}),
 
     // For island internal use
     pluginIsland(config, isServer, restartServer),
