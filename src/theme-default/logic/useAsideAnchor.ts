@@ -27,9 +27,11 @@ export function useAsideAnchor(
     const location = useLocation();
     pathname = location.pathname;
   }
+
   useEffect(() => {
-    if (!headers.length && markerRef.current) {
+    if (markerRef.current && (!headers.length || window.screenY === 0)) {
       markerRef.current.style.opacity = '0';
+      return;
     }
     // Util function to set dom ref after determining the active link
     const activate = (links: NodeListOf<HTMLAnchorElement>, index: number) => {

@@ -113,6 +113,13 @@ interface SidebarGroup {
   // The initial state of the sidebar group, which is only valid when `collapsible` is true
   collapsed?: boolean;
 }
+
+type SidebarItem = {
+  // The text of item
+  text: string;
+  // The link href of item
+  link: string;
+};
 ```
 
 The `object` config is a map for `SidebarGroup`, which has following type:
