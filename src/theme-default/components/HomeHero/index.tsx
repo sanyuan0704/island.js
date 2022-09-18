@@ -1,21 +1,22 @@
 import { usePageData } from 'island/client';
 import { Button } from '../Button';
 import styles from './index.module.scss';
-import logo from './island.png';
 import { normalizeHref } from '../../logic/index';
 
 const DEFAULT_HERO = {
   name: 'Island',
   text: 'Island ssg',
   tagline: 'Island ssg',
-  actions: []
+  actions: [],
+  image: undefined
 };
 
 export function HomeHero() {
   const { hero = DEFAULT_HERO } = usePageData();
+  const hasImage = hero.image !== undefined;
 
   return (
-    <div className={`${styles.hero} ${styles.hasImage}`}>
+    <div className={`${styles.hero} ${hasImage ? styles.hasImage : ''}`}>
       <div className={styles.container}>
         <div className={styles.main}>
           <h1 className={styles.name}>
@@ -36,12 +37,14 @@ export function HomeHero() {
             ))}
           </div>
         </div>
-        <div className={styles.image}>
-          <div className={styles.imageContainer}>
-            <div className={styles.imageBg} />
-            <img src={logo} alt="" />
+        {hasImage ? (
+          <div className={styles.image}>
+            <div className={styles.imageContainer}>
+              <div className={styles.imageBg} />
+              <img src={hero.image?.src} alt={hero.image?.alt} />
+            </div>
           </div>
-        </div>
+        ) : null}
       </div>
     </div>
   );

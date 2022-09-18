@@ -7,7 +7,7 @@ import { SiteConfig } from '../shared/types';
 import { pluginMdx } from './plugin-mdx';
 import babelPluginIsland from './babel-plugin-island';
 import { ISLAND_JSX_RUNTIME_PATH } from './constants/index';
-import pluginInspect from 'vite-plugin-inspect';
+// import pluginInspect from 'vite-plugin-inspect';
 
 export async function createIslandPlugins(
   config: SiteConfig,

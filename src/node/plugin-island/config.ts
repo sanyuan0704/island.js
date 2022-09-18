@@ -34,7 +34,6 @@ export function pluginConfig(
     },
     config(c) {
       return {
-        root: PACKAGE_ROOT_PATH,
         optimizeDeps: {
           include: [
             'react',
