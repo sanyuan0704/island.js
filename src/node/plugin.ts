@@ -7,6 +7,7 @@ import { SiteConfig } from '../shared/types';
 import { pluginMdx } from './plugin-mdx';
 import babelPluginIsland from './babel-plugin-island';
 import { ISLAND_JSX_RUNTIME_PATH } from './constants/index';
+import pluginInspect from 'vite-plugin-inspect';
 
 export async function createIslandPlugins(
   config: SiteConfig,
@@ -14,6 +15,8 @@ export async function createIslandPlugins(
   restartServer?: () => Promise<void>
 ): Promise<PluginOption[]> {
   return [
+    pluginInspect({}),
+
     // For island internal use
     pluginIsland(config, isServer, restartServer),
     // React hmr support

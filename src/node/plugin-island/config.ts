@@ -37,8 +37,10 @@ export function pluginConfig(config: SiteConfig): Plugin {
             'react',
             'react-dom',
             'react-dom/client',
+            'react-router-dom',
             'react/jsx-runtime',
-            '@loadable/component'
+            'react-helmet-async',
+            'lodash-es'
           ],
           exclude: [
             'island-ssg',
@@ -56,7 +58,7 @@ export function pluginConfig(config: SiteConfig): Plugin {
         resolve: {
           alias: {
             'island/theme': config.themeDir!,
-            'island/client': `/@fs/${CLIENT_EXPORTS_PATH}`,
+            'island/client': `${CLIENT_EXPORTS_PATH}`,
             'island/routes': join(c.root!, ROUTE_PATH),
             'island/jsx-runtime': join(
               ISLAND_JSX_RUNTIME_PATH,

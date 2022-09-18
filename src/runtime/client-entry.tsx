@@ -1,8 +1,8 @@
 import { hydrateRoot, createRoot } from 'react-dom/client';
 import { ComponentType, useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import { DataContext } from 'island/client';
 import './sideEffects';
-import { DataContext } from './hooks';
 
 // Type shim for window.ISLANDS
 declare global {

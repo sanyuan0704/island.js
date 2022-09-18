@@ -26,6 +26,10 @@ declare module 'island/client' {
 
   export const Content: ComponentType<any>;
   export const usePageData: () => PageData;
+  export const DataContext: React.Context<{
+    data: PageData;
+    setData: React.Dispatch<React.SetStateAction<PageData>>;
+  }>;
 }
 
 declare module 'island/jsx-runtime' {
