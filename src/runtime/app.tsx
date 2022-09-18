@@ -6,8 +6,8 @@ import { Route } from '../node/plugin-routes';
 import { omit } from './utils';
 import { PageData } from '../shared/types';
 import { HelmetProvider } from 'react-helmet-async';
-import { useContext, useEffect, useLayoutEffect } from 'react';
-import { DataContext, useSetPageData } from './hooks';
+import { useContext, useLayoutEffect } from 'react';
+import { DataContext } from 'island/client';
 
 export async function waitForApp(path: string): Promise<PageData> {
   const matched = matchRoutes(routes, path)!;

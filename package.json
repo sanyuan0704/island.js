@@ -1,7 +1,7 @@
 {
   "name": "islandjs",
-  "version": "0.0.0-alpha.11",
-  "description": "Vite & Island architecture SSG framework",
+  "version": "0.1.0",
+  "description": "Vite & Islands architecture SSG framework",
   "main": "dist/index.js",
   "packageManager": "pnpm@7.9.2",
   "type": "module",
@@ -13,20 +13,18 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/node/index.js"
+      "import": "./dist/index.js"
     },
     "./dist/*": "./dist/*",
     "./package.json": "./package.json",
     "./theme": {
       "types": "./dist/index.d.ts",
-      "default": "./src/client/theme-default/index.ts"
+      "default": "./src/theme-default/index.ts"
     }
   },
   "scripts": {
     "dev": "tsup --watch",
     "build": "NODE_ENV=production tsup && tsx scripts/pre-bundle.cts",
-    "start:client": "cd src/client && tsc -w",
-    "start:node": "cd src/node && tsc -w",
     "dev:docs": "node ./bin/island docs",
     "build:docs": "node ./bin/island build docs",
     "start:docs": "node ./bin/island start docs",
@@ -35,6 +33,7 @@
     "test": "vitest run",
     "prepublishOnly": "pnpm build",
     "postinstall": "husky install",
+    "release": "release-it",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "keywords": [
@@ -50,7 +49,6 @@
     "@babel/core": "^7.19.0",
     "@babel/helper-plugin-utils": "^7.19.0",
     "@babel/preset-react": "^7.18.6",
-    "@loadable/component": "5.15.2",
     "@mdx-js/mdx": "^2.1.3",
     "@mdx-js/react": "^2.1.3",
     "@mdx-js/rollup": "2",
@@ -66,6 +64,7 @@
     "github-slugger": "^1.4.0",
     "hast": "^1.0.0",
     "hast-util-from-html": "^1.0.0",
+    "husky": "^8.0.1",
     "lodash-es": "^4.17.21",
     "mdast-util-mdxjs-esm": "^1.3.0",
     "ora": "^6.1.2",
@@ -88,13 +87,14 @@
     "unified": "^10.1.2",
     "unist-util-visit": "^4.1.1",
     "unist-util-visit-children": "^2.0.0",
-    "vite": "^3.0.9"
+    "vite": "3.1",
+    "vite-plugin-inspect": "^0.7.1"
   },
   "devDependencies": {
     "@babel/traverse": "^7.19.0",
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
-    "@loadable/babel-plugin": "^5.13.2",
+    "@release-it/conventional-changelog": "^5.1.0",
     "@types/babel__core": "^7.1.19",
     "@types/babel__helper-plugin-utils": "^7.10.0",
     "@types/babel__traverse": "^7.18.1",
@@ -104,7 +104,6 @@
     "@types/hast": "^2.3.4",
     "@types/koa": "^2.13.5",
     "@types/koa-router": "^7.4.4",
-    "@types/loadable__component": "^5.13.4",
     "@types/lodash-es": "^4.17.6",
     "@types/polka": "^0.5.4",
     "@types/react": "^18.0.17",
@@ -120,9 +119,9 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.1",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
+    "release-it": "^15.4.2",
     "resolve": "^1.22.1",
     "rollup": "^2.78.1",
     "tsup": "^6.2.3",
@@ -132,7 +131,8 @@
   },
   "files": [
     "bin",
-    "src/client",
+    "src/runtime",
+    "src/theme-default",
     "dist",
     "vendors",
     "template.html"

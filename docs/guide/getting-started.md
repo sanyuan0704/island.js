@@ -1,8 +1,8 @@
 # Getting Started
 
-## Why Island?
+## Why Island.js?
 
-🏝️ Island(`/ˈaɪlənd/`) is a static site generator that builds on top of Vite and Mdx. It is designed to be simple, powerful, and performant. It is built to help you focus on writing and deployed with minimum configuration.It has the following features:
+🏝️ Island.js is a static site generator that builds on top of Vite and Mdx. It is designed to be simple, powerful, and performant. It is built to help you focus on writing and deployed with minimum configuration.It has the following features:
 
 - **Fast**: Island is built on top of Vite, which is a modern build tool that aims to provide a faster and leaner development experience.
 - **Flexible**: It has internal Mdx language support, which is a powerful way to write content. You can write, import and use React components in Markdown file.
@@ -22,11 +22,11 @@ Execute `npm init -y` to init a project.You can install Island with npm, yarn or
 
 ```bash
 // npm
-npm install island-ssg
+npm install islandjs
 // yarn
-yarn add island-ssg
+yarn add islandjs
 // pnpm
-pnpm add island-ssg
+pnpm add islandjs
 ```
 
 Then you can create file:

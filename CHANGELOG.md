@@ -1,4 +1,4 @@
-# 0.0.0-alpha.11 (2022-09-17)
+# 0.1.0 (2022-09-17)
 
 ### Bug Fixes
 
@@ -9,9 +9,14 @@
 - delete createMDXOptions ([6152056](https://github.com/sanyuan0704/react-islands/commit/6152056f3469a2db0e1d5f885395f0892a8d84c1))
 - island demo deps connot resolve ([ce77e96](https://github.com/sanyuan0704/react-islands/commit/ce77e96fc2e9235dd50a86eade43b5bfbb238661))
 - lazyWithPreload is not defined ([0602a57](https://github.com/sanyuan0704/react-islands/commit/0602a570069c4803401ed84a3d8cc934532d0034))
+- multi module instance problem, which cause react context didn't work ([6d31de6](https://github.com/sanyuan0704/react-islands/commit/6d31de6a2af999a797592048e21154708f1a73ce))
 - nextAnchor.parentElement is undefined ([aed2aa0](https://github.com/sanyuan0704/react-islands/commit/aed2aa07878e19e595cbda05b4271a9ee8c2e301))
 - normalize id by github-slugger ([680e94c](https://github.com/sanyuan0704/react-islands/commit/680e94c6a1b7e6307b19bbbfc701e59fe1c22027))
 - normalize link href ([0ca61e7](https://github.com/sanyuan0704/react-islands/commit/0ca61e7aa86d3489d5f81344c7a4665ad1d3c69c))
+- postinstall error because husky shouldn't be devDependency ([ac39f9c](https://github.com/sanyuan0704/react-islands/commit/ac39f9c86ac69120ea05d118c983618150439e90))
+- repair type error of data ([07b3cee](https://github.com/sanyuan0704/react-islands/commit/07b3cee21d8282664c344a0f954bdb04095303ac))
+- repair type error of propsData ([12a0687](https://github.com/sanyuan0704/react-islands/commit/12a0687969c88b9128d3a715c20a5eb470153f67))
+- runtime file lost in npm package ([4af0fca](https://github.com/sanyuan0704/react-islands/commit/4af0fca3d19a587b2ef789ff159b40f719ea4c09))
 - sidebar data edge case ([e47598e](https://github.com/sanyuan0704/react-islands/commit/e47598e1cda8bf6e8d9222971b14d7880b936644))
 - vendor copy error in render page ([6768e7e](https://github.com/sanyuan0704/react-islands/commit/6768e7e20f404bb7394f9b729c6eeb9559f40b48))
 
@@ -20,6 +25,7 @@
 - add aside scroll listen & toc remark plugin ([799bfb8](https://github.com/sanyuan0704/react-islands/commit/799bfb87f85a4e5cf58c23bdbfec0e25b23abd6d))
 - add common dep pre-bundle script ([e24a326](https://github.com/sanyuan0704/react-islands/commit/e24a326590625285b823a8c15dc9aee4dd2eba91))
 - add config resolve logic ([64be402](https://github.com/sanyuan0704/react-islands/commit/64be4029734982b210cde174b2835deb0759cfb6))
+- add conventional-changelog ([ec97307](https://github.com/sanyuan0704/react-islands/commit/ec97307c93d6f27a38f2bf4e9285adaa9942fc61))
 - add default theme types ([7f7d648](https://github.com/sanyuan0704/react-islands/commit/7f7d64809bebd20fa26c686be8e34edbb01330ef))
 - add external links rehype plugin ([6b76055](https://github.com/sanyuan0704/react-islands/commit/6b7605561ea69520bb9173862c6d89bc52fb8610))
 - add footer layout ([c8e456d](https://github.com/sanyuan0704/react-islands/commit/c8e456daa3fcb22c72c5dbc477ee617cbe68242a))
