@@ -35,6 +35,7 @@ export function useAsideAnchor(
     }
     // Util function to set dom ref after determining the active link
     const activate = (links: NodeListOf<HTMLAnchorElement>, index: number) => {
+      console.log('current active: ', index);
       if (prevActiveLinkRef.current) {
         prevActiveLinkRef.current.classList.remove('aside-active');
       }
@@ -70,6 +71,10 @@ export function useAsideAnchor(
           const scrollTop = window.scrollY;
           const currentAnchorTop =
             currentAnchor.parentElement!.offsetTop - NAV_HEIGHT;
+
+          if (i === 0 && scrollTop === 0) {
+            activate(links, 0);
+          }
 
           if (!nextAnchor) {
             activate(links, i);

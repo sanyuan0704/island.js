@@ -2,8 +2,8 @@ import { defineConfig } from '../../dist';
 
 export default defineConfig({
   lang: 'en-US',
-  title: '666',
-  icon: '/icon.png',
+  title: 'Island.js',
+  icon: '/island.png',
   themeConfig: {
     socialLinks: [
       {
@@ -37,7 +37,7 @@ function getTutorialSidebar() {
       ]
     },
     {
-      text: 'Concepts',
+      text: 'Architecture',
       items: [
         { text: 'SPA vs MPA', link: '/guide/spa-vs-mpa' },
         { text: 'Islands Architecture', link: '/guide/islands-arch' }

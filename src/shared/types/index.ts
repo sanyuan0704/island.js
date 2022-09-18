@@ -112,6 +112,10 @@ export interface Hero {
   name: string;
   text: string;
   tagline: string;
+  image?: {
+    src: string;
+    alt: string;
+  };
   actions: {
     text: string;
     link: string;
