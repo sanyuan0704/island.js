@@ -50,6 +50,13 @@
   --island-c-indigo-dark: #1d2f3f;
   --island-c-indigo-darker: #14212e;
 
+  --island-c-green: #21b8a3;
+  --island-c-green-light: #41c6b0;
+  --island-c-green-lighter: #41c6b0;
+  --island-c-green-dark: #149684;
+  --island-c-green-darker: #149684;
+  --island-c-green-dimm: #062521;
+
   --island-c-blue: #646cff;
   --island-c-blue-light: #747bff;
   --island-c-blue-lighter: #9499ff;
@@ -57,33 +64,6 @@
   --island-c-blue-dark: #535bf2;
   --island-c-blue-darker: #454ce1;
   --island-c-blue-dimm: rgba(100, 108, 255, 0.08);
-
-  --island-c-green: #42b883;
-  --island-c-green-light: #42d392;
-  --island-c-green-lighter: #35eb9a;
-  --island-c-green-dark: #33a06f;
-  --island-c-green-darker: #155f3e;
-  --island-c-green-dimm-1: rgba(66, 184, 131, 0.5);
-  --island-c-green-dimm-2: rgba(66, 184, 131, 0.25);
-  --island-c-green-dimm-3: rgba(66, 184, 131, 0.05);
-
-  --island-c-yellow: #ffc517;
-  --island-c-yellow-light: #fcd253;
-  --island-c-yellow-lighter: #fcfc7c;
-  --island-c-yellow-dark: #e0ad15;
-  --island-c-yellow-darker: #ad850e;
-  --island-c-yellow-dimm-1: rgba(255, 197, 23, 0.5);
-  --island-c-yellow-dimm-2: rgba(255, 197, 23, 0.25);
-  --island-c-yellow-dimm-3: rgba(255, 197, 23, 0.05);
-
-  --island-c-red: #ed3c50;
-  --island-c-red-light: #f54e82;
-  --island-c-red-lighter: #fd1d7c;
-  --island-c-red-dark: #cd2d3f;
-  --island-c-red-darker: #ab2131;
-  --island-c-red-dimm-1: rgba(237, 60, 80, 0.5);
-  --island-c-red-dimm-2: rgba(237, 60, 80, 0.25);
-  --island-c-red-dimm-3: rgba(237, 60, 80, 0.05);
 }
 
 /**
@@ -114,11 +94,11 @@
 
   --island-c-text-code: var(--island-c-indigo-soft);
 
-  --island-c-brand: var(--island-c-blue);
-  --island-c-brand-light: var(--island-c-blue-light);
-  --island-c-brand-lighter: var(--island-c-blue-lighter);
-  --island-c-brand-dark: var(--island-c-blue-dark);
-  --island-c-brand-darker: var(--island-c-blue-darker);
+  --island-c-brand: var(--island-c-green);
+  --island-c-brand-light: var(--island-c-green-light);
+  --island-c-brand-lighter: var(--island-c-green-lighter);
+  --island-c-brand-dark: var(--island-c-green-dark);
+  --island-c-brand-darker: var(--island-c-green-darker);
 
   --island-c-sponsor: #fd1d7c;
 }
@@ -368,7 +348,7 @@
   --island-home-hero-name-color: transparent;
   --island-home-hero-name-background: -webkit-linear-gradient(
     120deg,
-    #bd34fe 30%,
+    var(--island-c-brand) 30%,
     #41d1ff
   );
 
