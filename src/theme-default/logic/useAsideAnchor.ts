@@ -18,7 +18,15 @@ export function useAsideAnchor(
   asideRef: React.MutableRefObject<HTMLDivElement | null>,
   markerRef: React.MutableRefObject<HTMLDivElement | null>
 ) {
-  const { pathname } = useLocation();
+  let pathname;
+  if (import.meta.env.ENABLE_SPA) {
+    // Notice: useLocation is not available in Island mode
+    // Whether to set enableSpa or not, the hook execute order is always the same
+    // So we can tree shaking the react-router-dom code in island mode and there is no hook order problem
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const location = useLocation();
+    pathname = location.pathname;
+  }
   useEffect(() => {
     if (!headers.length && markerRef.current) {
       markerRef.current.style.opacity = '0';
@@ -86,10 +94,14 @@ export function useAsideAnchor(
     };
   }, [asideRef, headers, headers.length, markerRef, prevActiveLinkRef]);
 
-  useEffect(() => {
-    if (markerRef.current) {
-      markerRef.current.style.opacity = '0';
-      window.scrollTo(0, 0);
-    }
-  }, [markerRef, pathname]);
+  useEffect(
+    () => {
+      if (markerRef.current) {
+        markerRef.current.style.opacity = '0';
+        window.scrollTo(0, 0);
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    import.meta.env.ENABLE_SPA ? [markerRef, pathname] : [markerRef]
+  );
 }

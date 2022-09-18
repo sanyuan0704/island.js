@@ -148,7 +148,7 @@ class SSGBuilder {
   async islandsBuild(injectCode: string) {
     return this.#baseBuild(false, {
       build: {
-        minify: true,
+        minify: !process.env.DEBUG,
         outDir: TEMP_PATH,
         ssrManifest: false,
         rollupOptions: {
