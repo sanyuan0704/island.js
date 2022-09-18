@@ -1,3 +1,12 @@
+
+
+## [0.1.2](https://github.com/sanyuan0704/island.js/compare/0.1.1...0.1.2) (2022-09-18)
+
+
+### Bug Fixes
+
+* aside component render error in island mode ([0f80aab](https://github.com/sanyuan0704/island.js/commit/0f80aab6cb1bdca7e6d485835e759f7ff6b10f85))
+
 ## 0.1.1 (2022-09-18)
 
 ### Bug Fixes
