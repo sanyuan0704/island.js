@@ -25,8 +25,6 @@
   "scripts": {
     "dev": "tsup --watch",
     "build": "NODE_ENV=production tsup && tsx scripts/pre-bundle.cts",
-    "dev:client": "tsc",
-    "dev:node": "tsup --watch",
     "dev:docs": "node ./bin/island docs",
     "build:docs": "node ./bin/island build docs",
     "start:docs": "node ./bin/island start docs",
