@@ -60,4 +60,4 @@ With these cost after combining MPA and SPA, i have to say sometimes combine the
 
 So island.js recommended to use MPA for content-focused website, which is a default internal strategy.Then here comes the problem: MPA only generate static HTML page, how to ensure the hydration process if there are some interactive parts in the page?
 
-That's the motivation of island architecture.You will find the answer in the next article: [Islands Architecture](./islands-arch)
+That's the motivation of island architecture.You will find the answer in the next article: [Islands Architecture](./islands-arch.html)
