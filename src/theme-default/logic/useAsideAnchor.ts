@@ -35,7 +35,6 @@ export function useAsideAnchor(
     }
     // Util function to set dom ref after determining the active link
     const activate = (links: NodeListOf<HTMLAnchorElement>, index: number) => {
-      console.log('current active: ', index);
       if (prevActiveLinkRef.current) {
         prevActiveLinkRef.current.classList.remove('aside-active');
       }

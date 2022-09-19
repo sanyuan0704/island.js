@@ -15,15 +15,20 @@ export async function waitForApp(path: string): Promise<PageData> {
     // Preload route component
     const mod = await (matched[0].route as Route).preload();
     const pagePath = cleanUrl((matched[0].route as Route).filePath);
+    const relativePagePath = pagePath
+      .replace(siteData.base, '')
+      .replace(/^\//, '');
     return {
       siteData,
       pagePath,
+      relativePagePath,
       ...omit(mod, ['default'])
     } as PageData;
   } else {
     return {
       siteData,
       pagePath: '',
+      relativePagePath: '',
       pageType: '404'
     };
   }

@@ -12,7 +12,10 @@ export default defineConfig({
       }
     ],
     lastUpdatedText: 'Last Updated',
-    editLink: '',
+    editLink: {
+      pattern: 'https://github.com/vuejs/vitepress/edit/main/docs/:path',
+      text: '📝 Edit this page on GitHub'
+    },
     nav: [
       {
         text: 'Guide',

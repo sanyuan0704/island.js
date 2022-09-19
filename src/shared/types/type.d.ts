@@ -16,13 +16,15 @@ declare module 'island/theme*' {
 }
 
 declare module 'island:site-data' {
-  export default any;
+  import { SiteData } from 'shared/types';
+  const siteData: SiteData;
+  export default siteData;
 }
 
 
 declare module 'island/client' {
   import { ComponentType } from 'react';
-  import { PageData } from 'shared/types';
+  import { PageData, SiteData } from 'shared/types';
 
   export const Content: ComponentType<any>;
   export const usePageData: () => PageData;
@@ -41,6 +43,7 @@ declare module 'island/jsx-runtime' {
 
 declare module 'virtual:routes' {
   import { Route } from 'react-router-dom';
+import { SiteData } from './index';
 
   export const routes: Route[];
 }

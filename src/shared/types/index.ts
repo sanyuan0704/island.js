@@ -151,6 +151,7 @@ export interface PageModule<T extends ComponentType<any>> {
 export interface PageData {
   siteData: SiteData<DefaultTheme.Config>;
   pagePath: string;
+  relativePagePath: string;
   title?: string;
   description?: string;
   pageType: 'home' | 'doc' | 'custom' | '404';
