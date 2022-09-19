@@ -12,20 +12,20 @@ Next we will walk you through the steps to create a new Island.js doc site.
 
 ## 1. Init project
 
-First, you can use create a new directory by following command:
+First, you can create a new directory by following command:
 
 ```bash
 mkdir island-app && cd island-app
 ```
 
-Execute `npm init -y` to init a project.You can install Island with npm, yarn or pnpm:
+Execute `npm init -y` to init a project. You can install Island with npm, yarn or pnpm:
 
 ```bash
-// npm
+# npm
 npm install islandjs
-// yarn
+# yarn
 yarn add islandjs
-// pnpm
+# pnpm
 pnpm add islandjs
 ```
 
@@ -38,7 +38,6 @@ mkdir docs && echo '# Hello World' > docs/index.md
 And then you can add the following scripts in `package.json`:
 
 ```json
-// package.json
 {
   "scripts": {
     "dev": "island dev docs",
