@@ -13,7 +13,8 @@ export default defineConfig({
     ],
     lastUpdatedText: 'Last Updated',
     editLink: {
-      pattern: 'https://github.com/vuejs/vitepress/edit/main/docs/:path',
+      pattern:
+        'https://github.com/sanyuan0704/island.js/tree/master/docs/:path',
       text: '📝 Edit this page on GitHub'
     },
     nav: [

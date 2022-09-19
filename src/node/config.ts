@@ -49,7 +49,10 @@ export async function resolveUserConfig(
   }
 }
 
-export function resolveSiteData(userConfig: UserConfig): SiteData {
+export function resolveSiteData(
+  userConfig: UserConfig,
+  root: string
+): SiteData {
   return {
     lang: userConfig.lang || 'en-US',
     title: userConfig.title || 'Island',
@@ -59,7 +62,8 @@ export function resolveSiteData(userConfig: UserConfig): SiteData {
     base: userConfig.base || '/',
     scrollOffset: userConfig.scrollOffset || 90,
     locales: userConfig.locales || {},
-    icon: userConfig.icon || ''
+    icon: userConfig.icon || '',
+    root
   };
 }
 
@@ -89,7 +93,7 @@ export async function resolveConfig(
     tempDir: resolve(root, 'node_modules', '.island'),
     vite: userConfig.vite || {},
     allowDeadLinks: userConfig.allowDeadLinks || false,
-    siteData: resolveSiteData(userConfig),
+    siteData: resolveSiteData(userConfig, root),
     enableSpa: userConfig.enableSpa || false
   };
 

@@ -95,6 +95,7 @@ export interface LocaleConfig {
 }
 
 export interface SiteData<ThemeConfig = any> {
+  root: string;
   base: string;
   lang: string;
   title: string;
