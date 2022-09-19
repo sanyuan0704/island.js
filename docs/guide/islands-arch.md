@@ -12,7 +12,7 @@ As the name suggests, we can image the whole page as a sea of static, and the in
 
 Then the hydration process will only be executed on the islands, which will make the first page load performance and TTI(time to interactive) better because it only needs partial client script that is correspond to the interactive parts.
 
-## How to implement it?
+## Implement details in Island.js
 
 The implementation of this architecture includes three parts: `server runtime`、`build time` and `client runtime`.
 
@@ -28,7 +28,7 @@ export function Layout() {
 }
 ```
 
-You only need to add a `__island` prop to the component anywhere you use it, and then the component will automatically be identified as a island component.Then, island.js will only inject the client script of this component and its props when it is rendered on the client.
+You only need to add a `__island` prop to the component when you use it, and then the component will automatically be identified as a island component.Island.js will only inject the client script of island components as well as their props when they are rendered on the client.
 
 ### Internal Implement
 

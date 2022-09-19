@@ -167,14 +167,14 @@ export namespace DefaultTheme {
      *
      * @default 'Previous page'
      */
-    prev?: string;
+    prev?: SidebarItem;
 
     /**
      * Custom label for next page button.
      *
      * @default 'Next page'
      */
-    next?: string;
+    next?: SidebarItem;
   }
 
   // social link ---------------------------------------------------------------

@@ -3,7 +3,7 @@ import { routes } from 'virtual:routes';
 import { matchRoutes, useLocation } from 'react-router-dom';
 import siteData from 'island:site-data';
 import { Route } from '../node/plugin-routes';
-import { cleanUrl, omit } from './utils';
+import { cleanUrl, getRelativePagePath, omit } from './utils';
 import { PageData } from '../shared/types';
 import { HelmetProvider } from 'react-helmet-async';
 import { useContext, useLayoutEffect } from 'react';
@@ -15,15 +15,19 @@ export async function waitForApp(path: string): Promise<PageData> {
     // Preload route component
     const mod = await (matched[0].route as Route).preload();
     const pagePath = cleanUrl((matched[0].route as Route).filePath);
+    const relativePagePath = getRelativePagePath(path, pagePath, siteData.base);
+    console.log('relativePagePath', relativePagePath);
     return {
       siteData,
       pagePath,
+      relativePagePath,
       ...omit(mod, ['default'])
     } as PageData;
   } else {
     return {
       siteData,
       pagePath: '',
+      relativePagePath: '',
       pageType: '404'
     };
   }

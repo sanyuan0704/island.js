@@ -16,3 +16,5 @@ export function normalizeHref(url?: string) {
 }
 
 export { useAsideAnchor } from './useAsideAnchor';
+export { usePrevNextPage } from './usePrevNextPage';
+export { useEditLink } from './useEditLink';

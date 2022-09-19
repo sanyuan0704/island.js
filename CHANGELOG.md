@@ -1,5 +1,24 @@
 
 
+## [0.1.3](https://github.com/sanyuan0704/island.js/compare/0.1.2...0.1.3) (2022-09-19)
+
+
+### Bug Fixes
+
+* aside marker opacity problem ([647cc47](https://github.com/sanyuan0704/island.js/commit/647cc47c6e159b36337ca999d6b8abc7ff448112))
+* normalize prev and next page link ([8b3f0bb](https://github.com/sanyuan0704/island.js/commit/8b3f0bbf304223130847eeb8218f57f1b265e816))
+* postfix in md link ([bb779e6](https://github.com/sanyuan0704/island.js/commit/bb779e63bc66dd26714d60f3f7573bf33c24aa58))
+* remove hard code image in hero component ([2bd354f](https://github.com/sanyuan0704/island.js/commit/2bd354f6abd0adb1de4e37764898de7a87940231))
+* sidebar active invalid ([4be2c90](https://github.com/sanyuan0704/island.js/commit/4be2c90d230967e534eaa1ffda7c1031246dd805))
+
+
+### Features
+
+* add architecture doc ([d31999d](https://github.com/sanyuan0704/island.js/commit/d31999d3b24b6125f859d642dcd9c5bca5904683))
+* add configure-site doc ([f22c3a6](https://github.com/sanyuan0704/island.js/commit/f22c3a67c62bcf7053ba5abdd0aa459388c85416))
+* support edit link ([85248c6](https://github.com/sanyuan0704/island.js/commit/85248c62af7d3623f03e27cf53f78d272ced79e1))
+* support prev and next page in doc footer ([6150d39](https://github.com/sanyuan0704/island.js/commit/6150d39781539a838d0c346c7050bc373b4b6d8a))
+
 ## [0.1.2](https://github.com/sanyuan0704/island.js/compare/0.1.1...0.1.2) (2022-09-18)
 
 

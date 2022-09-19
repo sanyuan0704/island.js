@@ -1,37 +1,62 @@
 import styles from './index.module.scss';
 import { usePageData } from 'island/client';
+import { useEditLink, usePrevNextPage } from '../../logic';
+import { normalizeHref } from '../../logic/index';
 
 export function DocFooter() {
-  const { siteData } = usePageData();
-  const { editLink } = siteData?.themeConfig || {};
+  const { siteData, relativePagePath } = usePageData();
+  const { prevPage, nextPage } = usePrevNextPage(siteData);
+  const { editLink: rawEditLink } = siteData.themeConfig;
+  const editLink = useEditLink(rawEditLink!, relativePagePath);
+
   return (
     <footer className={styles.footer}>
       <div className={styles.editInfo}>
-        <div className={styles.editLink}>
-          <button className={styles.editLinkButton}>Edit Link</button>
-        </div>
-        <div className={styles.lastUpdated}>
-          {editLink ? (
+        {editLink ? (
+          <div className={styles.editLink}>
+            <a className={styles.editLinkButton} href={editLink.link}>
+              {editLink.text}
+            </a>
+          </div>
+        ) : null}
+
+        {/* TODO */}
+        {/* <div className={styles.lastUpdated}>
+          {lastUpdatedText ? (
             <>
               <p className={styles.lastUpdated}>
                 {editLink?.text || 'Last Updated: '}
               </p>
-              <span>{editLink?.pattern}</span>
+              <span>{}</span>
             </>
           ) : null}
-        </div>
+        </div> */}
       </div>
 
       <div className={styles.prevNext}>
         <div className={styles.pager}>
-          <a href="/" className={`${styles.pagerLink} ${styles.prev}`}>
-            <span className={styles.desc}>Previous Page</span>
-          </a>
+          {prevPage ? (
+            <a
+              href={normalizeHref(prevPage.link)}
+              className={`${styles.pagerLink} ${styles.prev}`}
+            >
+              <span className={styles.desc}>Previous Page</span>
+              <span className={styles.title}>{prevPage.text}</span>
+            </a>
+          ) : null}
         </div>
-        <div className={`${styles.pager} ${styles.hasNext}`}>
-          <a href="/" className={`${styles.pagerLink} ${styles.next}`}>
-            <span className={styles.desc}>Next Page</span>
-          </a>
+        <div className={styles.pager}>
+          {nextPage ? (
+            <div className={`${styles.hasNext}`}>
+              <a
+                href={normalizeHref(nextPage.link)}
+                className={`${styles.pagerLink} ${styles.next}`}
+              >
+                <span className={styles.desc}>Next Page</span>
+                <span className={styles.title}>{nextPage.text}</span>
+              </a>
+            </div>
+          ) : null}
         </div>
       </div>
     </footer>

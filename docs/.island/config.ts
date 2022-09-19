@@ -12,7 +12,11 @@ export default defineConfig({
       }
     ],
     lastUpdatedText: 'Last Updated',
-    editLink: '',
+    editLink: {
+      pattern:
+        'https://github.com/sanyuan0704/island.js/tree/master/docs/:path',
+      text: '📝 Edit this page on GitHub'
+    },
     nav: [
       {
         text: 'Guide',
