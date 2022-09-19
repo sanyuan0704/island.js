@@ -1,6 +1,7 @@
 import styles from './index.module.scss';
 import { usePageData } from 'island/client';
 import { useEditLink, usePrevNextPage } from '../../logic';
+import { normalizeHref } from '../../logic/index';
 
 export function DocFooter() {
   const { siteData, relativePagePath } = usePageData();
@@ -36,7 +37,7 @@ export function DocFooter() {
         <div className={styles.pager}>
           {prevPage ? (
             <a
-              href={prevPage.link}
+              href={normalizeHref(prevPage.link)}
               className={`${styles.pagerLink} ${styles.prev}`}
             >
               <span className={styles.desc}>Previous Page</span>
@@ -48,7 +49,7 @@ export function DocFooter() {
           {nextPage ? (
             <div className={`${styles.hasNext}`}>
               <a
-                href={nextPage.link}
+                href={normalizeHref(nextPage.link)}
                 className={`${styles.pagerLink} ${styles.next}`}
               >
                 <span className={styles.desc}>Next Page</span>
