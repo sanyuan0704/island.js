@@ -37,7 +37,7 @@ body:
     attributes:
       label: System Info
       description: Output of `npx envinfo --system --npmPackages islandjs --binaries --browsers`
-      render: shell
+      render: Shell
       placeholder: System, Binaries, Browsers
     validations:
       required: true
@@ -52,8 +52,7 @@ body:
       label: Validations
       description: Before submitting the issue, please make sure you do the following
       options:
-          required: true
-        - label: Read the [docs](https://island.sanyuan0704.top).
+        - label: Read the [docs](https://island.sanyuan0704.top)
           required: true
         - label: Check that there isn't already an issue that reports the same bug to avoid creating a duplicate.
           required: true
