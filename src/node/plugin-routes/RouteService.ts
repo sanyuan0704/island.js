@@ -1,6 +1,6 @@
 import fastGlob from 'fast-glob';
 import fs from 'fs-extra';
-import { CLI_BUNDLE_OUTDIR } from '../constants';
+import { RUNTIME_BUNDLE_OUTDIR } from '../constants';
 import path from 'path';
 
 export interface RouteMeta {
@@ -19,7 +19,7 @@ export const normalizeRoutePath = (routePath: string) => {
 };
 
 const lazyWithPreloadRuntimeCode = fs.readFileSync(
-  path.join(CLI_BUNDLE_OUTDIR, 'lazyWithPreload.js'),
+  path.join(RUNTIME_BUNDLE_OUTDIR, 'lazyWithPreload.js'),
   'utf-8'
 );
 

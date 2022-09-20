@@ -3,8 +3,8 @@ import { defineConfig } from 'tsup';
 export default defineConfig([
   {
     entry: {
-      'jsx-runtime': 'src/runtime/island-jsx-runtime.js',
       cli: 'src/node/cli.ts',
+      dev: 'src/node/dev.ts',
       index: 'src/node/index.ts'
     },
     minifyIdentifiers: false,
@@ -13,17 +13,22 @@ export default defineConfig([
     format: 'esm',
     dts: true,
     sourcemap: true,
-    splitting: false,
+    splitting: true,
     keepNames: true,
     minify: process.env.NODE_ENV === 'production',
-    skipNodeModulesBundle: true
+    skipNodeModulesBundle: true,
+    outDir: 'dist/node',
+    clean: true
   },
   {
     entry: {
+      'jsx-runtime': 'src/runtime/island-jsx-runtime.js',
       lazyWithPreload: 'src/runtime/lazyWithPreload.tsx'
     },
     format: 'esm',
     dts: false,
-    minify: false
+    minify: false,
+    outDir: 'dist/runtime',
+    clean: true
   }
 ]);

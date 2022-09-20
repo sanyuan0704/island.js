@@ -4,7 +4,10 @@ export const isProduction = () => process.env.NODE_ENV === 'production';
 
 export const TS_REGEX = /(c|m)?tsx?$/;
 
-export const PACKAGE_ROOT_PATH = join(fileURLToPath(import.meta.url), '../..');
+export const PACKAGE_ROOT_PATH = join(
+  fileURLToPath(import.meta.url),
+  '../../..'
+);
 
 export const CLIENT_RUNTIME_PATH = join(PACKAGE_ROOT_PATH, 'src/runtime');
 
@@ -39,10 +42,12 @@ export const DEFAULT_EXTERNALS: string[] = [
   'react/jsx-runtime'
 ];
 
-export const CLI_BUNDLE_OUTDIR = join(PACKAGE_ROOT_PATH, 'dist');
+export const CLI_BUNDLE_OUTDIR = join(PACKAGE_ROOT_PATH, 'dist', 'node');
 
-export const ISLAND_JSX_RUNTIME_PATH = CLI_BUNDLE_OUTDIR;
+export const RUNTIME_BUNDLE_OUTDIR = join(PACKAGE_ROOT_PATH, 'dist', 'runtime');
 
-export const ISLAND_CLI_PATH = join(PACKAGE_ROOT_PATH, DIST_PATH, 'cli.js');
+export const ISLAND_JSX_RUNTIME_PATH = RUNTIME_BUNDLE_OUTDIR;
+
+export const ISLAND_CLI_PATH = join(CLI_BUNDLE_OUTDIR, 'cli.js');
 
 export const VENDOR_PATH = join(PACKAGE_ROOT_PATH, 'vendors');
