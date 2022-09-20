@@ -1,11 +1,14 @@
 import styles from './index.module.scss';
+import { usePageData } from 'island/client';
 
 export function Footer() {
+  const { siteData } = usePageData();
+  const { message, copyright } = siteData.themeConfig.footer || {};
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
-        <p className={styles.message}>Released under the MIT License.</p>
-        <p className={styles.copyright}>Copyright © 2022-present Sanyuan0704</p>
+        {message && <div className={styles.message}>{message}</div>}
+        {copyright && <div className={styles.copyright}>{copyright}</div>}
       </div>
     </footer>
   );
