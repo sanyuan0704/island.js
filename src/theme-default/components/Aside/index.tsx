@@ -4,7 +4,11 @@ import { ComponentPropsWithIsland, Header } from 'shared/types/index';
 import { useAsideAnchor } from '../../logic';
 
 export function Aside(
-  props: ComponentPropsWithIsland<{ headers: Header[]; pagePath: string }>
+  props: ComponentPropsWithIsland<{
+    headers: Header[];
+    pagePath: string;
+    outlineTitle: string;
+  }>
 ) {
   const [headers, setHeaders] = useState(props.headers || []);
   // For outline text highlight
@@ -52,7 +56,7 @@ export function Aside(
       <div className={styles.docsAsideOutline}>
         <div className={styles.content} ref={asideRef}>
           <div className={styles.outlineMarker} ref={markerRef}></div>
-          <div className={styles.outlineTitle}>ON THIS PAGE</div>
+          <div className={styles.outlineTitle}>{props.outlineTitle}</div>
           <nav>
             <ul className={styles.root}>{headers.map(renderHeader)}</ul>
           </nav>

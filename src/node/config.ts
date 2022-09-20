@@ -60,10 +60,10 @@ export function resolveSiteData(
     themeConfig: userConfig.themeConfig || {},
     head: userConfig.head || [],
     base: userConfig.base || '/',
-    scrollOffset: userConfig.scrollOffset || 90,
     locales: userConfig.locales || {},
     icon: userConfig.icon || '',
-    root
+    root,
+    appearance: userConfig.appearance ?? true
   };
 }
 
@@ -91,10 +91,10 @@ export async function resolveConfig(
     configPath,
     configDeps,
     tempDir: resolve(root, 'node_modules', '.island'),
-    vite: userConfig.vite || {},
-    allowDeadLinks: userConfig.allowDeadLinks || false,
+    vite: userConfig.vite ?? {},
+    allowDeadLinks: userConfig.allowDeadLinks ?? false,
     siteData: resolveSiteData(userConfig, root),
-    enableSpa: userConfig.enableSpa || false
+    enableSpa: userConfig.enableSpa ?? false
   };
 
   return siteConfig;

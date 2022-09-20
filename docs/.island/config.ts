@@ -5,6 +5,7 @@ export default defineConfig({
   title: 'Island.js',
   icon: '/island.png',
   themeConfig: {
+    outlineTitle: 'ON THIS PAGE',
     socialLinks: [
       {
         icon: 'github',

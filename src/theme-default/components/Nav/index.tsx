@@ -15,6 +15,7 @@ const IconMap = {
 export function Nav() {
   const { siteData, pageType } = usePageData();
   const hasSidebar = pageType === 'doc';
+  const hasAppearanceSwitch = siteData.appearance !== false;
   const menuItems = siteData?.themeConfig?.nav || [];
   const socialLinks = siteData?.themeConfig?.socialLinks || [];
   const location = useLocation();
@@ -60,9 +61,11 @@ export function Nav() {
           <div className={styles.content}>
             <div className={styles.search}>{/* <Search /> */}</div>
             <div className={styles.menu}>{renderMenuList()}</div>
-            <div className={styles.appearance}>
-              <SwitchAppearance __island />
-            </div>
+            {hasAppearanceSwitch && (
+              <div className={styles.appearance}>
+                <SwitchAppearance __island />
+              </div>
+            )}
             <div className={styles.socialLinks}>
               <div className={styles.socialLink}>
                 {socialLinks.map((item) => {

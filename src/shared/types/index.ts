@@ -79,9 +79,9 @@ export interface UserConfig<ThemeConfig = any> {
    */
   allowDeadLinks?: boolean;
   /**
-   * Whether to fail builds when there are dead links.
+   * Whether dark mode/light mode toggle button is displayed.
    */
-  scrollOffset?: string | number;
+  appearance?: boolean;
 }
 
 export interface LocaleConfig {
@@ -103,8 +103,8 @@ export interface SiteData<ThemeConfig = any> {
   icon: string;
   head: HeadConfig[];
   themeConfig: ThemeConfig;
-  scrollOffset: number | string;
   locales: Record<string, LocaleConfig>;
+  appearance: boolean;
   // TODO: Available languages
   // langs: Record<string, { lang: string; label: string }>;
 }
