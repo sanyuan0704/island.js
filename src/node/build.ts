@@ -243,7 +243,7 @@ class SSGBuilder {
         {
           "imports": {
             ${DEFAULT_EXTERNALS.map(
-              (name) => `"${name}": "/${name.replaceAll('/', '_')}.js"`
+              (name) => `"${name}": "/${name.replace(/\//g, '_')}.js"`
             ).join(',')}
           }
         }
