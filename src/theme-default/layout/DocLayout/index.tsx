@@ -13,6 +13,7 @@ export function DocLayout() {
   const hasSidebar =
     (Array.isArray(sidebar) && sidebar.length > 0) ||
     Object.keys(sidebar).length > 0;
+  const outlineTitle = themeConfig?.outlineTitle || 'ON THIS PAGE';
 
   const hasAside = headers.length > 0 && themeConfig.outline !== false;
   return (
@@ -36,7 +37,12 @@ export function DocLayout() {
           <div className={styles.asideContainer}>
             <div className={styles.asideContent}>
               {hasAside ? (
-                <Aside __island headers={headers} pagePath={data.pagePath} />
+                <Aside
+                  __island
+                  headers={headers}
+                  outlineTitle={outlineTitle}
+                  pagePath={data.pagePath}
+                />
               ) : null}
             </div>
           </div>
