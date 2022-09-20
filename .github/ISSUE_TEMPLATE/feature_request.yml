@@ -37,7 +37,7 @@ body:
       options:
         - label: Read the [docs](https://island.sanyuan0704.top).
           required: true
-        - label: Read the [Contributing Guidelines](https://github.com/sanyuan0704/island/blob/main/.github/contributing.md).
+        - label: Read the [Contributing Guidelines](https://github.com/sanyuan0704/island/blob/master/.github/contributing.md).
           required: true
         - label: Check that there isn't already an issue that asks for the same feature to avoid creating a duplicate.
           required: true
