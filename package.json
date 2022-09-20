@@ -23,6 +23,7 @@
     }
   },
   "scripts": {
+    "pnpm-install": "pnpm install",
     "dev": "tsup --watch",
     "build": "NODE_ENV=production tsup && tsx scripts/pre-bundle.cts",
     "dev:docs": "node ./bin/island docs",
@@ -91,6 +92,7 @@
     "vite-plugin-inspect": "^0.7.1"
   },
   "devDependencies": {
+    "pnpm": "7.9.2",
     "@babel/traverse": "^7.19.0",
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",

@@ -22,7 +22,7 @@ Hi! We're really excited that you are interested in contributing to Island.js. B
 
 ## Development Setup
 
-You will need [pnpm](https://pnpm.io)
+You will need [pnpm](https://pnpm.io), the version is recommended to be `>=7.9`.
 
 After cloning the repo, run:
 
