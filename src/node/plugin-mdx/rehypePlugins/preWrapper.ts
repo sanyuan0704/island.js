@@ -16,7 +16,6 @@ export const rehypePluginPreWrapper: Plugin<[], import('hast').Root> = () => {
         const codeNode = node.children[0];
         const codeClassName = codeNode.properties?.className?.toString() || '';
         const lang = codeClassName.split('-')[1];
-
         if (!codeClassName || !lang) {
           return;
         }

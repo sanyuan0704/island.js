@@ -1,4 +1,4 @@
-import { defineConfig } from '../../dist';
+import { defineConfig } from '../../dist/node';
 
 export default defineConfig({
   lang: 'en-US',

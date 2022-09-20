@@ -1,7 +1,6 @@
 import { resolve } from 'path';
 import { cac } from 'cac';
 import { build } from './build';
-import { createDevServer } from './dev';
 import { serve } from './serve';
 
 const cli = cac('island').version('0.0.0').help();
@@ -12,6 +11,7 @@ cli
   .action(async (root: string) => {
     try {
       const createServer = async () => {
+        const { createDevServer } = await import(`./dev.js?t=${Date.now()}`);
         const server = await createDevServer(root, async () => {
           await server.close();
           await createServer();

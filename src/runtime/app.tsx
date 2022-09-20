@@ -16,7 +16,6 @@ export async function waitForApp(path: string): Promise<PageData> {
     const mod = await (matched[0].route as Route).preload();
     const pagePath = cleanUrl((matched[0].route as Route).filePath);
     const relativePagePath = getRelativePagePath(path, pagePath, siteData.base);
-    console.log('relativePagePath', relativePagePath);
     return {
       siteData,
       pagePath,

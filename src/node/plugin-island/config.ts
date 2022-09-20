@@ -6,7 +6,6 @@ import {
   ISLAND_CLI_PATH,
   ISLAND_JSX_RUNTIME_PATH,
   isProduction,
-  PACKAGE_ROOT_PATH,
   ROUTE_PATH
 } from '../constants';
 import { Plugin } from 'vite';
@@ -82,9 +81,9 @@ export function pluginConfig(
     // Restart when config file changes
     async handleHotUpdate(ctx) {
       const customWatchedFiles = [
-        ...(config.configDeps || []),
+        ISLAND_CLI_PATH,
         config.configPath,
-        ISLAND_CLI_PATH
+        ...(config.configDeps || [])
       ];
       if (customWatchedFiles.includes(ctx.file)) {
         console.log(

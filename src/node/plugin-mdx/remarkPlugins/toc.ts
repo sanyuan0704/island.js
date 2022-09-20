@@ -30,13 +30,11 @@ export const remarkPluginToc: Plugin = () => {
         toc.push({ id, text: originText, depth });
       }
     })(tree);
-
     const insertedTocCode = `export const toc = ${JSON.stringify(
       toc,
       null,
       2
     )}`;
-
     // Add toc ast to current ast tree
     tree.children.push({
       type: 'mdxjsEsm',
