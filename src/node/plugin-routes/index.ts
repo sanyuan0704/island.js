@@ -2,6 +2,7 @@ import path from 'path';
 import { PageModule } from '../../shared/types';
 import type { Plugin } from 'vite';
 import { RouteService } from './RouteService';
+import { toSeq } from '../utils';
 
 /**
  * How does the conventional route work?
@@ -52,7 +53,7 @@ export function pluginRoutes(options: PluginOptions = {}): Plugin {
       scanDir = path.isAbsolute(root)
         ? path.join(root, prefix)
         : path.join(process.cwd(), root, prefix);
-      routeService = new RouteService(scanDir, extensions);
+      routeService = new RouteService(toSeq(scanDir), extensions);
       await routeService.init();
     },
 
