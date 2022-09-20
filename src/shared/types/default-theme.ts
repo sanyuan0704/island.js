@@ -22,7 +22,10 @@ export namespace DefaultTheme {
      * @default 'On this page'
      */
     outlineTitle?: string;
-
+    /**
+     * Whether to show the sidebar in right position.
+     */
+    outline: boolean;
     /**
      * The nav items.
      */
