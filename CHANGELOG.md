@@ -1,5 +1,22 @@
 
 
+## [0.1.4](https://github.com/sanyuan0704/island.js/compare/0.1.3...0.1.4) (2022-09-21)
+
+
+### Bug Fixes
+
+* bug report template error ([76163b9](https://github.com/sanyuan0704/island.js/commit/76163b91a3ede010a88f377d896e3ba615dd1157))
+* feature_request contributing.md href problem ([4470354](https://github.com/sanyuan0704/island.js/commit/447035442cb8fa4e6e6e1ea01e01cc7f58d0c735))
+* node14 replaceAll ([f79364d](https://github.com/sanyuan0704/island.js/commit/f79364d4c707d503a45f6ddf131571bdb08f09c3))
+
+
+### Features
+
+* add gap in prev-next and add lastUpdated style ([09161a1](https://github.com/sanyuan0704/island.js/commit/09161a1113cc22f0874f223fe50ca196ed5b5084))
+* support cli code hmr ([f071dd2](https://github.com/sanyuan0704/island.js/commit/f071dd29e6718c2a3dff0fe535d766071e67a45e))
+* support custom message and copyright in home page ([35c47d4](https://github.com/sanyuan0704/island.js/commit/35c47d472536541fceb18a3ac3fe1e9ef4b503e6))
+* support zero js after production build ([0385eb0](https://github.com/sanyuan0704/island.js/commit/0385eb066ec0fe0f56584e66256cda9794f4723d))
+
 ## [0.1.3](https://github.com/sanyuan0704/island.js/compare/0.1.2...0.1.3) (2022-09-19)
 
 
