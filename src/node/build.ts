@@ -6,7 +6,7 @@
  * 4. Get island components from render process, and bundle the components together.We call this bundle as islandBundle,
     and the island components will be hang on window so that client bundle can access them.
  * 5. Inject islandBundle and client bundle to html string, as well as island props data.
- * 6. Write html string to file.   
+ * 6. Write html string to file.
  */
 
 import { InlineConfig, build as viteBuild } from 'vite';
@@ -226,6 +226,17 @@ class SSGBuilder {
       injectIslandsCode = await injectBundlePromise;
     }
     const { helmet } = helmetContext.context!;
+
+    const headTag = this.#config.siteData?.head
+      ?.map((item) => {
+        const [tag, attrs, children] = item;
+        const attrString = Object.keys(attrs).reduce((pre, cur) => {
+          return `${pre} ${cur}="${attrs[cur]}"`;
+        }, '');
+        return `<${tag} ${attrString}> ${children} </${tag}>`;
+      })
+      .join('\n');
+
     const html = `
   <!DOCTYPE html>
   <html>
@@ -235,6 +246,7 @@ class SSGBuilder {
       <link rel="icon" href="${
         this.#config.siteData!.icon
       }" type="image/svg+xml"></link>
+      ${headTag || ''}
       ${helmet?.title.toString() || ''}
       ${helmet?.meta.toString() || ''}
       ${helmet?.link.toString() || ''}

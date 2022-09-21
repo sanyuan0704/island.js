@@ -14,9 +14,19 @@ export function pluginIndexHtml(config: SiteConfig): Plugin {
     transformIndexHtml(html) {
       // Insert client entry script in development
       // And in production, we will insert it in ssr render
+      const head =
+        config.siteData?.head?.map((item) => {
+          const [tag, attrs, children] = item;
+          return {
+            tag,
+            attrs,
+            children
+          };
+        }) ?? [];
       return {
         html,
         tags: [
+          ...head,
           {
             tag: 'script',
             attrs: {
