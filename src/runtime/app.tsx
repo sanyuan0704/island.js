@@ -8,7 +8,6 @@ import { PageData } from '../shared/types';
 import { HelmetProvider } from 'react-helmet-async';
 import { useContext, useLayoutEffect } from 'react';
 import { DataContext } from 'island/client';
-import { APPEARANCE_KEY } from '../shared/constants';
 
 export async function waitForApp(path: string): Promise<PageData> {
   const matched = matchRoutes(routes, path)!;
@@ -41,11 +40,7 @@ export function App({ helmetContext }: { helmetContext?: object }) {
     async function refetchData() {
       try {
         const pageData = await waitForApp(pathname);
-        const saved = localStorage.getItem(`${APPEARANCE_KEY}`);
         setPageData(pageData);
-        if (saved === 'dark') {
-          document.documentElement.classList.add('dark');
-        }
       } catch (e) {
         console.log(e);
       }
