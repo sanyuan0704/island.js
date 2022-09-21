@@ -14,4 +14,4 @@ export const createHash = (info: string): string => {
 
 export const toSeq = (url: string, sep = '/') => {
   return url.replace(/\\/g, sep);
-}
+};
