@@ -3,11 +3,13 @@ import {
   SiteConfig,
   DefaultTheme,
   UserConfig,
+  HeadConfig,
   SiteData
 } from '../shared/types';
 import fs from 'fs-extra';
 import { loadConfigFromFile } from 'vite';
-import { DEFAULT_THEME_PATH, DIST_PATH } from './constants/index';
+import { DEFAULT_THEME_PATH, DIST_PATH } from './constants';
+import { APPEARANCE_KEY } from '../shared/constants';
 
 const { pathExistsSync } = fs;
 
@@ -49,6 +51,30 @@ export async function resolveUserConfig(
   }
 }
 
+function resolveSiteDataHead(userConfig?: UserConfig): HeadConfig[] {
+  const head = userConfig?.head ?? [];
+
+  // add inline script to apply dark mode, if user enables the feature.
+  // this is required to prevent "flush" on initial page load.
+  if (userConfig?.appearance ?? true) {
+    head.push([
+      'script',
+      { id: 'check-dark-light' },
+      `
+        ;(() => {
+          const saved = localStorage.getItem('${APPEARANCE_KEY}')
+          const prefereDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+          if (!saved || saved === 'auto' ? prefereDark : saved === 'dark') {
+            document.documentElement.classList.add('dark')
+          }
+        })()
+      `
+    ]);
+  }
+
+  return head;
+}
+
 export function resolveSiteData(
   userConfig: UserConfig,
   root: string
@@ -58,7 +84,7 @@ export function resolveSiteData(
     title: userConfig.title || 'Island',
     description: userConfig.description || 'Island',
     themeConfig: userConfig.themeConfig || {},
-    head: userConfig.head || [],
+    head: resolveSiteDataHead(userConfig),
     base: userConfig.base || '/',
     locales: userConfig.locales || {},
     icon: userConfig.icon || '',
