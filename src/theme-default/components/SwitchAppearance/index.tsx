@@ -15,8 +15,10 @@ export function SwitchAppearance(_props: ComponentPropsWithIsland) {
     const classList = document.documentElement.classList;
     if (classList.contains('dark')) {
       classList.remove('dark');
+      localStorage.setItem('ISLAND-COLOR-SCHEME', 'light');
     } else {
       classList.add('dark');
+      localStorage.setItem('ISLAND-COLOR-SCHEME', 'dark');
     }
   };
   return (
@@ -32,5 +34,7 @@ function applyDefaultAppearance() {
   const perfersDark =
     window.matchMedia &&
     window.matchMedia('(prefers-color-scheme: dark)').matches;
-  if (perfersDark) document.documentElement.classList.add('dark');
+  const localSetting = localStorage.getItem('ISLAND-COLOR-SCHEME');
+  if ((perfersDark && localSetting !== 'light') || localSetting === 'dark')
+    document.documentElement.classList.add('dark');
 }
