@@ -1,5 +1,14 @@
 
 
+## [0.1.5](https://github.com/sanyuan0704/island.js/compare/0.1.4...0.1.5) (2022-09-22)
+
+
+### Bug Fixes
+
+* fix separator when use window, it will make vite wrong ([67e1169](https://github.com/sanyuan0704/island.js/commit/67e1169cf1df03072ea2b56e4713c367e5571bb7))
+* fixed the problem that the state is not permanently saved after switching dark theme ([84dd34a](https://github.com/sanyuan0704/island.js/commit/84dd34a1d8965f97b15f5dbce6daf71fb21e350e))
+* state is not permanently saved after switching dark theme ([9173a1d](https://github.com/sanyuan0704/island.js/commit/9173a1dde6f02245b3ac5036e35778c63e2644bb))
+
 ## [0.1.4](https://github.com/sanyuan0704/island.js/compare/0.1.3...0.1.4) (2022-09-21)
 
 
