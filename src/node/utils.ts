@@ -11,7 +11,3 @@ export const createHash = (info: string): string => {
   }
   return createHashFunc('sha256').update(info).digest('hex').slice(0, 8);
 };
-
-export const normalizePath = (url: string, sep = '/') => {
-  return url.replace(/\\/g, sep);
-};
