@@ -12,6 +12,7 @@ import { Plugin } from 'vite';
 import { SiteConfig } from 'shared/types/index';
 import { join, relative } from 'path';
 import pc from 'picocolors';
+import { mergeConfig } from 'vite';
 
 const { green } = pc;
 
@@ -32,51 +33,54 @@ export function pluginConfig(
       }
     },
     config(c) {
-      return {
-        optimizeDeps: {
-          include: [
-            'react',
-            'react-dom',
-            'react-dom/client',
-            'react-router-dom',
-            'react/jsx-runtime',
-            'react-helmet-async',
-            'lodash-es'
-          ],
-          exclude: [
-            'island-ssg',
-            'island/theme',
-            'island/client',
-            'island/routes',
-            'island/jsx-runtime'
-          ]
-        },
-        server: {
-          fs: {
-            allow: [CLIENT_RUNTIME_PATH, DEFAULT_THEME_PATH, process.cwd()]
+      return mergeConfig(
+        {
+          optimizeDeps: {
+            include: [
+              'react',
+              'react-dom',
+              'react-dom/client',
+              'react-router-dom',
+              'react/jsx-runtime',
+              'react-helmet-async',
+              'lodash-es'
+            ],
+            exclude: [
+              'island-ssg',
+              'island/theme',
+              'island/client',
+              'island/routes',
+              'island/jsx-runtime'
+            ]
+          },
+          server: {
+            fs: {
+              allow: [CLIENT_RUNTIME_PATH, DEFAULT_THEME_PATH, process.cwd()]
+            }
+          },
+          resolve: {
+            alias: {
+              'island/theme': config.themeDir!,
+              'island/client': `${CLIENT_EXPORTS_PATH}`,
+              'island/routes': join(c.root!, ROUTE_PATH),
+              'island/jsx-runtime': join(
+                ISLAND_JSX_RUNTIME_PATH,
+                'jsx-runtime.js'
+              ),
+              'island/theme-default': DEFAULT_THEME_PATH
+            }
+          },
+          define: {
+            'import.meta.env.ENABLE_SPA': config.enableSpa
+          },
+          css: {
+            modules: {
+              localsConvention: 'camelCaseOnly'
+            }
           }
         },
-        resolve: {
-          alias: {
-            'island/theme': config.themeDir!,
-            'island/client': `${CLIENT_EXPORTS_PATH}`,
-            'island/routes': join(c.root!, ROUTE_PATH),
-            'island/jsx-runtime': join(
-              ISLAND_JSX_RUNTIME_PATH,
-              'jsx-runtime.js'
-            ),
-            'island/theme-default': DEFAULT_THEME_PATH
-          }
-        },
-        define: {
-          'import.meta.env.ENABLE_SPA': config.enableSpa
-        },
-        css: {
-          modules: {
-            localsConvention: 'camelCaseOnly'
-          }
-        }
-      };
+        config.vite || {}
+      );
     },
     // Restart when config file changes
     async handleHotUpdate(ctx) {

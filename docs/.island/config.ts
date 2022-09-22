@@ -4,6 +4,9 @@ export default defineConfig({
   lang: 'en-US',
   title: 'Island.js',
   icon: '/island.png',
+  vite: {
+    // custom config for vite
+  },
   themeConfig: {
     outlineTitle: 'ON THIS PAGE',
     socialLinks: [
