@@ -43,7 +43,7 @@ declare module 'island/jsx-runtime' {
 
 declare module 'virtual:routes' {
   import { Route } from 'react-router-dom';
-import { SiteData } from './index';
+  import { SiteData } from './index';
 
   export const routes: Route[];
 }

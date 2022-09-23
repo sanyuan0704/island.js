@@ -42,6 +42,15 @@ export class RouteService {
     files.forEach((file) => this.addRoute(file));
   }
 
+  static getRoutePathFromFile(
+    filePath: string,
+    root: string
+  ): string | undefined {
+    const fileRelativePath = path.relative(root, filePath);
+    const routePath = normalizeRoutePath(fileRelativePath);
+    return routePath;
+  }
+
   addRoute(filePath: string) {
     const fileRelativePath = normalizePath(
       path.relative(this.scanDir, filePath)

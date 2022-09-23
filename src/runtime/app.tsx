@@ -10,19 +10,48 @@ import { useContext, useLayoutEffect } from 'react';
 import { DataContext } from 'island/client';
 
 export async function waitForApp(path: string): Promise<PageData> {
-  const matched = matchRoutes(routes, path)!;
+  const matched = matchRoutes(routes, path, siteData.base)!;
   if (matched) {
     // Preload route component
-    const mod = await (matched[0].route as Route).preload();
+    const matchedRoute = matched[0].route;
+    const mod = await (matchedRoute as Route).preload();
+
     const pagePath = cleanUrl((matched[0].route as Route).filePath);
     const relativePagePath = getRelativePagePath(path, pagePath, siteData.base);
-    return {
-      siteData,
-      pagePath,
-      relativePagePath,
-      ...omit(mod, ['default'])
-    } as PageData;
+    // API Page
+    if (mod.api || mod.pageType === 'api') {
+      const subModules = await Promise.all(
+        routes
+          .filter(
+            (route: Route) =>
+              route.path.startsWith(path) && route !== matchedRoute
+          )
+          .map(async (route: Route) => {
+            const mod = await route.preload();
+            return {
+              ...mod,
+              routePath: route.path
+            };
+          })
+      );
+      return {
+        siteData,
+        pagePath,
+        relativePagePath,
+        pageType: 'api',
+        subModules
+      };
+    } else {
+      // Doc/Custom Page
+      return {
+        siteData,
+        pagePath,
+        relativePagePath,
+        ...omit(mod, ['default'])
+      } as PageData;
+    }
   } else {
+    // 404 Page
     return {
       siteData,
       pagePath: '',

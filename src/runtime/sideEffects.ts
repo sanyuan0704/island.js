@@ -42,13 +42,18 @@ if (inBrowser()) {
       // Only handle a tag click
       const link = (e.target as Element).closest('a');
       if (link) {
-        const { origin, hash, target } = link;
+        const { origin, hash, target, pathname, search } = link;
         const currentUrl = window.location;
         // only intercept inbound links
         if (hash && target !== '_blank' && origin === currentUrl.origin) {
-          e.preventDefault();
           // scroll between hash anchors in the same page
-          if (hash && hash !== currentUrl.hash) {
+          if (
+            pathname === currentUrl.pathname &&
+            search === currentUrl.search &&
+            hash &&
+            hash !== currentUrl.hash
+          ) {
+            e.preventDefault();
             history.pushState(null, '', hash);
             // still emit the event so we can listen to it in themes
             window.dispatchEvent(new Event('hashchange'));

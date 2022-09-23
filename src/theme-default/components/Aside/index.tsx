@@ -25,8 +25,11 @@ export function Aside(
     // When mdx file changed, server will send a custom event to client.
     // Then we listen the event and pull the latest page module so we can get and render the new headers.
     if (import.meta.env.DEV) {
-      import.meta.hot?.on('md(x)-changed', () => {
-        import(/* @vite-ignore */ `${props.pagePath}?t=${Date.now()}`).then(
+      import.meta.hot?.on('md(x)-changed', ({ filePath }) => {
+        if (filePath !== props.pagePath) {
+          return;
+        }
+        import(/* @vite-ignore */ `${filePath}?import&t=${Date.now()}`).then(
           (mod) => {
             setHeaders(mod.toc);
           }

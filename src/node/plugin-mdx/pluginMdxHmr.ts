@@ -1,12 +1,15 @@
 import { MD_REGEX } from '../../node/constants';
-import { Plugin } from 'vite';
+import { Plugin, ResolvedConfig } from 'vite';
+import { RouteService } from '../plugin-routes/RouteService';
 
 export function pluginMdxHMR(): Plugin {
   let viteReactPlugin: Plugin;
+  let resolvedConfig: ResolvedConfig;
   return {
     name: 'vite-plugin-mdx-hmr',
     apply: 'serve',
     configResolved(config) {
+      resolvedConfig = config;
       viteReactPlugin = config.plugins.find(
         (plugin) => plugin.name === 'vite:react-babel'
       ) as Plugin;
@@ -32,9 +35,17 @@ export function pluginMdxHMR(): Plugin {
     },
     handleHotUpdate(ctx) {
       if (/\.mdx?/.test(ctx.file)) {
+        const routePath = RouteService.getRoutePathFromFile(
+          ctx.file,
+          resolvedConfig!.root
+        );
         ctx.server.ws!.send({
           type: 'custom',
-          event: 'md(x)-changed'
+          event: 'md(x)-changed',
+          data: {
+            filePath: ctx.file,
+            routePath
+          }
         });
       }
     }

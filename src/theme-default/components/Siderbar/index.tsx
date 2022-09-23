@@ -4,19 +4,15 @@ import { Link } from '../Link/index';
 import { DefaultTheme } from '../../../shared/types';
 import { usePageData } from 'island/client';
 import { useLocation } from 'react-router-dom';
-import { normalizeHref } from '../../logic/index';
+import { normalizeHref, useSidebarData } from '../../logic/index';
 
 export function SideBar() {
   const location = useLocation();
   const { siteData } = usePageData();
 
   const sidebar = siteData?.themeConfig?.sidebar || [];
-
-  const sidebarData = Array.isArray(sidebar)
-    ? sidebar[0]
-    : (Object.keys(sidebar)
-        .filter((item) => location.pathname.startsWith(item))
-        .map((item) => sidebar[item])[0] as DefaultTheme.SidebarGroup[]);
+  const sidebarData = useSidebarData(sidebar, location.pathname);
+  console.log(sidebarData);
 
   const renderGroupItem = (item: DefaultTheme.SidebarItem, depth = 0) => {
     const marginLeft = `${depth * 20}px`;
@@ -64,7 +60,9 @@ export function SideBar() {
           {[sidebarData]
             .filter(Boolean)
             .flat()
-            .map((item) => renderGroup(item))}
+            .map((item: DefaultTheme.SidebarGroup | undefined) =>
+              renderGroup(item!)
+            )}
         </div>
       </nav>
     </aside>
