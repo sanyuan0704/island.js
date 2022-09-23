@@ -12,7 +12,6 @@ export function SideBar() {
 
   const sidebar = siteData?.themeConfig?.sidebar || [];
   const sidebarData = useSidebarData(sidebar, location.pathname);
-  console.log(sidebarData);
 
   const renderGroupItem = (item: DefaultTheme.SidebarItem, depth = 0) => {
     const marginLeft = `${depth * 20}px`;

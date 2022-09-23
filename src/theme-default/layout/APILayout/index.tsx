@@ -1,6 +1,7 @@
 import { usePageData } from 'island/client';
 import { useEffect, useState } from 'react';
 import { Header } from 'shared/types';
+import { normalizeHref } from '../../logic';
 import { Link } from '../../components/Link/index';
 import styles from './index.module.scss';
 
@@ -59,7 +60,7 @@ export function APILayout() {
                       styles[`level${header.depth}`]
                     }`}
                   >
-                    <Link href={`${item.link}#${header.id}`}>
+                    <Link href={`${normalizeHref(item.link)}#${header.id}`}>
                       {header.text}
                     </Link>
                   </li>

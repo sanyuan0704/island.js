@@ -11,7 +11,14 @@ export function normalizeHref(url?: string) {
   if (!isProduction() || url.startsWith('http')) {
     return url;
   }
-  const suffix = import.meta.env.ENABLE_SPA ? '' : '.html';
+
+  let suffix = '';
+  if (!import.meta.env.ENABLE_SPA) {
+    suffix += '.html';
+    if (url.endsWith('/')) {
+      suffix = 'index' + suffix;
+    }
+  }
   return addLeadingSlash(`${url}${suffix}`);
 }
 

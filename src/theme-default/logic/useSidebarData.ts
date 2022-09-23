@@ -6,12 +6,16 @@ export function useSidebarData(
 ): DefaultTheme.SidebarGroup | DefaultTheme.SidebarGroup[] | undefined {
   if (Array.isArray(siderbar)) {
     return siderbar.find((group) =>
-      group.items.some((item) => normalizeHref(item.link) === currentPathname)
+      group.items.some(
+        (item) => normalizeHref(item.link) === normalizeHref(currentPathname)
+      )
     );
   } else {
     for (const name of Object.keys(siderbar)) {
       const result = siderbar[name].find((group) =>
-        group.items.some((item) => normalizeHref(item.link) === currentPathname)
+        group.items.some(
+          (item) => normalizeHref(item.link) === normalizeHref(currentPathname)
+        )
       );
       if (result) {
         return siderbar[name];

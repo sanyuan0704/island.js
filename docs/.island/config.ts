@@ -29,14 +29,14 @@ export default defineConfig({
       },
       {
         text: 'API',
-        link: '/api',
+        link: '/api/',
         activeMatch: '^/api'
       }
     ],
 
     sidebar: {
       '/': getTutorialSidebar(),
-      '/api': getApiSidebar()
+      '/api/': getApiSidebar()
     },
 
     footer: {
