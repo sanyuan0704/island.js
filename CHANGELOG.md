@@ -1,5 +1,17 @@
 
 
+## [0.1.6](https://github.com/sanyuan0704/island.js/compare/0.1.5...0.1.6) (2022-09-23)
+
+
+### Bug Fixes
+
+* normalize all routes, error while running in Window environment ([7294335](https://github.com/sanyuan0704/island.js/commit/729433556f26a944fda506e9872eab20e34686e8))
+
+
+### Features
+
+* support custom vite config ([f5c6a94](https://github.com/sanyuan0704/island.js/commit/f5c6a94e06af6045ab0db629207040dd614f2309))
+
 ## [0.1.5](https://github.com/sanyuan0704/island.js/compare/0.1.4...0.1.5) (2022-09-22)
 
 
