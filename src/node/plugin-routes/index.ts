@@ -66,7 +66,10 @@ export function pluginRoutes(options: PluginOptions = {}): Plugin {
     },
     load(id: string, options) {
       if (id === '\0' + CONVENTIONAL_ROUTE_ID) {
-        return routeService.generateRoutesCode(options?.ssr);
+        return {
+          code: routeService.generateRoutesCode(options?.ssr),
+          moduleSideEffects: false
+        };
       }
     },
 

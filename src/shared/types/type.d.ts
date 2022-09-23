@@ -16,8 +16,8 @@ declare module 'island/theme*' {
 }
 
 declare module 'island:site-data' {
-  import { SiteData } from 'shared/types';
-  const siteData: SiteData;
+  import { DefaultTheme, SiteData } from 'shared/types';
+  const siteData: SiteData<DefaultTheme.Config>;
   export default siteData;
 }
 
