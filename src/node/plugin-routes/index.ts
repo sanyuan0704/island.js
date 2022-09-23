@@ -1,8 +1,8 @@
 import path from 'path';
 import { PageModule } from '../../shared/types';
 import type { Plugin } from 'vite';
+import { normalizePath } from 'vite';
 import { RouteService } from './RouteService';
-import { normalizePath } from '../utils';
 
 /**
  * How does the conventional route work?

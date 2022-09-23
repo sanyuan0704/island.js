@@ -1,3 +1,4 @@
+import { normalizePath } from 'vite';
 import fastGlob from 'fast-glob';
 import fs from 'fs-extra';
 import { RUNTIME_BUNDLE_OUTDIR } from '../constants';
@@ -42,12 +43,16 @@ export class RouteService {
   }
 
   addRoute(filePath: string) {
-    const fileRelativePath = path.relative(this.scanDir, filePath);
+    const fileRelativePath = normalizePath(
+      path.relative(this.scanDir, filePath)
+    );
     const routePath = normalizeRoutePath(fileRelativePath);
+    const absolutePath = path.join(this.scanDir, fileRelativePath);
+
     this.#routeData.push({
       routePath,
       basePath: this.scanDir,
-      absolutePath: path.join(this.scanDir, fileRelativePath)
+      absolutePath: normalizePath(absolutePath)
     });
   }
 
