@@ -3,6 +3,7 @@ import { PageModule } from '../../shared/types';
 import type { Plugin } from 'vite';
 import { normalizePath } from 'vite';
 import { RouteService } from './RouteService';
+import type { ComponentType } from 'react';
 
 /**
  * How does the conventional route work?
@@ -32,7 +33,7 @@ export interface Route {
   path: string;
   element: React.ReactElement;
   filePath: string;
-  preload: () => Promise<PageModule<any>>;
+  preload: () => Promise<PageModule<ComponentType<unknown>>>;
 }
 
 export const CONVENTIONAL_ROUTE_ID = 'virtual:routes';

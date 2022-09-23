@@ -25,7 +25,7 @@ export namespace DefaultTheme {
     /**
      * Whether to show the sidebar in right position.
      */
-    outline: boolean;
+    outline?: boolean;
     /**
      * The nav items.
      */
@@ -241,7 +241,7 @@ export namespace DefaultTheme {
     apiKey: string;
     indexName: string;
     placeholder?: string;
-    searchParameters?: any;
+    searchParameters?: unknown;
     disableUserPersonalization?: boolean;
     initialQuery?: string;
     buttonText?: string;

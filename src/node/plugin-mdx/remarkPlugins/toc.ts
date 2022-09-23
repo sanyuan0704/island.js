@@ -1,6 +1,6 @@
 import type { Plugin } from 'unified';
 import { visitChildren } from 'unist-util-visit-children';
-import type { MdxjsEsm } from 'mdast-util-mdxjs-esm';
+import type { MdxjsEsm, Program } from 'mdast-util-mdxjs-esm';
 import { parse } from 'acorn';
 import Slugger from 'github-slugger';
 
@@ -13,10 +13,12 @@ interface TocItem {
 }
 
 export const remarkPluginToc: Plugin = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return (tree: any) => {
     const toc: TocItem[] = [];
     let title = '';
     slugger.reset();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     visitChildren((node: any) => {
       // Collect h2 ~ h5
       if (node.type === 'heading' && node.depth === 1) {
@@ -43,7 +45,7 @@ export const remarkPluginToc: Plugin = () => {
         estree: parse(insertedTocCode, {
           ecmaVersion: 2020,
           sourceType: 'module'
-        }) as any
+        }) as unknown as Program
       }
     } as MdxjsEsm);
 

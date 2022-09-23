@@ -13,7 +13,7 @@ import { APPEARANCE_KEY } from '../shared/constants';
 
 const { pathExistsSync } = fs;
 
-type RawConfig<ThemeConfig = any> =
+type RawConfig<ThemeConfig = unknown> =
   | UserConfig<ThemeConfig>
   | Promise<UserConfig<ThemeConfig>>
   | (() => UserConfig<ThemeConfig> | Promise<UserConfig<ThemeConfig>>);
@@ -25,7 +25,7 @@ export async function resolveUserConfig(
   root: string,
   command: 'serve' | 'build',
   mode: 'development' | 'production'
-): Promise<[string, UserConfig, string[]]> {
+): Promise<[string, UserConfig<DefaultTheme.Config>, string[]]> {
   const supportExtensions = ['js', 'ts'];
   const [configPath] = supportExtensions
     .map((extension) => resolve(root, `config.${extension}`))
@@ -45,9 +45,13 @@ export async function resolveUserConfig(
     const userConfig = await (typeof rawConfig === 'function'
       ? rawConfig()
       : rawConfig);
-    return [configPath, userConfig as UserConfig, dependencies];
+    return [
+      configPath,
+      userConfig as UserConfig<DefaultTheme.Config>,
+      dependencies
+    ];
   } else {
-    return [configPath, {} as UserConfig, []];
+    return [configPath, {} as UserConfig<DefaultTheme.Config>, []];
   }
 }
 
@@ -76,9 +80,9 @@ function resolveSiteDataHead(userConfig?: UserConfig): HeadConfig[] {
 }
 
 export function resolveSiteData(
-  userConfig: UserConfig,
+  userConfig: UserConfig<DefaultTheme.Config>,
   root: string
-): SiteData {
+): SiteData<DefaultTheme.Config> {
   return {
     lang: userConfig.lang || 'en-US',
     title: userConfig.title || 'Island',

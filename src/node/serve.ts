@@ -45,14 +45,14 @@ export async function serve(root: string, userPort: number) {
   if (base) {
     polka({ onNoMatch })
       .use(base, compress, serve)
-      .listen(port, (err: any) => {
+      .listen(port, (err: Error) => {
         if (err) throw err;
         console.log(`Built site served at http://localhost:${port}/${base}/\n`);
       });
   } else {
     polka({ onNoMatch })
       .use(compress, serve)
-      .listen(port, (err: any) => {
+      .listen(port, (err: Error) => {
         if (err) throw err;
         console.log(`Built site served at http://localhost:${port}/\n`);
       });

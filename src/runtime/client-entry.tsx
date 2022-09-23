@@ -7,10 +7,10 @@ import './sideEffects';
 // Type shim for window.ISLANDS
 declare global {
   interface Window {
-    ISLANDS: Record<string, ComponentType<any>>;
+    ISLANDS: Record<string, ComponentType<unknown>>;
     // The state for island.
-    ISLAND_PROPS: any;
-    ISLAND_PAGE_DATA: any;
+    ISLAND_PROPS: Record<string, unknown[]>;
+    ISLAND_PAGE_DATA: unknown;
   }
 }
 
@@ -51,7 +51,8 @@ async function renderInBrowser() {
       for (let i = 0; i < islands.length; i++) {
         const island = islands[i];
         const [id, index] = island.getAttribute('__island')!.split(':');
-        const Element = window.ISLANDS[id];
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const Element = window.ISLANDS[id] as ComponentType<any>;
         hydrateRoot(
           island,
           <Element {...window.ISLAND_PROPS[index]}></Element>

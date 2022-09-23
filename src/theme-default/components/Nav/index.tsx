@@ -32,7 +32,7 @@ export function Nav() {
   };
   // TODO: add menu dropdown group
   const renderMenuItemGroup = (item: DefaultTheme.NavItemWithChildren) => {
-    return <div>...</div>;
+    return <div>{item.text}</div>;
   };
 
   const renderMenuList = () => {

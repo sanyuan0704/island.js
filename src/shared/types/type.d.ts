@@ -11,8 +11,8 @@ interface ImportMeta {
 declare module 'island/theme*' {
   import { ComponentType, Component } from 'react';
 
-  export const Layout: ComponentType<any>;
-  export const NotFoundLayout: ComponentType<any>;
+  export const Layout: ComponentType<unknown>;
+  export const NotFoundLayout: ComponentType<unknown>;
 }
 
 declare module 'island:site-data' {
@@ -26,7 +26,7 @@ declare module 'island/client' {
   import { ComponentType } from 'react';
   import { PageData, SiteData } from 'shared/types';
 
-  export const Content: ComponentType<any>;
+  export const Content: ComponentType<unknown>;
   export const usePageData: () => PageData;
   export const DataContext: React.Context<{
     data: PageData;

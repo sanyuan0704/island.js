@@ -1,6 +1,6 @@
 export const inBrowser = () => typeof window !== 'undefined';
 
-export const omit = (obj: Record<string, any>, keys: string[]) => {
+export const omit = (obj: Record<string, unknown>, keys: string[]) => {
   const ret = { ...obj };
   for (const key of keys) {
     delete ret[key];

@@ -12,7 +12,7 @@ export interface Header {
 export interface SiteSiteData {
   title: string;
   description: string;
-  frontmatter: Record<string, any>;
+  frontmatter: Record<string, unknown>;
   lastUpdated?: number;
   headers: Header[];
 }
@@ -21,7 +21,7 @@ export type HeadConfig =
   | [string, Record<string, string>]
   | [string, Record<string, string>, string];
 
-export interface UserConfig<ThemeConfig = any> {
+export interface UserConfig<ThemeConfig = unknown> {
   /**
    * Base path of the site.
    */
@@ -94,7 +94,7 @@ export interface LocaleConfig {
   selectText?: string;
 }
 
-export interface SiteData<ThemeConfig = any> {
+export interface SiteData<ThemeConfig = unknown> {
   root: string;
   base: string;
   lang: string;
@@ -130,7 +130,7 @@ export interface Feature {
   details: string;
 }
 
-export interface SiteConfig<ThemeConfig = any>
+export interface SiteConfig<ThemeConfig = unknown>
   extends Omit<UserConfig, 'themeConfig'> {
   root: string;
   srcDir: string;
@@ -142,9 +142,9 @@ export interface SiteConfig<ThemeConfig = any>
   siteData?: SiteData<ThemeConfig>;
 }
 
-export type ComponentPropsWithIsland<T = any> = T & { __island: boolean };
+export type ComponentPropsWithIsland<T = unknown> = T & { __island: boolean };
 
-export interface PageModule<T extends ComponentType<any>> {
+export interface PageModule<T extends ComponentType<unknown>> {
   default: T;
   [key: string]: unknown;
 }

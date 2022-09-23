@@ -1,11 +1,12 @@
 import { ComponentType, forwardRef, lazy, useRef } from 'react';
 import { PageModule } from 'shared/types';
 
-export type PreloadableComponent<T extends ComponentType<any>> = T & {
+export type PreloadableComponent<T extends ComponentType<unknown>> = T & {
   preload: () => Promise<PageModule<T>>;
 };
 
 // Inspired by https://github.com/ianschmitz/react-lazy-with-preload/blob/master/src/index.ts
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function lazyWithPreload<T extends ComponentType<any>>(
   factory: () => Promise<{ default: T }>
 ): PreloadableComponent<T> {
@@ -19,7 +20,7 @@ export function lazyWithPreload<T extends ComponentType<any>>(
     return <Element ref={ref} {...props} />;
   });
 
-  const LazyWithPreload = Component as any as PreloadableComponent<T>;
+  const LazyWithPreload = Component as unknown as PreloadableComponent<T>;
 
   LazyWithPreload.preload = () => {
     if (!factoryPromise) {

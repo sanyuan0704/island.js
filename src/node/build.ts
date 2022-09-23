@@ -44,7 +44,7 @@ export type RenderFn = (
   appHtml: string;
   propsData: string;
   islandToPathMap: Record<string, string>;
-  pageData: any;
+  pageData: unknown;
 }>;
 
 interface ServerEntryExports {
@@ -54,12 +54,12 @@ interface ServerEntryExports {
 
 class SSGBuilder {
   #root: string;
-  #config: SiteConfig<any>;
+  #config: SiteConfig<unknown>;
   #clientBundle?: RollupOutput;
   #serverBundle?: RollupOutput;
   #islandsInjectCache: Map<string, Promise<string>> = new Map();
 
-  constructor(config: SiteConfig<any>) {
+  constructor(config: SiteConfig<unknown>) {
     this.#config = config;
     this.#root = this.#config.root;
   }
@@ -266,6 +266,7 @@ class SSGBuilder {
       ${styleAssets
         .map((item) => `<link rel="stylesheet" href="/${item.fileName}">`)
         .join('\n')}
+
     </head>
     <body>
       <div id="root">${appHtml}</div>
