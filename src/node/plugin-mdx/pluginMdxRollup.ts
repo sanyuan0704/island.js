@@ -12,8 +12,14 @@ import { rehypePluginShiki } from './rehypePlugins/shiki';
 import { SiteConfig } from 'shared/types/index';
 import { Plugin } from 'vite';
 
-export async function pluginMdxRollup(_config: SiteConfig): Promise<Plugin> {
+export async function pluginMdxRollup(
+  _config: SiteConfig,
+  isServer: boolean
+): Promise<Plugin> {
   return pluginMdx({
+    // We should reserve the jsx in ssr build
+    // to ensure the island components can be collected by `babel-plugin-island`
+    jsx: isServer,
     remarkPlugins: [
       remarkPluginGFM,
       // The following two plugin for frontmatter

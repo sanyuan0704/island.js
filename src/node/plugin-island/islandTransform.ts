@@ -7,6 +7,7 @@ import { Plugin, transformWithEsbuild } from 'vite';
 import { transformAsync } from '@babel/core';
 import babelPluginIsland from '../babel-plugin-island';
 import { SiteConfig } from 'shared/types/index';
+import { MD_REGEX } from '../constants/index';
 
 export function pluginIslandTransform(
   config: SiteConfig,
@@ -14,19 +15,19 @@ export function pluginIslandTransform(
 ): Plugin {
   return {
     name: 'island:vite-plugin-internal',
-    enforce: 'pre',
     async transform(code, id, options) {
       // Note: @vitejs/plugin-react cannot compile files in node_modules, so we need to compile them manually.
       // In production, we should transform the __island props for collecting island components
       if (
         options?.ssr &&
-        TS_REGEX.test(id) &&
-        id.includes(DEFAULT_THEME_PATH) &&
+        (TS_REGEX.test(id) || MD_REGEX.test(id)) &&
         !config.enableSpa
       ) {
         const strippedTypes = await transformWithEsbuild(code, id, {
-          jsx: 'preserve'
+          jsx: 'preserve',
+          loader: 'tsx'
         });
+
         const result = await transformAsync((await strippedTypes).code, {
           filename: id,
           presets: [

@@ -35,6 +35,9 @@ export function pluginConfig(
     config(c) {
       return mergeConfig(
         {
+          esbuild: {
+            jsx: 'preserve'
+          },
           optimizeDeps: {
             include: [
               'react',

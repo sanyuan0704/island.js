@@ -142,7 +142,9 @@ class SSGBuilder {
   }
 
   async end() {
-    await remove(join(this.#root, TEMP_PATH));
+    if (!process.env.DEBUG) {
+      await remove(join(this.#root, TEMP_PATH));
+    }
   }
 
   async islandsBuild(injectCode: string) {

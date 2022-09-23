@@ -4,6 +4,8 @@ export const isProduction = () => process.env.NODE_ENV === 'production';
 
 export const TS_REGEX = /(c|m)?tsx?$/;
 
+export const MD_REGEX = /\.mdx?$/;
+
 export const PACKAGE_ROOT_PATH = join(
   fileURLToPath(import.meta.url),
   '../../..'
