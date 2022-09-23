@@ -1,3 +1,4 @@
+import { MD_REGEX } from '../../node/constants';
 import { Plugin } from 'vite';
 
 export function pluginMdxHMR(): Plugin {
@@ -11,7 +12,7 @@ export function pluginMdxHMR(): Plugin {
       ) as Plugin;
     },
     async transform(code, id, opts) {
-      if (/\.mdx?/.test(id)) {
+      if (MD_REGEX.test(id)) {
         // Inject babel refresh template code by @vitejs/plugin-react
         const result = await viteReactPlugin.transform?.call(
           this,

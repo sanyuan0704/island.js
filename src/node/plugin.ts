@@ -16,23 +16,26 @@ export async function createIslandPlugins(
 ): Promise<PluginOption[]> {
   return [
     // pluginInspect({}),
-
+    // Md(x) compile
+    await pluginMdx(config, isServer),
     // For island internal use
     pluginIsland(config, isServer, restartServer),
+
     // React hmr support
-    pluginReact({
-      jsxRuntime: 'automatic',
-      jsxImportSource:
-        isServer && !config.enableSpa ? ISLAND_JSX_RUNTIME_PATH : 'react',
-      babel: {
-        // Babel plugin for island(mpa) mode
-        plugins: [...(config.enableSpa ? [] : [babelPluginIsland])]
-      }
-    }),
+    // In ssr, we will compile .tsx in islandTransform plugin
+    isServer
+      ? []
+      : pluginReact({
+          jsxRuntime: 'automatic',
+          jsxImportSource:
+            isServer && !config.enableSpa ? ISLAND_JSX_RUNTIME_PATH : 'react',
+          babel: {
+            // Babel plugin for island(mpa) mode
+            plugins: [...(config.enableSpa ? [] : [babelPluginIsland])]
+          }
+        }),
     // Svg component support
     pluginSvgr(),
-    // Md(x) compile
-    await pluginMdx(config),
     // Conventional Route
     pluginRoutes({ prefix: '', root: config.root })
   ];
