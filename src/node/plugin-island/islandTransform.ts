@@ -1,8 +1,4 @@
-import {
-  DEFAULT_THEME_PATH,
-  ISLAND_JSX_RUNTIME_PATH,
-  TS_REGEX
-} from '../constants';
+import { ISLAND_JSX_RUNTIME_PATH, TS_REGEX } from '../constants';
 import { Plugin, transformWithEsbuild } from 'vite';
 import { transformAsync } from '@babel/core';
 import babelPluginIsland from '../babel-plugin-island';

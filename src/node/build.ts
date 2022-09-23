@@ -333,15 +333,11 @@ class SSGBuilder {
         await createIslandPlugins(this.#config, isServer),
         ...(options?.plugins || [])
       ],
-      esbuild: {
-        // Reserve island component name
-        minifyIdentifiers: !isServer
-      },
       ssr: {
         noExternal: ['lodash-es', 'react-router-dom']
       },
       build: {
-        minify: !process.env.DEBUG,
+        minify: !process.env.DEBUG && !isServer,
         ssr: isServer,
         outDir: isServer
           ? join(this.#root, TEMP_PATH, 'ssr')
