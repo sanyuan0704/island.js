@@ -1,5 +1,17 @@
 
 
+# [0.2.0](https://github.com/sanyuan0704/island.js/compare/0.1.7...0.2.0) (2022-09-24)
+
+
+### Bug Fixes
+
+* optimize deps cannot resolve some package ([0ae187e](https://github.com/sanyuan0704/island.js/commit/0ae187eb60ffaa12147dc40a8703ad71848e3f3a))
+
+
+### Features
+
+* support cjs and esm output & add cjs api shims ([da6a9a9](https://github.com/sanyuan0704/island.js/commit/da6a9a9d946f47fb4ca89bd4e549a976da2bd5ac))
+
 ## [0.1.7](https://github.com/sanyuan0704/island.js/compare/0.1.6...0.1.7) (2022-09-24)
 
 
