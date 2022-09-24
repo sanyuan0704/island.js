@@ -13,6 +13,7 @@ interface GroupItem {
 
 export function APILayout() {
   const { subModules = [] } = usePageData();
+
   const initialGroups = subModules.map((subModule) => {
     const { routePath, title } = subModule;
     return {
@@ -23,10 +24,13 @@ export function APILayout() {
   });
   const [groups, setGroups] = useState(initialGroups);
 
+  console.log(groups);
+
   useEffect(() => {
     // Handle title hmr
     if (import.meta.env.DEV) {
       import.meta.hot?.on('md(x)-changed', ({ routePath, filePath }) => {
+        console.log(routePath);
         const group = groups.find((group) => group.link === routePath);
         if (!group) {
           return;
@@ -34,6 +38,7 @@ export function APILayout() {
         import(/* @vite-ignore */ `${filePath}?import&t=${Date.now()}`).then(
           (mod) => {
             group.headers = mod.toc;
+            group.text = mod.title;
             setGroups([...groups]);
           }
         );

@@ -19,7 +19,7 @@ export async function waitForApp(path: string): Promise<PageData> {
     const pagePath = cleanUrl((matched[0].route as Route).filePath);
     const relativePagePath = getRelativePagePath(path, pagePath, siteData.base);
     // API Page
-    if (mod.api || mod.pageType === 'api') {
+    if (mod?.meta?.api || mod?.meta?.pageType === 'api') {
       const subModules = await Promise.all(
         routes
           .filter(
@@ -38,8 +38,9 @@ export async function waitForApp(path: string): Promise<PageData> {
         siteData,
         pagePath,
         relativePagePath,
-        pageType: 'api',
-        subModules
+        subModules,
+        ...omit(mod, ['default']),
+        pageType: 'api'
       };
     } else {
       // Doc/Custom Page
@@ -47,7 +48,8 @@ export async function waitForApp(path: string): Promise<PageData> {
         siteData,
         pagePath,
         relativePagePath,
-        ...omit(mod, ['default'])
+        ...omit(mod, ['default']),
+        pageType: mod?.meta?.pageType || 'doc'
       } as PageData;
     }
   } else {

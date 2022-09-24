@@ -8,9 +8,16 @@ import { Helmet } from 'react-helmet-async';
 import { APILayout } from '../APILayout';
 
 export const Layout: React.FC = () => {
-  const { pageType, title: pageTitle, description, siteData } = usePageData();
-  // Priority page title > site title
-  const title = pageTitle || siteData?.title;
+  const {
+    // Inject by remark-plugin-toc
+    title: articleTitle,
+    meta,
+    siteData,
+    pageType
+  } = usePageData();
+  // Priority: front matter title > h1 title > site title
+  const title = (meta?.title ?? articleTitle) || siteData?.title;
+  const description = meta?.description || siteData.description;
   // Use doc layout by default
   const getContentLayout = () => {
     switch (pageType) {

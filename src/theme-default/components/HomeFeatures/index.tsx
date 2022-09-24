@@ -16,7 +16,8 @@ const getGridClass = (count?: number) => {
 };
 
 export function HomeFeature() {
-  const { features } = usePageData();
+  const { meta } = usePageData();
+  const features = meta?.features;
   const gridClass = getGridClass(features?.length);
   return (
     <div className={styles.features}>

@@ -12,7 +12,8 @@ const DEFAULT_HERO = {
 };
 
 export function HomeHero() {
-  const { hero = DEFAULT_HERO } = usePageData();
+  const { meta } = usePageData();
+  const hero = meta?.hero || DEFAULT_HERO;
   const hasImage = hero.image !== undefined;
 
   return (
