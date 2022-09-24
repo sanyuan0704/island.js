@@ -137,7 +137,8 @@
     "src/theme-default",
     "dist",
     "vendors",
-    "template.html"
+    "template.html",
+    "src/shared/constants"
   ],
   "lint-staged": {
     "**/*.{js,jsx,tsx,ts,json}": [
