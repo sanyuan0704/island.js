@@ -53,7 +53,7 @@ export interface UserConfig<ThemeConfig = unknown> {
   /**
    * Theme config.
    */
-  themeConfig: ThemeConfig;
+  themeConfig?: ThemeConfig;
   /**
    * Locales config for every page.
    */
