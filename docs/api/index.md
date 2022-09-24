@@ -1,3 +1,3 @@
 ---
-api: true
+pageType: 'api'
 ---

@@ -1,4 +1,8 @@
-# Configure your Site
+---
+title: 'Configure your site'
+---
+
+# Configure your site
 
 ## Create config file
 
@@ -55,21 +59,6 @@ export default defineConfig({
 });
 ```
 
-It should be noticed that the `nav` config is under `themeConfig`, and belongs to the default theme of Island.js.
-
-The `nav` config is an array of `NavItem`, which has following type:
-
-```ts
-interface NavItem {
-  // The text of the nav item
-  text: string;
-  // The link href will be entered when click the nav item
-  link: '/';
-  // The active match rule of the nav item
-  activeMatch: '^/$|^/';
-}
-```
-
 The `activeMatch` is used to match the current route, and the nav item will be highlighted when the route matches the `activeMatch` rule.
 
 ## Sidebar config
@@ -96,34 +85,4 @@ export default defineConfig({
 });
 ```
 
-The `sidebar` config is also under `themeConfig`, and belongs to the default theme of Island.js.
-
-`sidebar` config has two form: `array` and `object`.
-
-The `array` config is a list of `SidebarGroup`, which has following type:
-
-```ts
-interface SidebarGroup {
-  // The text of the sidebar group
-  text: string;
-  // The child items of the sidebar group
-  items: SidebarItem[];
-  // Whether the sidebar group is collapsible
-  collapsible?: boolean;
-  // The initial state of the sidebar group, which is only valid when `collapsible` is true
-  collapsed?: boolean;
-}
-
-type SidebarItem = {
-  // The text of item
-  text: string;
-  // The link href of item
-  link: string;
-};
-```
-
-The `object` config is a map for `SidebarGroup`, which has following type:
-
-```ts
-Record<string, SidebarGroup[]>;
-```
+You can get more config details about the sidebar config in [API Page](/api.html).

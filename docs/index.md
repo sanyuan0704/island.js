@@ -1,5 +1,5 @@
 ---
-pageType: 'home'
+pageType: home
 
 hero:
   name: Island
@@ -21,6 +21,9 @@ features:
     details: With Markdown-centered content, it's built to help you focus on writing and deployed with minimum configuration.
     icon: 🚀
   - title: 'MDX: The flexible way to write content'
-    details: MDX is a powerful way to write content. You can write React components in Markdown.
+    details: MDX is a powerful way to write content. You can use React components in Markdown.
     icon: 📦
+  - title: 'Islands Arch: The higher performance in production'
+    details: Designed to be islands architecture, means less javascript bundle, partial hydration and better performance about FCP, TTI.
+    icon: ✨
 ---

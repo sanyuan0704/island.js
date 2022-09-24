@@ -61,6 +61,14 @@ function getTutorialSidebar() {
         { text: 'SPA vs MPA', link: '/guide/spa-vs-mpa' },
         { text: 'Islands Architecture', link: '/guide/islands-arch' }
       ]
+    },
+    {
+      text: 'Features',
+      items: [
+        { text: 'Conventional Routing', link: '/guide/conventional-route' },
+        { text: 'Using MDX', link: '/guide/use-mdx' },
+        { text: 'Custom Page', link: '/guide/custom-page' }
+      ]
     }
   ];
 }
@@ -71,7 +79,8 @@ function getApiSidebar() {
       text: 'Config',
       items: [
         { text: 'Basic Config', link: '/api/config-basic' },
-        { text: 'Theme Config', link: '/api/config-theme' }
+        { text: 'Theme Config', link: '/api/config-theme' },
+        { text: 'Front Matter Config', link: '/api/config-front-matter' }
       ]
     }
   ];
