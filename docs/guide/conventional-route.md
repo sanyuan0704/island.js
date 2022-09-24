@@ -29,3 +29,22 @@ The specific mapping rules are as follows:
 | `/foo.md`       | `/foo`       |
 | `/foo/bar.md`   | `/foo/bar`   |
 | `/zoo/index.md` | `/zoo`       |
+
+## Custom Behavior
+
+If you want to customize the routing behavior, you can use the `route` field in the root config. For example:
+
+```ts
+import { defineConfig } from 'islandjs';
+
+export default defineConfig({
+  route: {
+    // These files will be excluded from the routing (support glob pattern)
+    exclude: ['custom.tsx', 'component/**/*']
+    // These files will be included in the routing (support glob pattern)
+    include: ['other-dir/**/*'],
+  }
+});
+```
+
+You can see more details in [Config Extension](/api/config-extension).
