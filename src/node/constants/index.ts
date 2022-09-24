@@ -13,6 +13,8 @@ export const PACKAGE_ROOT_PATH = join(
 
 export const CLIENT_RUNTIME_PATH = join(PACKAGE_ROOT_PATH, 'src/runtime');
 
+export const SHARED_PATH = join(PACKAGE_ROOT_PATH, 'src/shared');
+
 export const CLIENT_EXPORTS_PATH = join(CLIENT_RUNTIME_PATH, 'index.ts');
 
 export const CLIENT_ENTRY_PATH = join(CLIENT_RUNTIME_PATH, 'client-entry.tsx');

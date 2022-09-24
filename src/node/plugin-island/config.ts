@@ -6,13 +6,19 @@ import {
   ISLAND_CLI_PATH,
   ISLAND_JSX_RUNTIME_PATH,
   isProduction,
-  ROUTE_PATH
+  PUBLIC_DIR,
+  ROUTE_PATH,
+  SHARED_PATH
 } from '../constants';
-import { Plugin } from 'vite';
+import { Plugin, UserConfig } from 'vite';
 import { SiteConfig } from 'shared/types/index';
 import { join, relative } from 'path';
 import pc from 'picocolors';
 import { mergeConfig } from 'vite';
+import { PACKAGE_ROOT_PATH } from '../constants/index';
+import sirv from 'sirv';
+import path from 'path';
+import fs from 'fs-extra';
 
 const { green } = pc;
 
@@ -35,6 +41,7 @@ export function pluginConfig(
     config(c) {
       return mergeConfig(
         {
+          root: PACKAGE_ROOT_PATH,
           esbuild: {
             jsx: 'preserve'
           },
@@ -49,7 +56,7 @@ export function pluginConfig(
               'lodash-es'
             ],
             exclude: [
-              'island-ssg',
+              'islandjs',
               'island/theme',
               'island/client',
               'island/routes',
@@ -58,7 +65,12 @@ export function pluginConfig(
           },
           server: {
             fs: {
-              allow: [CLIENT_RUNTIME_PATH, DEFAULT_THEME_PATH, process.cwd()]
+              allow: [
+                CLIENT_RUNTIME_PATH,
+                DEFAULT_THEME_PATH,
+                SHARED_PATH,
+                process.cwd()
+              ]
             }
           },
           resolve: {
@@ -81,7 +93,7 @@ export function pluginConfig(
               localsConvention: 'camelCaseOnly'
             }
           }
-        },
+        } as UserConfig,
         config.vite || {}
       );
     },
@@ -102,6 +114,14 @@ export function pluginConfig(
         await restartServer!();
         return [];
       }
+    },
+    configureServer(server) {
+      return async () => {
+        // Serve public dir
+        if (await fs.pathExists(PUBLIC_DIR)) {
+          server.middlewares.use(sirv(path.join(config.root, PUBLIC_DIR)));
+        }
+      };
     }
   };
 }

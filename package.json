@@ -2,30 +2,31 @@
   "name": "islandjs",
   "version": "0.1.7",
   "description": "Vite & Islands architecture SSG framework",
-  "main": "dist/index.js",
   "packageManager": "pnpm@7.9.2",
   "type": "module",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/node/index.cjs",
+  "module": "dist/node/index.js",
+  "types": "dist/node/index.d.ts",
   "bin": {
     "island": "./bin/island.js"
   },
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "types": "./dist/node/index.d.ts",
+      "import": "./dist/node/index.js",
+      "require": "./dist/node/index.cjs"
     },
     "./dist/*": "./dist/*",
     "./package.json": "./package.json",
     "./theme": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/node/index.d.ts",
       "default": "./src/theme-default/index.ts"
     }
   },
   "scripts": {
     "pnpm-install": "pnpm install",
-    "dev": "tsup --watch",
-    "build": "NODE_ENV=production tsup && tsx scripts/pre-bundle.cts",
+    "dev": "tsup --watch --format=cjs,esm",
+    "build": "NODE_ENV=production tsup --format=cjs,esm && tsx scripts/pre-bundle.cts",
     "dev:docs": "node ./bin/island docs",
     "build:docs": "node ./bin/island build docs",
     "start:docs": "node ./bin/island start docs",
