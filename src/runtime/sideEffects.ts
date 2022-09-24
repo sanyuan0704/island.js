@@ -51,21 +51,21 @@ if (inBrowser()) {
             pathname === currentUrl.pathname &&
             search === currentUrl.search &&
             hash &&
-            hash !== currentUrl.hash
+            hash !== currentUrl.hash &&
+            link.classList.contains('header-anchor')
           ) {
             e.preventDefault();
             history.pushState(null, '', hash);
+            // use smooth scroll when clicking on header anchor links
+            scrollTo(link, hash, true);
             // still emit the event so we can listen to it in themes
             window.dispatchEvent(new Event('hashchange'));
-            // use smooth scroll when clicking on header anchor links
-            scrollTo(link, hash, link.classList.contains('header-anchor'));
           }
         }
       }
     },
     { capture: true }
   );
-
   window.addEventListener('hashchange', (e) => {
     e.preventDefault();
   });

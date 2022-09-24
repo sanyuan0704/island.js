@@ -264,7 +264,7 @@ export default defineConfig({
 });
 ```
 
-> In current version(v0.1.5), the `icon` only supports `github`.
+> In current version(v0.1.7), the `icon` only supports `github`.
 
 ## outlineTitle
 

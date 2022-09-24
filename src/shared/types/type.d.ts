@@ -23,10 +23,10 @@ declare module 'island:site-data' {
 
 
 declare module 'island/client' {
-  import { ComponentType } from 'react';
+  import { ComponentType, ReactElement } from 'react';
   import { PageData, SiteData } from 'shared/types';
 
-  export const Content: ComponentType<unknown>;
+  export const Content: ComponentType<{ fallback?: ReactElement }>;
   export const usePageData: () => PageData;
   export const DataContext: React.Context<{
     data: PageData;
