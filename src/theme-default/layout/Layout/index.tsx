@@ -5,6 +5,7 @@ import { DocLayout } from '../DocLayout';
 import { usePageData, Content } from 'island/client';
 import { NotFoundLayout } from 'island/theme';
 import { Helmet } from 'react-helmet-async';
+import { APILayout } from '../APILayout';
 
 export const Layout: React.FC = () => {
   const { pageType, title: pageTitle, description, siteData } = usePageData();
@@ -17,6 +18,8 @@ export const Layout: React.FC = () => {
         return <HomeLayout />;
       case 'doc':
         return <DocLayout />;
+      case 'api':
+        return <APILayout />;
       case '404':
         return <NotFoundLayout />;
       case 'custom':

@@ -293,8 +293,17 @@ class SSGBuilder {
       }
     </body>
   </html>`.trim();
-    const fileName =
-      routePath === '/' ? 'index.html' : `${routePath.slice(1)}.html`;
+
+    const normalizeHtmlFilePath = (path: string) => {
+      if (path === '/') {
+        return 'index.html';
+      }
+      if (path.endsWith('/')) {
+        return `${path}index.html`;
+      }
+      return `${path}.html`;
+    };
+    const fileName = normalizeHtmlFilePath(routePath);
     await fs.ensureDir(join(this.#root, DIST_PATH, dirname(fileName)));
     await fs.writeFile(join(this.#root, DIST_PATH, fileName), html);
   }

@@ -25,12 +25,18 @@ export default defineConfig({
       {
         text: 'Guide',
         link: '/guide/getting-started',
-        activeMatch: '^/$|^/guide/'
+        activeMatch: '^/guide/'
+      },
+      {
+        text: 'API',
+        link: '/api/',
+        activeMatch: '^/api'
       }
     ],
 
     sidebar: {
-      '/': getTutorialSidebar()
+      '/': getTutorialSidebar(),
+      '/api/': getApiSidebar()
     },
 
     footer: {
@@ -54,6 +60,18 @@ function getTutorialSidebar() {
       items: [
         { text: 'SPA vs MPA', link: '/guide/spa-vs-mpa' },
         { text: 'Islands Architecture', link: '/guide/islands-arch' }
+      ]
+    }
+  ];
+}
+
+function getApiSidebar() {
+  return [
+    {
+      text: 'Config',
+      items: [
+        { text: 'Basic Config', link: '/api/config-basic' },
+        { text: 'Theme Config', link: '/api/config-theme' }
       ]
     }
   ];

@@ -53,7 +53,7 @@ export interface UserConfig<ThemeConfig = unknown> {
   /**
    * Theme config.
    */
-  themeConfig: ThemeConfig;
+  themeConfig?: ThemeConfig;
   /**
    * Locales config for every page.
    */
@@ -155,9 +155,10 @@ export interface PageData {
   relativePagePath: string;
   title?: string;
   description?: string;
-  pageType: 'home' | 'doc' | 'custom' | '404';
+  pageType: 'home' | 'doc' | 'api' | 'custom' | '404';
   toc?: Header[];
   features?: Feature[];
   hero?: Hero;
   icon?: string;
+  subModules?: PageModule<ComponentType<unknown>>[];
 }

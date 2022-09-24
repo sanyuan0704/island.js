@@ -125,5 +125,5 @@ type SidebarItem = {
 The `object` config is a map for `SidebarGroup`, which has following type:
 
 ```ts
-Record<string, SidebarGroup>;
+Record<string, SidebarGroup[]>;
 ```

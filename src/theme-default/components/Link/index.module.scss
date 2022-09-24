@@ -1,6 +1,6 @@
 .link:hover {
-  opacity: 0.6;
-  color: var(--island-link-hover-color);
+  color: var(--island-c-brand);
+  transition: color 0.5s;
 }
 
 .link {
