@@ -2,7 +2,7 @@
 
 The idea of "islands architecture" was first coined by Etsy's frontend architect [Katie Sylor-Miller](https://twitter.com/ksylor) in 2019, and expanded on in this [post](https://jasonformat.com/islands-architecture/) by Preact creator Jason Miller.
 
-This kind of architecture is aim to solve the problem of the hydration need of MPA, which is deeply analyzed in [previous page](./spa-vs-mpa.html).
+This kind of architecture is aim to solve the problem of the hydration need of MPA, which is deeply analyzed before.
 
 ## What's it?
 

@@ -3,6 +3,7 @@ import { rehypePluginPreWrapper } from './rehypePlugins/preWrapper';
 import remarkPluginGFM from 'remark-gfm';
 import remarkPluginFrontMatter from 'remark-frontmatter';
 import remarkPluginMDXFrontMatter from 'remark-mdx-frontmatter';
+import { remarkPluginNormalizeLink } from './remarkPlugins/link';
 import rehypePluginAutolinkHeadings from 'rehype-autolink-headings';
 import rehypePluginSlug from 'rehype-slug';
 import rehypePluginExternalLinks from 'rehype-external-links';
@@ -13,7 +14,7 @@ import { SiteConfig } from 'shared/types/index';
 import { Plugin } from 'vite';
 
 export async function pluginMdxRollup(
-  _config: SiteConfig,
+  config: SiteConfig,
   isServer: boolean
 ): Promise<Plugin> {
   return pluginMdx({
@@ -25,7 +26,8 @@ export async function pluginMdxRollup(
       // The following two plugin for frontmatter
       remarkPluginFrontMatter,
       [remarkPluginMDXFrontMatter, { name: 'meta' }],
-      remarkPluginToc
+      remarkPluginToc,
+      [remarkPluginNormalizeLink, { base: config.base }]
     ],
     rehypePlugins: [
       rehypePluginSlug,

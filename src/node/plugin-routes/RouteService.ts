@@ -3,6 +3,8 @@ import fastGlob from 'fast-glob';
 import fs from 'fs-extra';
 import { RUNTIME_BUNDLE_OUTDIR } from '../constants';
 import path from 'path';
+import { DEFAULT_PAGE_EXTENSIONS } from '.';
+import { RouteOptions } from 'shared/types';
 
 export interface RouteMeta {
   routePath: string;
@@ -26,17 +28,21 @@ const lazyWithPreloadRuntimeCode = fs.readFileSync(
 
 export class RouteService {
   #routeData: RouteMeta[] = [];
-  constructor(
-    private scanDir: string,
-    private extensions: string[] // private root: string
-  ) {}
+  #extensions: string[] = [];
+  #include: string[] = [];
+  #exclude: string[] = [];
+  constructor(private scanDir: string, options: RouteOptions) {
+    this.#extensions = options.extensions || DEFAULT_PAGE_EXTENSIONS;
+    this.#include = options.include || [];
+    this.#exclude = options.exclude || [];
+  }
 
   async init() {
     const files = fastGlob
-      .sync(`**/*.{${this.extensions.join(',')}}`, {
+      .sync([`**/*.{${this.#extensions.join(',')}}`, ...this.#include], {
         cwd: this.scanDir,
         absolute: true,
-        ignore: ['**/node_modules/**', '**/.*', '**/dist/**']
+        ignore: ['**/node_modules/**', '**/.*', '**/dist/**', ...this.#exclude]
       })
       .sort();
     files.forEach((file) => this.addRoute(file));

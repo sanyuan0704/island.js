@@ -7,6 +7,13 @@ export default defineConfig({
   vite: {
     // custom config for vite
   },
+  markdown: {
+    rehypePlugins: [],
+    remarkPlugins: []
+  },
+  route: {
+    exclude: ['custom.tsx']
+  },
   themeConfig: {
     outlineTitle: 'ON THIS PAGE',
     socialLinks: [
@@ -80,7 +87,8 @@ function getApiSidebar() {
       items: [
         { text: 'Basic Config', link: '/api/config-basic' },
         { text: 'Theme Config', link: '/api/config-theme' },
-        { text: 'Front Matter Config', link: '/api/config-front-matter' }
+        { text: 'Front Matter Config', link: '/api/config-front-matter' },
+        { text: 'Extension Config', link: '/api/config-extension' }
       ]
     }
   ];

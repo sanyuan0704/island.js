@@ -37,6 +37,6 @@ export async function createIslandPlugins(
     // Svg component support
     pluginSvgr(),
     // Conventional Route
-    pluginRoutes({ prefix: '', root: config.root })
+    pluginRoutes({ prefix: '', root: config.root, ...config.route })
   ];
 }

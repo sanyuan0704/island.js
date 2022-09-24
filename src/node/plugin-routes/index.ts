@@ -4,6 +4,7 @@ import type { Plugin } from 'vite';
 import { normalizePath } from 'vite';
 import { RouteService } from './RouteService';
 import type { ComponentType } from 'react';
+import { RouteOptions } from 'shared/types/index';
 
 /**
  * How does the conventional route work?
@@ -13,22 +14,6 @@ import type { ComponentType } from 'react';
  * 2. Convert the file path to a route object
  * 3. Merge the route objects and generate route module code
  */
-export interface PluginOptions {
-  /**
-   * The directory to search for pages
-   */
-  root?: string;
-  /**
-   * The prefix of the filepath that will be converted to a route
-   */
-  prefix?: string;
-  /**
-   * The extension name of the filepath that will be converted to a route
-   * @default ['js','jsx','ts','tsx','md','mdx']
-   */
-  extensions?: string[];
-}
-
 export interface Route {
   path: string;
   element: React.ReactElement;
@@ -38,14 +23,10 @@ export interface Route {
 
 export const CONVENTIONAL_ROUTE_ID = 'virtual:routes';
 
-const DEFAULT_PAGE_EXTENSIONS = ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'];
+export const DEFAULT_PAGE_EXTENSIONS = ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'];
 
-export function pluginRoutes(options: PluginOptions = {}): Plugin {
-  const {
-    root = 'src',
-    prefix = '',
-    extensions = DEFAULT_PAGE_EXTENSIONS
-  } = options;
+export function pluginRoutes(options: RouteOptions = {}): Plugin {
+  const { root = 'src', prefix = '' } = options;
   let scanDir: string;
   let routeService: RouteService;
   return {
@@ -54,7 +35,7 @@ export function pluginRoutes(options: PluginOptions = {}): Plugin {
       scanDir = path.isAbsolute(root)
         ? path.join(root, prefix)
         : path.join(process.cwd(), root, prefix);
-      routeService = new RouteService(normalizePath(scanDir), extensions);
+      routeService = new RouteService(normalizePath(scanDir), options);
       await routeService.init();
     },
 

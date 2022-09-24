@@ -1,7 +1,7 @@
 import { ComponentType } from 'react';
 import { UserConfig as ViteConfiguration } from 'vite';
 import { DefaultTheme } from './default-theme';
-
+import type { PluggableList } from 'unified';
 export { DefaultTheme } from './default-theme';
 
 export interface Header {
@@ -82,6 +82,14 @@ export interface UserConfig<ThemeConfig = unknown> {
    * Whether dark mode/light mode toggle button is displayed.
    */
   appearance?: boolean;
+  /**
+   * The custom config of vite-plugin-route
+   */
+  route?: RouteOptions;
+  /**
+   * The custom config of markdown compile
+   */
+  markdown?: MarkdownOptions;
 }
 
 export interface LocaleConfig {
@@ -172,4 +180,33 @@ export interface PageData {
   toc?: Header[];
   icon?: string;
   subModules?: PageModule<ComponentType<unknown>>[];
+}
+
+export interface RouteOptions {
+  /**
+   * The directory to search for pages
+   */
+  root?: string;
+  /**
+   * The prefix of the filepath that will be converted to a route
+   */
+  prefix?: string;
+  /**
+   * The extension name of the filepath that will be converted to a route
+   * @default ['js','jsx','ts','tsx','md','mdx']
+   */
+  extensions?: string[];
+  /**
+   * Include extra files from being converted to routes
+   */
+  include?: string[];
+  /**
+   * Exclude files from being converted to routes
+   */
+  exclude?: string[];
+}
+
+export interface MarkdownOptions {
+  remarkPlugins?: PluggableList;
+  rehypePlugins?: PluggableList;
 }

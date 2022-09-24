@@ -93,23 +93,3 @@ export default defineConfig({
   outDir: 'dist'
 });
 ```
-
-## vite
-
-- Type: `Object`
-- Default: `{}`
-
-The custom config for [Vite](https://vitejs.dev/config/).And the config you passed in will be merged deeply with the default config of Vite. For example:
-
-```js
-import { defineConfig } from 'islandjs';
-
-export default defineConfig({
-  vite: {
-    // Then your vite plugins will be merged with the default plugins
-    plugins: [
-      // ...
-    ]
-  }
-});
-```

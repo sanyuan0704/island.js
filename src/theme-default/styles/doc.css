@@ -21,8 +21,8 @@
 .island-doc h6::before {
   display: block;
   content: '';
-  margin-top: -72px;
-  height: 72px;
+  margin-top: -70px;
+  height: 70px;
   visibility: hidden;
   pointer-events: none;
 }
@@ -91,6 +91,7 @@
 }
 
 .island-doc p {
+  z-index: 2;
   line-height: 28px;
 }
 

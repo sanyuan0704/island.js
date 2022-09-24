@@ -124,7 +124,9 @@ export async function resolveConfig(
     vite: userConfig.vite ?? {},
     allowDeadLinks: userConfig.allowDeadLinks ?? false,
     siteData: resolveSiteData(userConfig, root),
-    enableSpa: userConfig.enableSpa ?? false
+    enableSpa: userConfig.enableSpa ?? false,
+    route: userConfig.route ?? {},
+    markdown: userConfig.markdown ?? {}
   };
 
   return siteConfig;
