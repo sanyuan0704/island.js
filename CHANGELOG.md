@@ -1,5 +1,21 @@
 
 
+## [0.1.7](https://github.com/sanyuan0704/island.js/compare/0.1.6...0.1.7) (2022-09-24)
+
+
+### Bug Fixes
+
+* island collection not work in mdx file ([8964711](https://github.com/sanyuan0704/island.js/commit/89647114351510bbb22f159393050bc57f4fff1a))
+* lazyload runtime code build error ([915b29d](https://github.com/sanyuan0704/island.js/commit/915b29d135adc6ccd7a0a404114bfb441b1206f3))
+* specify the route  module sideEffect to enable tree shaking in client-entry prod build ([059ed8c](https://github.com/sanyuan0704/island.js/commit/059ed8c96f532f1922203de128f5f1502923638c))
+* src/shared not found after `island dev` ([fd2fadc](https://github.com/sanyuan0704/island.js/commit/fd2fadc3d42b134a0f97bf9b0946f37ab3274008))
+* ssr build error caused by `React is not defined` ([c0178c8](https://github.com/sanyuan0704/island.js/commit/c0178c8125a9dd948a0674c61d34e73135884c05))
+
+
+### Features
+
+* expand the a link click area ([0569a2f](https://github.com/sanyuan0704/island.js/commit/0569a2f58c640dcbaafec09abe84dc6655e159dc))
+
 ## [0.1.6](https://github.com/sanyuan0704/island.js/compare/0.1.5...0.1.6) (2022-09-23)
 
 
