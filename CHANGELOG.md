@@ -1,5 +1,22 @@
 
 
+## [0.2.1](https://github.com/sanyuan0704/island.js/compare/0.2.0...0.2.1) (2022-09-24)
+
+
+### Bug Fixes
+
+* adjust anchor position ([2ae34ee](https://github.com/sanyuan0704/island.js/commit/2ae34ee2ec0dcd69bca44b745bac2c759169ce6a))
+* hmr not work in api page ([44b6139](https://github.com/sanyuan0704/island.js/commit/44b61390233282722ea664c7fb5416dc976807cf))
+* public dir path error ([72d0ae0](https://github.com/sanyuan0704/island.js/commit/72d0ae039b951afdc4fc4eed9f25c9279b72e8d1))
+* sidebar data undefined in production ([86f63ca](https://github.com/sanyuan0704/island.js/commit/86f63ca0e8bd5c0c9caf2cc2e03d2d6a325995d7))
+
+
+### Features
+
+* add meta in page module ([d3cb987](https://github.com/sanyuan0704/island.js/commit/d3cb987033efe3d8983ae353528666cd8eb11bca))
+* add some features & front-matter doc ([c900011](https://github.com/sanyuan0704/island.js/commit/c900011338eb812c084131486062ade5bbb69528))
+* support api page type & init api doc ([db5b88e](https://github.com/sanyuan0704/island.js/commit/db5b88e9a53f3b3c4e8a2ac1d1ee3cdec7331826))
+
 # [0.2.0](https://github.com/sanyuan0704/island.js/compare/0.1.7...0.2.0) (2022-09-24)
 
 
