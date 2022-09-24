@@ -1,6 +1,6 @@
 import { inBrowser } from './utils';
 
-const DEFAULT_NAV_HEIGHT = 72;
+const DEFAULT_NAV_HEIGHT = 60;
 
 // Control the scroll behavior of the browser when user clicks on a link
 if (inBrowser()) {

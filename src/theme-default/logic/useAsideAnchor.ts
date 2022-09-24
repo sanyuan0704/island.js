@@ -10,7 +10,7 @@ function isBottom() {
   );
 }
 
-const NAV_HEIGHT = 72;
+const NAV_HEIGHT = 60;
 
 export function useAsideAnchor(
   prevActiveLinkRef: React.MutableRefObject<HTMLAnchorElement | null>,

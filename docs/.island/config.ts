@@ -74,7 +74,10 @@ function getTutorialSidebar() {
       items: [
         { text: 'Conventional Routing', link: '/guide/conventional-route' },
         { text: 'Using MDX', link: '/guide/use-mdx' },
-        { text: 'Custom Page', link: '/guide/custom-page' }
+        { text: 'Custom Page', link: '/guide/custom-page' },
+        { text: 'SPA Mode', link: '/guide/spa-mode' },
+        { text: 'Static Assets', link: '/guide/static-assets' },
+        { text: 'Extension', link: '/guide/extension' }
       ]
     }
   ];
