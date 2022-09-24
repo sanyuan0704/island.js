@@ -2,8 +2,10 @@ import { resolve } from 'path';
 import { cac } from 'cac';
 import { build } from './build';
 import { serve } from './serve';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const version = require('./../../package.json');
 
-const cli = cac('island').version('0.0.0').help();
+const cli = cac('island').version(version).help();
 
 cli
   .command('[root]', 'start dev server') // default command
@@ -17,7 +19,6 @@ cli
           await createServer();
         });
         await server.listen();
-        console.log();
         server.printUrls();
       };
       await createServer();
