@@ -116,15 +116,15 @@ export function pluginConfig(
       }
     },
     configureServer(server) {
-      return async () => {
-        // Serve public dir
-        // Cause by the pre-bundle problem, we have to set the island package as the root dir
-        // So we need to serve the public dir in user's root dir manually
-        const publicDir = path.join(config.root, PUBLIC_DIR);
-        if (await fs.pathExists(publicDir)) {
-          server.middlewares.use(sirv(publicDir));
-        }
-      };
+      // Serve public dir
+      // Cause by the pre-bundle problem, we have to set the island package as the root dir
+      // So we need to serve the public dir in user's root dir manually
+
+      const publicDir = path.join(config.root, PUBLIC_DIR);
+      if (fs.pathExistsSync(publicDir)) {
+        server.middlewares.use(sirv(publicDir));
+      }
+      server.middlewares.use(sirv(config.root));
     }
   };
 }

@@ -2,34 +2,36 @@ import type { Plugin } from 'unified';
 import { visit } from 'unist-util-visit';
 import path from 'path';
 import { isProduction } from '../../../node/constants';
+import { parseUrl } from '../../../node/utils';
 
 /**
  * Remark plugin to normalize a link href
  */
-export const remarkPluginNormalizeLink: Plugin<[{ base: string }]> =
-  ({ base }) =>
+export const remarkPluginNormalizeLink: Plugin<
+  [{ base: string; enableSpa: boolean }]
+> =
+  ({ base, enableSpa }) =>
   (tree) => {
     visit(
       tree,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (node: any) => node.type === 'a',
+      (node: any) => node.type === 'link',
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (node: any) => {
-        let url: string = node.url;
+        // eslint-disable-next-line prefer-const
+        let { url, hash } = parseUrl(node.url);
         const extname = path.extname(url);
 
         if (extname === '.md' || extname === '.mdx') {
           url = url.replace(extname, '');
         }
 
-        if (
-          isProduction() &&
-          !import.meta.env.ENABLE_SPA &&
-          extname !== '.html'
-        ) {
+        if (isProduction() && !enableSpa && extname !== '.html') {
           url += '.html';
         }
-
+        if (hash) {
+          url += `#${hash}`;
+        }
         node.url = path.join(base, url);
       }
     );

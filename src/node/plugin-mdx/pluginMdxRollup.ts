@@ -27,7 +27,10 @@ export async function pluginMdxRollup(
       remarkPluginFrontMatter,
       [remarkPluginMDXFrontMatter, { name: 'meta' }],
       remarkPluginToc,
-      [remarkPluginNormalizeLink, { base: config.base }]
+      [
+        remarkPluginNormalizeLink,
+        { base: config.base || '/', enableSpa: config.enableSpa }
+      ]
     ],
     rehypePlugins: [
       rehypePluginSlug,
