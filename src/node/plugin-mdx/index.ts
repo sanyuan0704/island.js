@@ -7,5 +7,5 @@ export async function pluginMdx(
   config: SiteConfig,
   isServer: boolean
 ): Promise<Plugin[]> {
-  return [await pluginMdxRollup(config, isServer), pluginMdxHMR()];
+  return [await pluginMdxRollup(config, isServer), pluginMdxHMR(config)];
 }

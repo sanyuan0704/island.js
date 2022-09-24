@@ -24,7 +24,7 @@ export async function pluginMdxRollup(
       remarkPluginGFM,
       // The following two plugin for frontmatter
       remarkPluginFrontMatter,
-      remarkPluginMDXFrontMatter,
+      [remarkPluginMDXFrontMatter, { name: 'meta' }],
       remarkPluginToc
     ],
     rehypePlugins: [

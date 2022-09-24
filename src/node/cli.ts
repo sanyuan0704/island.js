@@ -12,6 +12,7 @@ cli
   .alias('dev')
   .action(async (root: string) => {
     try {
+      root = resolve(root);
       const createServer = async () => {
         const { createDevServer } = await import(`./dev.js?t=${Date.now()}`);
         const server = await createDevServer(root, async () => {
