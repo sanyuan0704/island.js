@@ -6,7 +6,7 @@ By default, Island.js will generate a static site for every page and inject part
 
 On the other hand, you can use `SPA` mode to build a single page application. In SPA mode, Island.js will generate a single HTML file and inject all the javascript to make the site interactive. When you click to another page, the browser will not request a new HTML file, but only request a new javascript file to load the new page.
 
-As well as we analyzed before([MPA vs SPA](./spa-vs-mpa)), SPA mode will have better performance and experience in subsequent pages, but with complete hydration and client script in the first page, the first page load performance will be worse than MPA mode.
+As well as we analyzed before([MPA vs SPA](/guide/spa-vs-mpa)), SPA mode will have better performance and experience in subsequent pages, but with complete hydration and client script in the first page, the first page load performance will be worse than MPA mode.
 
 ## How to use?
 

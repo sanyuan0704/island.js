@@ -18,6 +18,9 @@ export const remarkPluginNormalizeLink: Plugin<
       (node: any) => node.type === 'link',
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (node: any) => {
+        if (node.url.startsWith('http')) {
+          return;
+        }
         // eslint-disable-next-line prefer-const
         let { url, hash } = parseUrl(node.url);
         const extname = path.extname(url);

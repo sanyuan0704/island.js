@@ -34,7 +34,7 @@ export default defineConfig({
 });
 ```
 
-You can see more details in [Config Extension](/api/config-extension#root).
+You can see more details in [Config Extension](/api/config-extension#route).
 
 ## Markdown
 
