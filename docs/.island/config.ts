@@ -11,6 +11,7 @@ export default defineConfig({
     rehypePlugins: [],
     remarkPlugins: []
   },
+  enableSpa: true,
   route: {
     exclude: ['custom.tsx']
   },

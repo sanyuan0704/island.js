@@ -20,7 +20,7 @@ export async function pluginMdxRollup(
   return pluginMdx({
     // We should reserve the jsx in ssr build
     // to ensure the island components can be collected by `babel-plugin-island`
-    jsx: isServer,
+    jsx: isServer && !config.enableSpa,
     remarkPlugins: [
       remarkPluginGFM,
       // The following two plugin for frontmatter
