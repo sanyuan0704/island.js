@@ -19,6 +19,7 @@ export function Nav() {
   const menuItems = siteData?.themeConfig?.nav || [];
   const socialLinks = siteData?.themeConfig?.socialLinks || [];
   const location = useLocation();
+  const title = siteData.themeConfig.siteTitle ?? siteData.title;
   const renderMenuItem = (item: DefaultTheme.NavItemWithLink) => {
     const isActive = new RegExp(item.activeMatch || '').test(location.pathname);
     return (
@@ -54,8 +55,8 @@ export function Nav() {
             }`}
           >
             <a href="/" className={styles.title}>
-              <span className={styles.logo}>🏝️</span>
-              <span>Island</span>
+              {/* <span className={styles.logo}></span> */}
+              <span>{title}</span>
             </a>
           </div>
           <div className={styles.content}>
