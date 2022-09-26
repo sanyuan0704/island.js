@@ -41,7 +41,6 @@ export function DocLayout() {
             <div className={styles.asideContent}>
               {hasAside ? (
                 <Aside
-                  __island
                   headers={headers}
                   outlineTitle={outlineTitle}
                   pagePath={pagePath}

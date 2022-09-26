@@ -2,16 +2,19 @@ import React from 'react';
 import styles from './index.module.scss';
 
 interface Props {
-  onClick: () => void;
+  onClick?: () => void;
   children: React.ReactNode;
+  className?: string;
+  id?: string;
 }
 export function Switch(props: Props) {
   return (
     <button
-      className={styles.switch}
+      className={`${styles.switch} ${props.className}`}
+      id={props.id ?? ''}
       type="button"
       role="switch"
-      onClick={props.onClick}
+      {...(props.onClick ? { onClick: props.onClick } : {})}
     >
       <span className={styles.check}>
         <span className={styles.icon}>{props.children}</span>
