@@ -1,5 +1,22 @@
 
 
+## [0.2.2](https://github.com/sanyuan0704/island.js/compare/0.2.1...0.2.2) (2022-09-26)
+
+
+### Bug Fixes
+
+* a link cannot click sometimes ([df956f5](https://github.com/sanyuan0704/island.js/commit/df956f573b456d74a29febe011f6641c6940513d))
+* normalize link skip external url ([7cf22c5](https://github.com/sanyuan0704/island.js/commit/7cf22c5e6cc3fc0b6bbd221e09c726da67dc4fa5))
+
+
+### Features
+
+* add config-extension doc ([ffd59f8](https://github.com/sanyuan0704/island.js/commit/ffd59f86fdbe269cd9f260ceda48ee3456efe405))
+* add extension & spa mode & static assets doc ([31918fa](https://github.com/sanyuan0704/island.js/commit/31918fa5185aa5506d6780dc6366be4c0cd73be6))
+* add normalize link remark plugin ([a5151f4](https://github.com/sanyuan0704/island.js/commit/a5151f4f2a335711e7deca43c85d4b50b714d6e4))
+* provide custom markdown compile options ([3f9681d](https://github.com/sanyuan0704/island.js/commit/3f9681d1f7bf5f7f55ebf14cf2e069264a484f63))
+* support siteTitle config ([476f8cc](https://github.com/sanyuan0704/island.js/commit/476f8ccfc1fa02863c98999be7bc0b0fde7aff09))
+
 ## [0.2.1](https://github.com/sanyuan0704/island.js/compare/0.2.0...0.2.1) (2022-09-24)
 
 
