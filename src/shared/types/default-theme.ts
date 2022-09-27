@@ -1,3 +1,5 @@
+import { HeadConfig } from '.';
+
 /**
  * Modify from VitePress default theme
  */
@@ -75,8 +77,23 @@ export namespace DefaultTheme {
      * The algolia options. Leave it undefined to disable the search feature.
      */
     algolia?: AlgoliaSearchOptions;
+    /**
+     * Locale config
+     */
+    locales?: Record<string, LocaleConfig>;
   }
 
+  /**
+   * locale config
+   */
+  export interface LocaleConfig {
+    lang: string;
+    title?: string;
+    description?: string;
+    head?: HeadConfig[];
+    label?: string;
+    selectText?: string;
+  }
   // nav -----------------------------------------------------------------------
 
   export type NavItem = NavItemWithLink | NavItemWithChildren;

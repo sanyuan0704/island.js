@@ -55,10 +55,6 @@ export interface UserConfig<ThemeConfig = unknown> {
    */
   themeConfig?: ThemeConfig;
   /**
-   * Locales config for every page.
-   */
-  locales?: Record<string, LocaleConfig>;
-  /**
    * Output directory of the site.
    */
   outDir?: string;
@@ -92,16 +88,6 @@ export interface UserConfig<ThemeConfig = unknown> {
   markdown?: MarkdownOptions;
 }
 
-export interface LocaleConfig {
-  lang: string;
-  title?: string;
-  titleTemplate?: string | boolean;
-  description?: string;
-  head?: HeadConfig[];
-  label?: string;
-  selectText?: string;
-}
-
 export interface SiteData<ThemeConfig = unknown> {
   root: string;
   base: string;
@@ -111,7 +97,11 @@ export interface SiteData<ThemeConfig = unknown> {
   icon: string;
   head: HeadConfig[];
   themeConfig: ThemeConfig;
-  locales: Record<string, LocaleConfig>;
+  locales: {
+    lang: string;
+    title: string;
+    description: string;
+  };
   appearance: boolean;
   // TODO: Available languages
   // langs: Record<string, { lang: string; label: string }>;

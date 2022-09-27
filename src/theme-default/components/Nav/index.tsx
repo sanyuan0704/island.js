@@ -20,7 +20,7 @@ export function Nav() {
   const socialLinks = siteData?.themeConfig?.socialLinks || [];
   const location = useLocation();
   const title = siteData.themeConfig.siteTitle ?? siteData.title;
-  const renderMenuItem = (item: DefaultTheme.NavItemWithLink) => {
+  const renderMenuSingleItem = (item: DefaultTheme.NavItemWithLink) => {
     const isActive = new RegExp(item.activeMatch || '').test(location.pathname);
     return (
       <div
@@ -31,20 +31,27 @@ export function Nav() {
       </div>
     );
   };
-  // TODO: add menu dropdown group
   const renderMenuItemGroup = (item: DefaultTheme.NavItemWithChildren) => {
-    return <div>{item.text}</div>;
-  };
-
-  const renderMenuList = () => {
     return (
-      <div className={styles.menu}>
-        {menuItems.map((item) =>
-          'link' in item ? renderMenuItem(item) : renderMenuItemGroup(item)
-        )}
+      <div className={styles.menuGroup}>
+        <button>{item.text}</button>
+        <div className={styles.menuItems}>
+          {item.items.map((child) => renderMenuItem(child))}
+        </div>
       </div>
     );
   };
+
+  const renderMenuItem = (item: DefaultTheme.NavItem) => {
+    return 'link' in item
+      ? renderMenuSingleItem(item)
+      : renderMenuItemGroup(item);
+  };
+
+  const renderMenuList = () => {
+    return <div className={styles.menu}>{menuItems.map(renderMenuItem)}</div>;
+  };
+
   return (
     <header className={styles.nav}>
       <div className={styles.navBar}>
