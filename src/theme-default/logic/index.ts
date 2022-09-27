@@ -27,3 +27,4 @@ export { usePrevNextPage } from './usePrevNextPage';
 export { useEditLink } from './useEditLink';
 export { useAppearance } from './useAppearance';
 export { useSidebarData } from './useSidebarData';
+export { useLastUpdated } from './useLastUpdated';
