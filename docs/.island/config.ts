@@ -23,6 +23,7 @@ export default defineConfig({
     exclude: ['custom.tsx']
   },
   themeConfig: {
+<<<<<<< HEAD
     locales: {
       '/zh/': {
         lang: 'zh',
@@ -47,6 +48,8 @@ export default defineConfig({
         description: 'SSG Framework based on island architecture'
       }
     },
+=======
+>>>>>>> 1db564b (feat: optimize treeshaking in client entry)
     outlineTitle: 'ON THIS PAGE',
     socialLinks: [
       {

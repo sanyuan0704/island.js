@@ -29,6 +29,5 @@ export function normalizeHref(url?: string) {
 export { useAsideAnchor } from './useAsideAnchor';
 export { usePrevNextPage } from './usePrevNextPage';
 export { useEditLink } from './useEditLink';
-export { useAppearance } from './useAppearance';
 export { useSidebarData } from './useSidebarData';
 export { useLocaleSiteData } from './useLocaleSiteData';

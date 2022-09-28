@@ -1,75 +1,76 @@
-// import { hydrateRoot, createRoot } from 'react-dom/client';
-// import type { ComponentType } from 'react';
-// import { BrowserRouter } from 'react-router-dom';
-// import { DataContext } from 'island/client';
+import { ComponentType } from 'react';
 import { setupEffects } from './sideEffects';
 
-// // Type shim for window.ISLANDS
-// declare global {
-//   interface Window {
-//     ISLANDS: Record<string, ComponentType<unknown>>;
-//     // The state for island.
-//     ISLAND_PROPS: Record<string, unknown[]>;
-//     ISLAND_PAGE_DATA: unknown;
-//   }
-// }
+// Type shim for window.ISLANDS
+declare global {
+  interface Window {
+    ISLANDS: Record<string, ComponentType<unknown>>;
+    // The state for island.
+    ISLAND_PROPS: Record<string, unknown[]>;
+    ISLAND_PAGE_DATA: unknown;
+  }
+}
 
-// async function renderInBrowser() {
-//   const containerEl = document.getElementById('root');
-//   if (!containerEl) {
-//     throw new Error('#root element not found');
-//   }
+async function renderInBrowser() {
+  const containerEl = document.getElementById('root');
+  if (!containerEl) {
+    throw new Error('#root element not found');
+  }
 
-//   const enhancedApp = async () => {
-//     const { waitForApp, App } = await import('./app');
-//     const { useState } = await import('react');
-//     const initialPageData = await waitForApp(window.location.pathname);
-//     return function RootApp() {
-//       const [pageData, setPageData] = useState(initialPageData);
-//       return (
-//         <DataContext.Provider value={{ data: pageData, setData: setPageData }}>
-//           <BrowserRouter>
-//             <App />
-//           </BrowserRouter>
-//         </DataContext.Provider>
-//       );
-//     };
-//   };
-//   if (import.meta.env.DEV) {
-//     // The App code will will be tree-shaking in production
-//     // So there is no need to worry that the complete hydration will be executed in island mode
-//     const { createRoot } = await import('react-dom/client');
-//     const RootApp = await enhancedApp();
-//     createRoot(containerEl).render(<RootApp />);
-//   } else {
-//     // In production
-//     // SPA mode
-//     if (import.meta.env.ENABLE_SPA) {
-//       const { hydrateRoot } = await import('react-dom/client');
-//       const RootApp = await enhancedApp();
-//       hydrateRoot(containerEl, <RootApp />);
-//     } else {
-//       // MPA mode or island mode
-//       if (!window.ISLAND_PROPS) {
-//         return;
-//       }
-//       const { hydrateRoot } = await import('react-dom/client');
-//       const islands = document.querySelectorAll('[__island]');
-//       for (let i = 0; i < islands.length; i++) {
-//         const island = islands[i];
-//         const [id, index] = island.getAttribute('__island')!.split(':');
-//         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-//         const Element = window.ISLANDS[id] as ComponentType<any>;
-//         hydrateRoot(
-//           island,
-//           <Element {...window.ISLAND_PROPS[index]}></Element>
-//         );
-//       }
-//     }
-//   }
-// }
+  const enhancedApp = async () => {
+    const { waitForApp, App } = await import('./app');
+    const { useState } = await import('react');
+    const { BrowserRouter } = await import('react-router-dom');
+    const { DataContext } = await import('island/client');
 
-// renderInBrowser().then(() => {
-// });
+    const initialPageData = await waitForApp(window.location.pathname);
 
-setupEffects();
+    return function RootApp() {
+      const [pageData, setPageData] = useState(initialPageData);
+      return (
+        <DataContext.Provider value={{ data: pageData, setData: setPageData }}>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </DataContext.Provider>
+      );
+    };
+  };
+  if (import.meta.env.DEV) {
+    // The App code will will be tree-shaking in production
+    // So there is no need to worry that the complete hydration will be executed in island mode
+    const { createRoot } = await import('react-dom/client');
+    const RootApp = await enhancedApp();
+    createRoot(containerEl).render(<RootApp />);
+  } else {
+    // In production
+    // SPA mode
+    if (import.meta.env.ENABLE_SPA) {
+      const RootApp = await enhancedApp();
+      const { hydrateRoot } = await import('react-dom/client');
+      hydrateRoot(containerEl, <RootApp />);
+    } else {
+      // MPA mode or island mode
+      const islands = document.querySelectorAll('[__island]');
+      if (islands.length === 0) {
+        return;
+      }
+      const { hydrateRoot } = await import('react-dom/client');
+
+      for (let i = 0; i < islands.length; i++) {
+        const island = islands[i];
+        const [id, index] = island.getAttribute('__island')!.split(':');
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const Element = window.ISLANDS[id] as ComponentType<any>;
+        hydrateRoot(island, <Element {...window.ISLAND_PROPS[index]} />);
+      }
+    }
+  }
+}
+
+renderInBrowser().then(() => {
+  // Binding the event after the first render
+  setTimeout(() => {
+    setupEffects();
+  });
+});
