@@ -85,4 +85,4 @@ export default defineConfig({
 });
 ```
 
-当然，还有很多自定义站点的配置，你可以在 [API 页面](/zh/api) 中获取更多配置细节。
+当然，还有很多自定义站点的配置，你可以在 [API 页面](/zh/api/index) 中获取更多配置细节。

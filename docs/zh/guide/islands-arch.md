@@ -1,24 +1,24 @@
 # Islands architecture
 
-The idea of "islands architecture" was first coined by Etsy's frontend architect [Katie Sylor-Miller](https://twitter.com/ksylor) in 2019, and expanded on in this [post](https://jasonformat.com/islands-architecture/) by Preact creator Jason Miller.
+`孤岛架构`的概念最初在 2019 年被 [Katie Sylor-Miller](https://twitter.com/ksylor) 提出，然后在 2021 年被 Preact 作者 `Jason Miller` 在 [一篇文章](https://jasonformat.com/islands-architecture/) 中得到推广。
 
-This kind of architecture is aim to solve the problem of the hydration need of MPA, which is deeply analyzed before.
+这种架构是为了解决 MPA 应用的 hydration 问题，在上篇文章中已经分析过了。本小节主要侧重介绍孤岛架构的概念以及 Island.js 是如何实现这种架构的。
 
-## What's it?
+## 概念
 
-As the name suggests, we can image the whole page as a sea of static, and the interactive parts as islands.As the following picture shows:
+顾名思义，我们可以把整个页面想象成一片静态的海洋，将交互部分想象成孤岛。如下图所示：
 
 ![./assets/islands-arch.png](https://res.cloudinary.com/wedding-website/image/upload/v1596766231/islands-architecture-1.png)
 
-Then the hydration process will only be executed on the islands, which will make the first page load performance and TTI(time to interactive) better because it only needs partial client script that is correspond to the interactive parts.
+然后在 hydration 的过程中，我们只需要对于这些局部的孤岛组件执行 hydration 即可，这样就可以避免整个页面的 hydration，从而提升首屏性能。
 
-## Implement details in Island.js
+## Island.js 的实现
 
-The implementation of this architecture includes three parts: `server runtime`、`build time` and `client runtime`.
+孤岛架构在 Island.js 中的实现包括三个部分：`server runtime`、`build time` 和 `client runtime`。
 
-### Basic Usage
+### 孤岛组件的使用
 
-Before introducing the architecture implementation, I think it is necessary to introduce how to use an island component.In island.js, the usage is very simple, just like the following code:
+在介绍架构的实现之前，我认为有必要先介绍一下孤岛组件的使用。在 Island.js 中，使用方式非常简单，如下面的代码所示：
 
 ```js
 import { Aside } from './Aside.tsx';
@@ -28,30 +28,30 @@ export function Layout() {
 }
 ```
 
-You only need to add a `__island` prop to the component when you use it, and then the component will automatically be identified as a island component.Island.js will only inject the client script of island components as well as their props when they are rendered on the client.
+使用时只需要在组件中添加一个`__island` prop，然后组件就会自动被识别为孤岛组件。Island.js 只会在孤岛组件的客户端脚本和它们的 props 注入在客户端中。
 
-### Internal Implement
+### 内部实现细节
 
-**1. Server runtime**.The server runtime is responsible for the server-side rendering of the islands, and it is also the core of the islands architecture.The main task of the server runtime is to collect the islands information in `renderToString` process.
+**1. Server runtime**。服务器运行时负责服务端渲染，也就是组件到 HTML 的转换过程(renderToString)。这个阶段的主要任务是在`renderToString`过程中收集孤岛组件信息。
 
-In `Island.js`, it hijack the react/jsx-runtime's jsx function and collect the islands information when `__island` prop is found in the component.
+在 Island.js 中，我们使用`react/jsx-runtime`来实现 jsx 的转换，所以我们需要在`react/jsx-runtime`中劫持 jsx 函数，当发现组件中有`__island` prop 时，就会收集孤岛组件的信息。
 
-**2. Build time**.The build time is responsible for generating the client script of the islands and injecting it into the html.In build time, Island.js will generate three bundle:
+**2. Build time**。构建时负责生成孤岛组件的客户端脚本并注入到 HTML 中。在构建时 Island.js 会生成三个 bundle：
 
-- Server bundle, for rendering to html string in server.
-- Client hydration bundle, for hydrating the islands in client.
-- Islands bundle, for registering the islands components and props on window object.
+- `Server bundle`，用于服务端渲染。
+- `Client hydration bundle`，用于客户端 hydration。
+- `Islands bundle`，用于注册孤岛组件的客户端脚本，所有孤岛组件将会挂载在`window`对象上。
 
-Island.js will combine all island components into a virtual module and bundle them.In the virtual module, all of the island components will be hang on `window` object.So in client hydration bundle, we can get the island components from `window` object and hydrate them separately.
+在 Island.js 中，收集完所有的孤岛组件后，会构造一个虚拟模块，作用是将将所有的孤岛组件注册到 window 对象上，因此在客户端 hydration bundle 中，我们可以从 window 对象上获取到所有的孤岛组件，然后对其进行 hydration。
 
-**3. Client runtime**.The client runtime is responsible for hydrating the islands in browser to make them interactive.
+**3. Client runtime**。客户端运行时主要是负责孤岛组件的 hydration，也就是将孤岛组件变得可以交互。
 
-There are the some relevant code in repository:
+下面是一些相关的实现代码:
 
-[island-jsx-runtime.js](https://github.com/sanyuan0704/island.js/blob/master/src/runtime/island-jsx-runtime.js): The jsx runtime will collect the islands information when `__island` prop is found in the component, served as the server runtime.
+[island-jsx-runtime.js](https://github.com/sanyuan0704/island.js/blob/master/src/runtime/island-jsx-runtime.js): 拦截 jsx 运行时，收集孤岛组件信息。
 
-[babel-plugin-island](https://github.com/sanyuan0704/island.js/blob/master/src/node/babel-plugin-island.ts): The babel plugin will transform the `__island` prop to `__island=${islandAbsoluteFilePath}` prop, so in build time, bundler will find the island component file path.
+[babel-plugin-island](https://github.com/sanyuan0704/island.js/blob/master/src/node/babel-plugin-island.ts): 注册孤岛组件文件路径的 babel 插件。
 
-[SSGBuilder](https://github.com/sanyuan0704/island.js/blob/master/src/node/build.ts): The complete build time implement.
+[SSGBuilder](https://github.com/sanyuan0704/island.js/blob/master/src/node/build.ts): 完整的构建时实现。
 
-[client-entry](https://github.com/sanyuan0704/island.js/blob/master/src/runtime/client-entry.tsx#L50): The client runtime will hydrate the islands in browser to make them interactive.
+[client-entry](https://github.com/sanyuan0704/island.js/blob/master/src/runtime/client-entry.tsx#L50): 客户端运行时代码，主要是负责孤岛组件的 hydration。
