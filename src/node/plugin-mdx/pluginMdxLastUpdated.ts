@@ -1,6 +1,7 @@
 import { Plugin } from 'vite';
 import { simpleGit } from 'simple-git';
-import { MD_REGEX } from '../../node/constants';
+import { MD_REGEX } from '../constants';
+import { cleanUrl } from '../../shared/utils';
 
 export function pluginMdxGit(): Plugin {
   const cache = new Map<string, string>();
@@ -13,12 +14,14 @@ export function pluginMdxGit(): Plugin {
   }
 
   return <Plugin>{
-    name: 'vite-plugin-mdx-git',
+    name: 'vite-plugin-mdx-last-update',
     async transform(code, id) {
+      id = cleanUrl(id);
       if (!MD_REGEX.test(id)) return code;
 
       let lastUpdatedTime = '';
       if (cache.has(id)) {
+        // Use cache to avoid unnecessary git command execution
         lastUpdatedTime = cache.get(id)!;
       } else {
         const rawTime = await getLastUpdatedTime(id);

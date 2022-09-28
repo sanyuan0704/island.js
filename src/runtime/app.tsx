@@ -3,11 +3,12 @@ import { routes } from 'virtual:routes';
 import { matchRoutes, useLocation } from 'react-router-dom';
 import siteData from 'island:site-data';
 import { Route } from '../node/plugin-routes';
-import { cleanUrl, getRelativePagePath, omit } from './utils';
+import { getRelativePagePath, omit } from './utils';
 import { PageData } from '../shared/types';
 import { HelmetProvider } from 'react-helmet-async';
 import { useContext, useLayoutEffect } from 'react';
 import { DataContext } from 'island/client';
+import { cleanUrl } from '../shared/utils';
 
 export async function waitForApp(path: string): Promise<PageData> {
   const matched = matchRoutes(routes, path, siteData.base)!;

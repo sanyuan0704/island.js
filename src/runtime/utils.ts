@@ -1,3 +1,5 @@
+import { cleanUrl } from '../shared/utils';
+
 export const inBrowser = () => typeof window !== 'undefined';
 
 export const omit = (obj: Record<string, unknown>, keys: string[]) => {
@@ -7,12 +9,6 @@ export const omit = (obj: Record<string, unknown>, keys: string[]) => {
   }
   return ret;
 };
-
-export const queryRE = /\?.*$/s;
-export const hashRE = /#.*$/s;
-
-export const cleanUrl = (url: string): string =>
-  url.replace(hashRE, '').replace(queryRE, '');
 
 export const getRelativePagePath = (
   routePath: string,

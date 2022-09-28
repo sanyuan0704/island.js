@@ -173,7 +173,7 @@ export interface PageData {
   siteData: SiteData<DefaultTheme.Config>;
   pagePath: string;
   relativePagePath: string;
-  lastUpdatedTime: string;
+  lastUpdatedTime?: string;
   title?: string;
   meta?: FrontMatterMeta;
   description?: string;
