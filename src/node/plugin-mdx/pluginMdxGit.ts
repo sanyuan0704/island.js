@@ -19,7 +19,7 @@ export function pluginMdxGit(): Plugin {
 
       let lastUpdatedTime = '';
       if (cache.has(id)) {
-        lastUpdatedTime = id;
+        lastUpdatedTime = cache.get(id)!;
       } else {
         const rawTime = await getLastUpdatedTime(id);
         lastUpdatedTime = new Date(rawTime).toLocaleString();
