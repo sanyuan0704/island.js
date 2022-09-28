@@ -1,6 +1,8 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useState, useEffect, useRef } from 'react';
 import styles from './index.module.scss';
 import { ComponentPropsWithIsland, Header } from 'shared/types/index';
+import { bindingAsideScroll } from '../../logic';
 
 export function Aside(
   props: ComponentPropsWithIsland<{
@@ -13,6 +15,17 @@ export function Aside(
   // For outline text highlight
   const markerRef = useRef<HTMLDivElement>(null);
   const asideRef = useRef<HTMLDivElement>(null);
+  // We promise: in complete dev/prod render process, the hooks order will be consistent
+  if (import.meta.env.ENABLE_SPA || import.meta.env.DEV) {
+    useEffect(() => {
+      if (markerRef.current) {
+        markerRef.current.style.opacity = '0';
+      }
+      const unbinding = bindingAsideScroll();
+      window.scrollTo(0, 0);
+      return unbinding;
+    }, [headers]);
+  }
 
   useEffect(() => {
     setHeaders(props.headers);

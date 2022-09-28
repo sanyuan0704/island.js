@@ -23,7 +23,7 @@ export async function createIslandPlugins(
 
     // React hmr support
     // In ssr, we will compile .tsx in islandTransform plugin
-    isServer
+    isServer && !config.enableSpa
       ? []
       : pluginReact({
           jsxRuntime: 'automatic',

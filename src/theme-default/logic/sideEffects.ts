@@ -119,7 +119,7 @@ function bindingWindowScroll() {
 }
 
 // Binding the scroll event to the aside element
-function bindingAsideScroll() {
+export function bindingAsideScroll() {
   function isBottom() {
     return (
       document.documentElement.scrollTop + window.innerHeight >=
@@ -193,6 +193,10 @@ function bindingAsideScroll() {
   requestAnimationFrame(setActiveLink);
 
   window.addEventListener('scroll', throttledSetLink);
+
+  return () => {
+    window.removeEventListener('scroll', throttledSetLink);
+  };
 }
 
 export function setupEffects() {
@@ -200,6 +204,9 @@ export function setupEffects() {
     return;
   }
   bindingAppearanceToggle();
-  bindingAsideScroll();
+  // In spa, we set the logic in useEffect instead here because the event should be rebind when the page is changed
+  if (!import.meta.env.DEV && !import.meta.env.ENABLE_SPA) {
+    bindingAsideScroll();
+  }
   bindingWindowScroll();
 }
