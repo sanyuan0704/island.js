@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react';
 import { PageData } from '../shared/types';
-import { inBrowser } from './utils';
+import { inBrowser } from '../shared/utils';
 
 export const DataContext = createContext({
   data: inBrowser() ? window?.ISLAND_PAGE_DATA : null,

@@ -1,5 +1,5 @@
 import { ComponentType } from 'react';
-import { setupEffects } from './sideEffects';
+import { setupEffects } from 'island/theme';
 
 // Type shim for window.ISLANDS
 declare global {

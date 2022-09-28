@@ -1,6 +1,6 @@
 import { throttle } from 'lodash-es';
-import { APPEARANCE_KEY } from '../shared/constants';
-import { inBrowser } from '../shared/utils';
+import { APPEARANCE_KEY } from '../../shared/constants';
+import { inBrowser } from '../../shared/utils';
 
 const DEFAULT_NAV_HEIGHT = 60;
 

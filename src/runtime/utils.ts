@@ -1,7 +1,5 @@
 import { cleanUrl } from '../shared/utils';
 
-export const inBrowser = () => typeof window !== 'undefined';
-
 export const omit = (obj: Record<string, unknown>, keys: string[]) => {
   const ret = { ...obj };
   for (const key of keys) {
