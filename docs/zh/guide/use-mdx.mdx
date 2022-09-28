@@ -1,0 +1,58 @@
+---
+title: 'Using MDX'
+---
+
+# Using Mdx
+
+Island.js supports [Mdx](https://mdxjs.com/), which is a powerful way to write content. You can write, import and use React components in Markdown file.
+
+## Markdown
+
+MDX is the super set of Markdown, which means you can write Markdown file as usual. For example:
+
+```md
+# Hello World
+```
+
+## Use Components
+
+When you want to use React components in Markdown file, you should name your file with `.mdx` extension. For example:
+
+```mdx
+// docs/index.mdx
+import { CustomComponent } from './custom';
+
+# Hello World
+
+<CustomComponent />
+```
+
+## Front Matter
+
+You can use [Front Matter](https://jekyllrb.com/docs/front-matter/) to add metadata to your Markdown file. For example:
+
+```mdx
+---
+title: Hello World
+---
+```
+
+> Note: by default, Island.js use h1 title as the title of html.
+
+You can also access the property defined in front matter, for example:
+
+```mdx
+---
+title: Hello World
+---
+
+# {meta.title}
+```
+
+The properties defined in front matter will be passed to the component as `meta` property.So the final output will be:
+
+```html
+<h1>Hello World</h1>
+```
+
+You can see more front matter config detail in [config-front-matter](/en/api/config-front-matter).

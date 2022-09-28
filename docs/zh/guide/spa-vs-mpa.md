@@ -1,18 +1,36 @@
-# MPA vs SPA
+# MPA 和 SPA 对比
 
-Understanding the tradeoffs between Multi-Page Application (MPA) and Single-Page Application (SPA) architecture is important to understand how island.js works and how to use it in proper way.
+理解多页应用程序(MPA)和单页多页程序(SPA)的区别和取舍是理解 Islands 架构的关键，这也可以让你更好的使用 Island.js。
 
-## What are MPA and SPA ?
+## 什么是 MPA 和 SPA ?
 
-MPA and SPA are two different ways to build web applications.
+MPA 和 SPA 是构建前端页面常见的两种方式。
 
-`A Multi-Page Application(MPA)` is a web application that loads multiple HTML pages from server.Each page is independent of each other and has its own URL. When you click the link to navigate to another page, the browser will send a request to the server and load the new page.For example, the traditional template technology like in JSP、Python Django、PHP Laravel and so on are all MPA framework.
+MPA(Multi-page application) 即多页应用，是从服务器加载多个 HTML 页面的应用程序。每个页面都彼此独立，有自己的 URL。当单击 a 标签链接导航到另一个页面时，浏览器将向服务器发送请求并加载新页面。例如，传统的模板技术如 JSP、Python、Django、PHP、Laravel 等都是基于 MPA 的框架。
 
-`A Single-Page Application(SPA)` is a web application that loads a single HTML page that loads in the user's browser and renders HTML locally.The page is loaded once and then dynamically updated via JavaScript as the user interacts with the app. For example, Next.js, Nuxt、CRA(create-react-app) are all SPA framework.
+SPA(Single-page application) 即单页应用，它只有一个不包含具体页面内容的 HTML，当浏览器拿到这份 HTML 之后，会请求页面所需的 JavaScript 代码，通过执行 JavaScript 代码完成 DOM 树的构建和 DOM 的事件绑定，从而让页面可以交互。如现在使用的大多数 Vue、React 中后台应用都是 SPA 应用。
 
-Fortunately, Island.js support both MPA and SPA architecture.But how do we choose between them? Let's take a look at the pros and cons of each.
+## 对比
 
-## Comparison
+### 1. 性能
+
+在 MPA 中，服务器将响应完整的 HTML 页面给浏览器，但是 SPA 需要先请求客户端的 JS Bundle 然后执行 JS 以渲染页面。因此，MPA 中的页面的首屏加载性能比 SPA 更好。
+
+但 SPA 在后续页面加载方面有更好的性能和体验。因为 SPA 在完成首屏加载之后，在访问其它的页面时只需要动态加载页面的一部分组件，而不是整个页面。而且，当页面发生跳转时，SPA 不会重新加载页面，对用户更友好。
+
+### 2. SEO
+
+MPA 中服务端会针对每个页面返回完整的 HTML 内容，对 SEO 更加友好；而 SPA 的页面内容则需要执行 JS 才能拉取到，不利于 SEO。
+
+### 3. 路由
+
+MPA 在浏览器侧其实不需要路由，每个页面都在服务端都有一份 URL 地址，浏览器拿到 URL 直接请求服务端即可。
+
+但 SPA 则不同，它需要 JS 掌管后续所有路由跳转的逻辑，因此会引入一些路由方案来管理前端的路由，比如基于 hashchange 事件或者浏览器 history API 来实现。
+
+### 4. 状态管理
+
+除了路由，SPA 另外一个复杂的点在于状态管理。SPA 当中所有路由的状态都是由 JS 进行管理，在不同的路由进行跳转时通过 JS 代码进行一些状态的流转，在页面的规模越来越大的时候，状态管理就变得越来越复杂了。因此，社区也诞生了不少的状态管理方案，如传统的 Redux、社区新秀 Valtio、Zustand 包括字节自研的 Reduck，都是为了解决 SPA 状态管理的问题，一方面降低操作的复杂度、另一方面引入一些规范和限制(比如 Redux 中的 action 机制)来提高项目可维护性。
 
 ### Performance
 
@@ -60,4 +78,4 @@ With these cost after combining MPA and SPA, i have to say sometimes combine the
 
 So island.js recommended to use MPA for content-focused website, which is a default internal strategy.Then here comes the problem: MPA only generate static HTML page, how to ensure the hydration process if there are some interactive parts in the page?
 
-That's the motivation of island architecture.You will find the answer in the next article: [Islands Architecture](/guide/islands-arch)
+That's the motivation of island architecture.You will find the answer in the next article: [Islands Architecture](/en/guide/islands-arch)

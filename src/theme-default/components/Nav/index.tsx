@@ -6,20 +6,22 @@ import GithubSvg from './icons/github.svg';
 import { DefaultTheme } from '../../../shared/types';
 import { useLocation } from 'react-router-dom';
 import { usePageData } from 'island/client';
-import { normalizeHref } from '../../logic/index';
+import { normalizeHref, useLocaleSiteData } from '../../logic';
 
 const IconMap = {
   github: GithubSvg
 };
 
 export function Nav() {
+  const location = useLocation();
   const { siteData, pageType } = usePageData();
   const hasSidebar = pageType === 'doc';
   const hasAppearanceSwitch = siteData.appearance !== false;
-  const menuItems = siteData?.themeConfig?.nav || [];
+  const localeData = useLocaleSiteData(siteData.themeConfig, location.pathname);
+  const menuItems = localeData.nav || [];
   const socialLinks = siteData?.themeConfig?.socialLinks || [];
-  const location = useLocation();
-  const title = siteData.themeConfig.siteTitle ?? siteData.title;
+  const title =
+    localeData.title ?? siteData.themeConfig.siteTitle ?? siteData.title;
   const renderMenuSingleItem = (item: DefaultTheme.NavItemWithLink) => {
     const isActive = new RegExp(item.activeMatch || '').test(location.pathname);
     return (

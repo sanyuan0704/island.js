@@ -87,12 +87,14 @@ export namespace DefaultTheme {
    * locale config
    */
   export interface LocaleConfig {
-    lang: string;
+    lang?: string;
     title?: string;
     description?: string;
     head?: HeadConfig[];
     label?: string;
     selectText?: string;
+    nav?: NavItem[];
+    sidebar?: Sidebar;
   }
   // nav -----------------------------------------------------------------------
 

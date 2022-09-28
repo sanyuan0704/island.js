@@ -4,6 +4,10 @@ export function addLeadingSlash(url: string) {
   return url.charAt(0) === '/' ? url : '/' + url;
 }
 
+export function removeTrailingSlash(url: string) {
+  return url.charAt(url.length - 1) === '/' ? url.slice(0, -1) : url;
+}
+
 export function normalizeHref(url?: string) {
   if (!url) {
     return '/';
@@ -27,3 +31,4 @@ export { usePrevNextPage } from './usePrevNextPage';
 export { useEditLink } from './useEditLink';
 export { useAppearance } from './useAppearance';
 export { useSidebarData } from './useSidebarData';
+export { useLocaleSiteData } from './useLocaleSiteData';

@@ -97,14 +97,7 @@ export interface SiteData<ThemeConfig = unknown> {
   icon: string;
   head: HeadConfig[];
   themeConfig: ThemeConfig;
-  locales: {
-    lang: string;
-    title: string;
-    description: string;
-  };
   appearance: boolean;
-  // TODO: Available languages
-  // langs: Record<string, { lang: string; label: string }>;
 }
 
 export interface Hero {

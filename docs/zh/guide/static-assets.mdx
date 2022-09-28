@@ -1,0 +1,62 @@
+# Assets handle
+
+## Import Static assets
+
+You can import static assets in your `markdown`(or `mdx`) file, and Island.js will handle it for you.
+
+Relative and absolute paths are both supported. For example, if you have an image in the same folder as your markdown file, you can reference it like this:
+
+```mdx
+![](./island.png)
+```
+
+Of course, in `mdx` file your can also use img tag directly:
+
+```mdx
+<img src="./island.png" />
+```
+
+Island.js will response the image request based on your source file path and the relative path you provided.
+
+On the other hand, you can also use absolute path to import static assets.In this way, Island.js will look for the file in two places:
+
+- root dir served by Island.js, such as `docs`
+- public folder in root dir
+
+For example, if root dir is `docs` and you have a file `docs/public/island.png`, you can reference it like this:
+
+```mdx
+![](/island.png)
+```
+
+Then, if you have a file `docs/assets/island.png`, you can reference it like this:
+
+```mdx
+![](/assets/island.png)
+```
+
+## Public Files
+
+As well as mentioned above, you can put your static assets in `public` folder, and Island.js will serve them for you.And in production build,
+Island.js will copy all files in `public` folder to the output folder(`dist`).
+
+For example:
+
+```bash
+docs
+├── public
+│   └── island.png
+```
+
+After build, you will get:
+
+```bash
+docs
+├── public
+│   └── island.png
+├── .island
+│   └── dist
+│       └── island.png
+│       └── index.html
+│       └── ...
+```
