@@ -4,9 +4,9 @@ import { useEditLink, usePrevNextPage } from '../../logic';
 import { normalizeHref } from '../../logic/index';
 
 export function DocFooter() {
-  const { siteData, relativePagePath } = usePageData();
+  const { siteData, relativePagePath, lastUpdatedTime } = usePageData();
   const { prevPage, nextPage } = usePrevNextPage(siteData);
-  const { editLink: rawEditLink } = siteData.themeConfig;
+  const { editLink: rawEditLink, lastUpdatedText } = siteData.themeConfig;
   const editLink = useEditLink(rawEditLink!, relativePagePath);
 
   return (
@@ -20,17 +20,16 @@ export function DocFooter() {
           </div>
         ) : null}
 
-        {/* TODO */}
-        {/* <div className={styles.lastUpdated}>
-          {lastUpdatedText ? (
+        <div className={styles.lastUpdated}>
+          {
             <>
               <p className={styles.lastUpdated}>
-                {editLink?.text || 'Last Updated: '}
+                {`${lastUpdatedText ?? 'Last Updated'}: `}
               </p>
-              <span>{}</span>
+              <span>{lastUpdatedTime}</span>
             </>
-          ) : null}
-        </div> */}
+          }
+        </div>
       </div>
 
       <div className={styles.prevNext}>
