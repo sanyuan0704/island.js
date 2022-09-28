@@ -19,8 +19,9 @@ export async function waitForApp(path: string): Promise<PageData> {
 
     const pagePath = cleanUrl((matched[0].route as Route).filePath);
     const relativePagePath = getRelativePagePath(path, pagePath, siteData.base);
+    const isApiPage = mod?.meta?.api || mod?.meta?.pageType === 'api';
     // API Page
-    if (mod?.meta?.api || mod?.meta?.pageType === 'api') {
+    if (isApiPage) {
       const subModules = await Promise.all(
         routes
           .filter(
