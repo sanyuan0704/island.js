@@ -133,7 +133,7 @@ export interface SiteConfig<ThemeConfig = unknown>
   siteData?: SiteData<ThemeConfig>;
 }
 
-export type ComponentPropsWithIsland<T = unknown> = T & { __island: boolean };
+export type ComponentPropsWithIsland<T = unknown> = T & { __island?: boolean };
 
 export interface PageModule<T extends ComponentType<unknown>> {
   default: T;

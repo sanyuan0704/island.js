@@ -287,9 +287,7 @@ class SSGBuilder {
       ${
         this.#config.enableSpa
           ? `<script type="module" src="/${clientChunk.fileName}"></script>`
-          : hasIsland
-          ? `<script type="module">${clientChunk.code}</script>`
-          : ''
+          : `<script type="module">${clientChunk.code}</script>`
       }
     </body>
   </html>`.trim();

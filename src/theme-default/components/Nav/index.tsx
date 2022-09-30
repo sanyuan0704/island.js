@@ -79,7 +79,7 @@ export function Nav() {
             </div>
             {hasAppearanceSwitch && (
               <div className={styles.appearance}>
-                <SwitchAppearance __island />
+                <SwitchAppearance />
               </div>
             )}
 
