@@ -1,14 +1,14 @@
-# Conventional Route
+# 约定式路由
 
-## What is Conventional Route
+## 什么是约定式路由
 
-Island.js uses a file system routing, and the file path of the page will be simply mapped as a routing path, which will make the routing of the entire project very intuitive.
+Island.js 使用的是文件系统路由，页面的文件路径会简单的映射为路由路径，这样会让整个项目的路由非常直观。
 
-For example, if you have a file named `foo.md` in the `docs` directory, then the routing path of this file will be `/foo`.
+例如，如果在 `docs` 目录中有一个名为 `foo.md` 的文件，则该文件的路由路径将是 `/foo`。
 
-## Mapping Rules
+## 映射规则
 
-Island.js will automatically scan the root directory and all subdirectories, and map the file path to the routing path. For example, if you have following file structure:
+Island.js 会自动扫描根目录和所有子目录，并将文件路径映射到路由路径。例如，如果你有以下的文件结构：
 
 ```bash
 docs
@@ -17,22 +17,22 @@ docs
 └── foo.md
 ```
 
-> In previous getting-started project, the start script is `island dev docs`, so the root directory is `docs`.
+> 在之前的入门项目中，启动脚本是`island dev docs`，所以根目录是`docs`。
 
-Then the routing path of `bar.md` will be `/foo/bar`, and the routing path of `foo.md` will be `/foo`.
+那么`bar.md`的路由路径会是`/foo/bar`，`foo.md`的路由路径会是`/foo`。
 
-The specific mapping rules are as follows:
+具体映射规则如下：
 
-| File path       | Routing path |
-| --------------- | ------------ |
-| `index.md`      | `/`          |
-| `/foo.md`       | `/foo`       |
-| `/foo/bar.md`   | `/foo/bar`   |
-| `/zoo/index.md` | `/zoo`       |
+| 文件路径        | 路由路径   |
+| --------------- | ---------- |
+| `index.md`      | `/`        |
+| `/foo.md`       | `/foo`     |
+| `/foo/bar.md`   | `/foo/bar` |
+| `/zoo/index.md` | `/zoo`     |
 
-## Custom Behavior
+## 自定义行为
 
-If you want to customize the routing behavior, you can use the `route` field in the root config. For example:
+如果要自定义路由行为，可以使用配置文件中的 `route` 字段。例如：
 
 ```ts
 import { defineConfig } from 'islandjs';
@@ -47,4 +47,4 @@ export default defineConfig({
 });
 ```
 
-You can see more details in [Config Extension](/en/api/config-extension).
+更多细节可以参考 [配置扩展](/zh/api/config-extension)。

@@ -1,16 +1,14 @@
-# SPA Mode
+# SPA 模式
 
-## What is SPA Mode?
+## 什么是 SPA 模式？
 
-By default, Island.js will generate a static site for every page and inject partial component javascript to make the site interactive. That's called `MPA` mode, in winch every page is a separate HTML file and when you click to another page, the browser will request a new HTML file.
+默认情况下，Island.js 将为每个页面生成一个静态站点，并注入部分组件 JavaScript 以使站点具有交互性。这就是所谓的`MPA`模式，在 MPA 中，每个页面都是一个单独的 HTML 文件，当你点击跳转到另一个页面时，浏览器会请求一个新的 HTML 文件。
 
-On the other hand, you can use `SPA` mode to build a single page application. In SPA mode, Island.js will generate a single HTML file and inject all the javascript to make the site interactive. When you click to another page, the browser will not request a new HTML file, but only request a new javascript file to load the new page.
+另一方面，你也可以使用 `SPA` 模式来构建单页应用程序。在 SPA 模式下，Island.js 将生成单个 HTML 文件并注入所有 JavaScript 以使站点具有交互性。当你点击另一个页面时，浏览器不会请求新的 HTML 文件，而只会请求新的 javascript 文件来加载新页面。
 
-As well as we analyzed before([MPA vs SPA](/en/guide/spa-vs-mpa)), SPA mode will have better performance and experience in subsequent pages, but with complete hydration and client script in the first page, the first page load performance will be worse than MPA mode.
+## 如何使用？
 
-## How to use?
-
-You can use `enableSpa` option to enable SPA mode:
+在 Island.js 中，你可以通过配置文件来开启 SPA 模式：
 
 ```js
 import { defineConfig } from 'islandjs';
@@ -20,4 +18,4 @@ export default defineConfig({
 });
 ```
 
-It's so easy to use SPA mode, but MPA mode is still the default mode because Island.js do the best optimize in MPA mode which is most different from other SSG frameworks.
+使用 SPA 模式非常简单，但是 MPA 模式仍然是默认模式，也是我们推荐的模式，因为在 MPA 下 Island.js 采用 Islands 架构进行优化，拥有非常好的首屏性能。

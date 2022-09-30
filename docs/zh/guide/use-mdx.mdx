@@ -1,22 +1,22 @@
 ---
-title: 'Using MDX'
+title: '使用 MDX'
 ---
 
-# Using Mdx
+# 使用 Mdx
 
-Island.js supports [Mdx](https://mdxjs.com/), which is a powerful way to write content. You can write, import and use React components in Markdown file.
+Island.js 支持 [Mdx](https://mdxjs.com/)，这是一种功能强大的内容开发方式，你可以在 Markdown 文件中导入和使用 React 组件。
 
 ## Markdown
 
-MDX is the super set of Markdown, which means you can write Markdown file as usual. For example:
+MDX 是 Markdown 的超集，这意味着可以像往常一样编写 Markdown 文件。例如：
 
 ```md
 # Hello World
 ```
 
-## Use Components
+## 使用组件
 
-When you want to use React components in Markdown file, you should name your file with `.mdx` extension. For example:
+当你想在 Markdown 文件中使用 React 组件时，你应该使用 `.mdx` 扩展名来命名你的文件。例如：
 
 ```mdx
 // docs/index.mdx
@@ -29,7 +29,7 @@ import { CustomComponent } from './custom';
 
 ## Front Matter
 
-You can use [Front Matter](https://jekyllrb.com/docs/front-matter/) to add metadata to your Markdown file. For example:
+你可以在 Markdown 文件的开头添加 Front Matter，它是一个 YAML 格式的对象，用于定义一些元数据。例如：
 
 ```mdx
 ---
@@ -37,9 +37,9 @@ title: Hello World
 ---
 ```
 
-> Note: by default, Island.js use h1 title as the title of html.
+> 注意：默认情况下，Island.js 使用 h1 标题作为 html 的标题。
 
-You can also access the property defined in front matter, for example:
+你还可以在正文中访问 Front Mattter 中定义的属性，例如：
 
 ```mdx
 ---
@@ -49,10 +49,10 @@ title: Hello World
 # {meta.title}
 ```
 
-The properties defined in front matter will be passed to the component as `meta` property.So the final output will be:
+前面定义的属性将作为 `meta` 属性传递给组件。所以最终输出将是：
 
 ```html
 <h1>Hello World</h1>
 ```
 
-You can see more front matter config detail in [config-front-matter](/en/api/config-front-matter).
+更多的配置详情请参考 [config-front-matter](/zh/api/config-front-matter)。

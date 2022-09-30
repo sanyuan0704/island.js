@@ -1,13 +1,13 @@
-# Extension Config
+# 扩展配置
 
-The extension config means that how to configure the build tool(Vite), the conventional route, the markdown parser and so on.
+扩展配置是指如何配置构建工具（Vite）、常规路由、markdown 解析器等。
 
 ## vite
 
 - Type: `Object`
 - Default: `{}`
 
-The custom config for [Vite](https://vitejs.dev/config/).And the config you passed in will be merged deeply with the default config of Vite. For example:
+[Vite]的自定义配置（https://vitejs.dev/config/）。你传入的配置将与Vite的默认配置深度合并。例如：
 
 ```js
 import { defineConfig } from 'islandjs';
@@ -26,14 +26,14 @@ export default defineConfig({
 
 - Type: `Object`
 
-The conventional route custom config.The ability is implemented by a vite plugin.You can pass in the following options to customize the plugin behavior:
+自定义路由自定义配置。该能力是通过一个 Vite 插件实现的。你可以传入以下选项来自定义插件的行为：
 
 ### route.include
 
 - Type: `string[]`
 - Default: `[]`
 
-Add some extra files to the routing. By default, only the files in the root directory and all subdirectories will be included in the routing. If you want to add some extra files to the routing, you can use this option. For example:
+在路由中添加一些额外的文件。默认情况下，只有根目录和所有子目录中的文件才会包含在路由中。如果你想在路由中添加一些额外的文件，你可以使用这个选项。例如：
 
 ```js
 import { defineConfig } from 'islandjs';
@@ -45,14 +45,14 @@ export default defineConfig({
 });
 ```
 
-> Notice: the string in the array supports glob pattern.
+> 注意：数组中的字符串支持 glob 模式。
 
 ### route.exclude
 
 - Type: `string[]`
 - Default: `[]`
 
-Exclude some files from the routing. For example:
+从路由中排除一些文件。例如：
 
 ```js
 import { defineConfig } from 'islandjs';
@@ -64,14 +64,14 @@ export default defineConfig({
 });
 ```
 
-> Notice: the string in the array supports glob pattern.
+> 注意：数组中的字符串支持 glob 模式。
 
 ### route.extensions
 
 - Type: `string[]`
 - Default: `[]`
 
-The extensions of the files that will be included in the routing. By default, Island.js will include all the `'js','jsx','ts','tsx','md','mdx'` files in the routing. If you want to add some extra extensions, you can use this option. For example:
+将包含在路由中的文件的扩展名。默认情况下，Island.js 会在路由中包含所有 `'js'、'jsx'、'ts'、'tsx'、'md'、'mdx' 文件。如果你想添加一些额外的扩展，你可以使用这个选项。例如：
 
 ```js
 import { defineConfig } from 'islandjs';
@@ -88,7 +88,7 @@ export default defineConfig({
 - Type: `string`
 - Default: ``
 
-The prefix of the filepath that will be converted to a route. For example:
+将被转换为路由的文件路径的前缀。例如：
 
 ```js
 import { defineConfig } from 'islandjs';
@@ -100,13 +100,13 @@ export default defineConfig({
 });
 ```
 
-Then the filepath `pages/foo/bar.md` in root dir will be converted to the route `/foo/bar`.
+比如根目录中的文件路径 `pages/foo/bar.md` 将被转换为路由 `/foo/bar`。
 
 ### route.root
 
 - Type: `string`
 
-The root dir of the routing. By default, the root dir is the param you specify in island cli command. If you want to change the root dir, you can use this option. For example:
+路由的根目录。默认情况下，根目录是你在 island cli 命令中指定的参数。如果要更改根目录，可以使用此选项。例如：
 
 ```js
 import { defineConfig } from 'islandjs';
@@ -122,20 +122,20 @@ export default defineConfig({
 
 - Type: `Object`
 
-The options for remark and rehype plugins.
+remark 和 rehype 插件的选项。
 
 ### markdown.remarkPlugins
 
 - Type: `Array`
 - Default: `[]`
 
-The remark plugins that will be used to parse markdown files. There are following plugins that will be used by default:
+用于解析 markdown 文件的备注插件。默认情况下将使用以下插件：
 
-- [remark-gfm](https://www.npmjs.com/package/remark-gfm): Parse common markdown syntaxes `GFM`(GitHub Flavored Markdown).
-- [remark-frontmatter](https://www.npmjs.com/package/remark-frontmatter): Parse front matter info in markdown files.
-- [remark-mdx-frontmatter](https://www.npmjs.com/package/remark-mdx-frontmatter): Parse front matter info in mdx files.
+- [remark-gfm](https://www.npmjs.com/package/remark-gfm): 解析常用 markdown 语法 `GFM`(GitHub Flavored Markdown)。
+- [remark-frontmatter](https://www.npmjs.com/package/remark-frontmatter): 解析 Markdown 文件中的 Front Matter 信息。
+- [remark-mdx-frontmatter](https://www.npmjs.com/package/remark-mdx-frontmatter): 解析 MDX 文件中的 Front Matter 信息。
 
-You can also use this option to add some extra remark plugins. For example:
+你还可以使用此选项添加一些额外的 remark 插件。例如：
 
 ```js
 import { defineConfig } from 'islandjs';
@@ -154,13 +154,13 @@ export default defineConfig({
 - Type: `Array`
 - Default: `[]`
 
-The rehype plugins that will be used to parse HTML. There are following plugins that will be used by default:
+将用于解析 HTML 的 rehype 插件。默认情况下将使用以下插件：
 
-- [rehype-autolink-headings](https://www.npmjs.com/package/rehype-autolink-headings): Add anchor to headings.
-- [rehype-slug](https://www.npmjs.com/package/rehype-slug): Add id to headings.
-- [rehype-external-links](https://www.npmjs.com/package/rehype-external-links): Add `target="_blank"` to external links.
+- [rehype-autolink-headings](https://www.npmjs.com/package/rehype-autolink-headings): 向标题添加锚点(a 标签)。
+- [rehype-slug](https://www.npmjs.com/package/rehype-slug): 在标题中添加 id。
+- [rehype-external-links](https://www.npmjs.com/package/rehype-external-links): 将 `target="_blank"` 添加到外部链接。
 
-You can also use this option to add some extra rehype plugins. For example:
+你还可以使用此选项添加一些额外的 rehype 插件。例如：
 
 ```js
 import { defineConfig } from 'islandjs';

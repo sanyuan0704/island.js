@@ -1,6 +1,6 @@
-# Theme Config
+# 主题配置
 
-The theme config is under the `themeConfig` in root config. For example:
+主题配置位于根配置中的 `themeConfig` 下。例如：
 
 ```js
 import { defineConfig } from 'islandjs';
@@ -17,14 +17,14 @@ export default defineConfig({
 - Type: `string`
 - Default: `"Island"`
 
-The title of the site.Different from `title` in root config, this title will be used in the navbar. For example:
+站点的标题。与根配置中的 `title` 不同，此标题将用于导航栏中。比如：
 
 ```js
 import { defineConfig } from 'islandjs';
 
 export default defineConfig({
   themeConfig: {
-    siteTitle: 'my-site'
+    siteTitle: '我的主页'
   }
 });
 ```
@@ -34,22 +34,22 @@ export default defineConfig({
 - Type: `Array`
 - Default: `[]`
 
-The navigation bar of the site. The `nav` config is an array of `NavItem`, which has following type:
+网站的导航栏。 `nav` 配置是 `NavItem` 的数组，具有以下类型：
 
 ```ts
 interface NavItem {
-  // The text of the nav item
+  // 导航栏文本
   text: string;
-  // The link href will be entered when click the nav item
+  // 导航栏链接
   link: '/';
-  // The active match rule of the nav item, optional
+  // 导航栏链接的激活规则
   activeMatch: '^/$|^/';
 }
 ```
 
-The `activeMatch` is used to match the current route, and the nav item will be highlighted when the route matches the `activeMatch` rule.By default, the `activeMatch` is the `link` of the nav item.
+`activeMatch` 用于匹配当前路由，当路由匹配 `activeMatch` 规则时，nav 项会高亮显示。默认情况下，`activeMatch` 是 nav 项的 `link`。
 
-For example:
+比如:
 
 ```js
 import { defineConfig } from 'islandjs';
@@ -71,29 +71,25 @@ export default defineConfig({
 
 - Type: `Array` | `Object`
 
-The sidebar of the site.
+网站的侧边栏。
 
-`sidebar` config has two form: `array` and `object`.
+`sidebar` 配置有两种形式：`array` 和 `object`。
 
-The `array` config is a list of `SidebarGroup`, which has following type:
+`array` 配置是 `SidebarGroup` 的列表，具有以下类型：
 
 ```ts
 interface SidebarGroup {
-  // The text of the sidebar group
   text: string;
-  // The child items of the sidebar group
   items: SidebarItem[];
 }
 
 type SidebarItem = {
-  // The text of item
   text: string;
-  // The link href of item
   link: string;
 };
 ```
 
-For example:
+比如:
 
 ```js
 import { defineConfig } from 'islandjs';
@@ -115,13 +111,13 @@ export default defineConfig({
 });
 ```
 
-The `object` config is a map for `SidebarGroup`, which has following type:
+`object` 配置是 `SidebarGroup` 的映射类型，具有以下类型：
 
 ```ts
 Record<string, SidebarGroup[]>;
 ```
 
-For example:
+比如:
 
 ```js
 import { defineConfig } from 'islandjs';
@@ -150,20 +146,18 @@ export default defineConfig({
 - Type: `Object` | `undefined`
 - Default: `undefined`
 
-The edit link of the site.If it's undefined, the edit link feature will be disabled.
+站点的编辑链接。如果未定义，编辑链接功能将被禁用。
 
-The `editLink` config is an object of `EditLink`, which has following type:
+`editLink` 配置是 `EditLink` 的一个对象，它具有以下类型：
 
 ```ts
 export interface EditLink {
-  // Pattern for edit link.
   pattern: string;
-  // Custom text for edit link.
   text?: string;
 }
 ```
 
-For example:
+比如：
 
 ```js
 import { defineConfig } from 'islandjs';
@@ -179,16 +173,14 @@ export default defineConfig({
 });
 ```
 
-`:path` will be replaced by the current page path.
+`:path` 将被当前页面路径替换。
 
 ## lastUpdatedText
 
 - Type: `string`
 - Default: `"Last Updated"`
 
-The text of last updated time.
-
-For example:
+上次更新时间的文本。比如：
 
 ```js
 import { defineConfig } from 'islandjs';
@@ -205,9 +197,9 @@ export default defineConfig({
 - Type: `Object`
 - Default: `{}`
 
-The footer of the home site.
+主页的页脚。
 
-The `footer` config is an object of `Footer`, which has following type:
+`footer` 配置是 `Footer` 的一个对象，它具有以下类型：
 
 ```ts
 export interface Footer {
@@ -216,7 +208,7 @@ export interface Footer {
 }
 ```
 
-For example:
+比如：
 
 ```js
 import { defineConfig } from 'islandjs';
@@ -236,9 +228,9 @@ export default defineConfig({
 - Type: `Array`
 - Default: `[]`
 
-The social links of the site.
+网站的社交链接。
 
-The `socialLinks` config is an array of `SocialLink`, which has following type:
+`socialLinks` 配置是 `SocialLink` 的数组，具有以下类型：
 
 ```ts
 export interface SocialLink {
@@ -247,7 +239,7 @@ export interface SocialLink {
 }
 ```
 
-For example:
+比如：
 
 ```js
 import { defineConfig } from 'islandjs';
@@ -264,16 +256,16 @@ export default defineConfig({
 });
 ```
 
-> In current version, the `icon` only supports `github`.
+> 在当前版本中，`icon` 只支持 `github`
 
 ## outlineTitle
 
 - Type: `string`
 - Default: 'ON THIS PAGE'
 
-Configure the title of the outline in the right sidebar.
+在右侧边栏中配置大纲的标题。
 
-For example:
+比如:
 
 ```js
 import { defineConfig } from 'islandjs';

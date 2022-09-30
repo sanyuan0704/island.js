@@ -1,14 +1,14 @@
-# Custom Page
+# 自定义页面
 
-## Motivation
+## 为什么支持自定义页面？
 
-Sometimes you may want to add a custom page to your site. For example, you may want to add a page to introduce your team, or you may want to add a page to show your sponsors.
+某些情况下你可能希望将自定义页面添加到你的站点。例如，你可能想要添加一个页面来介绍团队，或者可能想要添加一个页面来展示 Sponsors。
 
-So Island.js provides a way to add a custom page to your site.
+因此除了用 md/mdx 文件来书写页面外， Island.js 也提供了一种向站点添加自定义页面的方法。
 
-## Usage
+## 使用方法
 
-You can create a new file such as `custom.tsx` in the root dir, then you can add the following code:
+你可以在根目录中创建一个新文件，例如 `custom.tsx`，然后可以添加以下代码：
 
 ```tsx
 export const pageType = 'custom';
@@ -18,7 +18,7 @@ export default function CustomPage() {
 }
 ```
 
-Then you can visit `/custom` route to see the custom page. So there are some tips for the custom page:
+然后你可以访问 `/custom` 路由来查看自定义页面。其中有一些注意事项：
 
-- 1. The custom page should be a React component, which should be the default export of the file.
-- 2. The custom page should has a `pageType` export, which should be `custom`.
+- 1. 自定义页面默认导出一个 React 组件。
+- 2. 自定义页面应该有一个 `pageType = 'custom'` 的导出。

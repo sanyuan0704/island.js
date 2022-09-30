@@ -1,14 +1,14 @@
-# Front Matter Config
+# Front Matter 配置
 
 ## title
 
 - Type: `string`
 
-The title of the page. By default, the h1 title of the page will be used as the title of the HTML document. But if you want to use a different title, you can use the `title` front matter to specify the title of the page. For example:
+页面的标题。默认情况下，页面的 h1 标题将用作 HTML 文档的标题。但是如果你想使用不同的标题，你可以使用 Front Matter 来指定页面的标题。例如：
 
 ```md
 ---
-title: My Page
+title: 我的主页
 ---
 ```
 
@@ -16,11 +16,11 @@ title: My Page
 
 - Type: `string`
 
-The custom description of the page. For example:
+页面的自定义描述。例如：
 
 ```md
 ---
-description: This is my page.
+description: 这是我的主页
 ---
 ```
 
@@ -29,7 +29,7 @@ description: This is my page.
 - Type: `'home' | 'doc' | 'api' | 'custom' | '404'`
 - Default: `'doc'`
 
-The type of the page. By default, the page type is `'doc'`. But if you want to use a different page type, you can use the `pageType` front matter to specify the page type. For example:
+页面的类型。默认情况下，页面类型为`doc`。但是如果你想使用不同的页面类型，你可以使用`pageType`前面的东西来指定页面类型。例如：
 
 ```md
 ---
@@ -42,7 +42,7 @@ pageType: home
 - Type: `boolean`
 - Default: `false`
 
-Enable api page.It's equal to `pageType: 'api'`:
+表示当前页为 api 页面。相当于`pageType: 'api'`：
 
 ```md
 ---
@@ -54,7 +54,7 @@ api: true
 
 - Type: `Object`
 
-The hero config of `home` page. It has following type:
+`home` 页面的 hero 配置。它有以下类型：
 
 ```ts
 export interface Hero {
@@ -73,7 +73,7 @@ export interface Hero {
 }
 ```
 
-For example, you can use the following front matter to specify the hero config of the page:
+例如，你可以使用以下 Front Matter 来指定页面的 hero config：
 
 ```md
 ---
@@ -101,7 +101,7 @@ hero:
 - Type: `Array`
 - Default: `[]`
 
-The features config of `home` page. It has following type:
+`home` 页面的功能配置。它有以下类型：
 
 ```ts
 export interface Feature {
@@ -113,7 +113,7 @@ export interface Feature {
 export type Features = Feature[];
 ```
 
-For example, you can use the following front matter to specify the features config of `home` page:
+例如，你可以使用以下前端内容来指定 `home` 页面的 features 配置：
 
 ```md
 ---
