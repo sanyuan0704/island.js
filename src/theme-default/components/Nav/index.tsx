@@ -18,6 +18,7 @@ export function Nav() {
   const hasSidebar = pageType === 'doc';
   const hasAppearanceSwitch = siteData.appearance !== false;
   const localeData = useLocaleSiteData(siteData.themeConfig, location.pathname);
+  const lang = localeData.lang || 'zh';
   const menuItems = localeData.nav || [];
   const socialLinks = siteData?.themeConfig?.socialLinks || [];
   const title =
@@ -71,11 +72,17 @@ export function Nav() {
           <div className={styles.content}>
             <div className={styles.search}>{/* <Search /> */}</div>
             <div className={styles.menu}>{renderMenuList()}</div>
+            <div className={styles.translations}>
+              <Link href={lang === 'zh' ? '/en/' : '/zh/'}>
+                {lang === 'zh' ? 'English' : '中文版'}
+              </Link>
+            </div>
             {hasAppearanceSwitch && (
               <div className={styles.appearance}>
                 <SwitchAppearance __island />
               </div>
             )}
+
             <div className={styles.socialLinks}>
               <div className={styles.socialLink}>
                 {socialLinks.map((item) => {

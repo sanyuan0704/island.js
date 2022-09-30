@@ -25,7 +25,7 @@ export default defineConfig({
   themeConfig: {
     locales: {
       '/zh/': {
-        lang: 'zh-CN',
+        lang: 'zh',
         label: '简体中文',
         selectText: '语言',
         ariaLabel: '语言',
@@ -36,7 +36,7 @@ export default defineConfig({
         description: '基于孤岛架构的 SSG 框架'
       },
       '/en/': {
-        lang: 'en-US',
+        lang: 'en',
         label: 'English',
         selectText: 'Languages',
         ariaLabel: 'Languages',

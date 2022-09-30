@@ -51,7 +51,7 @@ export function pluginIndexHtml(config: SiteConfig): Plugin {
           if (res.writableEnded) {
             return next();
           }
-          if (req.url?.replace(/\?.*/, '').endsWith('.html')) {
+          if (req.url?.replace(/\?.*/, '')) {
             let html = fs.readFileSync(DEFAULT_HTML_PATH, 'utf8');
 
             try {
