@@ -3,7 +3,7 @@ pageType: home
 
 hero:
   name: Island
-  text: Vite & Islands Arch Static Site Generator
+  text: Vite & Mdx Powered Static Site Generator
   tagline: Simple, powerful, and performant. Meet the modern SSG framework you've always wanted.
   image:
     src: /island.png
