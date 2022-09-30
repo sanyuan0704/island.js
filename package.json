@@ -28,7 +28,7 @@
     "dev": "tsup --watch --format=cjs,esm",
     "build": "NODE_ENV=production tsup --format=cjs,esm && tsx scripts/pre-bundle.cts",
     "dev:docs": "node ./bin/island docs",
-    "build:docs": "node ./bin/island build docs",
+    "build:docs": "node ./bin/island build docs && cp -r ./docs/.island/index.html ./docs/.island/dist",
     "start:docs": "node ./bin/island start docs",
     "lint": "eslint --ext .ts,.tsx,.js,.jsx ./",
     "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx --quiet ./",

@@ -85,4 +85,4 @@ export default defineConfig({
 });
 ```
 
-You can get more config details about the sidebar config in [API Page](/api).
+You can get more config details about the sidebar config in [API Page](/en/api/index).
