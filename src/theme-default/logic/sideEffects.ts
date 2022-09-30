@@ -134,7 +134,7 @@ export function bindingAsideScroll() {
   );
   let prevActiveLink: null | HTMLAnchorElement = null;
   const headers = Array.from(aside?.getElementsByTagName('a') || []).map(
-    (item) => item.hash
+    (item) => decodeURIComponent(item.hash)
   );
   if (marker && !headers.length) {
     marker.style.opacity = '0';
