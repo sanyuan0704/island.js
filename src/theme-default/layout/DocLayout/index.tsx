@@ -16,7 +16,8 @@ export function DocLayout() {
   const hasSidebar =
     (Array.isArray(sidebar) && sidebar.length > 0) ||
     Object.keys(sidebar).length > 0;
-  const outlineTitle = themeConfig?.outlineTitle || 'ON THIS PAGE';
+  const outlineTitle =
+    localesData?.outlineTitle || themeConfig?.outlineTitle || 'ON THIS PAGE';
 
   const hasAside = headers.length > 0 && themeConfig.outline !== false;
   return (

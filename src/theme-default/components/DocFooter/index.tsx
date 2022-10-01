@@ -1,13 +1,25 @@
 import styles from './index.module.scss';
 import { usePageData } from 'island/client';
-import { useEditLink, usePrevNextPage } from '../../logic';
+import { useEditLink, useLocaleSiteData, usePrevNextPage } from '../../logic';
 import { normalizeHref } from '../../logic/index';
+import { useLocation } from 'react-router-dom';
 
 export function DocFooter() {
   const { siteData, relativePagePath, lastUpdatedTime } = usePageData();
   const { prevPage, nextPage } = usePrevNextPage(siteData);
-  const { editLink: rawEditLink, lastUpdatedText } = siteData.themeConfig;
-  const editLink = useEditLink(rawEditLink!, relativePagePath);
+  const { pathname } = useLocation();
+  const themeConfig = siteData.themeConfig;
+  const {
+    editLink: rawEditLink,
+    lastUpdatedText,
+    prevPageText = 'Previous Page',
+    nextPageText = 'Next page'
+  } = useLocaleSiteData(themeConfig, pathname);
+
+  const editLink = useEditLink(
+    rawEditLink! ?? themeConfig?.editLink,
+    relativePagePath
+  );
 
   return (
     <footer className={styles.footer}>
@@ -39,7 +51,7 @@ export function DocFooter() {
               href={normalizeHref(prevPage.link)}
               className={`${styles.pagerLink} ${styles.prev}`}
             >
-              <span className={styles.desc}>Previous Page</span>
+              <span className={styles.desc}>{prevPageText}</span>
               <span className={styles.title}>{prevPage.text}</span>
             </a>
           ) : null}
@@ -51,7 +63,7 @@ export function DocFooter() {
                 href={normalizeHref(nextPage.link)}
                 className={`${styles.pagerLink} ${styles.next}`}
               >
-                <span className={styles.desc}>Next Page</span>
+                <span className={styles.desc}>{nextPageText}</span>
                 <span className={styles.title}>{nextPage.text}</span>
               </a>
             </div>
