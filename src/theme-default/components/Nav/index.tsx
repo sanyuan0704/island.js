@@ -65,7 +65,6 @@ export function Nav() {
             }`}
           >
             <a href="/" className={styles.title}>
-              {/* <span className={styles.logo}></span> */}
               <span>{title}</span>
             </a>
           </div>

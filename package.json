@@ -114,6 +114,8 @@
     "@types/resolve": "^1.20.2",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
+    "@unocss/preset-wind": "^0.45.26",
+    "@unocss/vite": "^0.45.26",
     "commitlint": "^17.1.2",
     "conventional-changelog-cli": "^2.2.2",
     "es-module-lexer": "^1.0.3",
@@ -131,6 +133,7 @@
     "tsup": "^6.2.3",
     "tsx": "^3.8.2",
     "typescript": "^4.7.4",
+    "unocss": "^0.45.26",
     "vitest": "^0.23.1"
   },
   "files": [
