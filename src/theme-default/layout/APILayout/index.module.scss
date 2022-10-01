@@ -135,17 +135,17 @@
 @media (max-width: 768px) {
   :global(.api-index) {
     padding: 42px 24px;
-  }
 
-  h1 {
-    font-size: 32px;
-    margin-bottom: 24px;
-  }
+    h1 {
+      font-size: 32px;
+      margin-bottom: 24px;
+    }
 
-  h2 {
-    font-size: 22px;
-    margin: 42px 0 32px;
-    padding-top: 32px;
+    h2 {
+      font-size: 22px;
+      margin: 42px 0 32px;
+      padding-top: 32px;
+    }
   }
 
   .api-groups a {

@@ -15,7 +15,7 @@
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "jsx": "react-jsx",
-    "lib": ["ESNext", "DOM"]
+    "lib": ["ESNext", "DOM"],
   },
   "exclude": [
     "**/node_modules/**",
