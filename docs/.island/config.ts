@@ -35,7 +35,7 @@ export default defineConfig({
         title: 'Island.js',
         outlineTitle: '目录',
         prevPageText: '上一页',
-        nextPage: '下一页',
+        nextPageText: '下一页',
         description: '基于孤岛架构的 SSG 框架',
         editLink: {
           pattern:
