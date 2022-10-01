@@ -95,6 +95,11 @@ export namespace DefaultTheme {
     selectText?: string;
     nav?: NavItem[];
     sidebar?: Sidebar;
+    outlineTitle?: string;
+    lastUpdatedText?: string;
+    editLink?: EditLink;
+    prevPageText?: string;
+    nextPageText?: string;
   }
   // nav -----------------------------------------------------------------------
 
