@@ -1,16 +1,11 @@
 import { Plugin } from 'vite';
 import { pluginMdxRollup } from './pluginMdxRollup';
 import { pluginMdxHMR } from './pluginMdxHmr';
-import { pluginMdxLastUpdated } from './pluginMdxLastUpdated';
 import { SiteConfig } from 'shared/types/index';
 
 export async function pluginMdx(
   config: SiteConfig,
   isServer: boolean
 ): Promise<Plugin[]> {
-  return [
-    await pluginMdxRollup(config, isServer),
-    pluginMdxHMR(config),
-    pluginMdxLastUpdated(config)
-  ];
+  return [await pluginMdxRollup(config, isServer), pluginMdxHMR(config)];
 }

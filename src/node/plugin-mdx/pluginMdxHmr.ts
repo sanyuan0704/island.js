@@ -43,8 +43,7 @@ export function pluginMdxHMR(config: SiteConfig): Plugin {
           event: 'md(x)-changed',
           data: {
             filePath: ctx.file,
-            routePath,
-            timeStamp: ctx.timestamp
+            routePath
           }
         });
       }

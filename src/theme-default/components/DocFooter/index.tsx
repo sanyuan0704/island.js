@@ -1,28 +1,14 @@
 import styles from './index.module.scss';
 import { usePageData } from 'island/client';
-import { useEditLink, usePrevNextPage, useLastUpdated } from '../../logic';
-import { normalizeHref } from '../../logic';
-import { useEffect } from 'react';
+import { useEditLink, usePrevNextPage } from '../../logic';
+import { normalizeHref } from '../../logic/index';
 
 export function DocFooter() {
-  const { siteData, relativePagePath, lastUpdatedTimeStamp, pagePath } =
-    usePageData();
+  const { siteData, relativePagePath } = usePageData();
   const { prevPage, nextPage } = usePrevNextPage(siteData);
-  const { editLink: rawEditLink, lastUpdatedText } = siteData.themeConfig;
+  const { editLink: rawEditLink } = siteData.themeConfig;
   const editLink = useEditLink(rawEditLink!, relativePagePath);
-  const [lastUpdated, setLastUpdated] = useLastUpdated(lastUpdatedTimeStamp);
-  useEffect(() => {
-    if (import.meta.env.DEV) {
-      import.meta.hot?.on('md(x)-changed', ({ filePath, timeStamp }) => {
-        if (filePath !== pagePath) {
-          return;
-        }
-        if (timeStamp) {
-          setLastUpdated(timeStamp);
-        }
-      });
-    }
-  }, [pagePath, setLastUpdated]);
+
   return (
     <footer className={styles.footer}>
       <div className={styles.editInfo}>
@@ -34,11 +20,17 @@ export function DocFooter() {
           </div>
         ) : null}
 
-        <div className={styles.lastUpdated}>
-          {lastUpdated ? (
-            <>{`${lastUpdatedText || 'Last Updated: '}${lastUpdated}`}</>
+        {/* TODO */}
+        {/* <div className={styles.lastUpdated}>
+          {lastUpdatedText ? (
+            <>
+              <p className={styles.lastUpdated}>
+                {editLink?.text || 'Last Updated: '}
+              </p>
+              <span>{}</span>
+            </>
           ) : null}
-        </div>
+        </div> */}
       </div>
 
       <div className={styles.prevNext}>

@@ -180,7 +180,6 @@ export interface PageData {
   toc?: Header[];
   icon?: string;
   subModules?: PageModule<ComponentType<unknown>>[];
-  lastUpdatedTimeStamp?: number;
 }
 
 export interface RouteOptions {

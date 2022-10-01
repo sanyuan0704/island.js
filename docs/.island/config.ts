@@ -22,7 +22,7 @@ export default defineConfig({
         link: 'https://github.com/sanyuan0704/island'
       }
     ],
-    lastUpdatedText: 'Last Updated:  ',
+    lastUpdatedText: 'Last Updated',
     editLink: {
       pattern:
         'https://github.com/sanyuan0704/island.js/tree/master/docs/:path',
