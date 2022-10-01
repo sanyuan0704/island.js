@@ -1,5 +1,14 @@
 
 
+## [0.2.4](https://github.com/sanyuan0704/island.js/compare/0.2.3...0.2.4) (2022-10-01)
+
+
+### Bug Fixes
+
+* add dep files ([a5444dc](https://github.com/sanyuan0704/island.js/commit/a5444dc494f55ec6914b8d6448ab9d88265a70c7))
+* locales config ([0d0e51f](https://github.com/sanyuan0704/island.js/commit/0d0e51f55c590b0a2d19187b6e91762ecb2a015d))
+* part of the text is not configured for localization ([87db64d](https://github.com/sanyuan0704/island.js/commit/87db64d90e424e7275e90fe6373cfa516bddab32))
+
 ## [0.2.3](https://github.com/sanyuan0704/island.js/compare/0.2.2...0.2.3) (2022-10-01)
 
 
