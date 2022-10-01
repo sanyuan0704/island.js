@@ -90,7 +90,6 @@ export function resolveSiteData(
     themeConfig: userConfig.themeConfig || {},
     head: resolveSiteDataHead(userConfig),
     base: userConfig.base || '/',
-    locales: userConfig.locales || {},
     icon: userConfig.icon || '',
     root,
     appearance: userConfig.appearance ?? true

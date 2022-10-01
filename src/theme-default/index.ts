@@ -6,3 +6,5 @@ import { Layout } from './layout/Layout';
 
 // Tree Shaking
 export { Layout, NotFoundLayout };
+
+export { setupEffects } from './logic';

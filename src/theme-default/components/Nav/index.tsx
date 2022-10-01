@@ -6,21 +6,24 @@ import GithubSvg from './icons/github.svg';
 import { DefaultTheme } from '../../../shared/types';
 import { useLocation } from 'react-router-dom';
 import { usePageData } from 'island/client';
-import { normalizeHref } from '../../logic/index';
+import { normalizeHref, useLocaleSiteData } from '../../logic';
 
 const IconMap = {
   github: GithubSvg
 };
 
 export function Nav() {
+  const location = useLocation();
   const { siteData, pageType } = usePageData();
   const hasSidebar = pageType === 'doc';
   const hasAppearanceSwitch = siteData.appearance !== false;
-  const menuItems = siteData?.themeConfig?.nav || [];
+  const localeData = useLocaleSiteData(siteData.themeConfig, location.pathname);
+  const lang = localeData.lang || 'zh';
+  const menuItems = localeData.nav || [];
   const socialLinks = siteData?.themeConfig?.socialLinks || [];
-  const location = useLocation();
-  const title = siteData.themeConfig.siteTitle ?? siteData.title;
-  const renderMenuItem = (item: DefaultTheme.NavItemWithLink) => {
+  const title =
+    localeData.title ?? siteData.themeConfig.siteTitle ?? siteData.title;
+  const renderMenuSingleItem = (item: DefaultTheme.NavItemWithLink) => {
     const isActive = new RegExp(item.activeMatch || '').test(location.pathname);
     return (
       <div
@@ -31,20 +34,27 @@ export function Nav() {
       </div>
     );
   };
-  // TODO: add menu dropdown group
   const renderMenuItemGroup = (item: DefaultTheme.NavItemWithChildren) => {
-    return <div>{item.text}</div>;
-  };
-
-  const renderMenuList = () => {
     return (
-      <div className={styles.menu}>
-        {menuItems.map((item) =>
-          'link' in item ? renderMenuItem(item) : renderMenuItemGroup(item)
-        )}
+      <div className={styles.menuGroup}>
+        <button>{item.text}</button>
+        <div className={styles.menuItems}>
+          {item.items.map((child) => renderMenuItem(child))}
+        </div>
       </div>
     );
   };
+
+  const renderMenuItem = (item: DefaultTheme.NavItem) => {
+    return 'link' in item
+      ? renderMenuSingleItem(item)
+      : renderMenuItemGroup(item);
+  };
+
+  const renderMenuList = () => {
+    return <div className={styles.menu}>{menuItems.map(renderMenuItem)}</div>;
+  };
+
   return (
     <header className={styles.nav}>
       <div className={styles.navBar}>
@@ -62,11 +72,17 @@ export function Nav() {
           <div className={styles.content}>
             <div className={styles.search}>{/* <Search /> */}</div>
             <div className={styles.menu}>{renderMenuList()}</div>
+            <div className={styles.translations}>
+              <Link href={lang === 'zh' ? '/en/' : '/zh/'}>
+                {lang === 'zh' ? 'English' : '中文版'}
+              </Link>
+            </div>
             {hasAppearanceSwitch && (
               <div className={styles.appearance}>
-                <SwitchAppearance __island />
+                <SwitchAppearance />
               </div>
             )}
+
             <div className={styles.socialLinks}>
               <div className={styles.socialLink}>
                 {socialLinks.map((item) => {

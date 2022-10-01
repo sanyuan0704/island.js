@@ -1,6 +1,6 @@
 {
   "name": "islandjs",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Vite & Islands architecture SSG framework",
   "packageManager": "pnpm@7.9.2",
   "type": "module",
@@ -28,7 +28,7 @@
     "dev": "tsup --watch --format=cjs,esm",
     "build": "NODE_ENV=production tsup --format=cjs,esm && tsx scripts/pre-bundle.cts",
     "dev:docs": "node ./bin/island docs",
-    "build:docs": "node ./bin/island build docs",
+    "build:docs": "node ./bin/island build docs && cp -r ./docs/.island/index.html ./docs/.island/dist",
     "start:docs": "node ./bin/island start docs",
     "lint": "eslint --ext .ts,.tsx,.js,.jsx ./",
     "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx --quiet ./",
@@ -93,7 +93,6 @@
     "vite-plugin-inspect": "^0.7.1"
   },
   "devDependencies": {
-    "pnpm": "7.9.2",
     "@babel/traverse": "^7.19.0",
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
@@ -123,10 +122,12 @@
     "eslint-plugin-react": "^7.31.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "lint-staged": "^13.0.3",
+    "pnpm": "7.9.2",
     "prettier": "^2.7.1",
     "release-it": "^15.4.2",
     "resolve": "^1.22.1",
     "rollup": "^2.78.1",
+    "simple-git": "^3.14.1",
     "tsup": "^6.2.3",
     "tsx": "^3.8.2",
     "typescript": "^4.7.4",

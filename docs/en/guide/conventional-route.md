@@ -47,4 +47,4 @@ export default defineConfig({
 });
 ```
 
-You can see more details in [Config Extension](/api/config-extension).
+You can see more details in [Config Extension](/en/api/config-extension).

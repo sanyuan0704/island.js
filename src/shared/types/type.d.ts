@@ -13,6 +13,7 @@ declare module 'island/theme*' {
 
   export const Layout: ComponentType<unknown>;
   export const NotFoundLayout: ComponentType<unknown>;
+  export const setupEffects: () => void;
 }
 
 declare module 'island:site-data' {

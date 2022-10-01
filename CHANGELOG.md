@@ -1,5 +1,27 @@
 
 
+## [0.2.3](https://github.com/sanyuan0704/island.js/compare/0.2.2...0.2.3) (2022-10-01)
+
+
+### Bug Fixes
+
+* aside marker cannot work in chinese doc ([4b7da45](https://github.com/sanyuan0704/island.js/commit/4b7da45278d0d25557c061fef672cf1d78be34dd))
+* get correct value from cache ([14b10c4](https://github.com/sanyuan0704/island.js/commit/14b10c4ef655c65ba3e2b5ace8955d8e19cc445c))
+* html not found in dev ([39d6ef9](https://github.com/sanyuan0704/island.js/commit/39d6ef95723419e202a5c446a3555d98550a4a5e))
+* nav background styles in dark mode ([674aeb9](https://github.com/sanyuan0704/island.js/commit/674aeb95e95a8453f40b12f4f22407c240220ac6))
+
+
+### Features
+
+* add locale change navbar ([9cd5883](https://github.com/sanyuan0704/island.js/commit/9cd58835f2e322f0fd9cdbcc2750e2a8589106e7))
+* add zh docs ([8615a61](https://github.com/sanyuan0704/island.js/commit/8615a617872f479202d3c0371cabfb018b7d3243))
+* init i18n doc ([df6ccaf](https://github.com/sanyuan0704/island.js/commit/df6ccaf42e9fdf9fcfdfdb69ce8a7700b04a0c93))
+* move setupEffect to theme-default ([60e5281](https://github.com/sanyuan0704/island.js/commit/60e5281efa08cbce71c5bca8499e6f8fe9d8d8a2))
+* optimize treeshaking in client entry ([e6959f4](https://github.com/sanyuan0704/island.js/commit/e6959f49b9915c06929e52ed8e421b833b18d5cd))
+* show last updated time ([dcc5c49](https://github.com/sanyuan0704/island.js/commit/dcc5c49252704503cceaf1dd53d395f5481caa07))
+* support spa build in aside component ([a75ba06](https://github.com/sanyuan0704/island.js/commit/a75ba06d2daa247e9755d5553c1792004768e6e3))
+* zero js by default ([44fe3c6](https://github.com/sanyuan0704/island.js/commit/44fe3c68b26475943e7ac96f01425d59be33535b))
+
 ## [0.2.2](https://github.com/sanyuan0704/island.js/compare/0.2.1...0.2.2) (2022-09-26)
 
 

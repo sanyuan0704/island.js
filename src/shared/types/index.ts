@@ -55,10 +55,6 @@ export interface UserConfig<ThemeConfig = unknown> {
    */
   themeConfig?: ThemeConfig;
   /**
-   * Locales config for every page.
-   */
-  locales?: Record<string, LocaleConfig>;
-  /**
    * Output directory of the site.
    */
   outDir?: string;
@@ -92,16 +88,6 @@ export interface UserConfig<ThemeConfig = unknown> {
   markdown?: MarkdownOptions;
 }
 
-export interface LocaleConfig {
-  lang: string;
-  title?: string;
-  titleTemplate?: string | boolean;
-  description?: string;
-  head?: HeadConfig[];
-  label?: string;
-  selectText?: string;
-}
-
 export interface SiteData<ThemeConfig = unknown> {
   root: string;
   base: string;
@@ -111,10 +97,7 @@ export interface SiteData<ThemeConfig = unknown> {
   icon: string;
   head: HeadConfig[];
   themeConfig: ThemeConfig;
-  locales: Record<string, LocaleConfig>;
   appearance: boolean;
-  // TODO: Available languages
-  // langs: Record<string, { lang: string; label: string }>;
 }
 
 export interface Hero {
@@ -150,7 +133,7 @@ export interface SiteConfig<ThemeConfig = unknown>
   siteData?: SiteData<ThemeConfig>;
 }
 
-export type ComponentPropsWithIsland<T = unknown> = T & { __island: boolean };
+export type ComponentPropsWithIsland<T = unknown> = T & { __island?: boolean };
 
 export interface PageModule<T extends ComponentType<unknown>> {
   default: T;
@@ -173,6 +156,7 @@ export interface PageData {
   siteData: SiteData<DefaultTheme.Config>;
   pagePath: string;
   relativePagePath: string;
+  lastUpdatedTime?: string;
   title?: string;
   meta?: FrontMatterMeta;
   description?: string;

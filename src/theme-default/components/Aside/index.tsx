@@ -1,7 +1,8 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useState, useEffect, useRef } from 'react';
 import styles from './index.module.scss';
 import { ComponentPropsWithIsland, Header } from 'shared/types/index';
-import { useAsideAnchor } from '../../logic';
+import { bindingAsideScroll } from '../../logic';
 
 export function Aside(
   props: ComponentPropsWithIsland<{
@@ -14,7 +15,17 @@ export function Aside(
   // For outline text highlight
   const markerRef = useRef<HTMLDivElement>(null);
   const asideRef = useRef<HTMLDivElement>(null);
-  const prevActiveLinkRef = useRef<HTMLAnchorElement>(null);
+  // We promise: in complete dev/prod render process, the hooks order will be consistent
+  if (import.meta.env.ENABLE_SPA || import.meta.env.DEV) {
+    useEffect(() => {
+      if (markerRef.current) {
+        markerRef.current.style.opacity = '0';
+      }
+      const unbinding = bindingAsideScroll();
+      window.scrollTo(0, 0);
+      return unbinding;
+    }, [headers]);
+  }
 
   useEffect(() => {
     setHeaders(props.headers);
@@ -38,8 +49,6 @@ export function Aside(
     }
   }, [props.pagePath]);
 
-  useAsideAnchor(prevActiveLinkRef, headers, asideRef, markerRef);
-
   const renderHeader = (header: Header) => {
     const isNested = header.depth > 2;
     return (
@@ -57,8 +66,12 @@ export function Aside(
   return (
     <div className={styles.docAside}>
       <div className={styles.docsAsideOutline}>
-        <div className={styles.content} ref={asideRef}>
-          <div className={styles.outlineMarker} ref={markerRef}></div>
+        <div className={styles.content} ref={asideRef} id="aside-container">
+          <div
+            className={styles.outlineMarker}
+            ref={markerRef}
+            id="aside-marker"
+          ></div>
           <div className={styles.outlineTitle}>{props.outlineTitle}</div>
           <nav>
             <ul className={styles.root}>{headers.map(renderHeader)}</ul>

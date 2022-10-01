@@ -6,6 +6,7 @@ import {
 import { SiteConfig } from 'shared/types/index';
 import { Plugin } from 'vite';
 import fs from 'fs-extra';
+import { join } from 'path';
 
 export function pluginIndexHtml(config: SiteConfig): Plugin {
   return {
@@ -51,8 +52,12 @@ export function pluginIndexHtml(config: SiteConfig): Plugin {
           if (res.writableEnded) {
             return next();
           }
-          if (req.url?.replace(/\?.*/, '').endsWith('.html')) {
-            let html = fs.readFileSync(DEFAULT_HTML_PATH, 'utf8');
+          const indexHtmlInRoot = join(config.root, '.island', 'index.html');
+          const templatePath = (await fs.pathExists(indexHtmlInRoot))
+            ? indexHtmlInRoot
+            : DEFAULT_HTML_PATH;
+          if (req.url?.replace(/\?.*/, '')) {
+            let html = fs.readFileSync(templatePath, 'utf8');
 
             try {
               html = await server.transformIndexHtml(

@@ -3,7 +3,7 @@ pageType: home
 
 hero:
   name: Island
-  text: Vite & Islands Arch Static Site Generator
+  text: Vite & Mdx Powered Static Site Generator
   tagline: Simple, powerful, and performant. Meet the modern SSG framework you've always wanted.
   image:
     src: /island.png
@@ -11,7 +11,7 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: /guide/getting-started
+      link: /en/guide/getting-started
     - theme: alt
       text: View on GitHub
       link: https://github.com/sanyuan0704/island
