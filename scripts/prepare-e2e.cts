@@ -49,16 +49,24 @@ async function prepareE2E() {
     })
   );
 
+  handleProcessExit();
+
   // exec dev command
   execa.execaCommandSync('yarn dev', defaultExecaOpts);
 }
 
-const clean = () => {
+const handleProcessExit = () => {
+  process.on('SIGINT', () => {
+    console.log('Process exit. ');
+    cleanE2eTempFile();
+  });
+};
+
+export const cleanE2eTempFile = () => {
+  console.log('Clean temp files.');
   fse.removeSync(tempDir);
 };
 
-try {
-  prepareE2E();
-} catch (error) {
-  clean();
-}
+prepareE2E().catch(() => {
+  cleanE2eTempFile();
+});

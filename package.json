@@ -8,7 +8,7 @@
   "module": "dist/node/index.js",
   "types": "dist/node/index.d.ts",
   "bin": {
-    "island": "bin/island.js"
+    "island": "./bin/island.js"
   },
   "exports": {
     ".": {
