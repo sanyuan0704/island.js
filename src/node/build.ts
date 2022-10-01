@@ -253,6 +253,7 @@ class SSGBuilder {
       ${helmet?.meta.toString() || ''}
       ${helmet?.link.toString() || ''}
       ${helmet?.style.toString() || ''}
+      <script async src='https://ga.jspm.io/npm:es-module-shims@1.6.0/dist/es-module-shims.js'></script>
       <script type="importmap">
         {
           "imports": {
