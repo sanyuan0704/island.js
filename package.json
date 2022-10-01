@@ -8,7 +8,7 @@
   "module": "dist/node/index.js",
   "types": "dist/node/index.d.ts",
   "bin": {
-    "island": "./bin/island.js"
+    "island": "bin/island.js"
   },
   "exports": {
     ".": {
@@ -33,6 +33,8 @@
     "lint": "eslint --ext .ts,.tsx,.js,.jsx ./",
     "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx --quiet ./",
     "test": "vitest run",
+    "e2e:test": "playwright test",
+    "e2e:prepare": "tsx ./scripts/prepare-e2e.cts",
     "prepublishOnly": "pnpm build",
     "postinstall": "husky install",
     "release": "release-it",
@@ -85,18 +87,19 @@
     "remark-mdx-frontmatter": "^2.0.3",
     "sass": "^1.54.5",
     "shiki": "^0.11.1",
+    "simple-git": "^3.14.1",
     "sirv": "^2.0.2",
     "unified": "^10.1.2",
     "unist-util-visit": "^4.1.1",
     "unist-util-visit-children": "^2.0.0",
     "vite": "3.0",
-    "vite-plugin-inspect": "^0.7.1",
-    "simple-git": "^3.14.1"
+    "vite-plugin-inspect": "^0.7.1"
   },
   "devDependencies": {
     "@babel/traverse": "^7.19.0",
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
+    "@playwright/test": "^1.26.1",
     "@release-it/conventional-changelog": "^5.1.0",
     "@types/babel__core": "^7.1.19",
     "@types/babel__helper-plugin-utils": "^7.10.0",
@@ -122,6 +125,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.1",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "execa": "^6.1.0",
     "lint-staged": "^13.0.3",
     "pnpm": "7.9.2",
     "prettier": "^2.7.1",
@@ -147,5 +151,16 @@
     "**/*.{js,jsx,tsx,ts,json}": [
       "eslint --fix"
     ]
-  }
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/STDSuperman/island.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/STDSuperman/island.js/issues"
+  },
+  "homepage": "https://github.com/STDSuperman/island.js#readme"
 }
