@@ -4,7 +4,7 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     passWithNoTests: true,
-    exclude: ['node_modules', 'src/node/__tests__/e2e'],
+    exclude: ['node_modules', 'src/node/__tests__/e2e', 'playground'],
     threads: true,
     maxThreads: 2,
     minThreads: 1
