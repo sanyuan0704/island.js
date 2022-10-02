@@ -31,7 +31,11 @@ import { Route } from './plugin-routes';
 import fs, { copy, pathExists, remove } from 'fs-extra';
 import ora from 'ora';
 import { HelmetData } from 'react-helmet-async';
+import createDebugger from 'debug';
+import { performance } from 'perf_hooks';
+import pc from 'picocolors';
 
+const debug = createDebugger('island:build');
 const islandInjectId = 'island:inject';
 export const okMark = '\x1b[32m✓\x1b[0m';
 export const failMark = '\x1b[31m✖\x1b[0m';
@@ -150,7 +154,7 @@ class SSGBuilder {
   async islandsBuild(injectCode: string) {
     return this.#baseBuild(false, {
       build: {
-        minify: !process.env.DEBUG,
+        minify: !process.env.NO_MINIFY,
         outDir: TEMP_PATH,
         ssrManifest: false,
         rollupOptions: {
@@ -188,12 +192,12 @@ class SSGBuilder {
     });
   }
 
-  #clientBuild() {
-    return this.#baseBuild(false);
+  async #clientBuild() {
+    return this.#baseBuild(false, {}, 'client');
   }
 
-  #ssrBuild() {
-    return this.#baseBuild(true);
+  async #ssrBuild() {
+    return this.#baseBuild(true, {}, 'ssr');
   }
 
   async #renderPage(
@@ -331,7 +335,11 @@ class SSGBuilder {
     `;
   }
 
-  async #baseBuild(isServer: boolean, options: InlineConfig = {}) {
+  async #baseBuild(
+    isServer: boolean,
+    options: InlineConfig = {},
+    displayName?: string
+  ) {
     const resolveViteConfig = async (
       isServer: boolean
     ): Promise<InlineConfig> => ({
@@ -346,7 +354,7 @@ class SSGBuilder {
         noExternal: ['lodash-es', 'react-router-dom']
       },
       build: {
-        minify: !process.env.DEBUG && !isServer,
+        minify: !process.env.NO_MINIFY,
         ssr: isServer,
         outDir: isServer
           ? join(this.#root, TEMP_PATH, 'ssr')
@@ -363,9 +371,16 @@ class SSGBuilder {
         ...options?.build
       }
     });
-    return viteBuild(
+
+    const startTime = performance.now();
+    const buildResult = (await viteBuild(
       await resolveViteConfig(isServer)
-    ) as Promise<RollupOutput>;
+    )) as RollupOutput;
+    if (displayName) {
+      const timeConsumed = (performance.now() - startTime).toFixed(2);
+      debug(`${displayName} build time: ${pc.blue(`${timeConsumed}ms`)}`);
+    }
+    return buildResult;
   }
 }
 
