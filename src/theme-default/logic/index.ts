@@ -26,7 +26,6 @@ export function normalizeHref(url?: string) {
   return addLeadingSlash(`${url}${suffix}`);
 }
 
-export { useAsideAnchor } from './useAsideAnchor';
 export { usePrevNextPage } from './usePrevNextPage';
 export { useEditLink } from './useEditLink';
 export { useSidebarData } from './useSidebarData';

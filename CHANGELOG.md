@@ -1,5 +1,18 @@
 
 
+## [0.2.5](https://github.com/sanyuan0704/island.js/compare/0.2.4...0.2.5) (2022-10-02)
+
+
+### Bug Fixes
+
+* use defer, it will be sure that the polyfill is executed before app script ([ee6dc1c](https://github.com/sanyuan0704/island.js/commit/ee6dc1c0863226ece7472f2a91427ec59b1a35e4))
+* without initializing the git repository, the program terminates directly ([96e5b3f](https://github.com/sanyuan0704/island.js/commit/96e5b3f2d9601c350fa7ed695f3ad56968815776))
+
+
+### Features
+
+* inject the polyfill of importmap ahead to solve the compatibility problem ([605bf97](https://github.com/sanyuan0704/island.js/commit/605bf9773da800616467ac7d4a7a2998da6baf7c))
+
 ## [0.2.4](https://github.com/sanyuan0704/island.js/compare/0.2.3...0.2.4) (2022-10-01)
 
 
