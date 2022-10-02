@@ -1,7 +1,8 @@
 import { Plugin } from 'vite';
-import { simpleGit } from 'simple-git';
+import { GitError, simpleGit } from 'simple-git';
 import { MD_REGEX } from '../constants';
 import { cleanUrl } from '../../shared/utils';
+import { now } from 'lodash-es';
 
 export function pluginMdxGit(): Plugin {
   const cache = new Map<string, string>();
@@ -9,8 +10,13 @@ export function pluginMdxGit(): Plugin {
 
   // https://github.com/steveukx/git-js#git-log
   async function getLastUpdatedTime(path: string) {
-    const { latest } = await git.log({ file: path });
-    return !latest ? '' : latest.date;
+    try {
+      const { latest } = await git.log({ file: path });
+      return !latest ? '' : latest.date;
+    } catch (e) {
+      console.log((e as GitError)?.message);
+      return now();
+    }
   }
 
   return <Plugin>{
