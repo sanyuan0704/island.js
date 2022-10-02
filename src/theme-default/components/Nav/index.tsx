@@ -28,7 +28,8 @@ export function Nav() {
     return (
       <div
         key={item.text}
-        className={`${styles.menuLink} ${isActive ? styles.active : ''}`}
+        m="l-1.4rem"
+        className={`${isActive ? 'text-brand' : ''}`}
       >
         <Link href={normalizeHref(item.link)}>{item.text}</Link>
       </div>
@@ -52,38 +53,93 @@ export function Nav() {
   };
 
   const renderMenuList = () => {
-    return <div className={styles.menu}>{menuItems.map(renderMenuItem)}</div>;
+    return <div className="menu">{menuItems.map(renderMenuItem)}</div>;
   };
 
   return (
-    <header className={styles.nav}>
-      <div className={styles.navBar}>
-        <div className={`${styles.container}`}>
+    <header relative="~" z="2" fixed="lg:~" className="top-0 left-0" w="100%">
+      <div
+        relative="~"
+        p="l-8 sm:x-8"
+        transition="border-color duration-500 background-color duration-500"
+        className="divider-top divider-bottom lg:border-b-transparent"
+        nav-h="mobile lg:desktop"
+      >
+        <div
+          flex="~"
+          justify="between"
+          m="0 auto"
+          nav-h="mobile lg:desktop"
+          className={`${styles.container}  ${
+            hasSidebar ? styles.hasSidebar : ''
+          }`}
+        >
           <div
-            className={`${styles.navBarTitle} ${
-              hasSidebar ? styles.hasSidebar : ''
-            }`}
+            shrink="0"
+            border="border t-0 b-1 border-solid transparent"
+            z="2"
+            className={`${styles.navBarTitle}`}
           >
-            <a href="/" className={styles.title}>
+            <a
+              href="/"
+              w="100%"
+              h="15"
+              text="1rem"
+              font="semibold"
+              transition="opacity duration-300"
+              hover="opacity-60"
+              className="flex items-center"
+            >
               <span>{title}</span>
             </a>
           </div>
-          <div className={styles.content}>
-            <div className={styles.search}>{/* <Search /> */}</div>
-            <div className={styles.menu}>{renderMenuList()}</div>
-            <div className={styles.translations}>
+          <div
+            className={`${styles.content}`}
+            flex="~ 1"
+            justify="end"
+            items-center="~"
+          >
+            <div className="search" flex="sm:1" pl="sm:8">
+              {}
+            </div>
+            <div className="menu">{renderMenuList()}</div>
+            <div
+              className="translation"
+              flex="~"
+              text="sm"
+              font="bold"
+              items-center="~"
+              before="menu-item-before"
+            >
               <Link href={lang === 'zh' ? '/en/' : '/zh/'}>
                 {lang === 'zh' ? 'English' : '中文版'}
               </Link>
             </div>
             {hasAppearanceSwitch && (
-              <div className={styles.appearance}>
+              <div
+                className="appearance"
+                before="menu-item-before"
+                display="none sm:flex"
+                items-center="center"
+              >
                 <SwitchAppearance />
               </div>
             )}
 
-            <div className={styles.socialLinks}>
-              <div className={styles.socialLink}>
+            <div
+              className="social-links"
+              flex="~"
+              items-center="~"
+              before="menu-item-before"
+            >
+              <div
+                flex="~"
+                items-center="~"
+                w="9"
+                h="9"
+                transition="color duration-500"
+                color="hover:brand"
+              >
                 {socialLinks.map((item) => {
                   const IconComp = IconMap[item.icon as keyof typeof IconMap];
                   return (
@@ -92,8 +148,10 @@ export function Nav() {
                       href={item.link}
                       target="_blank"
                       rel="noopener noreferrer"
+                      w="5"
+                      h="5"
                     >
-                      <IconComp />
+                      <IconComp fill="currentColor" />
                     </a>
                   );
                 })}

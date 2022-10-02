@@ -6,9 +6,45 @@ const options: VitePluginConfig = {
   presets: [presetAttributify(), presetWind({})],
   shortcuts: {
     'flex-center': 'flex justify-center items-center',
-    'border-top': 'border t-1 b-0 border-solid divider-light'
+    menu: 'flex justify-around items-center text-sm font-bold'
   },
-  rules: [],
+  rules: [
+    [
+      'divider-top',
+      {
+        'border-top': '1px solid var(--island-c-divider-light)'
+      }
+    ],
+    [
+      'divider-bottom',
+      {
+        'border-bottom': '1px solid var(--island-c-divider-light)'
+      }
+    ],
+    [
+      'menu-item-before',
+      {
+        'margin-right': '12px',
+        'margin-left': '12px',
+        width: '1px',
+        height: '24px',
+        'background-color': 'var(--island-c-divider-light)',
+        content: '" "'
+      }
+    ],
+    [
+      'nav-h-mobile',
+      {
+        height: 'var(--island-nav-height-mobile)'
+      }
+    ],
+    [
+      'nav-h-desktop',
+      {
+        height: 'var(--island-nav-height-desktop)'
+      }
+    ]
+  ],
   theme: {
     fontSize: {
       '6xl': ['3.5rem', '4rem']
@@ -37,10 +73,6 @@ const options: VitePluginConfig = {
       bg: {
         default: 'var(--island-c-bg)',
         soft: 'var(--island-c-bg-soft)'
-      },
-      nav: {
-        'height-mobile': 'var(--island-nav-height-mobile)',
-        'height-desktop': 'var(--island-nav-height-desktop)'
       }
     }
   }
