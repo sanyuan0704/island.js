@@ -126,7 +126,6 @@
     "eslint-plugin-react": "^7.31.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "execa": "^6.1.0",
-    "jsdom": "^20.0.1",
     "lint-staged": "^13.0.3",
     "pnpm": "7.9.2",
     "prettier": "^2.7.1",
@@ -152,16 +151,5 @@
     "**/*.{js,jsx,tsx,ts,json}": [
       "eslint --fix"
     ]
-  },
-  "directories": {
-    "doc": "docs"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/STDSuperman/island.js.git"
-  },
-  "bugs": {
-    "url": "https://github.com/STDSuperman/island.js/issues"
-  },
-  "homepage": "https://github.com/STDSuperman/island.js#readme"
+  }
 }
