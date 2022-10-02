@@ -61,7 +61,7 @@ export function Nav() {
       <div
         relative=""
         p="l-8 sm:x-8"
-        transition="border-color duration-500 background-color duration-500"
+        transition="background-color duration-500"
         className="divider-bottom lg:border-b-transparent"
         nav-h="mobile lg:desktop"
       >

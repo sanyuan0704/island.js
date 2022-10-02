@@ -24,7 +24,7 @@ export function DocLayout() {
     <div p="t-0 x-6 b-24">
       {hasSidebar ? <SideBar /> : null}
       <div flex="~ 1 shrink-0" m="x-auto" className={`${styles.content}`}>
-        <div m="x-auto" flex="~ col" w="100%">
+        <div m="x-auto" flex="~ col">
           <div
             relative="~"
             m="x-auto"
