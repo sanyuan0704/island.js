@@ -70,7 +70,7 @@ export function Aside(
 
   return (
     <div flex="~ col 1">
-      <div display={`${hasOutline ? 'block' : 'none'}`}>
+      <div display={`${hasOutline ? 'lg:block' : 'none'}`}>
         <div
           relative=""
           divider-left=""

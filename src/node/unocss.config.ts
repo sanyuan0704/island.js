@@ -52,6 +52,12 @@ const options: VitePluginConfig = {
     fontSize: {
       '6xl': ['3.5rem', '4rem']
     },
+    breakpoints: {
+      xs: '640px',
+      sm: '768px',
+      md: '960px',
+      lg: '1280px'
+    },
     colors: {
       brand: 'var(--island-c-brand)',
       'brand-light': 'var(--island-c-brand-light)',
