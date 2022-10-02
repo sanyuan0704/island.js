@@ -46,4 +46,4 @@ jobs:
         run: pnpm run test
 
       - name: Test e2e
-        run: pnpm run e2e:test
+        run: pnpm run e2e:prepare
