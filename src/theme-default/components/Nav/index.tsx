@@ -57,16 +57,16 @@ export function Nav() {
   };
 
   return (
-    <header relative="~" z="2" fixed="lg:~" className="top-0 left-0" w="100%">
+    <header relative="" z="2" fixed="lg:~" className="top-0 left-0" w="100%">
       <div
-        relative="~"
+        relative=""
         p="l-8 sm:x-8"
         transition="border-color duration-500 background-color duration-500"
-        className="divider-top divider-bottom lg:border-b-transparent"
+        className="divider-bottom lg:border-b-transparent"
         nav-h="mobile lg:desktop"
       >
         <div
-          flex="~"
+          flex=""
           justify="between"
           m="0 auto"
           nav-h="mobile lg:desktop"
@@ -77,7 +77,6 @@ export function Nav() {
           <div
             shrink="0"
             border="border t-0 b-1 border-solid transparent"
-            z="2"
             className={`${styles.navBarTitle}`}
           >
             <a
@@ -97,7 +96,7 @@ export function Nav() {
             className={`${styles.content}`}
             flex="~ 1"
             justify="end"
-            items-center="~"
+            items-center=""
           >
             <div className="search" flex="sm:1" pl="sm:8">
               {}
@@ -128,13 +127,13 @@ export function Nav() {
 
             <div
               className="social-links"
-              flex="~"
-              items-center="~"
+              flex=""
+              items-center=""
               before="menu-item-before"
             >
               <div
-                flex="~"
-                items-center="~"
+                flex=""
+                items-center=""
                 w="9"
                 h="9"
                 transition="color duration-500"

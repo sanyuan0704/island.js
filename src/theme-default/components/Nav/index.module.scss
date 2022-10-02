@@ -17,9 +17,8 @@
 
 @media (min-width: 960px) {
   .has-sidebar .nav-bar-title {
-    margin-left: -64px;
-    padding-left: 64px;
-    width: calc(var(--island-sidebar-width) + 32px);
+    margin-right: 32px;
+    width: calc(var(--island-sidebar-width) - 64px);
     border-bottom-color: var(--island-c-divider-light);
     background-color: var(--island-c-bg-alt);
   }
