@@ -10,16 +10,16 @@ const options: VitePluginConfig = {
   },
   rules: [
     [
-      'divider-top',
-      {
-        'border-top': '1px solid var(--island-c-divider-light)'
-      }
+      /^divider-(\w+)$/,
+      ([, w]) => ({
+        [`border-${w}`]: '1px solid var(--island-c-divider-light)'
+      })
     ],
     [
-      'divider-bottom',
-      {
-        'border-bottom': '1px solid var(--island-c-divider-light)'
-      }
+      /^nav-h-(\w+)$/,
+      ([, w]) => ({
+        height: `var(--island-nav-height-${w})`
+      })
     ],
     [
       'menu-item-before',
@@ -33,15 +33,11 @@ const options: VitePluginConfig = {
       }
     ],
     [
-      'nav-h-mobile',
+      'avoid-text-overflow',
       {
-        height: 'var(--island-nav-height-mobile)'
-      }
-    ],
-    [
-      'nav-h-desktop',
-      {
-        height: 'var(--island-nav-height-desktop)'
+        'white-space': 'nowrap',
+        overflow: 'hidden',
+        'text-overflow': 'ellipsis'
       }
     ]
   ],
