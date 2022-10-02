@@ -22,17 +22,30 @@ export function DocFooter() {
   );
 
   return (
-    <footer className={styles.footer}>
-      <div className={styles.editInfo}>
+    <footer mt="8">
+      <div p="b-5" flex="~" justify="between" items-center="~">
         {editLink ? (
-          <div className={styles.editLink}>
-            <a className={styles.editLinkButton} href={editLink.link}>
-              {editLink.text}
-            </a>
-          </div>
+          <a
+            flex="~"
+            items-center=""
+            leading-8=""
+            font-medium="~"
+            text="sm brand"
+            hover="text-brand-dark"
+            href={editLink.link}
+            transition="color duration-300"
+          >
+            {editLink.text}
+          </a>
         ) : null}
 
-        <div className={styles.lastUpdated}>
+        <div
+          flex=""
+          text="sm text-2"
+          leading-6="~"
+          leading-8="sm:~"
+          font-medium=""
+        >
           {
             <>
               <p className={styles.lastUpdated}>
@@ -44,29 +57,30 @@ export function DocFooter() {
         </div>
       </div>
 
-      <div className={styles.prevNext}>
-        <div className={styles.pager}>
+      <div
+        flex="~ col sm:row"
+        justify="sm:around"
+        gap="2"
+        divider-top=""
+        pt="6"
+      >
+        <div flex="~ col" w="50%">
           {prevPage ? (
-            <a
-              href={normalizeHref(prevPage.link)}
-              className={`${styles.pagerLink} ${styles.prev}`}
-            >
+            <a href={normalizeHref(prevPage.link)} className={styles.pagerLink}>
               <span className={styles.desc}>{prevPageText}</span>
               <span className={styles.title}>{prevPage.text}</span>
             </a>
           ) : null}
         </div>
-        <div className={styles.pager}>
+        <div flex="~ col" w="50%">
           {nextPage ? (
-            <div className={`${styles.hasNext}`}>
-              <a
-                href={normalizeHref(nextPage.link)}
-                className={`${styles.pagerLink} ${styles.next}`}
-              >
-                <span className={styles.desc}>{nextPageText}</span>
-                <span className={styles.title}>{nextPage.text}</span>
-              </a>
-            </div>
+            <a
+              href={normalizeHref(nextPage.link)}
+              className={`${styles.pagerLink} ${styles.next}`}
+            >
+              <span className={styles.desc}>{nextPageText}</span>
+              <span className={styles.title}>{nextPage.text}</span>
+            </a>
           ) : null}
         </div>
       </div>

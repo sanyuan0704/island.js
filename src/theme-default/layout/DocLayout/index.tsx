@@ -21,25 +21,38 @@ export function DocLayout() {
 
   const hasAside = headers.length > 0 && themeConfig.outline !== false;
   return (
-    <div className={styles.doc}>
-      <div className={styles.sideBar}>{hasSidebar ? <SideBar /> : null}</div>
-      <div
-        className={`${styles.content} ${hasSidebar ? styles.hasSidebar : ''}`}
-      >
-        <div className={styles.container}>
-          <div className={styles.contentContainer}>
-            <main className={styles.main}>
-              <div className="island-doc">
-                <Content fallback={<div>Loading...</div>} />
-              </div>
-              <DocFooter />
-            </main>
+    <div p="t-0 x-6 b-24">
+      {hasSidebar ? <SideBar /> : null}
+      <div flex="~ 1 shrink-0" m="x-auto" className={`${styles.content}`}>
+        <div m="x-auto" flex="~ col" w="100%">
+          <div
+            relative="~"
+            m="x-auto"
+            className="md:max-w-712px lg:min-w-640px"
+          >
+            <div className="island-doc">
+              <Content fallback={<div>Loading...</div>} />
+            </div>
+            <DocFooter />
           </div>
         </div>
-        <div className={styles.aside}>
-          <div className={styles.asideCurtain} />
+        <div
+          relative="~"
+          display="none lg:block"
+          order="2"
+          flex="1"
+          p="l-8"
+          className="max-w-256px"
+        >
           <div className={styles.asideContainer}>
-            <div className={styles.asideContent}>
+            <div
+              flex="~ col"
+              p="b-8"
+              style={{
+                minHeight:
+                  'calc(100vh - (var(--island-nav-height-desktop) + 32px))'
+              }}
+            >
               {hasAside ? (
                 <Aside
                   headers={headers}
