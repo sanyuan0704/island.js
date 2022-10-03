@@ -2,16 +2,16 @@ import path from 'path';
 import fse from 'fs-extra';
 import * as execa from 'execa';
 
-const tempDir = path.resolve(__dirname, '../playground/quick-learning');
+const exampleDir = path.resolve(__dirname, '../example/quick-learning');
 const defaultExecaOpts = {
-  cwd: tempDir,
+  cwd: exampleDir,
   stdout: process.stdout,
   stdin: process.stdin,
   stderr: process.stderr
 };
 
 async function prepareE2E() {
-  await fse.ensureDir(tempDir);
+  await fse.ensureDir(exampleDir);
 
   // ensure after build
   if (!fse.existsSync(path.resolve(__dirname, '../dist'))) {
@@ -21,11 +21,25 @@ async function prepareE2E() {
     });
   }
 
-  console.log('custom log: ', tempDir, process.cwd);
-  console.log('custom log: ', fse.emptyDirSync(tempDir));
+  execa.execaCommandSync('npx playwright install', {
+    cwd: path.join(__dirname, '../'),
+    stdout: process.stdout,
+    stdin: process.stdin,
+    stderr: process.stderr
+  });
+
+  // execa.execaCommandSync('tree -I "node_modules"', {
+  //   cwd: path.join(__dirname, '../'),
+  //   stdout: process.stdout,
+  //   stdin: process.stdin,
+  //   stderr: process.stderr
+  // });
+
+  // exec install
+  execa.execaCommandSync('pnpm i', defaultExecaOpts);
 
   // exec dev command
-  // execa.execaCommandSync('npm run dev', defaultExecaOpts);
+  execa.execaCommandSync('npm run dev', defaultExecaOpts);
 }
 
 prepareE2E();
