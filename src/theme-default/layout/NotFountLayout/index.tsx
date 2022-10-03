@@ -1,5 +1,4 @@
 import { usePageData } from 'island/client';
-import styles from './index.module.scss';
 
 export function NotFoundLayout() {
   const { siteData } = usePageData();
