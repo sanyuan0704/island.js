@@ -7,7 +7,7 @@
 - Type: `Object`
 - Default: `{}`
 
-[Vite]的自定义配置（https://vitejs.dev/config/）。你传入的配置将与Vite的默认配置深度合并。例如：
+[Vite](https://vitejs.dev/config/) 的自定义配置。你传入的配置将与 Vite 的默认配置深度合并。例如：
 
 ```js
 import { defineConfig } from 'islandjs';
