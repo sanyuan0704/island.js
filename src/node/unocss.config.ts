@@ -6,8 +6,7 @@ const options: VitePluginConfig = {
   presets: [presetAttributify(), presetWind({})],
   shortcuts: {
     'flex-center': 'flex justify-center items-center',
-    menu: 'flex justify-around items-center text-sm font-bold',
-    'border-1': '1px solid var(--island-c-divider-light)'
+    menu: 'flex justify-around items-center text-sm font-bold'
   },
   rules: [
     [
@@ -59,9 +58,9 @@ const options: VitePluginConfig = {
       lg: '1280px'
     },
     colors: {
+      brandLight: 'var(--island-c-brand-light)',
+      brandDark: 'var(--island-c-brand-dark)',
       brand: 'var(--island-c-brand)',
-      'brand-light': 'var(--island-c-brand-light)',
-      'brand-dark': 'var(--island-c-brand-dark)',
       text: {
         1: 'var(--island-c-text-1)',
         2: 'var(--island-c-text-2)',

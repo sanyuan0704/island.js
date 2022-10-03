@@ -1,7 +1,4 @@
 :global(.api-index) {
-  max-width: 1024px;
-  margin: 0px auto;
-  padding: 64px 32px;
   h1,
   h2,
   h3 {
@@ -73,10 +70,6 @@
   }
 }
 
-.api-section {
-  margin-bottom: 64px;
-}
-
 .api-groups a {
   font-size: 15px;
   font-weight: 500;
@@ -124,12 +117,6 @@
   border-radius: 8px;
   padding: 28px 32px;
   transition: background-color 0.5s;
-}
-
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 
 @media (max-width: 768px) {
