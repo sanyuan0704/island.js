@@ -1,5 +1,12 @@
 
 
+## [0.2.7](https://github.com/sanyuan0704/island.js/compare/0.2.6...0.2.7) (2022-10-03)
+
+
+### Bug Fixes
+
+* unocss cannot found & postinstall error ([aa3acdc](https://github.com/sanyuan0704/island.js/commit/aa3acdcbb9da9bb3364692e6e0dcad5e91668a59))
+
 ## [0.2.6](https://github.com/sanyuan0704/island.js/compare/0.2.5...0.2.6) (2022-10-03)
 
 
