@@ -33,6 +33,13 @@
   --island-c-divider-dark-1: rgba(84, 84, 84, 0.65);
   --island-c-divider-dark-2: rgba(84, 84, 84, 0.48);
 
+  --island-c-indigo: #213547;
+  --island-c-indigo-soft: #476582;
+  --island-c-indigo-light: #aac8e4;
+  --island-c-indigo-lighter: #c9def1;
+  --island-c-indigo-dark: #1d2f3f;
+  --island-c-indigo-darker: #14212e;
+
   --island-c-text-light-1: var(--island-c-indigo);
   --island-c-text-light-2: rgba(60, 60, 60, 0.7);
   --island-c-text-light-3: rgba(60, 60, 60, 0.33);
