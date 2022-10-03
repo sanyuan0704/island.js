@@ -4,10 +4,12 @@ import { Footer } from '../../components/HomeFooter/index';
 
 export function HomeLayout() {
   return (
-    <div>
-      <HomeHero />
-      <HomeFeature />
+    <>
+      <div className="pb-12">
+        <HomeHero />
+        <HomeFeature />
+      </div>
       <Footer />
-    </div>
+    </>
   );
 }

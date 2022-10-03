@@ -1,5 +1,25 @@
 
 
+## [0.2.6](https://github.com/sanyuan0704/island.js/compare/0.2.5...0.2.6) (2022-10-03)
+
+
+### Bug Fixes
+
+* aside position error ([3f47da2](https://github.com/sanyuan0704/island.js/commit/3f47da2a6d6b3cd344f17ae6723381e5fd0cf5fe))
+* correct theme breakpoints ([10a9beb](https://github.com/sanyuan0704/island.js/commit/10a9bebfb720461cbc512f644afa26d4e8cbe7e9))
+* hidden translations if not necessary ([133b4d7](https://github.com/sanyuan0704/island.js/commit/133b4d70378d522b156f14152ef29d06f21386a8))
+* scrollbar disappear when sidebar is too long ([d363950](https://github.com/sanyuan0704/island.js/commit/d363950a862e03f57efd7ccb45b2b11846280524))
+
+
+### Features
+
+* integrate unocss ([3c3aae2](https://github.com/sanyuan0704/island.js/commit/3c3aae241962cafd4722079bfda767e199ae5bc7))
+* migrate aside to unocss ([24f1698](https://github.com/sanyuan0704/island.js/commit/24f16985ec9dd638cd69fb2b15ddb25ca67de98e))
+* migrate doc footer to unocss ([fc370ff](https://github.com/sanyuan0704/island.js/commit/fc370ff618e08189961a8fcf70010d643965c3d2))
+* migrate home page to unocss ([9bf15d4](https://github.com/sanyuan0704/island.js/commit/9bf15d442ce871b0eb9f7b8311dc6517874ed04c))
+* migrate nav style to unocss ([125d5c1](https://github.com/sanyuan0704/island.js/commit/125d5c1661c81227f1811385bcd3b60360ca975b))
+* migrate not found page to unocss ([b5e2402](https://github.com/sanyuan0704/island.js/commit/b5e240248fcbf2088668439d134486f5724b1ec1))
+
 ## [0.2.5](https://github.com/sanyuan0704/island.js/compare/0.2.4...0.2.5) (2022-10-02)
 
 

@@ -1,7 +1,4 @@
 :global(.api-index) {
-  max-width: 1024px;
-  margin: 0px auto;
-  padding: 64px 32px;
   h1,
   h2,
   h3 {
@@ -73,20 +70,12 @@
   }
 }
 
-.api-section {
-  margin-bottom: 64px;
-}
-
 .api-groups a {
   font-size: 15px;
   font-weight: 500;
   line-height: 2;
   color: var(--island-c-text-code);
   transition: color 0.5s;
-}
-
-.api-group-ul {
-  list-style: none;
 }
 
 .api-group-li {
@@ -112,8 +101,7 @@
   left: -1.25rem;
   top: 0.9rem;
 }
-
-.dark api-groups a {
+:global(.dark) api-groups a {
   font-weight: 400;
 }
 
@@ -126,26 +114,20 @@
   transition: background-color 0.5s;
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
 @media (max-width: 768px) {
   :global(.api-index) {
     padding: 42px 24px;
-  }
 
-  h1 {
-    font-size: 32px;
-    margin-bottom: 24px;
-  }
+    h1 {
+      font-size: 32px;
+      margin-bottom: 24px;
+    }
 
-  h2 {
-    font-size: 22px;
-    margin: 42px 0 32px;
-    padding-top: 32px;
+    h2 {
+      font-size: 22px;
+      margin: 42px 0 32px;
+      padding-top: 32px;
+    }
   }
 
   .api-groups a {

@@ -18,6 +18,9 @@ export function Nav() {
   const hasSidebar = pageType === 'doc';
   const hasAppearanceSwitch = siteData.appearance !== false;
   const localeData = useLocaleSiteData(siteData.themeConfig, location.pathname);
+  const hasMultiLanguage =
+    siteData.themeConfig.locales &&
+    Object.keys(siteData.themeConfig.locales).length > 1;
   const lang = localeData.lang || 'zh';
   const menuItems = localeData.nav || [];
   const socialLinks = siteData?.themeConfig?.socialLinks || [];
@@ -28,7 +31,8 @@ export function Nav() {
     return (
       <div
         key={item.text}
-        className={`${styles.menuLink} ${isActive ? styles.active : ''}`}
+        m="l-1.4rem"
+        className={`${isActive ? 'text-brand' : ''}`}
       >
         <Link href={normalizeHref(item.link)}>{item.text}</Link>
       </div>
@@ -52,39 +56,94 @@ export function Nav() {
   };
 
   const renderMenuList = () => {
-    return <div className={styles.menu}>{menuItems.map(renderMenuItem)}</div>;
+    return <div className="menu">{menuItems.map(renderMenuItem)}</div>;
   };
 
   return (
-    <header className={styles.nav}>
-      <div className={styles.navBar}>
-        <div className={`${styles.container}`}>
+    <header relative="" z="2" fixed="md:~" className="top-0 left-0" w="100%">
+      <div
+        relative=""
+        p="l-8 sm:x-8"
+        transition="background-color duration-500"
+        className="divider-bottom lg:border-b-transparent"
+        nav-h="mobile lg:desktop"
+      >
+        <div
+          flex=""
+          justify="between"
+          m="0 auto"
+          nav-h="mobile lg:desktop"
+          className={`${styles.container}  ${
+            hasSidebar ? styles.hasSidebar : ''
+          }`}
+        >
           <div
-            className={`${styles.navBarTitle} ${
-              hasSidebar ? styles.hasSidebar : ''
-            }`}
+            shrink="0"
+            border="border t-0 b-1 border-solid transparent"
+            className={`${styles.navBarTitle}`}
           >
-            <a href="/" className={styles.title}>
-              {/* <span className={styles.logo}></span> */}
+            <a
+              href="/"
+              w="100%"
+              h="15"
+              text="1rem"
+              font="semibold"
+              transition="opacity duration-300"
+              hover="opacity-60"
+              className="flex items-center"
+            >
               <span>{title}</span>
             </a>
           </div>
-          <div className={styles.content}>
-            <div className={styles.search}>{/* <Search /> */}</div>
-            <div className={styles.menu}>{renderMenuList()}</div>
-            <div className={styles.translations}>
-              <Link href={lang === 'zh' ? '/en/' : '/zh/'}>
-                {lang === 'zh' ? 'English' : '中文版'}
-              </Link>
+          <div
+            className={`${styles.content}`}
+            flex="~ 1"
+            justify="end"
+            items-center=""
+          >
+            <div className="search" flex="sm:1" pl="sm:8">
+              {}
             </div>
+            <div className="menu">{renderMenuList()}</div>
+            {hasMultiLanguage && (
+              <div
+                className="translation"
+                flex="~"
+                text="sm"
+                font="bold"
+                items-center="~"
+                before="menu-item-before"
+              >
+                <Link href={lang === 'zh' ? '/en/' : '/zh/'}>
+                  {lang === 'zh' ? 'English' : '中文版'}
+                </Link>
+              </div>
+            )}
             {hasAppearanceSwitch && (
-              <div className={styles.appearance}>
+              <div
+                className="appearance"
+                before="menu-item-before"
+                display="none sm:flex"
+                items-center="center"
+              >
                 <SwitchAppearance />
               </div>
             )}
 
-            <div className={styles.socialLinks}>
-              <div className={styles.socialLink}>
+            <div
+              className="social-links"
+              flex=""
+              items-center=""
+              before="menu-item-before"
+            >
+              <div
+                flex=""
+                items-center=""
+                w="9"
+                h="9"
+                transition="color duration-500"
+                color="hover:brand"
+              >
                 {socialLinks.map((item) => {
                   const IconComp = IconMap[item.icon as keyof typeof IconMap];
                   return (
@@ -93,8 +152,10 @@ export function Nav() {
                       href={item.link}
                       target="_blank"
                       rel="noopener noreferrer"
+                      w="5"
+                      h="5"
                     >
-                      <IconComp />
+                      <IconComp fill="currentColor" />
                     </a>
                   );
                 })}
