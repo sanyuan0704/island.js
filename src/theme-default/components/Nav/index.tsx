@@ -18,6 +18,9 @@ export function Nav() {
   const hasSidebar = pageType === 'doc';
   const hasAppearanceSwitch = siteData.appearance !== false;
   const localeData = useLocaleSiteData(siteData.themeConfig, location.pathname);
+  const hasMultiLanguage =
+    siteData.themeConfig.locales &&
+    Object.keys(siteData.themeConfig.locales).length > 1;
   const lang = localeData.lang || 'zh';
   const menuItems = localeData.nav || [];
   const socialLinks = siteData?.themeConfig?.socialLinks || [];
@@ -102,18 +105,20 @@ export function Nav() {
               {}
             </div>
             <div className="menu">{renderMenuList()}</div>
-            <div
-              className="translation"
-              flex="~"
-              text="sm"
-              font="bold"
-              items-center="~"
-              before="menu-item-before"
-            >
-              <Link href={lang === 'zh' ? '/en/' : '/zh/'}>
-                {lang === 'zh' ? 'English' : '中文版'}
-              </Link>
-            </div>
+            {hasMultiLanguage && (
+              <div
+                className="translation"
+                flex="~"
+                text="sm"
+                font="bold"
+                items-center="~"
+                before="menu-item-before"
+              >
+                <Link href={lang === 'zh' ? '/en/' : '/zh/'}>
+                  {lang === 'zh' ? 'English' : '中文版'}
+                </Link>
+              </div>
+            )}
             {hasAppearanceSwitch && (
               <div
                 className="appearance"
