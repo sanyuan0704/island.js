@@ -1,61 +1,3 @@
-.footer {
-  margin-top: 64px;
-}
-
-.edit-info {
-  padding-bottom: 18px;
-}
-
-@media (min-width: 640px) {
-  .edit-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 14px;
-  }
-}
-
-.edit-link-button {
-  display: flex;
-  align-items: center;
-  border: 0;
-  line-height: 32px;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--island-c-brand);
-  transition: color 0.25s;
-}
-
-.edit-link-button:hover {
-  color: var(--island-c-brand-dark);
-}
-
-.edit-link-icon {
-  margin-right: 8px;
-  width: 14px;
-  height: 14px;
-  fill: currentColor;
-}
-
-.prev-next {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  border-top: 1px solid var(--island-c-divider-light);
-  padding-top: 24px;
-}
-
-@media (min-width: 640px) {
-  .prev-next {
-    flex-direction:row;
-    justify-content: space-around;
-  }
-}
-
-.pager.has-next {
-  padding-top: 8px;
-}
-
 @media (min-width: 640px) {
   .pager {
     display: flex;
@@ -68,7 +10,6 @@
     padding-left: 16px;
   }
 }
-
 
 .pager-link {
   display: block;
@@ -95,6 +36,7 @@
 
 .desc {
   display: block;
+  margin-bottom: 4px;
   line-height: 20px;
   font-size: 12px;
   font-weight: 500;
@@ -108,20 +50,4 @@
   font-weight: 500;
   color: var(--island-c-brand);
   transition: color 0.25s;
-}
-
-.lastUpdated {
-  display: flex;
-  line-height: 24px;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--island-c-text-2);
-}
-
-@media (min-width: 640px) {
-  .lastUpdated {
-    line-height: 32px;
-    font-size: 14px;
-    font-weight: 500;
-  }
 }

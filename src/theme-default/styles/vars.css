@@ -43,13 +43,6 @@
   --island-c-text-dark-3: rgba(235, 235, 235, 0.38);
   --island-c-text-dark-4: rgba(235, 235, 235, 0.18);
 
-  --island-c-indigo: #213547;
-  --island-c-indigo-soft: #476582;
-  --island-c-indigo-light: #aac8e4;
-  --island-c-indigo-lighter: #c9def1;
-  --island-c-indigo-dark: #1d2f3f;
-  --island-c-indigo-darker: #14212e;
-
   --island-c-green: #21b8a3;
   --island-c-green-light: #41c6b0;
   --island-c-green-lighter: #41c6b0;
@@ -79,18 +72,10 @@
   --island-c-divider: var(--island-c-divider-light-1);
   --island-c-divider-light: var(--island-c-divider-light-2);
 
-  --island-c-divider-inverse: var(--island-c-divider-dark-1);
-  --island-c-divider-inverse-light: var(--island-c-divider-dark-2);
-
   --island-c-text-1: var(--island-c-text-light-1);
   --island-c-text-2: var(--island-c-text-light-2);
   --island-c-text-3: var(--island-c-text-light-3);
   --island-c-text-4: var(--island-c-text-light-4);
-
-  --island-c-text-inverse-1: var(--island-c-text-dark-1);
-  --island-c-text-inverse-2: var(--island-c-text-dark-2);
-  --island-c-text-inverse-3: var(--island-c-text-dark-3);
-  --island-c-text-inverse-4: var(--island-c-text-dark-4);
 
   --island-c-text-code: var(--island-c-indigo-soft);
 
@@ -99,8 +84,6 @@
   --island-c-brand-lighter: var(--island-c-green-lighter);
   --island-c-brand-dark: var(--island-c-green-dark);
   --island-c-brand-darker: var(--island-c-green-darker);
-
-  --island-c-sponsor: #fd1d7c;
 }
 
 .dark {
@@ -137,44 +120,6 @@
     -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
     Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   --island-font-family-mono: Menlo, Monaco, Consolas, 'Courier New', monospace;
-}
-
-/**
- * Shadows
- * -------------------------------------------------------------------------- */
-
-:root {
-  --island-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.04),
-    0 1px 2px rgba(0, 0, 0, 0.06);
-  --island-shadow-2: 0 3px 12px rgba(0, 0, 0, 0.07),
-    0 1px 4px rgba(0, 0, 0, 0.07);
-  --island-shadow-3: 0 12px 32px rgba(0, 0, 0, 0.1),
-    0 2px 6px rgba(0, 0, 0, 0.08);
-  --island-shadow-4: 0 14px 44px rgba(0, 0, 0, 0.12),
-    0 3px 9px rgba(0, 0, 0, 0.12);
-  --island-shadow-5: 0 18px 56px rgba(0, 0, 0, 0.16),
-    0 4px 12px rgba(0, 0, 0, 0.16);
-}
-
-/**
- * Z-indexes
- * -------------------------------------------------------------------------- */
-
-:root {
-  --island-z-index-local-nav: 10;
-  --island-z-index-nav: 20;
-  --island-z-index-backdrop: 30;
-  --island-z-index-sidebar: 40;
-  --island-z-index-footer: 50;
-}
-
-/**
- * Icons
- * -------------------------------------------------------------------------- */
-
-:root {
-  --island-icon-copy: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' height='20' width='20' stroke='rgba(128,128,128,1)' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2'/%3E%3C/svg%3E");
-  --island-icon-copied: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' height='20' width='20' stroke='rgba(128,128,128,1)' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2m-6 9 2 2 4-4'/%3E%3C/svg%3E");
 }
 
 /**

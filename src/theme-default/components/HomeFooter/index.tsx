@@ -1,14 +1,26 @@
-import styles from './index.module.scss';
 import { usePageData } from 'island/client';
 
 export function Footer() {
   const { siteData } = usePageData();
   const { message, copyright } = siteData.themeConfig.footer || {};
   return (
-    <footer className={styles.footer}>
-      <div className={styles.container}>
-        {message && <div className={styles.message}>{message}</div>}
-        {copyright && <div className={styles.copyright}>{copyright}</div>}
+    <footer
+      p="y-8 x-6 sm:8"
+      bg="bg-default"
+      relative
+      border="t-1 b-0 solid divider-light"
+    >
+      <div m="auto" w="100%" text="center">
+        {message && (
+          <div font="medium" text="sm text-2">
+            {message}
+          </div>
+        )}
+        {copyright && (
+          <div font="medium" text="sm text-2">
+            {copyright}
+          </div>
+        )}
       </div>
     </footer>
   );

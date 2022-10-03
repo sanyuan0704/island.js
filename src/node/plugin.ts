@@ -7,6 +7,8 @@ import { SiteConfig } from '../shared/types';
 import { pluginMdx } from './plugin-mdx';
 import babelPluginIsland from './babel-plugin-island';
 import { ISLAND_JSX_RUNTIME_PATH } from './constants/index';
+import pluginUnocss from 'unocss/vite';
+import unocssOptions from './unocss.config';
 // import pluginInspect from 'vite-plugin-inspect';
 
 export async function createIslandPlugins(
@@ -15,7 +17,11 @@ export async function createIslandPlugins(
   restartServer?: () => Promise<void>
 ): Promise<PluginOption[]> {
   return [
-    // pluginInspect({}),
+    pluginUnocss(unocssOptions),
+    // pluginInspect({
+    //   dev: false,
+    //   build: true
+    // }),
     // Md(x) compile
     await pluginMdx(config, isServer),
     // For island internal use

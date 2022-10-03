@@ -43,18 +43,18 @@ export function APILayout() {
     }
   }, [groups]);
   return (
-    <div className="api-index">
-      <div className={styles.header}>
+    <div className="api-index max-w-1024px" m="x-auto" p="y-16 x-8">
+      <div flex="" items-center="" justify="between">
         <h1>API Reference</h1>
       </div>
 
-      <div className={styles.apiSection}>
+      <div mb="16">
         <h2>Config</h2>
         <div className={styles.apiGroups}>
           {groups.map((item) => (
             <div className={styles.apiGroup} key={item.link}>
               <h3>{item.text}</h3>
-              <ul className={styles.apiGroupUl}>
+              <ul list="none">
                 {item.headers?.map((header) => (
                   <li
                     key={header.id}

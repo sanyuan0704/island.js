@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useState, useEffect, useRef } from 'react';
-import styles from './index.module.scss';
 import { ComponentPropsWithIsland, Header } from 'shared/types/index';
 import { bindingAsideScroll } from '../../logic';
 
@@ -12,9 +11,9 @@ export function Aside(
   }>
 ) {
   const [headers, setHeaders] = useState(props.headers || []);
+  const hasOutline = headers.length > 0;
   // For outline text highlight
   const markerRef = useRef<HTMLDivElement>(null);
-  const asideRef = useRef<HTMLDivElement>(null);
   // We promise: in complete dev/prod render process, the hooks order will be consistent
   if (import.meta.env.ENABLE_SPA || import.meta.env.DEV) {
     useEffect(() => {
@@ -55,7 +54,13 @@ export function Aside(
       <li key={header.text}>
         <a
           href={`#${header.id}`}
-          className={`${styles.outlineLink}  ${isNested ? styles.nested : ''}`}
+          block=""
+          leading-7=""
+          text="text-2"
+          avoid-text-overflow=""
+          hover="text-text-1"
+          transition="color duration-300"
+          className={`${isNested ? 'pl-3' : ''}`}
         >
           {header.text}
         </a>
@@ -64,17 +69,36 @@ export function Aside(
   };
 
   return (
-    <div className={styles.docAside}>
-      <div className={styles.docsAsideOutline}>
-        <div className={styles.content} ref={asideRef} id="aside-container">
+    <div flex="~ col 1">
+      <div display={`${hasOutline ? 'lg:block' : 'none'}`}>
+        <div
+          relative=""
+          divider-left=""
+          p="l-4"
+          text="13px"
+          font-medium=""
+          id="aside-container"
+        >
           <div
-            className={styles.outlineMarker}
+            absolute=""
+            pos="top-33px"
+            opacity="0"
+            w="1px"
+            h="18px"
+            bg="brand"
             ref={markerRef}
+            style={{
+              left: '-1px',
+              transition:
+                'top 0.25s cubic-bezier(0, 1, 0.5, 1), background-color 0.5s, opacity 0.25s'
+            }}
             id="aside-marker"
           ></div>
-          <div className={styles.outlineTitle}>{props.outlineTitle}</div>
+          <div block="~" leading-7="" text="13px" font="semibold">
+            {props.outlineTitle}
+          </div>
           <nav>
-            <ul className={styles.root}>{headers.map(renderHeader)}</ul>
+            <ul relative="">{headers.map(renderHeader)}</ul>
           </nav>
         </div>
       </div>

@@ -30,7 +30,14 @@ export function SideBar() {
     const isActive = location.pathname.startsWith(item.link!);
     return (
       <div style={{ marginLeft }}>
-        <div className={`${styles.link} ${isActive ? styles.active : ''}`}>
+        <div
+          p="1"
+          block="~"
+          transition="color duration-500"
+          text="sm"
+          font-medium="~"
+          className={`${isActive ? 'text-brand' : 'text-text-2'}`}
+        >
           <Link href={normalizeHref(item.link!)}>{item.text}</Link>
         </div>
         {children}
@@ -40,18 +47,13 @@ export function SideBar() {
 
   const renderGroup = (item: DefaultTheme.SidebarGroup) => {
     return (
-      <section
-        key={item.text}
-        className={`${styles.sideBarGroup} ${styles.collapsible}`}
-      >
-        <div className={styles.title}>
-          <h2 className={styles.titleText}>{item.text}</h2>
-          {/* <div className={styles.action}>
-            <MinusSvg className={`${styles.icon} ${styles.minus}`}></MinusSvg>
-            <PlusSvg className={`${styles.icon} ${styles.plus}`}></PlusSvg>
-          </div> */}
+      <section key={item.text} block="~" not-first="divider-top mt-4">
+        <div flex="~" justify="between" items-start="~">
+          <h2 m="t-3 b-2" text="1rem text-1" font="bold">
+            {item.text}
+          </h2>
         </div>
-        <div className={styles.items}>
+        <div mb="1.4 sm:1">
           {item?.items?.map((item) => (
             <div key={item.link}>{renderGroupItem(item)}</div>
           ))}
@@ -62,15 +64,13 @@ export function SideBar() {
 
   return (
     <aside className={styles.sidebar}>
-      <nav className={styles.nav}>
-        <div className={styles.group}>
-          {[sidebarData]
-            .filter(Boolean)
-            .flat()
-            .map((item: DefaultTheme.SidebarGroup | undefined) =>
-              renderGroup(item!)
-            )}
-        </div>
+      <nav>
+        {[sidebarData]
+          .filter(Boolean)
+          .flat()
+          .map((item: DefaultTheme.SidebarGroup | undefined) =>
+            renderGroup(item!)
+          )}
       </nav>
     </aside>
   );
