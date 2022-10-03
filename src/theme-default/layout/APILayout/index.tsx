@@ -54,7 +54,7 @@ export function APILayout() {
           {groups.map((item) => (
             <div className={styles.apiGroup} key={item.link}>
               <h3>{item.text}</h3>
-              <ul className={styles.apiGroupUl}>
+              <ul list="none">
                 {item.headers?.map((header) => (
                   <li
                     key={header.id}

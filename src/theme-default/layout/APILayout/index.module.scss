@@ -78,10 +78,6 @@
   transition: color 0.5s;
 }
 
-.api-group-ul {
-  list-style: none;
-}
-
 .api-group-li {
   position: relative;
 
@@ -105,8 +101,7 @@
   left: -1.25rem;
   top: 0.9rem;
 }
-
-.dark api-groups a {
+:global(.dark) api-groups a {
   font-weight: 400;
 }
 
