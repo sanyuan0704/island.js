@@ -37,7 +37,7 @@ async function prepareE2E() {
 
   // exec install
   execa.execaCommandSync(
-    'npm ci --registry=https://registry.npmmirror.com/',
+    'npm i --registry=https://registry.npmmirror.com/',
     defaultExecaOpts
   );
 
