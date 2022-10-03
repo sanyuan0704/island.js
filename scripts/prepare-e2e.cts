@@ -36,7 +36,10 @@ async function prepareE2E() {
   // });
 
   // exec install
-  execa.execaCommandSync('pnpm i', defaultExecaOpts);
+  execa.execaCommandSync(
+    'npm ci --registry=https://registry.npmmirror.com/',
+    defaultExecaOpts
+  );
 
   // exec dev command
   execa.execaCommandSync('npm run dev', defaultExecaOpts);
