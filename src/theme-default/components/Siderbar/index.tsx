@@ -33,7 +33,6 @@ export function SideBar() {
         <div
           p="1"
           block="~"
-          transition="color duration-500"
           text="sm"
           font-medium="~"
           className={`${isActive ? 'text-brand' : 'text-text-2'}`}
