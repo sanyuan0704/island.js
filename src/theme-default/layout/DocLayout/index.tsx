@@ -6,8 +6,6 @@ import { DocFooter } from '../../components/DocFooter/index';
 import { Content, usePageData } from 'island/client';
 import { useLocaleSiteData } from '../../logic';
 import { useLocation } from 'react-router-dom';
-import { setupCopyCodeButton } from '../../logic';
-import { useEffect } from 'react';
 
 export function DocLayout() {
   const { toc: headers = [], siteData, pagePath } = usePageData();
@@ -22,10 +20,6 @@ export function DocLayout() {
     localesData?.outlineTitle || themeConfig?.outlineTitle || 'ON THIS PAGE';
 
   const hasAside = headers.length > 0 && themeConfig.outline !== false;
-
-  useEffect(() => {
-    setupCopyCodeButton();
-  }, []);
 
   return (
     <div p="t-0 x-6 b-24 sm:6">

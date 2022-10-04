@@ -1,6 +1,7 @@
 import { throttle } from 'lodash-es';
 import { APPEARANCE_KEY } from '../../shared/constants';
 import { inBrowser } from '../../shared/utils';
+import { setupCopyCodeButton } from './copyCode';
 
 const DEFAULT_NAV_HEIGHT = 60;
 
@@ -209,4 +210,5 @@ export function setupEffects() {
     bindingAsideScroll();
   }
   bindingWindowScroll();
+  setupCopyCodeButton();
 }
