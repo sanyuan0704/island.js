@@ -82,7 +82,8 @@ const options: VitePluginConfig = {
       },
       bg: {
         default: 'var(--island-c-bg)',
-        soft: 'var(--island-c-bg-soft)'
+        soft: 'var(--island-c-bg-soft)',
+        mute: 'var(--island-c-bg-mute)'
       }
     }
   }

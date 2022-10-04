@@ -49,7 +49,7 @@ export function HomeHero() {
             p="t-3"
             m="auto md:0"
             text="sm sm:xl md:2xl text-2"
-            font="bold"
+            font="medium"
             className="whitespace-pre-wrap max-w-392px sm:max-w-576px"
           >
             {hero.tagline}
