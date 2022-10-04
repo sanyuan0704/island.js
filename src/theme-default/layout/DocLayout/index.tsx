@@ -20,6 +20,7 @@ export function DocLayout() {
     localesData?.outlineTitle || themeConfig?.outlineTitle || 'ON THIS PAGE';
 
   const hasAside = headers.length > 0 && themeConfig.outline !== false;
+
   return (
     <div p="t-0 x-6 b-24 sm:6">
       {hasSidebar ? <SideBar /> : null}
