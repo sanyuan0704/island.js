@@ -31,7 +31,7 @@ export function NavMenuGroup(item: NavMenuGroupItem) {
         pos="top-13 right-0"
         m="x-0.8"
         opacity="0"
-        transition="opacity duration-200 transform duration-200"
+        transition="opacity duration-300"
         className={styles.menuGroupContent}
       >
         <div

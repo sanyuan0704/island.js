@@ -1,8 +1,10 @@
+import { useLocation } from 'react-router-dom';
 import { DefaultTheme } from 'shared/types';
 import { normalizeHref } from '../../logic';
 import { Link } from '../Link/index';
 
 export function NavMenuSingleItem(item: DefaultTheme.NavItemWithLink) {
+  const location = useLocation();
   const isActive = new RegExp(item.activeMatch || '').test(location.pathname);
   return (
     <div
