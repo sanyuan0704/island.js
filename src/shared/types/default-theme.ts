@@ -16,7 +16,7 @@ export namespace DefaultTheme {
      * Custom site title in navbar. If the value is undefined,
      * `config.title` will be used.
      */
-    siteTitle?: string | false;
+    siteTitle?: string;
 
     /**
      * Custom outline title in the aside component.
@@ -91,7 +91,7 @@ export namespace DefaultTheme {
     title?: string;
     description?: string;
     head?: HeadConfig[];
-    label?: string;
+    label: string;
     selectText?: string;
     nav?: NavItem[];
     sidebar?: Sidebar;
@@ -123,7 +123,7 @@ export namespace DefaultTheme {
 
   export interface NavItemWithChildren {
     text?: string;
-    items: (NavItemChildren | NavItemWithLink)[];
+    items: NavItemWithLink[];
 
     /**
      * `activeMatch` is expected to be a regex string. We can't use actual

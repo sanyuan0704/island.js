@@ -9,7 +9,7 @@ interface ImportMeta {
 }
 
 declare module 'island/theme*' {
-  import { ComponentType, Component } from 'react';
+  import { ComponentType, Component, HtmlHTMLAttributes } from 'react';
 
   export const Layout: ComponentType<unknown>;
   export const NotFoundLayout: ComponentType<unknown>;
@@ -50,8 +50,10 @@ declare module 'virtual:routes' {
 }
 
 declare module '*.svg' {
+  import type { AttributifyAttributes } from '@unocss/preset-attributify';
+
   export const ReactComponent: React.FunctionComponent<
-    React.SVGProps<SVGSVGElement>
+    React.SVGProps<SVGSVGElement> & AttributifyAttributes
   >;
   export = ReactComponent;
 }
