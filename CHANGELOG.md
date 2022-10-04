@@ -1,5 +1,19 @@
 
 
+## [0.2.8](https://github.com/sanyuan0704/island.js/compare/0.2.7...0.2.8) (2022-10-04)
+
+
+### Bug Fixes
+
+* location not defined duration prod build ([6e11f73](https://github.com/sanyuan0704/island.js/commit/6e11f73686cf1272d9444a149066128ca480f5bc))
+* useEffect is invalid ([6495e07](https://github.com/sanyuan0704/island.js/commit/6495e078daf47eaef4acbaa4d99b317e6be37ea2))
+
+
+### Features
+
+* add menu group for translations ([da43a24](https://github.com/sanyuan0704/island.js/commit/da43a2487b4169a2ffa14991577fd569f9abb10c))
+* code copied button ([52298a7](https://github.com/sanyuan0704/island.js/commit/52298a7bce594e82a2b536259c0562d0114e692b))
+
 ## [0.2.7](https://github.com/sanyuan0704/island.js/compare/0.2.6...0.2.7) (2022-10-03)
 
 
