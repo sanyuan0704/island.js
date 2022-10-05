@@ -22,7 +22,7 @@ export default defineConfig({
 - Type: `string`
 - Default: `"Island"`
 
-The title of the site. This will be used as the title of the home page and the title of the HTML document. For example:
+The title of site. This will be used as the title of the home page and the title of the HTML document. For example:
 
 ```js
 import { defineConfig } from 'islandjs';
@@ -37,7 +37,7 @@ export default defineConfig({
 - Type: `string`
 - Default: `""`
 
-The description of the site. This will be used as the description of the home page and the description of the HTML document. For example:
+The description of site. This will be used as the description of the home page and the description of the HTML document. For example:
 
 ```js
 import { defineConfig } from 'islandjs';
