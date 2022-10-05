@@ -62,28 +62,38 @@ function SuggestionContent(props: {
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function Search(_props: ComponentPropsWithIsland) {
   const [suggestions, setSuggestions] = useState<MatchResultItem[]>([]);
   const [query, setQuery] = useState('');
   const [focused, setFocused] = useState(false);
   const showSuggestions = focused && suggestions.length > 0;
   const psRef = useRef<PageSearcher>();
-  useEffect(() => {
-    async function search() {
-      psRef.current = new PageSearcher();
-      await psRef.current.init();
-    }
-    search();
-  }, []);
-  const onQueryChanged = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    const newQuery = e.target.value;
-    setQuery(newQuery);
-    if (psRef.current) {
-      psRef.current.match(newQuery).then((matched) => {
-        setSuggestions(matched);
+
+  const initPageSearcher = useCallback(() => {
+    if (!psRef.current) {
+      return import('../../logic/search').then(({ PageSearcher }) => {
+        psRef.current = new PageSearcher();
+        psRef.current.init();
       });
     }
+    return Promise.resolve();
   }, []);
+
+  const onQueryChanged = useCallback(
+    async (e: ChangeEvent<HTMLInputElement>) => {
+      await initPageSearcher();
+      const newQuery = e.target.value;
+      setQuery(newQuery);
+      if (psRef.current) {
+        psRef.current.match(newQuery).then((matched) => {
+          setSuggestions(matched);
+        });
+      }
+    },
+    [initPageSearcher]
+  );
+
   return (
     <div flex="" items-center="~" relative="" mr="4" font="semibold">
       <SearchSvg w="5" h="5" fill="currentColor" />
@@ -102,7 +112,10 @@ export function Search(_props: ComponentPropsWithIsland) {
         autoComplete="off"
         onChange={onQueryChanged}
         onBlur={() => setTimeout(() => setFocused(false), 200)}
-        onFocus={() => setFocused(true)}
+        onFocus={() => {
+          setFocused(true);
+          initPageSearcher();
+        }}
       />
       {showSuggestions && (
         <ul

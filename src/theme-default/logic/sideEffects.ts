@@ -211,8 +211,6 @@ function bindingMenuGroupToggle() {
       'nav-menu-group-content'
     )[0] as HTMLDivElement;
     menuButton.addEventListener('mouseenter', () => {
-      console.log(111);
-
       menuContent.style.opacity = '1';
       menuContent.style.visibility = 'visible';
     });

@@ -91,7 +91,7 @@ export namespace DefaultTheme {
     title?: string;
     description?: string;
     head?: HeadConfig[];
-    label: string;
+    label?: string;
     selectText?: string;
     nav?: NavItem[];
     sidebar?: Sidebar;
