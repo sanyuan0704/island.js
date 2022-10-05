@@ -35,6 +35,8 @@ export type MatchResultItem = HeaderMatch | ContentMatch;
 const cjkRegex =
   /[\u3131-\u314e|\u314f-\u3163|\uac00-\ud7a3]|[\u4E00-\u9FCC\u3400-\u4DB5\uFA0E\uFA0F\uFA11\uFA13\uFA14\uFA1F\uFA21\uFA23\uFA24\uFA27-\uFA29]|[\ud840-\ud868][\udc00-\udfff]|\ud869[\udc00-\uded6\udf00-\udfff]|[\ud86a-\ud86c][\udc00-\udfff]|\ud86d[\udc00-\udf34\udf40-\udfff]|\ud86e[\udc00-\udc1d]|[\u3041-\u3096]|[\u30A1-\u30FA]/giu;
 
+const WHITE_PAGE_TYPES = ['home', 'api', '404', 'custom'];
+
 export class PageSearcher {
   #index?: SearchIndex<PageDataForSearch[]>;
   #cjkIndex?: SearchIndex<PageDataForSearch[]>;
@@ -42,12 +44,14 @@ export class PageSearcher {
   async init(options: CreateOptions = {}) {
     // Initial pages data and create index
     const pages = await getAllPages();
-    const pagesForSearch: PageDataForSearch[] = pages.map((page) => ({
-      title: page.title || '',
-      headers: (page.toc || []).map((header) => header.text),
-      content: page.content || '',
-      path: page.routePath
-    }));
+    const pagesForSearch: PageDataForSearch[] = pages
+      .filter((page) => !WHITE_PAGE_TYPES.includes(page.pageType))
+      .map((page) => ({
+        title: page.title!,
+        headers: (page.toc || []).map((header) => header.text),
+        content: page.content || '',
+        path: page.routePath
+      }));
 
     this.#headerToIdMap = pages.reduce((acc, page) => {
       (page.toc || []).forEach((header) => {
@@ -114,7 +118,6 @@ export class PageSearcher {
       this.#matchContent(item, query, matchedResult);
     });
     const res = uniqBy(matchedResult, 'link');
-    console.log(res);
     return res;
   }
 
@@ -132,7 +135,7 @@ export class PageSearcher {
           title: item.title,
           header,
           headerHighlightIndex: header.indexOf(query),
-          link: `${item.path}#${headerAnchor}`
+          link: `${normalizeHref(item.path)}#${headerAnchor}`
         });
         return true;
       }
@@ -147,6 +150,9 @@ export class PageSearcher {
   ) {
     const { content, headers } = item;
     const queryIndex = content.indexOf(query);
+    if (queryIndex === -1) {
+      return;
+    }
     const headersIndex = headers.map((h) => content.indexOf(h));
     const currentHeaderIndex = headersIndex.findIndex((hIndex, position) => {
       if (position < headers.length - 1) {
@@ -188,10 +194,13 @@ export class PageSearcher {
         '...' + statement.slice(queryIndex - maxPrefixOrSuffix + 3, queryIndex);
     }
     let suffix = statement.slice(queryIndex + query.length);
+    console.log('suffix', suffix);
     if (suffix.length > maxPrefixOrSuffix) {
       suffix =
-        statement.slice(queryIndex + query.length, maxPrefixOrSuffix - 3) +
-        '...';
+        statement.slice(
+          queryIndex + query.length,
+          queryIndex + maxPrefixOrSuffix - 3
+        ) + '...';
     }
     return prefix + query + suffix;
   }

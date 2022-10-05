@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, useCallback, useRef, useState } from 'react';
 import { MatchResultItem, PageSearcher } from '../../logic/search';
 import SearchSvg from './icons/search.svg';
 import { ComponentPropsWithIsland } from '../../../shared/types/index';
@@ -142,7 +142,7 @@ export function Search(_props: ComponentPropsWithIsland) {
                     p="1.2"
                     text="sm right"
                     font="semibold"
-                    className="bg-[#f5f5f5] "
+                    className="bg-[#f5f5f5]"
                   >
                     {item.title}
                   </div>
