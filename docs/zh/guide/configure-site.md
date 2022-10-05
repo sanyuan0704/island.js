@@ -1,7 +1,3 @@
----
-title: 'Configure your site'
----
-
 # 配置站点
 
 ## 创建配置文件
@@ -70,17 +66,19 @@ import { defineConfig } from 'islandjs';
 
 export default defineConfig({
   themeConfig: {
-    sidebar: [
-      {
-        text: 'Guide',
-        items: [
-          {
-            text: 'Getting Started',
-            link: '/guide/getting-started'
-          }
-        ]
-      }
-    ]
+    sidebar: {
+      '/guide/': [
+        {
+          text: 'Guide',
+          items: [
+            {
+              text: 'Getting Started',
+              link: '/guide/getting-started'
+            }
+          ]
+        }
+      ]
+    }
   }
 });
 ```

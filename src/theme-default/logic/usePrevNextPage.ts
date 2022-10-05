@@ -1,14 +1,16 @@
-import { DefaultTheme, SiteData } from 'shared/types';
+import { DefaultTheme } from 'shared/types';
 import { useLocation } from 'react-router-dom';
 import { useLocaleSiteData } from './useLocaleSiteData';
 
-export function usePrevNextPage(siteData: SiteData<DefaultTheme.Config>) {
+export function usePrevNextPage() {
   const { pathname } = useLocation();
-  const localesData = useLocaleSiteData(siteData.themeConfig, pathname);
+  const localesData = useLocaleSiteData();
   const sidebar = localesData.sidebar || {};
   const flattenTitles: DefaultTheme.SidebarItem[] = [];
 
-  const walkThroughSidebar = (sidebar: DefaultTheme.Sidebar) => {
+  const walkThroughSidebar = (
+    sidebar: DefaultTheme.Sidebar | DefaultTheme.SidebarGroup[]
+  ) => {
     if (Array.isArray(sidebar)) {
       sidebar.forEach((sidebarGroup) => {
         sidebarGroup.items.forEach((item) => {

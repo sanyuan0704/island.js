@@ -2,6 +2,7 @@ import { ChangeEvent, useCallback, useRef, useState } from 'react';
 import { MatchResultItem, PageSearcher } from '../../logic/search';
 import SearchSvg from './icons/search.svg';
 import { ComponentPropsWithIsland } from '../../../shared/types/index';
+import { useLocaleSiteData } from '../../logic';
 
 function SuggestionContent(props: {
   suggestion: MatchResultItem;
@@ -64,6 +65,7 @@ function SuggestionContent(props: {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function Search(_props: ComponentPropsWithIsland) {
+  const localeData = useLocaleSiteData();
   const [suggestions, setSuggestions] = useState<MatchResultItem[]>([]);
   const [query, setQuery] = useState('');
   const [focused, setFocused] = useState(false);
@@ -73,12 +75,12 @@ export function Search(_props: ComponentPropsWithIsland) {
   const initPageSearcher = useCallback(() => {
     if (!psRef.current) {
       return import('../../logic/search').then(({ PageSearcher }) => {
-        psRef.current = new PageSearcher();
+        psRef.current = new PageSearcher(localeData.lang || 'en');
         psRef.current.init();
       });
     }
     return Promise.resolve();
-  }, []);
+  }, [localeData.lang]);
 
   const onQueryChanged = useCallback(
     async (e: ChangeEvent<HTMLInputElement>) => {

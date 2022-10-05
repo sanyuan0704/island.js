@@ -5,13 +5,11 @@ import { Aside } from '../../components/Aside/index';
 import { DocFooter } from '../../components/DocFooter/index';
 import { Content, usePageData } from 'island/client';
 import { useLocaleSiteData } from '../../logic';
-import { useLocation } from 'react-router-dom';
 
 export function DocLayout() {
   const { toc: headers = [], siteData, pagePath } = usePageData();
-  const { pathname } = useLocation();
   const themeConfig = siteData.themeConfig;
-  const localesData = useLocaleSiteData(themeConfig, pathname);
+  const localesData = useLocaleSiteData();
   const sidebar = localesData.sidebar || [];
   const hasSidebar =
     (Array.isArray(sidebar) && sidebar.length > 0) ||

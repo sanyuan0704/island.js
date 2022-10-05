@@ -2,24 +2,12 @@ import styles from './index.module.scss';
 import React from 'react';
 import { Link } from '../Link/index';
 import { DefaultTheme } from '../../../shared/types';
-import { usePageData } from 'island/client';
+import { normalizeHref, useSidebarData } from '../../logic/index';
 import { useLocation } from 'react-router-dom';
-import {
-  normalizeHref,
-  useSidebarData,
-  useLocaleSiteData
-} from '../../logic/index';
 
 export function SideBar() {
-  const location = useLocation();
-  const { siteData } = usePageData();
-  const localesData = useLocaleSiteData(
-    siteData.themeConfig,
-    location.pathname
-  );
-  const sidebar = localesData.sidebar || {};
-
-  const sidebarData = useSidebarData(sidebar, location.pathname);
+  const { pathname } = useLocation();
+  const { items: sidebarData } = useSidebarData(pathname);
 
   const renderGroupItem = (item: DefaultTheme.SidebarItem, depth = 0) => {
     const marginLeft = `${depth * 20}px`;

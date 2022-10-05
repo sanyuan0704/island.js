@@ -2,19 +2,17 @@ import styles from './index.module.scss';
 import { usePageData } from 'island/client';
 import { useEditLink, useLocaleSiteData, usePrevNextPage } from '../../logic';
 import { normalizeHref } from '../../logic/index';
-import { useLocation } from 'react-router-dom';
 
 export function DocFooter() {
   const { siteData, relativePagePath, lastUpdatedTime } = usePageData();
-  const { prevPage, nextPage } = usePrevNextPage(siteData);
-  const { pathname } = useLocation();
+  const { prevPage, nextPage } = usePrevNextPage();
   const themeConfig = siteData.themeConfig;
   const {
     editLink: rawEditLink,
     lastUpdatedText,
     prevPageText = 'Previous Page',
     nextPageText = 'Next page'
-  } = useLocaleSiteData(themeConfig, pathname);
+  } = useLocaleSiteData();
 
   const editLink = useEditLink(
     rawEditLink! ?? themeConfig?.editLink,

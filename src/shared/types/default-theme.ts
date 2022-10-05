@@ -91,7 +91,7 @@ export namespace DefaultTheme {
     title?: string;
     description?: string;
     head?: HeadConfig[];
-    label?: string;
+    label: string;
     selectText?: string;
     nav?: NavItem[];
     sidebar?: Sidebar;
@@ -139,7 +139,7 @@ export namespace DefaultTheme {
 
   // sidebar -------------------------------------------------------------------
 
-  export type Sidebar = SidebarGroup[] | SidebarMulti;
+  export type Sidebar = SidebarMulti;
 
   export interface SidebarMulti {
     [path: string]: SidebarGroup[];

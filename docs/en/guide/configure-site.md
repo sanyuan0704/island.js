@@ -63,20 +63,21 @@ The sidebar config is used to config the sidebar of the site, which has followin
 
 ```ts
 import { defineConfig } from 'islandjs';
-
 export default defineConfig({
   themeConfig: {
-    sidebar: [
-      {
-        text: 'Guide',
-        items: [
-          {
-            text: 'Getting Started',
-            link: '/guide/getting-started'
-          }
-        ]
-      }
-    ]
+    sidebar: {
+      '/guide/': [
+        {
+          text: 'Guide',
+          items: [
+            {
+              text: 'Getting Started',
+              link: '/guide/getting-started'
+            }
+          ]
+        }
+      ]
+    }
   }
 });
 ```

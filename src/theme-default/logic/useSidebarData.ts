@@ -1,25 +1,32 @@
 import { DefaultTheme } from 'shared/types/default-theme';
 import { normalizeHref } from './index';
-export function useSidebarData(
-  siderbar: DefaultTheme.Sidebar,
-  currentPathname: string
-): DefaultTheme.SidebarGroup | DefaultTheme.SidebarGroup[] | undefined {
-  if (Array.isArray(siderbar)) {
-    return siderbar.find((group) =>
+import { useLocaleSiteData } from './useLocaleSiteData';
+
+interface SitebarData {
+  // The group name ofr the sidebar
+  group: string;
+  items: DefaultTheme.SidebarGroup[];
+}
+
+export function useSidebarData(currentPathname: string): SitebarData {
+  const localeData = useLocaleSiteData();
+  const sidebar = localeData.sidebar ?? {};
+  for (const name of Object.keys(sidebar)) {
+    const result = sidebar[name].find((group) =>
       group.items.some(
         (item) => normalizeHref(item.link) === normalizeHref(currentPathname)
       )
     );
-  } else {
-    for (const name of Object.keys(siderbar)) {
-      const result = siderbar[name].find((group) =>
-        group.items.some(
-          (item) => normalizeHref(item.link) === normalizeHref(currentPathname)
-        )
-      );
-      if (result) {
-        return siderbar[name];
-      }
+    if (result) {
+      const sidebarGroup = sidebar[name];
+      return {
+        group: result.text || '',
+        items: sidebarGroup
+      };
     }
   }
+  return {
+    group: '',
+    items: []
+  };
 }
