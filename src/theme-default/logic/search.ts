@@ -2,6 +2,10 @@ import FlexSearch from 'flexsearch';
 import type { Index as SearchIndex, CreateOptions } from 'flexsearch';
 import { getAllPages } from 'island/client';
 import { uniqBy } from 'lodash-es';
+import { normalizeHref } from './index';
+
+const THRESHOLD_CONTENT_LENGTH = 100;
+
 interface PageDataForSearch {
   title: string;
   headers: string[];
@@ -34,6 +38,7 @@ const cjkRegex =
 export class PageSearcher {
   #index?: SearchIndex<PageDataForSearch[]>;
   #cjkIndex?: SearchIndex<PageDataForSearch[]>;
+  #headerToIdMap: Record<string, string> = {};
   async init(options: CreateOptions = {}) {
     // Initial pages data and create index
     const pages = await getAllPages();
@@ -43,6 +48,13 @@ export class PageSearcher {
       content: page.content || '',
       path: page.routePath
     }));
+
+    this.#headerToIdMap = pages.reduce((acc, page) => {
+      (page.toc || []).forEach((header) => {
+        acc[page.routePath + header.text] = header.id;
+      });
+      return acc;
+    }, {} as Record<string, string>);
 
     const createOptions: CreateOptions = {
       encode: 'simple',
@@ -91,58 +103,96 @@ export class PageSearcher {
       .filter(Boolean) as PageDataForSearch[];
     const matchedResult: MatchResultItem[] = [];
     flattenSearchResult.forEach((item) => {
-      const { headers } = item!;
       // Header match
-      for (const header of headers) {
-        if (header.includes(query)) {
-          matchedResult.push({
-            type: 'header',
-            title: item.title,
-            header,
-            headerHighlightIndex: header.indexOf(query),
-            link: `${item.path}#${header}`
-          });
-          return;
-        }
+      const matchedHeader = this.#matchHeader(item, query, matchedResult);
+      // If we have matched header, we don't need to match content
+      // Because the header is already in the content
+      if (matchedHeader) {
+        return;
       }
       // Content match
-      const content = item.content;
-      const queryIndex = content.indexOf(query);
-      const headersIndex = headers.map((h) => content.indexOf(h));
-      const currentHeaderIndex = headersIndex.findIndex((hIndex, position) => {
-        if (position < headers.length - 1) {
-          const next = headersIndex[position + 1];
-          if (hIndex <= queryIndex && next >= queryIndex) {
-            return true;
-          }
-        } else {
-          return hIndex < queryIndex;
-        }
-      });
-      const currentHeader = headers[currentHeaderIndex] ?? item.title;
-
-      const statementStartIndex = content
-        .slice(0, queryIndex)
-        .lastIndexOf('\n');
-      const statementEndIndex = content.indexOf(
-        '\n',
-        queryIndex + query.length
-      );
-      const statement = content.slice(
-        statementStartIndex + 1,
-        statementEndIndex
-      );
-      matchedResult.push({
-        type: 'content',
-        title: item.title,
-        header: currentHeader,
-        statement,
-        statementHighlightIndex: statement.indexOf(query),
-        link: `${item.path}#${currentHeader}`
-      });
+      this.#matchContent(item, query, matchedResult);
     });
     const res = uniqBy(matchedResult, 'link');
     console.log(res);
     return res;
+  }
+
+  #matchHeader(
+    item: PageDataForSearch,
+    query: string,
+    matchedResult: MatchResultItem[]
+  ): boolean {
+    const { headers } = item;
+    for (const header of headers) {
+      if (header.includes(query)) {
+        const headerAnchor = this.#headerToIdMap[item.path + header];
+        matchedResult.push({
+          type: 'header',
+          title: item.title,
+          header,
+          headerHighlightIndex: header.indexOf(query),
+          link: `${item.path}#${headerAnchor}`
+        });
+        return true;
+      }
+    }
+    return false;
+  }
+
+  #matchContent(
+    item: PageDataForSearch,
+    query: string,
+    matchedResult: MatchResultItem[]
+  ) {
+    const { content, headers } = item;
+    const queryIndex = content.indexOf(query);
+    const headersIndex = headers.map((h) => content.indexOf(h));
+    const currentHeaderIndex = headersIndex.findIndex((hIndex, position) => {
+      if (position < headers.length - 1) {
+        const next = headersIndex[position + 1];
+        if (hIndex <= queryIndex && next >= queryIndex) {
+          return true;
+        }
+      } else {
+        return hIndex < queryIndex;
+      }
+    });
+    const currentHeader = headers[currentHeaderIndex] ?? item.title;
+
+    const statementStartIndex = content.slice(0, queryIndex).lastIndexOf('\n');
+    const statementEndIndex = content.indexOf('\n', queryIndex + query.length);
+    let statement = content.slice(statementStartIndex, statementEndIndex);
+    if (statement.length > THRESHOLD_CONTENT_LENGTH) {
+      statement = this.#normalizeStatement(statement, query);
+    }
+    matchedResult.push({
+      type: 'content',
+      title: item.title,
+      header: currentHeader,
+      statement,
+      statementHighlightIndex: statement.indexOf(query),
+      link: `${normalizeHref(item.path)}#${currentHeader}`
+    });
+  }
+
+  #normalizeStatement(statement: string, query: string) {
+    // If statement is too long, we will only show 120 characters
+    const queryIndex = statement.indexOf(query);
+    const maxPrefixOrSuffix = Math.floor(
+      (THRESHOLD_CONTENT_LENGTH - query.length) / 2
+    );
+    let prefix = statement.slice(0, queryIndex);
+    if (prefix.length > maxPrefixOrSuffix) {
+      prefix =
+        '...' + statement.slice(queryIndex - maxPrefixOrSuffix + 3, queryIndex);
+    }
+    let suffix = statement.slice(queryIndex + query.length);
+    if (suffix.length > maxPrefixOrSuffix) {
+      suffix =
+        statement.slice(queryIndex + query.length, maxPrefixOrSuffix - 3) +
+        '...';
+    }
+    return prefix + query + suffix;
   }
 }

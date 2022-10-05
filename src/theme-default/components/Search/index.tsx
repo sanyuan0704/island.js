@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
 import { MatchResultItem, PageSearcher } from '../../logic/search';
 import SearchSvg from './icons/search.svg';
 
@@ -35,9 +35,9 @@ function SuggestionContent(props: {
       statementHighlightIndex + query.length
     );
     return (
-      <div font="normal" text="sm">
+      <div font="normal" text="sm gray-light" w="100%">
         <span>{statementPrefix}</span>
-        <span bg="brand-light" p="y-0.4 x-0.8" rounded="md" text="text-1">
+        <span bg="brand-light" p="y-0.4 x-0.8" rounded="md" text="[#000]">
           {query}
         </span>
         <span>{statementSuffix}</span>
@@ -51,7 +51,7 @@ function SuggestionContent(props: {
       p="x-3 y-2"
       hover="bg-[#f3f4f5]"
       className="border-right-none"
-      transition="bg duration-300"
+      transition="bg duration-200"
     >
       <div font="medium" text="sm">
         {renderHeaderMatch()}
@@ -63,14 +63,25 @@ function SuggestionContent(props: {
 
 export function Search() {
   const [suggestions, setSuggestions] = useState<MatchResultItem[]>([]);
+  const [query, setQuery] = useState('');
+  const [focused, setFocused] = useState(false);
+  const showSuggestions = focused && suggestions.length > 0;
+  const psRef = useRef<PageSearcher>();
   useEffect(() => {
     async function search() {
-      const ps = new PageSearcher();
-      await ps.init();
-      const matched = await ps.match('title');
-      setSuggestions(matched);
+      psRef.current = new PageSearcher();
+      await psRef.current.init();
     }
     search();
+  }, []);
+  const onQueryChanged = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    const newQuery = e.target.value;
+    setQuery(newQuery);
+    if (psRef.current) {
+      psRef.current.match(newQuery).then((matched) => {
+        setSuggestions(matched);
+      });
+    }
   }, []);
   return (
     <div flex="" items-center="~" relative="" mr="4" font="semibold">
@@ -88,9 +99,13 @@ export function Search() {
         className="rounded-sm"
         aria-label="Search"
         autoComplete="off"
+        onChange={onQueryChanged}
+        onBlur={() => setTimeout(() => setFocused(false), 200)}
+        onFocus={() => setFocused(true)}
       />
-      {suggestions.length > 0 && (
+      {showSuggestions && (
         <ul
+          display={showSuggestions ? 'block' : 'none'}
           absolute=""
           z="60"
           pos="top-8"
@@ -98,6 +113,7 @@ export function Search() {
           p="2"
           list="none"
           bg="bg-default"
+          className="min-w-500px max-w-700px"
         >
           {suggestions.map((item) => (
             <li key={item.title} rounded="sm" cursor="pointer" w="100%">
