@@ -41,18 +41,27 @@ export class PageSearcher {
   #index?: SearchIndex<PageDataForSearch[]>;
   #cjkIndex?: SearchIndex<PageDataForSearch[]>;
   #headerToIdMap: Record<string, string> = {};
+  #lang: string;
+
+  constructor(lang: string) {
+    this.#lang = lang;
+  }
+
   async init(options: CreateOptions = {}) {
     // Initial pages data and create index
-    const pages = await getAllPages();
+    const pages = await getAllPages((route) =>
+      route.path.startsWith(`/${this.#lang}`)
+    );
     const pagesForSearch: PageDataForSearch[] = pages
-      .filter((page) => !WHITE_PAGE_TYPES.includes(page.pageType))
+      .filter((page) => {
+        return !WHITE_PAGE_TYPES.includes(page.meta?.pageType || '');
+      })
       .map((page) => ({
         title: page.title!,
         headers: (page.toc || []).map((header) => header.text),
         content: page.content || '',
         path: page.routePath
       }));
-
     this.#headerToIdMap = pages.reduce((acc, page) => {
       (page.toc || []).forEach((header) => {
         acc[page.routePath + header.text] = header.id;
@@ -166,7 +175,8 @@ export class PageSearcher {
     });
     const currentHeader = headers[currentHeaderIndex] ?? item.title;
 
-    const statementStartIndex = content.slice(0, queryIndex).lastIndexOf('\n');
+    let statementStartIndex = content.slice(0, queryIndex).lastIndexOf('\n');
+    statementStartIndex = statementStartIndex === -1 ? 0 : statementStartIndex;
     const statementEndIndex = content.indexOf('\n', queryIndex + query.length);
     let statement = content.slice(statementStartIndex, statementEndIndex);
     if (statement.length > THRESHOLD_CONTENT_LENGTH) {
@@ -194,7 +204,6 @@ export class PageSearcher {
         '...' + statement.slice(queryIndex - maxPrefixOrSuffix + 3, queryIndex);
     }
     let suffix = statement.slice(queryIndex + query.length);
-    console.log('suffix', suffix);
     if (suffix.length > maxPrefixOrSuffix) {
       suffix =
         statement.slice(
