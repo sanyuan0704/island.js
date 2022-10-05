@@ -178,7 +178,7 @@ export function Nav() {
             items-center=""
           >
             <div className="search" flex="sm:1" pl="sm:8">
-              <Search __island />
+              <Search __island langRoutePrefix={localeData.routePrefix || ''} />
             </div>
             <NavMenu menuItems={menuItems} />
             {hasMultiLanguage && (

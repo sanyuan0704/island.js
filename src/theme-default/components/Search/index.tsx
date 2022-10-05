@@ -2,7 +2,6 @@ import { ChangeEvent, useCallback, useRef, useState } from 'react';
 import { MatchResultItem, PageSearcher } from '../../logic/search';
 import SearchSvg from './icons/search.svg';
 import { ComponentPropsWithIsland } from '../../../shared/types/index';
-import { useLocaleSiteData } from '../../logic';
 import { throttle } from 'lodash-es';
 
 function SuggestionContent(props: {
@@ -65,8 +64,9 @@ function SuggestionContent(props: {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function Search(_props: ComponentPropsWithIsland) {
-  const localeData = useLocaleSiteData();
+export function Search(
+  props: ComponentPropsWithIsland & { langRoutePrefix: string }
+) {
   const [suggestions, setSuggestions] = useState<MatchResultItem[]>([]);
   const [query, setQuery] = useState('');
   const [focused, setFocused] = useState(false);
@@ -76,25 +76,29 @@ export function Search(_props: ComponentPropsWithIsland) {
   const initPageSearcher = useCallback(() => {
     if (!psRef.current) {
       return import('../../logic/search').then(({ PageSearcher }) => {
-        psRef.current = new PageSearcher(localeData.lang || 'en');
+        psRef.current = new PageSearcher(props.langRoutePrefix);
         psRef.current.init();
       });
     }
     return Promise.resolve();
-  }, [localeData.lang]);
+  }, [props.langRoutePrefix]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const onQueryChanged = useCallback(
-    throttle(async (e: ChangeEvent<HTMLInputElement>) => {
-      await initPageSearcher();
-      const newQuery = e.target.value;
-      setQuery(newQuery);
-      if (psRef.current) {
-        psRef.current.match(newQuery).then((matched) => {
-          setSuggestions(matched);
-        });
-      }
-    }, 300),
+    throttle(
+      async (e: ChangeEvent<HTMLInputElement>) => {
+        await initPageSearcher();
+        const newQuery = e.target.value;
+        setQuery(newQuery);
+        if (psRef.current) {
+          psRef.current.match(newQuery).then((matched) => {
+            setSuggestions(matched);
+          });
+        }
+      },
+      200,
+      { leading: true, trailing: true }
+    ),
     [initPageSearcher]
   );
   return (

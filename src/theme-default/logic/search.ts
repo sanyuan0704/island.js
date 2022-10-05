@@ -41,16 +41,16 @@ export class PageSearcher {
   #index?: SearchIndex<PageDataForSearch[]>;
   #cjkIndex?: SearchIndex<PageDataForSearch[]>;
   #headerToIdMap: Record<string, string> = {};
-  #lang: string;
+  #langRoutePrefix: string;
 
-  constructor(lang: string) {
-    this.#lang = lang;
+  constructor(langRoutePrefix: string) {
+    this.#langRoutePrefix = langRoutePrefix;
   }
 
   async init(options: CreateOptions = {}) {
     // Initial pages data and create index
     const pages = await getAllPages((route) =>
-      route.path.startsWith(`/${this.#lang}`)
+      route.path.startsWith(this.#langRoutePrefix)
     );
     const pagesForSearch: PageDataForSearch[] = pages
       .filter((page) => {
