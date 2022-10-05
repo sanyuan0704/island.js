@@ -3,6 +3,7 @@ import { MatchResultItem, PageSearcher } from '../../logic/search';
 import SearchSvg from './icons/search.svg';
 import { ComponentPropsWithIsland } from '../../../shared/types/index';
 import { useLocaleSiteData } from '../../logic';
+import { throttle } from 'lodash-es';
 
 function SuggestionContent(props: {
   suggestion: MatchResultItem;
@@ -82,8 +83,9 @@ export function Search(_props: ComponentPropsWithIsland) {
     return Promise.resolve();
   }, [localeData.lang]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const onQueryChanged = useCallback(
-    async (e: ChangeEvent<HTMLInputElement>) => {
+    throttle(async (e: ChangeEvent<HTMLInputElement>) => {
       await initPageSearcher();
       const newQuery = e.target.value;
       setQuery(newQuery);
@@ -92,10 +94,9 @@ export function Search(_props: ComponentPropsWithIsland) {
           setSuggestions(matched);
         });
       }
-    },
+    }, 300),
     [initPageSearcher]
   );
-
   return (
     <div flex="" items-center="~" relative="" mr="4" font="semibold">
       <SearchSvg w="5" h="5" fill="currentColor" />
