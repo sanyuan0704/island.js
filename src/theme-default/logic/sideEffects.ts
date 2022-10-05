@@ -200,6 +200,29 @@ export function bindingAsideScroll() {
   };
 }
 
+function bindingMenuGroupToggle() {
+  const menuGroups = document.getElementsByClassName('nav-menu-group');
+
+  Array.from(menuGroups).forEach((menuGroup) => {
+    const menuButton = menuGroup.getElementsByClassName(
+      'nav-menu-group-button'
+    )[0] as HTMLButtonElement;
+    const menuContent = menuGroup.getElementsByClassName(
+      'nav-menu-group-content'
+    )[0] as HTMLDivElement;
+    menuButton.addEventListener('mouseenter', () => {
+      console.log(111);
+
+      menuContent.style.opacity = '1';
+      menuContent.style.visibility = 'visible';
+    });
+    menuGroup.addEventListener('mouseleave', () => {
+      menuContent.style.opacity = '0';
+      menuContent.style.visibility = 'hidden';
+    });
+  });
+}
+
 export function setupEffects() {
   if (!inBrowser()) {
     return;
@@ -210,5 +233,6 @@ export function setupEffects() {
     bindingAsideScroll();
   }
   bindingWindowScroll();
+  bindingMenuGroupToggle();
   setupCopyCodeButton();
 }

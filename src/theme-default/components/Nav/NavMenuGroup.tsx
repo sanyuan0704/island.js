@@ -2,7 +2,7 @@ import { DefaultTheme } from 'shared/types';
 import Down from './icons/down.svg';
 import Right from './icons/right.svg';
 import { Link } from '../Link/index';
-import styles from './index.module.scss';
+import { useState } from 'react';
 
 export interface NavMenuGroupItem {
   text?: string | React.ReactElement;
@@ -12,14 +12,16 @@ export interface NavMenuGroupItem {
 
 export function NavMenuGroup(item: NavMenuGroupItem) {
   const { activeIndex } = item;
+
   return (
-    <div relative="" className={`${styles.menuGroup} pointer-events-auto`}>
+    <div relative="" className="nav-menu-group">
       <button
         flex="center"
         nav-h="mobile sm:desktop"
         font="medium"
         text="sm text-1 hover:text-2"
         transition="color duration-200"
+        className="nav-menu-group-button"
       >
         <span mr="1" text="sm" font="medium">
           {item.text}
@@ -32,7 +34,7 @@ export function NavMenuGroup(item: NavMenuGroupItem) {
         m="x-0.8"
         opacity="0"
         transition="opacity duration-300"
-        className={styles.menuGroupContent}
+        className="nav-menu-group-content"
       >
         <div
           p="3"
