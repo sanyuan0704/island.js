@@ -1,6 +1,7 @@
 import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
 import { MatchResultItem, PageSearcher } from '../../logic/search';
 import SearchSvg from './icons/search.svg';
+import { ComponentPropsWithIsland } from '../../../shared/types/index';
 
 function SuggestionContent(props: {
   suggestion: MatchResultItem;
@@ -61,7 +62,7 @@ function SuggestionContent(props: {
   );
 }
 
-export function Search() {
+export function Search(_props: ComponentPropsWithIsland) {
   const [suggestions, setSuggestions] = useState<MatchResultItem[]>([]);
   const [query, setQuery] = useState('');
   const [focused, setFocused] = useState(false);

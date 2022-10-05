@@ -180,7 +180,7 @@ export function Nav() {
             items-center=""
           >
             <div className="search" flex="sm:1" pl="sm:8">
-              <Search />
+              <Search __island />
             </div>
             <NavMenu menuItems={menuItems} />
             {hasMultiLanguage && (
