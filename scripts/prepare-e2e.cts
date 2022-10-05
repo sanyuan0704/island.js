@@ -28,13 +28,6 @@ async function prepareE2E() {
     stderr: process.stderr
   });
 
-  // execa.execaCommandSync('tree -I "node_modules"', {
-  //   cwd: path.join(__dirname, '../'),
-  //   stdout: process.stdout,
-  //   stdin: process.stdin,
-  //   stderr: process.stderr
-  // });
-
   // exec install
   execa.execaCommandSync(
     'npm i --registry=https://registry.npmmirror.com/',
