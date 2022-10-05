@@ -48,6 +48,7 @@ specifiers:
   eslint-plugin-react: ^7.31.1
   eslint-plugin-react-hooks: ^4.6.0
   fast-glob: 3.2.11
+  flexsearch: 0.6.32
   fs-extra: 10.1.0
   github-slugger: ^1.4.0
   hast: ^1.0.0
@@ -110,6 +111,7 @@ dependencies:
   debug: 4.3.4
   esbuild: registry.npmmirror.com/esbuild/0.15.5
   fast-glob: registry.npmmirror.com/fast-glob/3.2.11
+  flexsearch: 0.6.32
   fs-extra: registry.npmmirror.com/fs-extra/10.1.0
   github-slugger: 1.4.0
   hast: 1.0.0
@@ -3682,6 +3684,10 @@ packages:
   /flatted/3.2.7:
     resolution: {integrity: sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==}
     dev: true
+
+  /flexsearch/0.6.32:
+    resolution: {integrity: sha512-EF1BWkhwoeLtbIlDbY/vDSLBen/E5l/f1Vg7iX5CDymQCamcx1vhlc3tIZxIDplPjgi0jhG37c67idFbjg+v+Q==}
+    dev: false
 
   /form-data-encoder/2.1.2:
     resolution: {integrity: sha512-FCaIOVTRA9E0siY6FeXid7D5yrCqpsErplUkE2a1BEiKj1BE9z6FbKB4ntDTwC4NVLie9p+4E9nX4mWwEOT05A==}

@@ -29,6 +29,7 @@ declare module 'island/client' {
 
   export const Content: ComponentType<{ fallback?: ReactElement }>;
   export const usePageData: () => PageData;
+  export const getAllPages: () => PageData[];
   export const DataContext: React.Context<{
     data: PageData;
     setData: React.Dispatch<React.SetStateAction<PageData>>;

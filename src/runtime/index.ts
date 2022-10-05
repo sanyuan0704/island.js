@@ -1,2 +1,2 @@
 export { Content } from './Content';
-export { usePageData, DataContext } from './hooks';
+export { usePageData, DataContext, getAllPages } from './hooks';

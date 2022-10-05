@@ -1,7 +1,3 @@
----
-title: 'Configure your site'
----
-
 # Configure your site
 
 ## Create config file

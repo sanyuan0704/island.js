@@ -1,6 +1,6 @@
 import styles from './index.module.scss';
 import { SwitchAppearance } from '../SwitchAppearance/index';
-// import { Search } from '../Search/index';
+import { Search } from '../Search/index';
 import { useLocation } from 'react-router-dom';
 import { usePageData } from 'island/client';
 import { NavMenuSingleItem } from './NavMenuSingleItem';
@@ -180,7 +180,7 @@ export function Nav() {
             items-center=""
           >
             <div className="search" flex="sm:1" pl="sm:8">
-              {}
+              <Search />
             </div>
             <NavMenu menuItems={menuItems} />
             {hasMultiLanguage && (
