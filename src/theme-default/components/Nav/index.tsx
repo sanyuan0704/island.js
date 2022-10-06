@@ -23,7 +23,7 @@ const NavBarTitle = ({ title }: { title: string }) => {
       <a
         href="/"
         w="100%"
-        h="15"
+        h="100%"
         text="1rem"
         font="semibold"
         transition="opacity duration-300"
