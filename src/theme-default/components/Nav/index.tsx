@@ -1,7 +1,6 @@
 import styles from './index.module.scss';
 import { SwitchAppearance } from '../SwitchAppearance/index';
-// import { Search } from '../Search/index';
-import { useLocation } from 'react-router-dom';
+import { Search } from '../Search/index';
 import { usePageData } from 'island/client';
 import { NavMenuSingleItem } from './NavMenuSingleItem';
 import { NavMenuGroup, NavMenuGroupItem } from './NavMenuGroup';
@@ -24,7 +23,7 @@ const NavBarTitle = ({ title }: { title: string }) => {
       <a
         href="/"
         w="100%"
-        h="15"
+        h="100%"
         text="1rem"
         font="semibold"
         transition="opacity duration-300"
@@ -128,11 +127,10 @@ const NavSocialLinks = ({
 };
 
 export function Nav() {
-  const location = useLocation();
   const { siteData, pageType } = usePageData();
   const hasSidebar = pageType === 'doc';
   const hasAppearanceSwitch = siteData.appearance !== false;
-  const localeData = useLocaleSiteData(siteData.themeConfig, location.pathname);
+  const localeData = useLocaleSiteData();
   const localeLanguages = Object.values(siteData.themeConfig.locales || {});
   const hasMultiLanguage = localeLanguages.length > 1;
   const translationMenuData = hasMultiLanguage
@@ -180,7 +178,7 @@ export function Nav() {
             items-center=""
           >
             <div className="search" flex="sm:1" pl="sm:8">
-              {}
+              <Search __island langRoutePrefix={localeData.routePrefix || ''} />
             </div>
             <NavMenu menuItems={menuItems} />
             {hasMultiLanguage && (

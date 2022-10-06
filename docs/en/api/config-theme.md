@@ -71,13 +71,11 @@ export default defineConfig({
 
 - Type: `Array` | `Object`
 
-The sidebar of the site.
-
-`sidebar` config has two form: `array` and `object`.
-
-The `array` config is a list of `SidebarGroup`, which has following type:
+The sidebar of the site.The config is a map for `SidebarGroup`, which has following type:
 
 ```ts
+type Sidebar = Record<string, SidebarGroup[]>;
+
 interface SidebarGroup {
   // The text of the sidebar group
   text: string;
@@ -91,34 +89,6 @@ type SidebarItem = {
   // The link href of item
   link: string;
 };
-```
-
-For example:
-
-```js
-import { defineConfig } from 'islandjs';
-
-export default defineConfig({
-  themeConfig: {
-    sidebar: [
-      {
-        text: 'Guide',
-        items: [
-          {
-            text: 'Getting Started',
-            link: '/guide/getting-started'
-          }
-        ]
-      }
-    ]
-  }
-});
-```
-
-The `object` config is a map for `SidebarGroup`, which has following type:
-
-```ts
-Record<string, SidebarGroup[]>;
 ```
 
 For example:

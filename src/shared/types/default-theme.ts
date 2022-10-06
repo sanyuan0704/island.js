@@ -89,6 +89,7 @@ export namespace DefaultTheme {
   export interface LocaleConfig {
     lang?: string;
     title?: string;
+    routePrefix?: string;
     description?: string;
     head?: HeadConfig[];
     label: string;
@@ -139,7 +140,7 @@ export namespace DefaultTheme {
 
   // sidebar -------------------------------------------------------------------
 
-  export type Sidebar = SidebarGroup[] | SidebarMulti;
+  export type Sidebar = SidebarMulti;
 
   export interface SidebarMulti {
     [path: string]: SidebarGroup[];

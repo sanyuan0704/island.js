@@ -2,7 +2,6 @@ import { DefaultTheme } from 'shared/types';
 import Down from './icons/down.svg';
 import Right from './icons/right.svg';
 import { Link } from '../Link/index';
-import { useState } from 'react';
 
 export interface NavMenuGroupItem {
   text?: string | React.ReactElement;
@@ -34,7 +33,7 @@ export function NavMenuGroup(item: NavMenuGroupItem) {
         m="x-0.8"
         opacity="0"
         transition="opacity duration-300"
-        className="nav-menu-group-content"
+        className="nav-menu-group-content invisible"
       >
         <div
           p="3"

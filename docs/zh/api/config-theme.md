@@ -71,13 +71,11 @@ export default defineConfig({
 
 - Type: `Array` | `Object`
 
-网站的侧边栏。
-
-`sidebar` 配置有两种形式：`array` 和 `object`。
-
-`array` 配置是 `SidebarGroup` 的列表，具有以下类型：
+网站的侧边栏。配置是 `SidebarGroup` 的映射类型，具有以下类型：
 
 ```ts
+type Sidebar = Record<string, SidebarGroup[]>;
+
 interface SidebarGroup {
   text: string;
   items: SidebarItem[];
@@ -87,34 +85,6 @@ type SidebarItem = {
   text: string;
   link: string;
 };
-```
-
-比如:
-
-```js
-import { defineConfig } from 'islandjs';
-
-export default defineConfig({
-  themeConfig: {
-    sidebar: [
-      {
-        text: 'Guide',
-        items: [
-          {
-            text: 'Getting Started',
-            link: '/guide/getting-started'
-          }
-        ]
-      }
-    ]
-  }
-});
-```
-
-`object` 配置是 `SidebarGroup` 的映射类型，具有以下类型：
-
-```ts
-Record<string, SidebarGroup[]>;
 ```
 
 比如:

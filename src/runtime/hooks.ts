@@ -1,6 +1,8 @@
 import { createContext, useContext } from 'react';
 import { PageData } from '../shared/types';
 import { inBrowser } from '../shared/utils';
+import { routes } from 'virtual:routes';
+import { Route } from 'node/plugin-routes';
 
 export const DataContext = createContext({
   data: inBrowser() ? window?.ISLAND_PAGE_DATA : null,
@@ -18,4 +20,18 @@ export const useSetPageData = (data: PageData) => {
   } catch (e) {
     console.log(e);
   }
+};
+
+export const getAllPages = (
+  filter: (route: Route) => boolean = () => true
+): Promise<PageData[]> => {
+  return Promise.all(
+    routes.filter(filter).map(async (route) => {
+      const mod = await route.preload();
+      return {
+        ...mod,
+        routePath: route.path
+      };
+    })
+  );
 };

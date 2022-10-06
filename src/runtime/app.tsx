@@ -10,15 +10,19 @@ import { useContext, useLayoutEffect } from 'react';
 import { DataContext } from 'island/client';
 import { cleanUrl } from '../shared/utils';
 
-export async function waitForApp(path: string): Promise<PageData> {
-  const matched = matchRoutes(routes, path, siteData.base)!;
+export async function waitForApp(routePath: string): Promise<PageData> {
+  const matched = matchRoutes(routes, routePath, siteData.base)!;
   if (matched) {
     // Preload route component
     const matchedRoute = matched[0].route;
     const mod = await (matchedRoute as Route).preload();
 
     const pagePath = cleanUrl((matched[0].route as Route).filePath);
-    const relativePagePath = getRelativePagePath(path, pagePath, siteData.base);
+    const relativePagePath = getRelativePagePath(
+      routePath,
+      pagePath,
+      siteData.base
+    );
     const isApiPage = mod?.meta?.api || mod?.meta?.pageType === 'api';
     // API Page
     if (isApiPage) {
@@ -26,7 +30,7 @@ export async function waitForApp(path: string): Promise<PageData> {
         routes
           .filter(
             (route: Route) =>
-              route.path.startsWith(path) && route !== matchedRoute
+              route.path.startsWith(routePath) && route !== matchedRoute
           )
           .map(async (route: Route) => {
             const mod = await route.preload();
@@ -42,7 +46,8 @@ export async function waitForApp(path: string): Promise<PageData> {
         relativePagePath,
         subModules,
         ...omit(mod, ['default']),
-        pageType: 'api'
+        pageType: 'api',
+        routePath
       };
     } else {
       // Doc/Custom Page
@@ -51,7 +56,8 @@ export async function waitForApp(path: string): Promise<PageData> {
         pagePath,
         relativePagePath,
         ...omit(mod, ['default']),
-        pageType: mod?.meta?.pageType || 'doc'
+        pageType: mod?.meta?.pageType || 'doc',
+        routePath
       } as PageData;
     }
   } else {
@@ -60,7 +66,8 @@ export async function waitForApp(path: string): Promise<PageData> {
       siteData,
       pagePath: '',
       relativePagePath: '',
-      pageType: '404'
+      pageType: '404',
+      routePath: '/404'
     };
   }
 }

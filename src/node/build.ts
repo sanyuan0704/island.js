@@ -155,7 +155,7 @@ class SSGBuilder {
     return this.#baseBuild(false, {
       build: {
         minify: !process.env.NO_MINIFY,
-        outDir: TEMP_PATH,
+        outDir: join(this.#root, TEMP_PATH),
         ssrManifest: false,
         rollupOptions: {
           external: DEFAULT_EXTERNALS,
@@ -215,7 +215,7 @@ class SSGBuilder {
       this.#config.enableSpa!
     );
     const hasIsland = Object.keys(islandToPathMap).length > 0;
-    let injectIslandsCode = '';
+    let injectIslandsPath = '';
     // In island mode, we will bundle and inject island components code to html
     if (hasIsland && !this.#config.enableSpa) {
       const islandHash = createHash(JSON.stringify(islandToPathMap));
@@ -225,11 +225,16 @@ class SSGBuilder {
         const rawInjectCode = this.#generateIslandInjectCode(islandToPathMap);
         injectBundlePromise = (async () => {
           const injectBundle = await this.islandsBuild(rawInjectCode);
-          return injectBundle.output[0].code;
+          // Get complete css from server bundle
+          await copy(
+            join(this.#root, TEMP_PATH, 'assets'),
+            join(this.#root, DIST_PATH, 'assets')
+          );
+          return injectBundle.output[0].fileName;
         })();
         this.#islandsInjectCache.set(islandHash, injectBundlePromise);
       }
-      injectIslandsCode = await injectBundlePromise;
+      injectIslandsPath = await injectBundlePromise;
     }
     const { helmet } = helmetContext.context!;
 
@@ -286,7 +291,7 @@ class SSGBuilder {
         !this.#config.enableSpa && hasIsland
           ? `<script id="island-props">${JSON.stringify(
               propsData
-            )}</script><script type="module">${injectIslandsCode}</script>`
+            )}</script><script type="module" src="/${injectIslandsPath}"></script>`
           : ''
       }
       ${
@@ -354,7 +359,7 @@ class SSGBuilder {
         noExternal: ['lodash-es', 'react-router-dom']
       },
       build: {
-        minify: !process.env.NO_MINIFY,
+        minify: !process.env.NO_MINIFY && !isServer,
         ssr: isServer,
         outDir: isServer
           ? join(this.#root, TEMP_PATH, 'ssr')
