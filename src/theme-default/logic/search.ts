@@ -3,6 +3,8 @@ import type { Index as SearchIndex, CreateOptions } from 'flexsearch';
 import { getAllPages } from 'island/client';
 import { uniqBy } from 'lodash-es';
 import { normalizeHref } from './index';
+import { Header } from 'shared/types/index';
+import { backTrackHeaders } from './utils';
 
 const THRESHOLD_CONTENT_LENGTH = 100;
 
@@ -11,6 +13,7 @@ interface PageDataForSearch {
   headers: string[];
   content: string;
   path: string;
+  rawHeaders: Header[];
 }
 
 interface CommonMatchResult {
@@ -43,7 +46,7 @@ export class PageSearcher {
   #headerToIdMap: Record<string, string> = {};
   #langRoutePrefix: string;
 
-  constructor(langRoutePrefix: string) {
+  constructor(langRoutePrefix = '') {
     this.#langRoutePrefix = langRoutePrefix;
   }
 
@@ -60,7 +63,8 @@ export class PageSearcher {
         title: page.title!,
         headers: (page.toc || []).map((header) => header.text),
         content: page.content || '',
-        path: page.routePath
+        path: page.routePath,
+        rawHeaders: page.toc || []
       }));
     this.#headerToIdMap = pages.reduce((acc, page) => {
       (page.toc || []).forEach((header) => {
@@ -135,15 +139,20 @@ export class PageSearcher {
     query: string,
     matchedResult: MatchResultItem[]
   ): boolean {
-    const { headers } = item;
-    for (const header of headers) {
+    const { headers, rawHeaders } = item;
+    for (const [index, header] of headers.entries()) {
       if (header.includes(query)) {
         const headerAnchor = this.#headerToIdMap[item.path + header];
+        // Find the all parent headers (except h1)
+        // So we can show the full path of the header in search result
+        // e.g. header2 > header3 > header4
+        const headerGroup = backTrackHeaders(rawHeaders, index);
+        const headerStr = headerGroup.map((item) => item.text).join(' > ');
         matchedResult.push({
           type: 'header',
           title: item.title,
-          header,
-          headerHighlightIndex: header.indexOf(query),
+          header: headerStr,
+          headerHighlightIndex: headerStr.indexOf(query),
           link: `${normalizeHref(item.path)}#${headerAnchor}`
         });
         return true;
