@@ -1,6 +1,7 @@
 import { ChangeEvent, useCallback, useRef, useState } from 'react';
 import { MatchResultItem, PageSearcher } from '../../logic/search';
 import SearchSvg from './icons/search.svg';
+import LoadingSvg from './icons/loading.svg';
 import { ComponentPropsWithIsland } from '../../../shared/types/index';
 import { throttle } from 'lodash-es';
 
@@ -70,35 +71,43 @@ export function Search(
   const [suggestions, setSuggestions] = useState<MatchResultItem[]>([]);
   const [query, setQuery] = useState('');
   const [focused, setFocused] = useState(false);
-  const showSuggestions = focused && suggestions.length > 0;
   const psRef = useRef<PageSearcher>();
+  const initPageSearcherPromiseRef = useRef<Promise<void>>();
+  const [initialized, setInitialized] = useState(false);
+  const [searching, setSearching] = useState(false);
+  // initializing or searching
+  const showLoading = query.length > 0 && (!initialized || searching);
+  // 1. user input query
+  // 2. page searcher has been initialized and finish searching
+  // 4. result is empty
+  const showNotFound =
+    query.length > 0 && !showLoading && suggestions.length === 0;
+  console.log(showLoading);
 
-  const initPageSearcher = useCallback(() => {
+  const initPageSearcher = useCallback(async () => {
     if (!psRef.current) {
-      return import('../../logic/search').then(({ PageSearcher }) => {
-        psRef.current = new PageSearcher(props.langRoutePrefix);
-        psRef.current.init();
-      });
+      const { PageSearcher } = await import('../../logic/search');
+      psRef.current = new PageSearcher(props.langRoutePrefix);
+      await psRef.current.init();
+      setInitialized(true);
+    } else {
+      return Promise.resolve();
     }
-    return Promise.resolve();
   }, [props.langRoutePrefix]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const onQueryChanged = useCallback(
-    throttle(
-      async (e: ChangeEvent<HTMLInputElement>) => {
-        await initPageSearcher();
-        const newQuery = e.target.value;
-        setQuery(newQuery);
-        if (psRef.current) {
-          psRef.current.match(newQuery).then((matched) => {
-            setSuggestions(matched);
-          });
-        }
-      },
-      200,
-      { leading: true, trailing: true }
-    ),
+    throttle(async (e: ChangeEvent<HTMLInputElement>) => {
+      const newQuery = e.target.value;
+      setQuery(newQuery);
+      initPageSearcherPromiseRef.current =
+        initPageSearcherPromiseRef.current || initPageSearcher();
+      await initPageSearcherPromiseRef.current;
+      setSearching(true);
+      const matched = await psRef.current!.match(newQuery);
+      setSearching(false);
+      setSuggestions(matched);
+    }, 200),
     [initPageSearcher]
   );
   return (
@@ -121,12 +130,11 @@ export function Search(
         onBlur={() => setTimeout(() => setFocused(false), 200)}
         onFocus={() => {
           setFocused(true);
-          initPageSearcher();
+          initPageSearcherPromiseRef.current = initPageSearcher();
         }}
       />
-      {showSuggestions && (
+      {focused && query.length > 0 && (
         <ul
-          display={showSuggestions ? 'block' : 'none'}
           absolute=""
           z="60"
           pos="top-8"
@@ -136,6 +144,7 @@ export function Search(
           bg="bg-default"
           className="min-w-500px max-w-700px"
         >
+          {/* Show the suggestions */}
           {suggestions.map((item) => (
             <li key={item.title} rounded="sm" cursor="pointer" w="100%">
               <a block="" href={item.link} className="whitespace-normal">
@@ -158,6 +167,22 @@ export function Search(
               </a>
             </li>
           ))}
+          {/* Show the not found info */}
+          {showNotFound && (
+            <li flex="center">
+              <div p="2" text="sm gray-light">
+                No results found
+              </div>
+            </li>
+          )}
+          {/* Show the loading info */}
+          {showLoading && (
+            <li flex="center">
+              <div p="2" text="sm">
+                <LoadingSvg />
+              </div>
+            </li>
+          )}
         </ul>
       )}
     </div>
