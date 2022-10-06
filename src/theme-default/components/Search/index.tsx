@@ -1,9 +1,8 @@
 import { ChangeEvent, useCallback, useRef, useState } from 'react';
 import { MatchResultItem, PageSearcher } from '../../logic/search';
+import { ComponentPropsWithIsland } from '../../../shared/types/index';
 import SearchSvg from './icons/search.svg';
 import LoadingSvg from './icons/loading.svg';
-import { ComponentPropsWithIsland } from '../../../shared/types/index';
-import { throttle } from 'lodash-es';
 
 function SuggestionContent(props: {
   suggestion: MatchResultItem;
@@ -69,21 +68,18 @@ export function Search(
   props: ComponentPropsWithIsland & { langRoutePrefix: string }
 ) {
   const [suggestions, setSuggestions] = useState<MatchResultItem[]>([]);
-  const [query, setQuery] = useState('');
-  const [focused, setFocused] = useState(false);
-  const psRef = useRef<PageSearcher>();
-  const initPageSearcherPromiseRef = useRef<Promise<void>>();
   const [initialized, setInitialized] = useState(false);
   const [searching, setSearching] = useState(false);
-  // initializing or searching
-  const showLoading = query.length > 0 && (!initialized || searching);
-  // 1. user input query
-  // 2. page searcher has been initialized and finish searching
-  // 4. result is empty
-  const showNotFound =
-    query.length > 0 && !showLoading && suggestions.length === 0;
-  console.log(showLoading);
+  const [focused, setFocused] = useState(false);
+  const [query, setQuery] = useState('');
+  const psRef = useRef<PageSearcher>();
+  const initPageSearcherPromiseRef = useRef<Promise<void>>();
 
+  // initializing or searching
+  const showLoading = !initialized || searching;
+  // 1. page searcher has been initialized and finish searching
+  // 2. result is empty
+  const showNotFound = !showLoading && suggestions.length === 0;
   const initPageSearcher = useCallback(async () => {
     if (!psRef.current) {
       const { PageSearcher } = await import('../../logic/search');
@@ -97,7 +93,7 @@ export function Search(
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const onQueryChanged = useCallback(
-    throttle(async (e: ChangeEvent<HTMLInputElement>) => {
+    async (e: ChangeEvent<HTMLInputElement>) => {
       const newQuery = e.target.value;
       setQuery(newQuery);
       initPageSearcherPromiseRef.current =
@@ -107,7 +103,7 @@ export function Search(
       const matched = await psRef.current!.match(newQuery);
       setSearching(false);
       setSuggestions(matched);
-    }, 200),
+    },
     [initPageSearcher]
   );
   return (
@@ -133,7 +129,7 @@ export function Search(
           initPageSearcherPromiseRef.current = initPageSearcher();
         }}
       />
-      {focused && query.length > 0 && (
+      {focused && query && (
         <ul
           absolute=""
           z="60"
