@@ -1,5 +1,31 @@
 
 
+# [0.3.0](https://github.com/sanyuan0704/island.js/compare/0.2.8...0.3.0) (2022-10-06)
+
+
+### Bug Fixes
+
+* filter page type ([ebcbfae](https://github.com/sanyuan0704/island.js/commit/ebcbfae7c2c52263c41beb45d71667e45e3dce3d))
+* islands runtime error ([785f6bd](https://github.com/sanyuan0704/island.js/commit/785f6bdb4b76fe3bb5a151d565a8cfe14c5bedfe))
+* loading  svg cannot show ([35563b3](https://github.com/sanyuan0704/island.js/commit/35563b3ce2671560be4e3a576f8cb72c287ee1b3))
+* locale error in production ([e59321b](https://github.com/sanyuan0704/island.js/commit/e59321bd50943b22f9a9fa260657f996c73ca2b4))
+* nav menu group hover problem ([4a5a2a4](https://github.com/sanyuan0704/island.js/commit/4a5a2a489a819dd31f33232f03ceda6c6588b662))
+* skip playground in vitest ([12c9337](https://github.com/sanyuan0704/island.js/commit/12c9337ade49881c014d0ad58e2f0c72bc1837e5))
+* statement match edge case ([31f5d20](https://github.com/sanyuan0704/island.js/commit/31f5d20aff5bcf066fd50a6888bf3553f24b3f42))
+
+
+### Features
+
+* add basic e2e test ([#52](https://github.com/sanyuan0704/island.js/issues/52)) ([3f7597e](https://github.com/sanyuan0704/island.js/commit/3f7597ebcfe837bc1b7641253aad05254c1c9157))
+* add header group show ([113340b](https://github.com/sanyuan0704/island.js/commit/113340b230a2de9a87b832a2be1616f7440db519))
+* add keydown event ([ca930df](https://github.com/sanyuan0704/island.js/commit/ca930dfa61c584e21766f8724a5f87277498e40b))
+* add not found & loading status in search ([476f534](https://github.com/sanyuan0704/island.js/commit/476f534b3dd3bdcb0211fd53e290a81f1889221a))
+* add throttle for query change handler ([91e41e6](https://github.com/sanyuan0704/island.js/commit/91e41e681b3fef64a42c4c8d44618a5ea93922b1))
+* adjust sidebar config ([9adcad2](https://github.com/sanyuan0704/island.js/commit/9adcad2418c7a655e74a8e93045309c800dc76c2))
+* develop search ui ([517002d](https://github.com/sanyuan0704/island.js/commit/517002d636b3ce8a8a9f10d141a97cc971cc4ea2))
+* integrate flexsearch ([0bb6210](https://github.com/sanyuan0704/island.js/commit/0bb6210ec93259f14d00c8e4b210b0ed9a4ae930))
+* load all page data on demand in search logic ([2d6362a](https://github.com/sanyuan0704/island.js/commit/2d6362aac3d52b42bab803e52002f52c0816a09a))
+
 ## [0.2.8](https://github.com/sanyuan0704/island.js/compare/0.2.7...0.2.8) (2022-10-04)
 
 
