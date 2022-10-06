@@ -1,12 +1,20 @@
-import { ChangeEvent, useCallback, useRef, useState } from 'react';
+import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
 import { MatchResultItem, PageSearcher } from '../../logic/search';
 import { ComponentPropsWithIsland } from '../../../shared/types/index';
 import SearchSvg from './icons/search.svg';
 import LoadingSvg from './icons/loading.svg';
+import { throttle } from 'lodash-es';
+
+const KEY_CODE = {
+  ARROR_UP: 'ArrowUp',
+  ARROW_DOWN: 'ArrowDown',
+  ENTER: 'Enter'
+};
 
 function SuggestionContent(props: {
   suggestion: MatchResultItem;
   query: string;
+  isCurrent: boolean;
 }) {
   const { suggestion, query } = props;
   const renderHeaderMatch = () => {
@@ -52,7 +60,7 @@ function SuggestionContent(props: {
       table-cell=""
       p="x-3 y-2"
       hover="bg-[#f3f4f5]"
-      className="border-right-none"
+      className={`border-right-none ${props.isCurrent ? 'bg-[#f3f4f5]' : ''}`}
       transition="bg duration-200"
     >
       <div font="medium" text="sm">
@@ -67,11 +75,12 @@ function SuggestionContent(props: {
 export function Search(
   props: ComponentPropsWithIsland & { langRoutePrefix: string }
 ) {
+  const [query, setQuery] = useState('');
   const [suggestions, setSuggestions] = useState<MatchResultItem[]>([]);
   const [initialized, setInitialized] = useState(false);
   const [searching, setSearching] = useState(false);
   const [focused, setFocused] = useState(false);
-  const [query, setQuery] = useState('');
+  const [currentSuggestionIndex, setCurrentSuggestionIndex] = useState(-1);
   const psRef = useRef<PageSearcher>();
   const initPageSearcherPromiseRef = useRef<Promise<void>>();
 
@@ -106,6 +115,39 @@ export function Search(
     },
     [initPageSearcher]
   );
+
+  useEffect(() => {
+    const onKeyDown = throttle((e: KeyboardEvent) => {
+      switch (e.code) {
+        case KEY_CODE.ARROW_DOWN:
+          e.preventDefault();
+          setCurrentSuggestionIndex(
+            (currentSuggestionIndex + 1) % suggestions.length
+          );
+          break;
+        case KEY_CODE.ARROR_UP:
+          e.preventDefault();
+          setCurrentSuggestionIndex(
+            (currentSuggestionIndex - 1 + suggestions.length) %
+              suggestions.length
+          );
+          break;
+        case KEY_CODE.ENTER:
+          if (currentSuggestionIndex >= 0) {
+            const suggestion = suggestions[currentSuggestionIndex];
+            window.location.href = suggestion.link;
+          }
+          break;
+        default:
+          break;
+      }
+    }, 200);
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [currentSuggestionIndex, suggestions]);
+
   return (
     <div flex="" items-center="~" relative="" mr="4" font="semibold">
       <SearchSvg w="5" h="5" fill="currentColor" />
@@ -141,7 +183,7 @@ export function Search(
           className="min-w-500px max-w-700px"
         >
           {/* Show the suggestions */}
-          {suggestions.map((item) => (
+          {suggestions.map((item, index) => (
             <li key={item.title} rounded="sm" cursor="pointer" w="100%">
               <a block="" href={item.link} className="whitespace-normal">
                 <div table="" w="100%" className="border-collapse">
@@ -158,7 +200,11 @@ export function Search(
                   >
                     {item.title}
                   </div>
-                  <SuggestionContent suggestion={item} query={query} />
+                  <SuggestionContent
+                    suggestion={item}
+                    query={query}
+                    isCurrent={index === currentSuggestionIndex}
+                  />
                 </div>
               </a>
             </li>
