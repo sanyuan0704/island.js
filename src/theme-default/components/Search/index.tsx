@@ -24,7 +24,7 @@ export function Search(
   const [currentSuggestionIndex, setCurrentSuggestionIndex] = useState(-1);
   const psRef = useRef<PageSearcher>();
   const initPageSearcherPromiseRef = useRef<Promise<void>>();
-
+  const [disableInput, setDisableInput] = useState(true);
   // initializing or searching
   const showLoading = !initialized || searching;
   // 1. page searcher has been initialized and finish searching
@@ -89,10 +89,14 @@ export function Search(
     };
   }, [currentSuggestionIndex, suggestions]);
 
+  useEffect(() => {
+    setDisableInput(false);
+  }, []);
   return (
     <div flex="" items-center="~" relative="" mr="4" font="semibold">
       <SearchSvg w="5" h="5" fill="currentColor" />
       <input
+        disabled={disableInput}
         cursor="text focus:auto"
         w="40"
         placeholder="Search"
