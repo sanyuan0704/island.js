@@ -72,11 +72,14 @@ export namespace DefaultTheme {
      * your translated sites outside of the project.
      */
     localeLinks?: LocaleLinks;
-
     /**
-     * The algolia options. Leave it undefined to disable the search feature.
+     * The prev page text.
      */
-    algolia?: AlgoliaSearchOptions;
+    prevPageText?: string;
+    /**
+     * The next page text.
+     */
+    nextPageText?: string;
     /**
      * Locale config
      */
@@ -253,22 +256,5 @@ export namespace DefaultTheme {
   export interface LocaleLink {
     text: string;
     link: string;
-  }
-
-  // algolia ------------------------------------------------------------------
-
-  /**
-   * The Algolia search options. Partially copied from
-   * `@docsearch/react/dist/esm/DocSearch.d.ts`
-   */
-  export interface AlgoliaSearchOptions {
-    appId: string;
-    apiKey: string;
-    indexName: string;
-    placeholder?: string;
-    searchParameters?: unknown;
-    disableUserPersonalization?: boolean;
-    initialQuery?: string;
-    buttonText?: string;
   }
 }

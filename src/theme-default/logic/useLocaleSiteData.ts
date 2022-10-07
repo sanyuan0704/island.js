@@ -12,7 +12,9 @@ export function useLocaleSiteData(): DefaultTheme.LocaleConfig {
   if (!locales || Object.keys(locales).length === 0) {
     return {
       nav: themeConfig.nav,
-      sidebar: themeConfig.sidebar
+      sidebar: themeConfig.sidebar,
+      prevPageText: themeConfig.prevPageText,
+      nextPageText: themeConfig.nextPageText
     } as DefaultTheme.LocaleConfig;
   }
   const localeKeys = Object.keys(locales);
