@@ -66,12 +66,6 @@ export namespace DefaultTheme {
      * The footer configuration.
      */
     footer?: Footer;
-
-    /**
-     * Adds locale menu to the nav. This option should be used when you have
-     * your translated sites outside of the project.
-     */
-    localeLinks?: LocaleLinks;
     /**
      * The prev page text.
      */
@@ -84,6 +78,10 @@ export namespace DefaultTheme {
      * Locale config
      */
     locales?: Record<string, LocaleConfig>;
+    /**
+     * Whether to open the full text search
+     */
+    search?: boolean;
   }
 
   /**

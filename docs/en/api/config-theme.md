@@ -306,12 +306,12 @@ export interface LocaleConfig {
 
 As you see, there are many fields in `themeConfig` that can be also configured in `LocaleConfig`, including:
 
-- `nav`
-- `sidebar`
-- `editLink`
-- `lastUpdatedText`
-- `outlineTitle`
-- `prevPageText`
-- `nextPageText`
+- [nav](/en/api/config-theme#nav)
+- [sidebar](/en/api/config-theme#sidebar)
+- [editLink](/en/api/config-theme#editlink)
+- [lastUpdatedText](/en/api/config-theme#lastupdatedtext)
+- [outlineTitle](/en/api/config-theme#outlinetitle)
+- [prevPageText](/en/api/config-theme#prevpagetext)
+- [nextPageText](/en/api/config-theme#nextpagetext)
 
 But the `LocaleConfig` has higher priority.So it will override the corresponding field in `themeConfig`.

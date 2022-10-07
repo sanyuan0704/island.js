@@ -148,6 +148,7 @@ export function Nav() {
   const menuItems = localeData.nav || [];
   const socialLinks = siteData?.themeConfig?.socialLinks || [];
   const hasSocialLinks = socialLinks.length > 0;
+  const hasSearch = siteData?.themeConfig?.search !== false;
 
   const title =
     localeData.title ?? siteData.themeConfig.siteTitle ?? siteData.title;
@@ -177,9 +178,14 @@ export function Nav() {
             justify="end"
             items-center=""
           >
-            <div className="search" flex="sm:1" pl="sm:8">
-              <Search __island langRoutePrefix={localeData.routePrefix || ''} />
-            </div>
+            {hasSearch && (
+              <div className="search" flex="sm:1" pl="sm:8">
+                <Search
+                  __island
+                  langRoutePrefix={localeData.routePrefix || ''}
+                />
+              </div>
+            )}
             <NavMenu menuItems={menuItems} />
             {hasMultiLanguage && (
               <NavTranslations translationMenuData={translationMenuData!} />

@@ -298,12 +298,12 @@ export interface LocaleConfig {
 
 因此你能看到，`LocaleConfig` 中包含许多与 `ThemeConfig` 中相同的配置项，包括:
 
-- `nav`
-- `sidebar`
-- `editLink`
-- `lastUpdatedText`
-- `outlineTitle`
-- `prevPageText`
-- `nextPageText`
+- [nav](/zh/api/config-theme#nav)
+- [sidebar](/zh/api/config-theme#sidebar)
+- [editLink](/zh/api/config-theme#editlink)
+- [lastUpdatedText](/zh/api/config-theme#lastupdatedtext)
+- [outlineTitle](/zh/api/config-theme#outlinetitle)
+- [prevPageText](/zh/api/config-theme#prevpagetext)
+- [nextPageText](/zh/api/config-theme#nextpagetext)
 
 但是 `LocaleConfig` 的优先级更高。所以它会覆盖 `themeConfig` 中的相应字段。
