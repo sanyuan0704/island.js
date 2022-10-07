@@ -141,7 +141,6 @@ export function Search(
                     p="1.2"
                     text="sm right"
                     font="semibold"
-                    className="bg-[#f5f5f5]"
                   >
                     {item.title}
                   </div>

@@ -1,4 +1,5 @@
 import type { MatchResultItem } from '../../logic/search';
+import style from './index.module.scss';
 
 export function SuggestionContent(props: {
   suggestion: MatchResultItem;
@@ -48,8 +49,9 @@ export function SuggestionContent(props: {
       border-1=""
       table-cell=""
       p="x-3 y-2"
-      hover="bg-[#f3f4f5]"
-      className={`border-right-none ${props.isCurrent ? 'bg-[#f3f4f5]' : ''}`}
+      className={`${style.suggestion} border-right-none ${
+        props.isCurrent ? 'bg-[#f3f4f5]' : ''
+      }`}
       transition="bg duration-200"
     >
       <div font="medium" text="sm">
