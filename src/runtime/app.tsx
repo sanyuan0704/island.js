@@ -23,7 +23,8 @@ export async function waitForApp(routePath: string): Promise<PageData> {
       pagePath,
       siteData.base
     );
-    const isApiPage = mod?.meta?.api || mod?.meta?.pageType === 'api';
+    const isApiPage =
+      mod?.frontmatter?.api || mod?.frontmatter?.pageType === 'api';
     // API Page
     if (isApiPage) {
       const subModules = await Promise.all(
@@ -56,7 +57,7 @@ export async function waitForApp(routePath: string): Promise<PageData> {
         pagePath,
         relativePagePath,
         ...omit(mod, ['default']),
-        pageType: mod?.meta?.pageType || 'doc',
+        pageType: mod?.frontmatter?.pageType || 'doc',
         routePath
       } as PageData;
     }

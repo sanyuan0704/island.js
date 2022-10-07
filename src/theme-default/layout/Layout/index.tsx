@@ -11,13 +11,13 @@ export const Layout: React.FC = () => {
   const {
     // Inject by remark-plugin-toc
     title: articleTitle,
-    meta,
+    frontmatter,
     siteData,
     pageType
   } = usePageData();
   // Priority: front matter title > h1 title > site title
-  const title = (meta?.title ?? articleTitle) || siteData?.title;
-  const description = meta?.description || siteData.description;
+  const title = (frontmatter?.title ?? articleTitle) || siteData?.title;
+  const description = frontmatter?.description || siteData.description;
   // Use doc layout by default
   const getContentLayout = () => {
     switch (pageType) {

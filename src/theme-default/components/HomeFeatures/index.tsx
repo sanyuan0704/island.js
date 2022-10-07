@@ -16,8 +16,8 @@ const getGridClass = (count?: number) => {
 };
 
 export function HomeFeature() {
-  const { meta } = usePageData();
-  const features = meta?.features;
+  const { frontmatter } = usePageData();
+  const features = frontmatter?.features;
   const gridClass = getGridClass(features?.length);
   return (
     <div className="max-w-1152px" m="auto" flex="~ wrap" justify="between">

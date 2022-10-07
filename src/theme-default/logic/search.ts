@@ -57,7 +57,7 @@ export class PageSearcher {
     );
     const pagesForSearch: PageDataForSearch[] = pages
       .filter((page) => {
-        return !WHITE_PAGE_TYPES.includes(page.meta?.pageType || '');
+        return !WHITE_PAGE_TYPES.includes(page.frontmatter?.pageType || '');
       })
       .map((page) => ({
         title: page.title!,

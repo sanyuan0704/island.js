@@ -137,7 +137,7 @@ export type ComponentPropsWithIsland<T = unknown> = T & { __island?: boolean };
 
 export interface PageModule<T extends ComponentType<unknown>> {
   default: T;
-  meta?: FrontMatterMeta;
+  frontmatter?: FrontMatterMeta;
   content?: string;
   [key: string]: unknown;
 }
@@ -151,6 +151,8 @@ export interface FrontMatterMeta {
   pageType: PageType;
   features?: Feature[];
   hero?: Hero;
+  sidebar?: boolean;
+  outline?: boolean;
 }
 
 export interface PageData {
@@ -159,7 +161,7 @@ export interface PageData {
   relativePagePath: string;
   lastUpdatedTime?: string;
   title?: string;
-  meta?: FrontMatterMeta;
+  frontmatter?: FrontMatterMeta;
   description?: string;
   pageType: PageType;
   toc?: Header[];
