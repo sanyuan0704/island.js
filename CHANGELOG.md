@@ -1,5 +1,13 @@
 
 
+## [0.3.1](https://github.com/sanyuan0704/island.js/compare/0.3.0...0.3.1) (2022-10-07)
+
+
+### Bug Fixes
+
+* copy-to-clipboard perbundle problem ([237353d](https://github.com/sanyuan0704/island.js/commit/237353da92d383db35bf3208597af38f24cc27d5))
+* flexsearch prebundle problem ([8ce53c3](https://github.com/sanyuan0704/island.js/commit/8ce53c3c10ee229e1783f57609b014cf5e97a8a9))
+
 # [0.3.0](https://github.com/sanyuan0704/island.js/compare/0.2.8...0.3.0) (2022-10-06)
 
 
