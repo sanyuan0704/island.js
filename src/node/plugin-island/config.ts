@@ -53,7 +53,8 @@ export function pluginConfig(
               'react-router-dom',
               'react/jsx-runtime',
               'react-helmet-async',
-              'lodash-es'
+              'lodash-es',
+              'copy-to-clipboard'
             ],
             exclude: [
               'islandjs',
