@@ -125,10 +125,6 @@ function getSidebar(lang: 'zh' | 'en') {
           {
             text: getText('静态资源', 'Static Assets'),
             link: getLink('/guide/static-assets')
-          },
-          {
-            text: getText('能力扩展', 'Extension'),
-            link: getLink('/guide/extension')
           }
         ]
       },
@@ -158,6 +154,19 @@ function getSidebar(lang: 'zh' | 'en') {
           {
             text: getText('全文搜索', 'Search'),
             link: getLink('/guide/search')
+          }
+        ]
+      },
+      {
+        text: getText('高级能力', 'Advanced'),
+        items: [
+          {
+            text: getText('扩展构建能力', 'Build Extension'),
+            link: getLink('/guide/extension')
+          },
+          {
+            text: getText('自定义主题', 'Custom Theme'),
+            link: getLink('/guide/custom-theme')
           }
         ]
       }
