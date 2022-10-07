@@ -52,11 +52,13 @@ export default defineConfig({
 
 ## sidebar
 
-- Type: `Array` | `Object`
+- Type: `Object`
 
-网站的侧边栏。配置是 `SidebarGroup` 的映射类型，具有以下类型：
+网站的侧边栏。配置为一个对象，类型如下：
 
 ```ts
+// key 为 SidebarGroup 的路径
+// value 为 SidebarGroup
 type Sidebar = Record<string, SidebarGroup[]>;
 
 interface SidebarGroup {

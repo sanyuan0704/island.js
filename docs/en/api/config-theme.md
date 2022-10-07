@@ -52,11 +52,13 @@ export default defineConfig({
 
 ## sidebar
 
-- Type: `Array` | `Object`
+- Type: `Object`
 
-The sidebar of the site.The config is a map for `SidebarGroup`, which has following type:
+The sidebar of the site.The config is a object, which
 
 ```ts
+// The key is the path of the sidebar group
+// The value is the sidebar group
 type Sidebar = Record<string, SidebarGroup[]>;
 
 interface SidebarGroup {
