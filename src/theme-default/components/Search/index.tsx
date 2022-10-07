@@ -12,7 +12,6 @@ const KEY_CODE = {
   ENTER: 'Enter'
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function Search(
   props: ComponentPropsWithIsland & { langRoutePrefix: string }
 ) {
@@ -25,6 +24,7 @@ export function Search(
   const psRef = useRef<PageSearcher>();
   const initPageSearcherPromiseRef = useRef<Promise<void>>();
   const [disableInput, setDisableInput] = useState(true);
+  const inputRef = useRef<HTMLInputElement>(null);
   // initializing or searching
   const showLoading = !initialized || searching;
   // 1. page searcher has been initialized and finish searching
@@ -89,43 +89,66 @@ export function Search(
     };
   }, [currentSuggestionIndex, suggestions]);
 
+  const onFocus = () => {
+    setFocused(true);
+    if (inputRef.current) {
+      inputRef.current.style.width = '160px';
+      inputRef.current.focus();
+    }
+    initPageSearcherPromiseRef.current = initPageSearcher();
+  };
+
+  const onBlur = () => {
+    setTimeout(() => {
+      setFocused(false);
+    }, 200);
+    if (inputRef.current) {
+      // mobile
+      if (window.innerWidth < 768) {
+        inputRef.current.style.width = '0';
+      }
+      inputRef.current.blur();
+    }
+  };
+
   useEffect(() => {
     setDisableInput(false);
   }, []);
+
   return (
-    <div flex="" items-center="~" relative="" mr="4" font="semibold">
-      <SearchSvg w="5" h="5" fill="currentColor" />
+    <div flex="" items-center="~" relative="" mr="sm:4" font="semibold">
+      <div onClick={onFocus}>
+        <SearchSvg w="5" h="5" fill="currentColor" cursor="pointer" />
+      </div>
+
       <input
+        ref={inputRef}
         disabled={disableInput}
+        w="0 sm:40 focus:40"
         cursor="text focus:auto"
-        w="40"
         placeholder="Search"
         height="8"
         border="none"
         type="text"
         text="sm"
-        p="t-0 r-2 b-0 l-2"
+        p="t-0 b-0 l-2"
         transition="all duration-200 ease"
-        className="rounded-sm"
+        className="sm:rounded-sm border-box"
         aria-label="Search"
         autoComplete="off"
         onChange={onQueryChanged}
-        onBlur={() => setTimeout(() => setFocused(false), 200)}
-        onFocus={() => {
-          setFocused(true);
-          initPageSearcherPromiseRef.current = initPageSearcher();
-        }}
+        onBlur={onBlur}
+        onFocus={onFocus}
       />
       {focused && query && (
         <ul
-          absolute=""
+          pos="fixed sm:absolute top-12 sm:top-8 left-0"
           z="60"
-          pos="top-8"
           border-1=""
           p="2"
           list="none"
           bg="bg-default"
-          className="min-w-500px max-w-700px"
+          className="w-100% sm:min-w-500px sm:max-w-700px"
         >
           {/* Show the suggestions */}
           {suggestions.map((item, index) => (

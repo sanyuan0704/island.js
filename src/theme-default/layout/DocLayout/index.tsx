@@ -20,14 +20,14 @@ export function DocLayout() {
   const hasAside = headers.length > 0 && themeConfig.outline !== false;
 
   return (
-    <div p="t-0 x-6 b-24 sm:6">
+    <div p="t-3 x-6 b-24 sm:6">
       {hasSidebar ? <SideBar /> : null}
       <div flex="~ 1 shrink-0" m="x-auto" className={`${styles.content}`}>
         <div m="x-auto" flex="~ col">
           <div
             relative="~"
             m="x-auto"
-            className="md:max-w-712px lg:min-w-640px"
+            className="max-w-[calc(100vw-48px)] md:max-w-712px lg:min-w-640px"
           >
             <div className="island-doc">
               <Content fallback={<div>Loading...</div>} />

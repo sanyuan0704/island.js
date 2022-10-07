@@ -7,7 +7,8 @@ import { NavMenuGroup, NavMenuGroupItem } from './NavMenuGroup';
 import { useLocaleSiteData } from '../../logic';
 import GithubSvg from './icons/github.svg';
 import { DefaultTheme } from 'shared/types';
-import Translator from './icons/translator.svg';
+import TranslatorSvg from './icons/translator.svg';
+import { MiniNav } from './MiniNav';
 
 const IconMap = {
   github: GithubSvg
@@ -38,7 +39,7 @@ const NavBarTitle = ({ title }: { title: string }) => {
 
 const NavMenu = ({ menuItems }: { menuItems: DefaultTheme.NavItem[] }) => {
   return (
-    <div className="menu">
+    <div className="menu" display="none sm:flex">
       {menuItems.map((item) =>
         'link' in item ? (
           <NavMenuSingleItem {...item} />
@@ -59,7 +60,8 @@ const NavTranslations = ({
 }) => {
   return (
     <div
-      className="translation"
+      className="translations"
+      display="none sm:flex"
       flex="~"
       text="sm"
       font="bold"
@@ -97,6 +99,7 @@ const NavSocialLinks = ({
       flex=""
       items-center=""
       before="menu-item-before"
+      display="none sm:flex"
     >
       <div
         flex=""
@@ -135,7 +138,7 @@ export function Nav() {
   const hasMultiLanguage = localeLanguages.length > 1;
   const translationMenuData = hasMultiLanguage
     ? {
-        text: <Translator w="18px" h="18px" />,
+        text: <TranslatorSvg w="18px" h="18px" />,
         items: localeLanguages.map((item) => ({
           text: item.label,
           link: `/${item.lang}`
@@ -153,7 +156,13 @@ export function Nav() {
     localeData.title ?? siteData.themeConfig.siteTitle ?? siteData.title;
 
   return (
-    <header relative="" z="2" fixed="md:~" className="top-0 left-0" w="100%">
+    <header
+      z="2"
+      fixed="~"
+      bg="bg-default sm:transparent"
+      className="top-0 left-0"
+      w="100%"
+    >
       <div
         relative=""
         p="l-8 sm:x-8"
@@ -173,7 +182,7 @@ export function Nav() {
           <NavBarTitle title={title} />
           <div
             className={styles.content}
-            flex="~ 1"
+            flex="~ sm:1"
             justify="end"
             items-center=""
           >
@@ -186,6 +195,9 @@ export function Nav() {
             )}
             {hasAppearanceSwitch && <NavAppearance />}
             {hasSocialLinks && <NavSocialLinks socialLinks={socialLinks} />}
+            <div display="sm:none">
+              <MiniNav />
+            </div>
           </div>
         </div>
       </div>

@@ -64,6 +64,7 @@ export function pluginConfig(
             ]
           },
           server: {
+            host: true,
             fs: {
               allow: [
                 CLIENT_RUNTIME_PATH,
