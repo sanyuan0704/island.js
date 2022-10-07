@@ -13,6 +13,8 @@ Island.js 默认主题内置了全文搜索功能，拥有如下特性：
 import { defineConfig } from 'islandjs';
 
 export default defineConfig({
-  search: false
+  themeConfig: {
+    search: false
+  }
 });
 ```

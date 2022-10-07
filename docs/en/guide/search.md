@@ -13,6 +13,8 @@ Of course, you can also turn off the full-text search function by following conf
 import { defineConfig } from 'islandjs';
 
 export default defineConfig({
-  search: false
+  themeConfig: {
+    search: false
+  }
 });
 ```
