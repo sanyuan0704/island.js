@@ -1,4 +1,5 @@
 import type { MatchResultItem } from '../../logic/search';
+import style from './index.module.scss';
 
 export function SuggestionContent(props: {
   suggestion: MatchResultItem;
