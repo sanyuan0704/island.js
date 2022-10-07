@@ -12,23 +12,6 @@ export default defineConfig({
 });
 ```
 
-## siteTitle
-
-- Type: `string`
-- Default: `"Island"`
-
-The title of the site.Different from `title` in root config, this title will be used in the navbar. For example:
-
-```js
-import { defineConfig } from 'islandjs';
-
-export default defineConfig({
-  themeConfig: {
-    siteTitle: 'my-site'
-  }
-});
-```
-
 ## nav
 
 - Type: `Array`
@@ -254,3 +237,79 @@ export default defineConfig({
   }
 });
 ```
+
+## prevPageText
+
+- Type: `string`
+- Default: `Previous Page`
+
+The text of the previous page. for example:
+
+```js
+import { defineConfig } from 'islandjs';
+
+export default defineConfig({
+  themeConfig: {
+    prevPageText: 'Previous Page'
+  }
+});
+```
+
+## nextPageText
+
+- Type: `string`
+- Default: `Next Page`
+
+Text for the next page. for example:
+
+```js
+import { defineConfig } from 'islandjs';
+
+export default defineConfig({
+  themeConfig: {
+    nextPageText: 'Next Page'
+  }
+});
+```
+
+## locales
+
+- Type: `Object`
+- Default: `undefined`
+
+I18n config. This config is an object, the key is the routing prefix of the corresponding language (such as `/en`), the value is `LocaleConfig`, the type is as follows:
+
+```ts
+export interface LocaleConfig {
+  // language name
+  lang?: string;
+  // HTML title
+  title?: string;
+  // HTML description
+  description?: string;
+  // Display text in corresponding language
+  label: string;
+  // Navbar config, of the same type as `themeConfig.nav`
+  nav?: NavItem[];
+  // Sidebar config, of the same type as `themeConfig.sidebar`
+  sidebar?: Sidebar;
+  // Outline title
+  outlineTitle?: string;
+  lastUpdatedText?: string;
+  editLink?: EditLink;
+  prevPageText?: string;
+  nextPageText?: string;
+}
+```
+
+As you see, there are many fields in `themeConfig` that can be also configured in `LocaleConfig`, including:
+
+- `nav`
+- `sidebar`
+- `editLink`
+- `lastUpdatedText`
+- `outlineTitle`
+- `prevPageText`
+- `nextPageText`
+
+But the `LocaleConfig` has higher priority.So it will override the corresponding field in `themeConfig`.

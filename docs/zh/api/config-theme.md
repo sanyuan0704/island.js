@@ -12,23 +12,6 @@ export default defineConfig({
 });
 ```
 
-## siteTitle
-
-- Type: `string`
-- Default: `"Island"`
-
-站点的标题。与根配置中的 `title` 不同，此标题将用于导航栏中。比如：
-
-```js
-import { defineConfig } from 'islandjs';
-
-export default defineConfig({
-  themeConfig: {
-    siteTitle: '我的主页'
-  }
-});
-```
-
 ## nav
 
 - Type: `Array`
@@ -246,3 +229,79 @@ export default defineConfig({
   }
 });
 ```
+
+## prevPageText
+
+- Type: `string`
+- Default: `Previous Page`
+
+上一页的文本。比如:
+
+```js
+import { defineConfig } from 'islandjs';
+
+export default defineConfig({
+  themeConfig: {
+    prevPageText: 'Previous Page'
+  }
+});
+```
+
+## nextPageText
+
+- Type: `string`
+- Default: `Next Page`
+
+下一页的文本。比如:
+
+```js
+import { defineConfig } from 'islandjs';
+
+export default defineConfig({
+  themeConfig: {
+    nextPageText: 'Next Page'
+  }
+});
+```
+
+## locales
+
+- Type: `Object`
+- Default: `undefined`
+
+国际化配置。此配置为一个对象，key 为对应语言的路由前缀(如`/en`)，value 为`LocaleConfig`，类型如下:
+
+```ts
+export interface LocaleConfig {
+  // 语言名称
+  lang?: string;
+  // HTML 标题，优先于 `themeConfig.title`
+  title?: string;
+  // HTML 描述，优先于 `themeConfig.description`
+  description?: string;
+  // 对应语言的显示文本
+  label: string;
+  // 导航栏配置
+  nav?: NavItem[];
+  // 侧边栏配置
+  sidebar?: Sidebar;
+  // 右侧大纲标题
+  outlineTitle?: string;
+  lastUpdatedText?: string;
+  editLink?: EditLink;
+  prevPageText?: string;
+  nextPageText?: string;
+}
+```
+
+因此你能看到，`LocaleConfig` 中包含许多与 `ThemeConfig` 中相同的配置项，包括:
+
+- `nav`
+- `sidebar`
+- `editLink`
+- `lastUpdatedText`
+- `outlineTitle`
+- `prevPageText`
+- `nextPageText`
+
+但是 `LocaleConfig` 的优先级更高。所以它会覆盖 `themeConfig` 中的相应字段。
