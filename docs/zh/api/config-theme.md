@@ -307,3 +307,20 @@ export interface LocaleConfig {
 - [nextPageText](/zh/api/config-theme#nextpagetext)
 
 但是 `LocaleConfig` 的优先级更高。所以它会覆盖 `themeConfig` 中的相应字段。
+
+## search
+
+- Type: `boolean`
+- Default: `true`
+
+是否开启全文搜索功能。默认情况下开启，你也通过如下的配置禁用:
+
+```js
+import { defineConfig } from 'islandjs';
+
+export default defineConfig({
+  themeConfig: {
+    search: false
+  }
+});
+```

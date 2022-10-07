@@ -315,3 +315,20 @@ As you see, there are many fields in `themeConfig` that can be also configured i
 - [nextPageText](/en/api/config-theme#nextpagetext)
 
 But the `LocaleConfig` has higher priority.So it will override the corresponding field in `themeConfig`.
+
+## search
+
+- Type: `boolean`
+- Default: `true`
+
+Whether to enable search.You can disable it by setting it to `false`:
+
+```js
+import { defineConfig } from 'islandjs';
+
+export default defineConfig({
+  themeConfig: {
+    search: false
+  }
+});
+```
