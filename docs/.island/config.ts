@@ -27,8 +27,6 @@ export default defineConfig({
       '/zh/': {
         lang: 'zh',
         label: '简体中文',
-        selectText: '语言',
-        ariaLabel: '语言',
         lastUpdatedText: '上次更新',
         nav: getNavbar('zh'),
         sidebar: getSidebar('zh'),
@@ -46,13 +44,17 @@ export default defineConfig({
       '/en/': {
         lang: 'en',
         label: 'English',
-        selectText: 'Languages',
-        ariaLabel: 'Languages',
         lastUpdated: 'Last Updated',
         nav: getNavbar('en'),
         sidebar: getSidebar('en'),
         title: 'Island.js',
-        description: 'SSG Framework based on island architecture'
+        description: 'SSG Framework based on island architecture',
+        lastUpdatedText: 'Last Updated',
+        editLink: {
+          pattern:
+            'https://github.com/sanyuan0704/island.js/tree/master/docs/:path',
+          text: '📝 Edit this page on GitHub'
+        }
       }
     },
     outlineTitle: 'ON THIS PAGE',
@@ -62,12 +64,6 @@ export default defineConfig({
         link: 'https://github.com/sanyuan0704/island'
       }
     ],
-    lastUpdatedText: 'Last Updated',
-    editLink: {
-      pattern:
-        'https://github.com/sanyuan0704/island.js/tree/master/docs/:path',
-      text: '📝 Edit this page on GitHub'
-    },
 
     footer: {
       message: 'Released under the MIT License.',
@@ -108,7 +104,7 @@ function getSidebar(lang: 'zh' | 'en') {
         ]
       },
       {
-        text: getText('核心功能', 'Features'),
+        text: getText('基础功能', 'Features'),
         items: [
           {
             text: getText('约定式路由', 'Conventional Routing'),
@@ -133,6 +129,35 @@ function getSidebar(lang: 'zh' | 'en') {
           {
             text: getText('能力扩展', 'Extension'),
             link: getLink('/guide/extension')
+          }
+        ]
+      },
+      {
+        text: getText('默认主题功能', 'Default Theme'),
+        items: [
+          {
+            text: getText('导航栏模块', 'Nav Bar'),
+            link: getLink('/guide/navbar')
+          },
+          {
+            text: getText('Home 页面', 'Home Page'),
+            link: getLink('/guide/home-page')
+          },
+          {
+            text: getText('API 页面', 'API Page'),
+            link: getLink('/guide/api-page')
+          },
+          {
+            text: getText('正文页面', 'Doc Page'),
+            link: getLink('/guide/doc-page')
+          },
+          {
+            text: getText('国际化', 'I18n'),
+            link: getLink('/guide/i18n')
+          },
+          {
+            text: getText('全文搜索', 'Search'),
+            link: getLink('/guide/search')
           }
         ]
       }

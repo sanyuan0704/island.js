@@ -58,7 +58,7 @@ export default defineConfig({
 
 ```ts
 // key 为 SidebarGroup 的路径
-// value 为 SidebarGroup
+// value 为 SidebarGroup 的数组
 type Sidebar = Record<string, SidebarGroup[]>;
 
 interface SidebarGroup {

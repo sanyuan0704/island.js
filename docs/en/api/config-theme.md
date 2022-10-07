@@ -58,7 +58,7 @@ The sidebar of the site.The config is a object, which
 
 ```ts
 // The key is the path of the sidebar group
-// The value is the sidebar group
+// The value is sidebar group array
 type Sidebar = Record<string, SidebarGroup[]>;
 
 interface SidebarGroup {
