@@ -1,10 +1,10 @@
 # Doc Page
 
-The Island.js default theme has an built-in doc page.You can configure these part of it by the following ways:
+The Island.js default theme has an built-in doc page.You can configure the its components by the following ways:
 
 ## Sidebar
 
-Refer to the left sidebar.You can configure the sidebar in the frontmatter of the body page:
+Refer to the left sidebar.You can configure the sidebar in the front matter of the body page:
 
 ```md
 ---
@@ -16,7 +16,9 @@ The value of `sidebar` is a boolean value, if `false`, the sidebar will not be s
 
 ## Outline
 
-Outline information will be presented in the right sidebar, you can configure the outline information in the frontmatter of the body page:
+### Disable Outline
+
+Outline information will be presented in the right sidebar, you can configure the outline information in the front matter of the body page:
 
 ```md
 ---
@@ -26,7 +28,7 @@ outline: false
 
 The value of `outline` is a boolean value, if `false`, outline information won't be displayed.
 
-## Outline title
+### Outline Title Config
 
 You can configure the title of the outline by `themeConfig.outlineTitle`:
 
