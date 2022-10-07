@@ -1,6 +1,8 @@
-# Theme Config
+# 主题配置
 
-The theme config is under the `themeConfig` in root config. For example:
+import Locales from '../fragments/locales.md';
+
+主题配置位于根配置中的 `themeConfig` 下。例如：
 
 ```js
 import { defineConfig } from 'islandjs';
@@ -17,22 +19,22 @@ export default defineConfig({
 - Type: `Array`
 - Default: `[]`
 
-The navigation bar of the site. The `nav` config is an array of `NavItem`, which has following type:
+网站的导航栏。 `nav` 配置是 `NavItem` 的数组，具有以下类型：
 
 ```ts
 interface NavItem {
-  // The text of the nav item
+  // 导航栏文本
   text: string;
-  // The link href will be entered when click the nav item
+  // 导航栏链接
   link: '/';
-  // The active match rule of the nav item, optional
+  // 导航栏链接的激活规则
   activeMatch: '^/$|^/';
 }
 ```
 
-The `activeMatch` is used to match the current route, and the nav item will be highlighted when the route matches the `activeMatch` rule.By default, the `activeMatch` is the `link` of the nav item.
+`activeMatch` 用于匹配当前路由，当路由匹配 `activeMatch` 规则时，nav 项会高亮显示。默认情况下，`activeMatch` 是 nav 项的 `link`。
 
-For example:
+比如:
 
 ```js
 import { defineConfig } from 'islandjs';
@@ -54,29 +56,25 @@ export default defineConfig({
 
 - Type: `Object`
 
-The sidebar of the site.The config is a object, which
+网站的侧边栏。配置为一个对象，类型如下：
 
 ```ts
-// The key is the path of the sidebar group
-// The value is sidebar group array
+// key 为 SidebarGroup 的路径
+// value 为 SidebarGroup 的数组
 type Sidebar = Record<string, SidebarGroup[]>;
 
 interface SidebarGroup {
-  // The text of the sidebar group
   text: string;
-  // The child items of the sidebar group
   items: SidebarItem[];
 }
 
 type SidebarItem = {
-  // The text of item
   text: string;
-  // The link href of item
   link: string;
 };
 ```
 
-For example:
+比如:
 
 ```js
 import { defineConfig } from 'islandjs';
@@ -105,20 +103,18 @@ export default defineConfig({
 - Type: `Object` | `undefined`
 - Default: `undefined`
 
-The edit link of the site.If it's undefined, the edit link feature will be disabled.
+站点的编辑链接。如果未定义，编辑链接功能将被禁用。
 
-The `editLink` config is an object of `EditLink`, which has following type:
+`editLink` 配置是 `EditLink` 的一个对象，它具有以下类型：
 
 ```ts
 export interface EditLink {
-  // Pattern for edit link.
   pattern: string;
-  // Custom text for edit link.
   text?: string;
 }
 ```
 
-For example:
+比如：
 
 ```js
 import { defineConfig } from 'islandjs';
@@ -134,16 +130,14 @@ export default defineConfig({
 });
 ```
 
-`:path` will be replaced by the current page path.
+`:path` 将被当前页面路径替换。
 
 ## lastUpdatedText
 
 - Type: `string`
 - Default: `"Last Updated"`
 
-The text of last updated time.
-
-For example:
+上次更新时间的文本。比如：
 
 ```js
 import { defineConfig } from 'islandjs';
@@ -160,9 +154,9 @@ export default defineConfig({
 - Type: `Object`
 - Default: `{}`
 
-The footer of the home site.
+主页的页脚。
 
-The `footer` config is an object of `Footer`, which has following type:
+`footer` 配置是 `Footer` 的一个对象，它具有以下类型：
 
 ```ts
 export interface Footer {
@@ -171,7 +165,7 @@ export interface Footer {
 }
 ```
 
-For example:
+比如：
 
 ```js
 import { defineConfig } from 'islandjs';
@@ -191,9 +185,9 @@ export default defineConfig({
 - Type: `Array`
 - Default: `[]`
 
-The social links of the site.
+网站的社交链接。
 
-The `socialLinks` config is an array of `SocialLink`, which has following type:
+`socialLinks` 配置是 `SocialLink` 的数组，具有以下类型：
 
 ```ts
 export interface SocialLink {
@@ -202,7 +196,7 @@ export interface SocialLink {
 }
 ```
 
-For example:
+比如：
 
 ```js
 import { defineConfig } from 'islandjs';
@@ -219,16 +213,16 @@ export default defineConfig({
 });
 ```
 
-> In current version, the `icon` only supports `github`.
+> 在当前版本中，`icon` 只支持 `github`
 
 ## outlineTitle
 
 - Type: `string`
 - Default: 'ON THIS PAGE'
 
-Configure the title of the outline in the right sidebar.
+在右侧边栏中配置大纲的标题。
 
-For example:
+比如:
 
 ```js
 import { defineConfig } from 'islandjs';
@@ -245,7 +239,7 @@ export default defineConfig({
 - Type: `string`
 - Default: `Previous Page`
 
-The text of the previous page. for example:
+上一页的文本。比如:
 
 ```js
 import { defineConfig } from 'islandjs';
@@ -262,7 +256,7 @@ export default defineConfig({
 - Type: `string`
 - Default: `Next Page`
 
-Text for the next page. for example:
+下一页的文本。比如:
 
 ```js
 import { defineConfig } from 'islandjs';
@@ -279,49 +273,16 @@ export default defineConfig({
 - Type: `Object`
 - Default: `undefined`
 
-I18n config. This config is an object, the key is the routing prefix of the corresponding language (such as `/en`), the value is `LocaleConfig`, the type is as follows:
+国际化配置。此配置为一个对象，key 为对应语言的路由前缀(如`/en`)，value 为`LocaleConfig`，类型如下:
 
-```ts
-export interface LocaleConfig {
-  // language name
-  lang?: string;
-  // HTML title
-  title?: string;
-  // HTML description
-  description?: string;
-  // Display text in corresponding language
-  label: string;
-  // Navbar config, of the same type as `themeConfig.nav`
-  nav?: NavItem[];
-  // Sidebar config, of the same type as `themeConfig.sidebar`
-  sidebar?: Sidebar;
-  // Outline title
-  outlineTitle?: string;
-  lastUpdatedText?: string;
-  editLink?: EditLink;
-  prevPageText?: string;
-  nextPageText?: string;
-}
-```
-
-As you see, there are many fields in `themeConfig` that can be also configured in `LocaleConfig`, including:
-
-- [nav](/en/api/config-theme#nav)
-- [sidebar](/en/api/config-theme#sidebar)
-- [editLink](/en/api/config-theme#editlink)
-- [lastUpdatedText](/en/api/config-theme#lastupdatedtext)
-- [outlineTitle](/en/api/config-theme#outlinetitle)
-- [prevPageText](/en/api/config-theme#prevpagetext)
-- [nextPageText](/en/api/config-theme#nextpagetext)
-
-But the `LocaleConfig` has higher priority.So it will override the corresponding field in `themeConfig`.
+<Locales />
 
 ## search
 
 - Type: `boolean`
 - Default: `true`
 
-Whether to enable search.You can disable it by setting it to `false`:
+是否开启全文搜索功能。默认情况下开启，你也通过如下的配置禁用:
 
 ```js
 import { defineConfig } from 'islandjs';

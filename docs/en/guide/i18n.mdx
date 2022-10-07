@@ -1,5 +1,7 @@
 # I18n
 
+import Locales from '../fragments/locales.md';
+
 Island.js provides a set of out-of-the-box internationalization solutions. Next, we will introduce how to integrate it in your project.
 
 ## Project Structure
@@ -49,4 +51,6 @@ export default defineConfig({
 });
 ```
 
-The key of locales is the route prefix of the corresponding language, and the value is `LocaleConfig`. Through `LocaleConfig`, you can configure various parameters of the corresponding language, including `lang`, `title`, `description`, `nav`, `sidebar` etc. For more details, please refer to [Theme Configuration](/zh/api/config-theme#locales).
+The key of locales is the route prefix of the corresponding language, and the value is `LocaleConfig`. There is the type of `LocaleConfig`:
+
+<Locales />

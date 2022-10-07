@@ -1,5 +1,7 @@
 # 国际化
 
+import Locales from '../fragments/locales.md';
+
 Island.js 提供了一套简单可配置的国际化方案，接下来我们将介绍如何在你的项目中接入。
 
 ## 项目结构
@@ -49,4 +51,6 @@ export default defineConfig({
 });
 ```
 
-其中 locales 的 key 为对应语言的路由前缀，value 为 `LocaleConfig`，通过 `LocaleConfig` 可以配置对应语言的各项参数，包括 `lang`、`title`、`description`、`nav`、`sidebar` 等，具体配置项请参考 [主题配置](/zh/api/config-theme#locales)。
+其中 locales 的 key 为对应语言的路由前缀，value 为 `LocaleConfig`，通过 `LocaleConfig` 可以配置对应语言的各项参数，其类型定义如下：
+
+<Locales />
