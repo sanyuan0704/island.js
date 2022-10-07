@@ -2,7 +2,17 @@
 
 The nav bar is very important for a website. It allows users to quickly jump between different pages of the website, and also allows users to quickly find some important information on the website.
 
-Island.js default theme has built-in navbar module, you can configure it in `themeConfig.navbar`.
+Island.js default theme has built-in navbar module, you can configure it in `themeConfig.navbar`:
+
+```js
+import { defineConfig } from 'islandjs';
+
+export default defineConfig({
+  themeConfig: {
+    navbar: []
+  }
+});
+```
 
 The nav bar is configured as an array, each item in the array is a `NavItem` object, which has the following types:
 

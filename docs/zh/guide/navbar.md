@@ -2,7 +2,17 @@
 
 导航栏对一个网站来说非常重要，它可以让用户快速的在网站的不同页面之间进行跳转，也可以让用户快速的找到网站的一些重要信息。
 
-Island.js 默认主题内置了导航栏模块，你可以在 `themeConfig.navbar` 中进行配置。
+Island.js 默认主题内置了导航栏模块，你可以在 `themeConfig.navbar` 中进行配置：
+
+```js
+import { defineConfig } from 'islandjs';
+
+export default defineConfig({
+  themeConfig: {
+    navbar: []
+  }
+});
+```
 
 导航栏配置为一个数组，数组中的每一项都是一个 `NavItem` 对象，它具有以下类型：
 
