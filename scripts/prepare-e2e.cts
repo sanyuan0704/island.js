@@ -2,7 +2,7 @@ import path from 'path';
 import fse from 'fs-extra';
 import * as execa from 'execa';
 
-const exampleDir = path.resolve(__dirname, '../example/quick-learning');
+const exampleDir = path.resolve(__dirname, '../playground/quick-learning');
 const defaultExecaOpts = {
   cwd: exampleDir,
   stdout: process.stdout,
