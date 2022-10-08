@@ -12,6 +12,7 @@ declare module 'island/theme*' {
   import { ComponentType, Component, HtmlHTMLAttributes } from 'react';
 
   export const Layout: ComponentType<unknown>;
+  export const HomeLayout: ComponentType<unknown>;
   export const NotFoundLayout: ComponentType<unknown>;
   export const setupEffects: () => void;
 }

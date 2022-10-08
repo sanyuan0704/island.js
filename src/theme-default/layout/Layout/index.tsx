@@ -1,10 +1,9 @@
 import React from 'react';
-import { HomeLayout } from '../HomeLayout';
 import { Nav } from '../../components/Nav';
 import { DocLayout } from '../DocLayout';
 import { usePageData, Content } from 'island/client';
-import { NotFoundLayout } from 'island/theme';
 import { Helmet } from 'react-helmet-async';
+import { HomeLayout, NotFoundLayout } from 'island/theme';
 import { APILayout } from '../APILayout';
 
 export const Layout: React.FC = () => {
