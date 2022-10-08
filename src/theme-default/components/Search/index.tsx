@@ -140,7 +140,8 @@ export function Search(
                 <div table="" w="100%" className="border-collapse">
                   <div
                     w="35%"
-                    border-b-2=""
+                    border-t-1=""
+                    border-b-1=""
                     border-r-1=""
                     border-left="none"
                     table-cell=""

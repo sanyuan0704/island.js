@@ -45,7 +45,8 @@ export function SuggestionContent(props: {
   };
   return (
     <div
-      border-b-2=""
+      border-b-1=""
+      border-t-1=""
       table-cell=""
       p="x-3 y-2"
       hover="bg-[#f3f4f5] "
