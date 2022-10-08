@@ -2,12 +2,14 @@ import pluginMdx from '@mdx-js/rollup';
 import { rehypePluginPreWrapper } from './rehypePlugins/preWrapper';
 import remarkPluginGFM from 'remark-gfm';
 import remarkPluginFrontMatter from 'remark-frontmatter';
+import remarkDirective from 'remark-directive';
 import remarkPluginMDXFrontMatter from 'remark-mdx-frontmatter';
 import { remarkPluginNormalizeLink } from './remarkPlugins/link';
 import rehypePluginAutolinkHeadings from 'rehype-autolink-headings';
 import rehypePluginSlug from 'rehype-slug';
 import rehypePluginExternalLinks from 'rehype-external-links';
 import { remarkPluginToc } from './remarkPlugins/toc';
+import { remarkPluginTip } from './remarkPlugins/tip';
 import shiki from 'shiki';
 import { rehypePluginShiki } from './rehypePlugins/shiki';
 import { SiteConfig } from 'shared/types/index';
@@ -27,6 +29,8 @@ export async function pluginMdxRollup(
       remarkPluginFrontMatter,
       [remarkPluginMDXFrontMatter, { name: 'frontmatter' }],
       remarkPluginToc,
+      remarkDirective,
+      remarkPluginTip,
       [
         remarkPluginNormalizeLink,
         { base: config.base || '/', enableSpa: config.enableSpa }
