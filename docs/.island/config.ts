@@ -20,7 +20,7 @@ export default defineConfig({
     remarkPlugins: []
   },
   route: {
-    exclude: ['custom.tsx', 'fragments/**/*']
+    exclude: ['custom.tsx', '**/fragments/**']
   },
   themeConfig: {
     locales: {
