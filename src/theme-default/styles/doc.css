@@ -438,3 +438,28 @@
 .island-doc [class*='language-'] > button.copy:focus + span.lang {
   opacity: 0;
 }
+
+.island-doc .island-tip {
+  padding: 5px;
+  border-radius: 3px;
+  padding: 16px;
+  border: 1px solid var(--island-c-brand);
+}
+
+.island-doc .island-tip .island-tip-title {
+  color: var(--island-c-brand);
+  display: flex;
+  align-items: center;
+}
+
+.island-doc .island-tip .island-tip-content {
+  text-indent: 50px;
+}
+
+.island-doc .island-tip .island-tip-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 3px;
+  background-image: var(--island-icon-tip);
+}
