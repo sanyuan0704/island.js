@@ -31,7 +31,7 @@ export function pluginMdxGit(): Plugin {
         lastUpdatedTime = cache.get(id)!;
       } else {
         const rawTime = await getLastUpdatedTime(id);
-        lastUpdatedTime = new Date(rawTime).toLocaleString();
+        lastUpdatedTime = new Date(rawTime).toLocaleString('zh-CN');
         cache.set(id, lastUpdatedTime);
       }
 
