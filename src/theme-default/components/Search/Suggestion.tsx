@@ -45,11 +45,15 @@ export function SuggestionContent(props: {
   };
   return (
     <div
-      border-1=""
+      border-b-1=""
+      border-t-1=""
       table-cell=""
       p="x-3 y-2"
-      hover="bg-[#f3f4f5]"
-      className={`border-right-none ${props.isCurrent ? 'bg-[#f3f4f5]' : ''}`}
+      hover="bg-[#f3f4f5] "
+      text="#2c3e50"
+      className={`border-right-none border-[#eaecef] ${
+        props.isCurrent ? 'bg-[#f3f4f5]' : 'bg-white'
+      }`}
       transition="bg duration-200"
     >
       <div font="medium" text="sm">

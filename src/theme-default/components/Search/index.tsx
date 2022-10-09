@@ -122,26 +122,34 @@ export function Search(
           z="60"
           pos="top-8"
           border-1=""
+          border-rd-1=""
           p="2"
           list="none"
-          bg="bg-default"
-          className="min-w-500px max-w-700px"
+          className="min-w-500px max-w-700px bg-white"
         >
           {/* Show the suggestions */}
           {suggestions.map((item, index) => (
-            <li key={item.title} rounded="sm" cursor="pointer" w="100%">
+            <li
+              key={item.title}
+              rounded="sm"
+              cursor="pointer"
+              w="100%"
+              className="border-collapse"
+            >
               <a block="" href={item.link} className="whitespace-normal">
                 <div table="" w="100%" className="border-collapse">
                   <div
                     w="35%"
-                    border-1=""
+                    border-t-1=""
+                    border-b-1=""
+                    border-r-1=""
                     border-left="none"
                     table-cell=""
                     align="middle right"
                     p="1.2"
-                    text="sm right"
+                    text="sm right [#2c3e50]"
                     font="semibold"
-                    className="bg-[#f5f5f5]"
+                    className="bg-[#f5f5f5] border-[#eaecef]"
                   >
                     {item.title}
                   </div>
@@ -157,7 +165,7 @@ export function Search(
           {/* Show the not found info */}
           {showNotFound && (
             <li flex="center">
-              <div p="2" text="sm gray-light">
+              <div p="2" text="sm #2c3e50">
                 No results found
               </div>
             </li>
