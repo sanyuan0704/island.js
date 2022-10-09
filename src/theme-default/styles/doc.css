@@ -249,7 +249,7 @@
   font-size: var(--island-code-font-size);
 }
 
-.island-doc :not(pre) > code {
+.island-doc :not(pre, div) > code {
   border-radius: 4px;
   padding: 3px 6px;
   color: var(--island-c-text-code);
