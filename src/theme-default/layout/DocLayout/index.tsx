@@ -7,17 +7,24 @@ import { Content, usePageData } from 'island/client';
 import { useLocaleSiteData } from '../../logic';
 
 export function DocLayout() {
-  const { toc: headers = [], siteData, pagePath } = usePageData();
+  const { toc: headers = [], siteData, pagePath, frontmatter } = usePageData();
   const themeConfig = siteData.themeConfig;
   const localesData = useLocaleSiteData();
   const sidebar = localesData.sidebar || [];
+  // siderbar Priority
+  // 1. frontmatter.sidebar
+  // 2. themeConfig.locales.sidebar
+  // 3. themeConfig.sidebar
   const hasSidebar =
-    (Array.isArray(sidebar) && sidebar.length > 0) ||
-    Object.keys(sidebar).length > 0;
+    frontmatter?.sidebar !== false &&
+    ((Array.isArray(sidebar) && sidebar.length > 0) ||
+      Object.keys(sidebar).length > 0);
   const outlineTitle =
     localesData?.outlineTitle || themeConfig?.outlineTitle || 'ON THIS PAGE';
-
-  const hasAside = headers.length > 0 && themeConfig.outline !== false;
+  const hasAside =
+    headers.length > 0 &&
+    themeConfig.outline !== false &&
+    frontmatter?.outline !== false;
 
   return (
     <div p="t-0 x-6 b-24 sm:6">
@@ -27,7 +34,7 @@ export function DocLayout() {
           <div
             relative="~"
             m="x-auto"
-            className="md:max-w-712px lg:min-w-640px"
+            className={'md:max-w-712px lg:min-w-640px'}
           >
             <div className="island-doc">
               <Content fallback={<div>Loading...</div>} />

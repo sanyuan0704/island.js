@@ -244,7 +244,11 @@ class SSGBuilder {
         const attrString = Object.keys(attrs).reduce((pre, cur) => {
           return `${pre} ${cur}="${attrs[cur]}"`;
         }, '');
-        return `<${tag} ${attrString}> ${children} </${tag}>`;
+        if (children === undefined || children === null) {
+          return `<${tag} ${attrString} />`;
+        } else {
+          return `<${tag} ${attrString}>${children}</${tag}>`;
+        }
       })
       .join('\n');
 
@@ -258,10 +262,10 @@ class SSGBuilder {
         this.#config.siteData!.icon
       }" type="image/svg+xml"></link>
       ${headTag || ''}
-      ${helmet?.title.toString() || ''}
-      ${helmet?.meta.toString() || ''}
-      ${helmet?.link.toString() || ''}
-      ${helmet?.style.toString() || ''}
+      ${helmet?.title?.toString() || ''}
+      ${helmet?.meta?.toString() || ''}
+      ${helmet?.link?.toString() || ''}
+      ${helmet?.style?.toString() || ''}
       <script defer src='https://ga.jspm.io/npm:es-module-shims@1.6.0/dist/es-module-shims.js'></script>
       <script type="importmap">
         {
