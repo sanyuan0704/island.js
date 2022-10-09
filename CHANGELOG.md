@@ -1,5 +1,30 @@
 
 
+## [0.3.2](https://github.com/sanyuan0704/island.js/compare/0.3.1...0.3.2) (2022-10-09)
+
+
+### Bug Fixes
+
+*  unexpect html string custom head children is undefined ([fabc4c1](https://github.com/sanyuan0704/island.js/commit/fabc4c18f5d016102370c3ef1bc4194e078269ac))
+* custom remark plugin not work ([d790b4e](https://github.com/sanyuan0704/island.js/commit/d790b4e8ed456d07528ee498b72d634691fa139d))
+* doc typo ([591cdc2](https://github.com/sanyuan0704/island.js/commit/591cdc2d2cadbd19f48f312f43d6a6ff49082b7b))
+* e2e test run failed ([#68](https://github.com/sanyuan0704/island.js/issues/68)) ([15cf399](https://github.com/sanyuan0704/island.js/commit/15cf3998930aa83ac243fe8da4dce4f2932678a5))
+* fragments should be excluded from route ([3c2a52a](https://github.com/sanyuan0704/island.js/commit/3c2a52aadb6c500965d4741f4a8e91408720e490))
+* in dark mode, the background color of search results ([#67](https://github.com/sanyuan0704/island.js/issues/67)) ([643df60](https://github.com/sanyuan0704/island.js/commit/643df6003612cb3f8fafd915c75411d72e7f4d9b))
+* last update time zone incorrect ([c07e014](https://github.com/sanyuan0704/island.js/commit/c07e014097a5884a49a54ee8ae9b95c2370c57fa))
+
+
+### Features
+
+* add api-page doc ([1d15083](https://github.com/sanyuan0704/island.js/commit/1d150839b66682d158c2c7b5c54ef32348abc6f7))
+* add doc page ([730642f](https://github.com/sanyuan0704/island.js/commit/730642f8bc8300518b9313076b845f4c9787bfe2))
+* add home page doc ([ee9aa67](https://github.com/sanyuan0704/island.js/commit/ee9aa679e3ecf27a913b0d700f9ec4f447ad1751))
+* add prev/nextPageText in `themeConfig` ([c59e98d](https://github.com/sanyuan0704/island.js/commit/c59e98de5567e084ea2e2a54853487975fb59936))
+* export custom HomeLayout interface ([4b7e979](https://github.com/sanyuan0704/island.js/commit/4b7e97937aa90c8bb97a6e83d5f720cd6ac2f8eb))
+* finish i18n and search doc ([df22399](https://github.com/sanyuan0704/island.js/commit/df22399adbf4ca8a768e2a3ca8655a0c83754135))
+* init default theme doc ([2ab6910](https://github.com/sanyuan0704/island.js/commit/2ab69101e34803bb4be7ac62e044c1122ba5356c))
+* optimize home doc ([ea9721f](https://github.com/sanyuan0704/island.js/commit/ea9721fc0842bcc94212b4935f1b39bbf9f18f43))
+
 ## [0.3.1](https://github.com/sanyuan0704/island.js/compare/0.3.0...0.3.1) (2022-10-07)
 
 
