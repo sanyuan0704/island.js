@@ -30,7 +30,8 @@ export async function pluginMdxRollup(
       [
         remarkPluginNormalizeLink,
         { base: config.base || '/', enableSpa: config.enableSpa }
-      ]
+      ],
+      ...(config.markdown?.remarkPlugins || [])
     ],
     rehypePlugins: [
       rehypePluginSlug,
@@ -60,7 +61,8 @@ export async function pluginMdxRollup(
           highlighter: await shiki.getHighlighter({ theme: 'nord' })
         }
       ],
-      rehypePluginPreWrapper
+      rehypePluginPreWrapper,
+      ...(config.markdown?.rehypePlugins || [])
     ]
   }) as Plugin;
 }
