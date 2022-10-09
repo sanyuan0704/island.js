@@ -1,4 +1,4 @@
-# Home 页面
+# Home 主页
 
 Island.js 默认主题内置了 Home 页面，你可以通过书写 markdown 的 Front Matter 来配置它。举个简单的例子：
 

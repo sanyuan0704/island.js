@@ -7,6 +7,7 @@
 - **开发体验好**: 基于 Vite 进行构建，启动和热更新速度极快。
 - **语法灵活**: 内置 MDX 支持，也就是说你可以在 Markdown 中使用 React 组件。
 - **高性能**: 基于[孤岛架构](https://jasonformat.com/islands-architecture/), 实现了 Partial Hydration，意味着更少的客户端 JavaScript 和更少的运行时开销。
+- **功能强大**: 默认主题内置了`夜间模式`、[`Home 主页`](/zh/guide/home-page)、[`API 预览页`](/zh/guide/api-page)、[`全文搜索`](/zh/guide/search)、[`国际化`](/zh/guide/i18n)等等能力。
 
 接下来，我们将从零开始搭建一个基于 Island.js 的文档站点。
 

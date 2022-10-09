@@ -1,4 +1,4 @@
-# API 页面
+# API 预览页
 
 Island.js 默认主题内置了 API 页面。
 

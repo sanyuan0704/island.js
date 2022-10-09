@@ -26,4 +26,13 @@ features:
   - title: '孤岛架构: 更高的生产性能'
     details: 采用 Islands 架构，意味着更少的 JavaScript 代码、局部 hydration， 从而带来更好的首屏性能。
     icon: ✨
+  - title: '功能丰富: 一站式解决方案'
+    details: 对全文搜索、国际化等常见功能可以做到开箱即用。
+    icon: 🛠️
+  - title: 'TypeScript: 优秀的类型支持'
+    details: 使用 TypeScript 编写，提供了优秀的类型支持，让你的开发更加顺畅。
+    icon: 🔑
+  - title: '扩展性强: 提供多种自定义能力'
+    details: 通过其扩展机制，你可以轻松的扩展 Island 的主题 UI 和构建能力。
+    icon: 🎨
 ---

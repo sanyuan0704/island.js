@@ -7,6 +7,7 @@
 - **Fast**: Island is built on top of Vite, which is a modern build tool that aims to provide a faster and leaner development experience.
 - **Flexible**: It has internal Mdx language support, which is a powerful way to write content. You can write, import and use React components in Markdown file.
 - **Performant**: It is designed to be [island architecture](https://jasonformat.com/islands-architecture/), which means less javascript bundle, partial hydration and better performance about FCP, TTI.
+- **Powerful**: Default theme includes a lot of features, such as `Dark Mode`, [`Home Page`](/en/guide/home-page), [`API Page`](/en/guide/api-page)、[`Full-text Search`](/en/guide/search), [`i18n`](/en/guide/i18n) etc.
 
 Next we will walk you through the steps to create a new Island.js doc site.
 

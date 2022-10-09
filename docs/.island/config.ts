@@ -136,11 +136,11 @@ function getSidebar(lang: 'zh' | 'en') {
             link: getLink('/guide/navbar')
           },
           {
-            text: getText('Home 页面', 'Home Page'),
+            text: getText('Home 主页', 'Home Page'),
             link: getLink('/guide/home-page')
           },
           {
-            text: getText('API 页面', 'API Page'),
+            text: getText('API 预览页', 'API Page'),
             link: getLink('/guide/api-page')
           },
           {
