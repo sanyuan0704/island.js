@@ -5,6 +5,7 @@ import { normalizePath } from 'vite';
 import { RouteService } from './RouteService';
 import type { ComponentType } from 'react';
 import { RouteOptions } from 'shared/types/index';
+import { watch } from 'chokidar';
 
 /**
  * How does the conventional route work?
@@ -66,18 +67,14 @@ export function pluginRoutes(options: RouteOptions = {}): Plugin {
           });
         }
       };
-      server.watcher
+      watch(scanDir)
         .on('add', async (file) => {
-          if (file.startsWith(scanDir)) {
-            await routeService.addRoute(file);
-            fileChange();
-          }
+          await routeService.addRoute(file);
+          fileChange();
         })
         .on('unlink', async (file) => {
-          if (file.startsWith(scanDir)) {
-            await routeService.removeRoute(file);
-            fileChange();
-          }
+          await routeService.removeRoute(file);
+          fileChange();
         });
     }
   };

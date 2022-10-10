@@ -64,6 +64,7 @@
     "@vitejs/plugin-react": "2.0.1",
     "acorn": "^8.8.0",
     "cac": "6.7.12",
+    "chokidar": "^3.5.3",
     "compression": "^1.7.4",
     "copy-to-clipboard": "^3.3.2",
     "debug": "^4.3.4",
@@ -158,7 +159,7 @@
   ],
   "lint-staged": {
     "**/*.{js,jsx,tsx,ts,json}": [
-      "eslint --fix"
+      "pnpm run lint:fix"
     ]
   }
 }
