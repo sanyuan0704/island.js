@@ -16,7 +16,7 @@ const getGridClass = (count?: number) => {
 };
 
 export function HomeFeature() {
-  const [frontmatter] = useFrontmatter();
+  const frontmatter = useFrontmatter();
   const features = frontmatter?.features;
   const gridClass = getGridClass(features?.length);
 

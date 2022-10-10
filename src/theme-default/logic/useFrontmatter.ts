@@ -19,5 +19,5 @@ export const useFrontmatter = () => {
     }
   }, []);
 
-  return [frontmatter];
+  return frontmatter;
 };
