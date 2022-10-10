@@ -7,7 +7,7 @@ export function Footer() {
     <footer
       p="y-8 x-6 sm:8"
       bg="bg-default"
-      relative
+      relative=""
       border="t-1 b-0 solid divider-light"
     >
       <div m="auto" w="100%" text="center">
