@@ -52,7 +52,7 @@ export function HomeFeature() {
                 {icon}
               </div>
               <h2 font="bold">{title}</h2>
-              <p pt="2" text="sm text-2" font="medium" leading-6>
+              <p pt="2" text="sm text-2" font="medium" leading-6="">
                 {details}
               </p>
             </article>

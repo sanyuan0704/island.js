@@ -39,11 +39,11 @@ const NavBarTitle = ({ title }: { title: string }) => {
 const NavMenu = ({ menuItems }: { menuItems: DefaultTheme.NavItem[] }) => {
   return (
     <div className="menu">
-      {menuItems.map((item) =>
+      {menuItems.map((item, index) =>
         'link' in item ? (
-          <NavMenuSingleItem {...item} />
+          <NavMenuSingleItem key={index} {...item} />
         ) : (
-          <div m="x-3" last="mr-0">
+          <div m="x-3" last="mr-0" key={index}>
             <NavMenuGroup {...item} />
           </div>
         )
