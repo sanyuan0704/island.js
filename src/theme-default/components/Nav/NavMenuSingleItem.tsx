@@ -5,7 +5,9 @@ import { Link } from '../Link/index';
 
 export function NavMenuSingleItem(item: DefaultTheme.NavItemWithLink) {
   const location = useLocation();
-  const isActive = new RegExp(item.activeMatch || '').test(location.pathname);
+  const isActive = new RegExp(item.activeMatch || item.link).test(
+    location.pathname
+  );
   return (
     <div
       key={item.text}

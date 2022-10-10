@@ -4,6 +4,7 @@ import { Link } from '../Link/index';
 import { DefaultTheme } from '../../../shared/types';
 import { normalizeHref, useSidebarData } from '../../logic/index';
 import { useLocation } from 'react-router-dom';
+import { isActive } from '../../logic/index';
 
 export function SideBar() {
   const { pathname } = useLocation();
@@ -15,7 +16,7 @@ export function SideBar() {
     if ('items' in item) {
       children = item.items.map((child) => renderGroupItem(child, depth + 1));
     }
-    const isActive = pathname.startsWith(item.link!);
+    const active = isActive(pathname, item.link);
     return (
       <div style={{ marginLeft }}>
         <div
@@ -23,7 +24,7 @@ export function SideBar() {
           block="~"
           text="sm"
           font-medium="~"
-          className={`${isActive ? 'text-brand' : 'text-text-2'}`}
+          className={`${active ? 'text-brand' : 'text-text-2'}`}
         >
           <Link href={normalizeHref(item.link!)}>{item.text}</Link>
         </div>

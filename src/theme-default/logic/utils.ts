@@ -49,3 +49,13 @@ export function backTrackHeaders(
   }
   return res;
 }
+
+export function isActive(currentPath: string, targetLink?: string) {
+  if (!targetLink) {
+    return false;
+  }
+  if (targetLink === '' || targetLink === '/') {
+    return currentPath === targetLink;
+  }
+  return currentPath.startsWith(targetLink);
+}

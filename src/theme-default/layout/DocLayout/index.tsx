@@ -34,7 +34,12 @@ export function DocLayout() {
           <div
             relative="~"
             m="x-auto"
+            p="l-2"
             className={'md:max-w-712px lg:min-w-640px'}
+            style={{
+              maxWidth: hasAside ? '' : '1024px',
+              paddingLeft: hasAside ? '0' : '72px'
+            }}
           >
             <div className="island-doc">
               <Content fallback={<div>Loading...</div>} />
