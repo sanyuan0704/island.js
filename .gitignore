@@ -12,3 +12,4 @@ TODOs.md
 *.tgz
 vendors
 .vite-inspect
+.eslintcache

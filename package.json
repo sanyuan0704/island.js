@@ -30,15 +30,16 @@
     "dev:docs": "node ./bin/island docs",
     "build:docs": "node ./bin/island build docs && cp -r ./docs/.island/index.html ./docs/.island/dist",
     "start:docs": "node ./bin/island start docs",
-    "lint": "eslint --ext .ts,.tsx,.js,.jsx ./",
-    "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx --quiet ./",
+    "lint": "eslint --ext .ts,.tsx,.js,.jsx --cache ./",
+    "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx --quiet --cache ./",
     "test": "vitest run",
     "e2e:test": "playwright test",
     "e2e:prepare": "tsx ./scripts/prepare-e2e.cts",
     "prepublishOnly": "pnpm build",
     "release": "release-it",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
-    "inspect": "serve .vite-inspect"
+    "inspect": "serve .vite-inspect",
+    "prepare": "husky install"
   },
   "keywords": [
     "vite",
