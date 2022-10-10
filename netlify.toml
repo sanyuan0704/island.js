@@ -4,3 +4,11 @@
 [build]
   publish = "docs/.island/dist"
   command = "npx pnpm i --store=node_modules/.pnpm-store --frozen-lockfile && npm run build && npm run build:docs"
+[[headers]]
+  for = "*.js" # js files should be set this way
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+[[headers]]
+  for = "*.css" # css files too
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
