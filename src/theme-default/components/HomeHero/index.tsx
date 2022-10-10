@@ -1,6 +1,5 @@
-import { usePageData } from 'island/client';
 import { Button } from '../Button';
-import { normalizeHref } from '../../logic/index';
+import { normalizeHref, useFrontmatter } from '../../logic/index';
 import styles from './index.module.scss';
 
 const DEFAULT_HERO = {
@@ -12,7 +11,7 @@ const DEFAULT_HERO = {
 };
 
 export function HomeHero() {
-  const { frontmatter } = usePageData();
+  const frontmatter = useFrontmatter();
   const hero = frontmatter?.hero || DEFAULT_HERO;
   const hasImage = hero.image !== undefined;
 

@@ -1,5 +1,5 @@
 import styles from './index.module.scss';
-import { usePageData } from 'island/client';
+import { useFrontmatter } from '../../logic';
 
 const getGridClass = (count?: number) => {
   if (!count) {
@@ -16,9 +16,10 @@ const getGridClass = (count?: number) => {
 };
 
 export function HomeFeature() {
-  const { frontmatter } = usePageData();
+  const frontmatter = useFrontmatter();
   const features = frontmatter?.features;
   const gridClass = getGridClass(features?.length);
+
   return (
     <div className="max-w-1152px" m="auto" flex="~ wrap" justify="between">
       {features?.map((feature) => {
