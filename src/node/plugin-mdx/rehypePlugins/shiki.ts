@@ -15,8 +15,8 @@ function highlightSingleLine(
   // Children are composed of span and \n alternately, so we should get the even rows to highlight
   // @ts-expect-error The type problem of hast-util-from-html
   const codeLines = fragmentAst.children[0].children[0].children;
-  if (line < 1 || !codeLines?.length || line > codeLines.length) return;
   const targetIndex = (line - 1) * 2;
+  if (line < 1 || !codeLines?.length || targetIndex >= codeLines.length) return;
   codeLines[targetIndex].properties.className = 'line highlighted';
 }
 
