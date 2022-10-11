@@ -1,4 +1,4 @@
-# Code Line Hightlight
+# Code Line Highlighting
 
 Island.js supports highlighting of specified code lines. You can specify line highlighting in any of the following ways.
 
