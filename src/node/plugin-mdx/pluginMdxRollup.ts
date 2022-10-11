@@ -13,6 +13,7 @@ import { remarkPluginToc } from './remarkPlugins/toc';
 import { remarkPluginTip } from './remarkPlugins/tip';
 import shiki from 'shiki';
 import { rehypePluginShiki } from './rehypePlugins/shiki';
+import { rehypePluginLineNumbers } from './rehypePlugins/lineNumbers';
 import { SiteConfig } from 'shared/types/index';
 import { Plugin } from 'vite';
 
@@ -20,6 +21,40 @@ export async function pluginMdxRollup(
   config: SiteConfig,
   isServer: boolean
 ): Promise<Plugin> {
+  const rehypePlugins = [
+    rehypePluginSlug,
+    [
+      rehypePluginAutolinkHeadings,
+      {
+        properties: {
+          class: 'header-anchor',
+          ariaHidden: 'true'
+        },
+        content: {
+          type: 'text',
+          value: '#'
+        }
+      }
+    ],
+    [
+      // Open new window then click external link
+      rehypePluginExternalLinks,
+      {
+        target: '_blank'
+      }
+    ],
+    [
+      rehypePluginShiki,
+      {
+        highlighter: await shiki.getHighlighter({ theme: 'nord' })
+      }
+    ],
+    rehypePluginPreWrapper,
+    ...(config.markdown?.rehypePlugins || [])
+  ];
+
+  rehypePlugins.push(rehypePluginLineNumbers);
+
   return pluginMdx({
     // We should reserve the jsx in ssr build
     // to ensure the island components can be collected by `babel-plugin-island`
@@ -38,36 +73,6 @@ export async function pluginMdxRollup(
       ],
       ...(config.markdown?.remarkPlugins || [])
     ],
-    rehypePlugins: [
-      rehypePluginSlug,
-      [
-        rehypePluginAutolinkHeadings,
-        {
-          properties: {
-            class: 'header-anchor',
-            ariaHidden: 'true'
-          },
-          content: {
-            type: 'text',
-            value: '#'
-          }
-        }
-      ],
-      [
-        // Open new window then click external link
-        rehypePluginExternalLinks,
-        {
-          target: '_blank'
-        }
-      ],
-      [
-        rehypePluginShiki,
-        {
-          highlighter: await shiki.getHighlighter({ theme: 'nord' })
-        }
-      ],
-      rehypePluginPreWrapper,
-      ...(config.markdown?.rehypePlugins || [])
-    ]
+    rehypePlugins
   }) as Plugin;
 }

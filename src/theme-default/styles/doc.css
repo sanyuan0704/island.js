@@ -359,13 +359,15 @@
   z-index: 3;
   border-right: 1px solid var(--island-c-divider-dark-2);
   padding-top: 16px;
-  width: 32px;
+  width: 36px;
   text-align: center;
   font-family: var(--island-font-family-mono);
   line-height: var(--island-code-line-height);
   font-size: var(--island-code-font-size);
   color: var(--island-code-line-number-color);
   transition: border-color 0.5s, color 0.5s;
+  display: flex;
+  flex-direction: column;
 }
 
 .island-doc [class*='language-'] > button.copy {
