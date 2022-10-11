@@ -13,22 +13,11 @@ function highlightSingleLine(
   fragmentAst: ReturnType<typeof fromHtml>
 ) {
   // Children are composed of span and \n alternately, so we should get the even rows to highlight
-  if (
-    line >= 1 &&
-    line * 2 - 2 <
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      fragmentAst.children[0].children[0].children.length &&
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    fragmentAst.children[0].children[0].children?.[line * 2 - 2]?.properties
-  ) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    fragmentAst.children[0].children[0].children[
-      line * 2 - 2
-    ].properties.className = 'line highlighted';
-  }
+  // @ts-expect-error The type problem of hast-util-from-html
+  const codeLines = fragmentAst.children[0].children[0].children;
+  if (line < 1 || !codeLines?.length || line > codeLines.length) return;
+  const targetIndex = (line - 1) * 2;
+  codeLines[targetIndex].properties.className = 'line highlighted';
 }
 
 // https://github.com/leafac/rehype-shiki/blob/41e64054d72ab29d5ad48c4c070499fc075090e9/source/index.ts
@@ -62,16 +51,21 @@ export const rehypePluginShiki: Plugin<[Options], import('hast').Root> = ({
         }
 
         // Support single line and line range
-        const highlightLines: (number | number[])[] = [];
+        const highlightLines: number[] = [];
         highlightRegExecResult[2]
           ?.slice(1, highlightRegExecResult[2].length - 1)
           ?.split(',')
           .forEach((str) => {
             if (str.includes('-')) {
               const [start, end] = str.split('-');
-              highlightLines.push([parseInt(start), parseInt(end)]);
+              // 3,5 -> [3, 4, 5]
+              highlightLines.push(
+                ...Array(Number(end) - Number(start) + 1)
+                  .fill(0)
+                  .map((_, i) => Number(start) + i)
+              );
             } else {
-              highlightLines.push(parseInt(str));
+              highlightLines.push(Number(str));
             }
           });
 
@@ -82,15 +76,9 @@ export const rehypePluginShiki: Plugin<[Options], import('hast').Root> = ({
         fragmentAst.children[0].children[0].properties.className =
           'language-' + lang;
 
-        highlightLines.forEach((line) => {
-          if (line instanceof Array) {
-            for (let i = line[0]; i <= line[1]; i++) {
-              highlightSingleLine(i, fragmentAst);
-            }
-          } else {
-            highlightSingleLine(line, fragmentAst);
-          }
-        });
+        highlightLines.forEach((line) =>
+          highlightSingleLine(line, fragmentAst)
+        );
         parent?.children.splice(index!, 1, ...fragmentAst.children);
       }
     });
