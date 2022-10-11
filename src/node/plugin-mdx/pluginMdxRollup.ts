@@ -52,8 +52,9 @@ export async function pluginMdxRollup(
     rehypePluginPreWrapper,
     ...(config.markdown?.rehypePlugins || [])
   ];
-
-  rehypePlugins.push(rehypePluginLineNumbers);
+  if (config.markdown?.lineNumbers) {
+    rehypePlugins.push(rehypePluginLineNumbers);
+  }
 
   return pluginMdx({
     // We should reserve the jsx in ssr build
