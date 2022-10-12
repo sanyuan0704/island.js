@@ -1,6 +1,6 @@
 {
   "name": "islandjs",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Vite & Islands architecture SSG framework",
   "packageManager": "pnpm@7.9.2",
   "type": "module",

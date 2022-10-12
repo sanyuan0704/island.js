@@ -1,3 +1,21 @@
+
+
+## [0.3.4](https://github.com/sanyuan0704/island.js/compare/0.3.3...0.3.4) (2022-10-12)
+
+
+### Bug Fixes
+
+* home page hmr doesn't work ([#79](https://github.com/sanyuan0704/island.js/issues/79)) ([1358b13](https://github.com/sanyuan0704/island.js/commit/1358b13056a9e1a6ab46062ca0264f6c7dad6cba))
+* the server watcher ([#78](https://github.com/sanyuan0704/island.js/issues/78)) ([bfaaffe](https://github.com/sanyuan0704/island.js/commit/bfaaffe71111be6d522f093aaeffd373c58a04fc))
+* **theme-default:** unocss errors ([#76](https://github.com/sanyuan0704/island.js/issues/76)) ([523480b](https://github.com/sanyuan0704/island.js/commit/523480bda076ce93419c5fe64a95ea34cb4a4619))
+* unexpect chokidar watch ([ad3db51](https://github.com/sanyuan0704/island.js/commit/ad3db513f7c459fc3c0929d729b93944b3da94c1))
+
+
+### Features
+
+* code line highlight ([#82](https://github.com/sanyuan0704/island.js/issues/82)) ([e5bb344](https://github.com/sanyuan0704/island.js/commit/e5bb3446930162908a5cebfb667beff56b4ef6bc))
+* custom container render function ([#81](https://github.com/sanyuan0704/island.js/issues/81)) ([4ebd099](https://github.com/sanyuan0704/island.js/commit/4ebd09952154890a38968bbdafa854d84f16ff60))
+
 ## [0.3.3](https://github.com/sanyuan0704/island.js/compare/0.3.2...0.3.3) (2022-10-10)
 
 ### Bug Fixes
