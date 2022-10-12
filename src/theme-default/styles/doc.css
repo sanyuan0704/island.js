@@ -82,8 +82,8 @@
 }
 
 /**
-  * Paragraph and inline elements
-  * -------------------------------------------------------------------------- */
+   * Paragraph and inline elements
+   * -------------------------------------------------------------------------- */
 
 .island-doc p,
 .island-doc summary {
@@ -125,8 +125,8 @@
 }
 
 /**
-  * Lists
-  * -------------------------------------------------------------------------- */
+   * Lists
+   * -------------------------------------------------------------------------- */
 
 .island-doc ul,
 .island-doc ol {
@@ -152,8 +152,8 @@
 }
 
 /**
-  * Table
-  * -------------------------------------------------------------------------- */
+   * Table
+   * -------------------------------------------------------------------------- */
 
 .island-doc table {
   display: block;
@@ -188,8 +188,8 @@
 }
 
 /**
-  * Decorational elements
-  * -------------------------------------------------------------------------- */
+   * Decorational elements
+   * -------------------------------------------------------------------------- */
 
 .island-doc hr {
   margin: 16px 0;
@@ -198,8 +198,8 @@
 }
 
 /**
-  * Custom Block
-  * -------------------------------------------------------------------------- */
+   * Custom Block
+   * -------------------------------------------------------------------------- */
 
 .island-doc .custom-block {
   margin: 16px 0;
@@ -241,8 +241,8 @@
 }
 
 /**
-  * Code
-  * -------------------------------------------------------------------------- */
+   * Code
+   * -------------------------------------------------------------------------- */
 
 /* inline code */
 .island-doc :not(pre, h1, h2, h3, h4, h5, h6) > code {
@@ -437,4 +437,58 @@
 .island-doc [class*='language-']:hover > button.copy + span.lang,
 .island-doc [class*='language-'] > button.copy:focus + span.lang {
   opacity: 0;
+}
+
+/**
+   * Custom container
+   * -------------------------------------------------------------------------- */
+
+.island-doc .island-directive {
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 16px 16px 8px;
+  line-height: 24px;
+  font-size: 14px;
+  margin: 16px 0;
+}
+
+.island-doc .island-directive .island-directive-title {
+  font-weight: 700;
+  margin: 0;
+}
+
+.island-doc .island-directive .island-directive-content p {
+  margin: 8px 0;
+}
+
+.island-doc .island-directive .island-directive-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 3px;
+  background-image: var(--island-icon-tip);
+}
+
+.island-doc .island-directive.tip {
+  border-color: var(--island-custom-block-tip-border);
+  color: var(--island-custom-block-tip-text);
+  background-color: var(--island-custom-block-tip-bg);
+}
+
+.island-doc .island-directive.info {
+  border-color: var(--island-custom-block-info-border);
+  color: var(--island-custom-block-info-text);
+  background-color: var(--island-custom-block-info-bg);
+}
+
+.island-doc .island-directive.warning {
+  border-color: var(--island-custom-block-warning-border);
+  color: var(--island-custom-block-warning-text);
+  background-color: var(--island-custom-block-warning-bg);
+}
+
+.island-doc .island-directive.danger {
+  border-color: var(--island-custom-block-danger-border);
+  color: var(--island-custom-block-danger-text);
+  background-color: var(--island-custom-block-danger-bg);
 }

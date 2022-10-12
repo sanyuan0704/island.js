@@ -53,6 +53,54 @@ The properties defined in front matter will be passed to the component as `meta`
 
 You can see more front matter config detail in [config-front-matter](/en/api/config-front-matter).
 
+## Custom Containers
+
+**Input:**
+
+```markdown
+:::tip
+This is a `tip`.
+:::
+
+:::info
+This ia an `info` box.
+:::
+
+:::warning
+This is a warning.
+:::
+
+:::danger
+This is a dangerous warning.
+:::
+
+:::other
+`tip` as a custom container of the bottom-line type
+:::
+```
+
+**Output:**
+
+:::tip
+This is a `tip`.
+:::
+
+:::info
+This ia an `info` box.
+:::
+
+:::warning
+This is a warning.
+:::
+
+:::danger
+This is a dangerous warning.
+:::
+
+:::other
+`tip` as a custom container of the bottom-line type
+:::
+
 ## Code Line Highlighting
 
 Island.js supports highlighting of specified code lines. You can specify line highlighting in any of the following ways.

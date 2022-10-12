@@ -57,6 +57,54 @@ title: Hello World
 
 更多的配置详情请参考 [config-front-matter](/zh/api/config-front-matter)。
 
+## Custom Containers
+
+**输入：**
+
+```markdown
+:::tip
+这是一个`tip`类型的`block`
+:::
+
+:::info
+这是一个`info`类型的`block`
+:::
+
+:::warning
+这是一个`warning`类型的`block`
+:::
+
+:::danger
+这是一个`danger`类型的`block`
+:::
+
+:::other
+`tip`作为兜底类型的`block`
+:::
+```
+
+**输出：**
+
+:::tip
+这是一个`tip`类型的`block`
+:::
+
+:::info
+这是一个`info`类型的`block`
+:::
+
+:::warning
+这是一个`warning`类型的`block`
+:::
+
+:::danger
+这是一个`danger`类型的`block`
+:::
+
+:::other
+`tip`作为兜底类型的`block`
+:::
+
 ## 指定代码行高亮
 
 Island.js 支持指定代码行的高亮显示。你可以用以下任意方式指定代码行高亮。
