@@ -7,6 +7,8 @@ import type { ComponentType } from 'react';
 import { RouteOptions } from 'shared/types/index';
 import { watch } from 'chokidar';
 
+export const DEFAULT_EXCLUDE = ['**/node_modules/**', '**/.*', '**/dist/**'];
+
 /**
  * How does the conventional route work?
  * Essentially, it turns files into route object, e.g. src/pages/index.tsx -> { path: '/', element: <Index /> }
@@ -67,7 +69,10 @@ export function pluginRoutes(options: RouteOptions = {}): Plugin {
           });
         }
       };
-      watch(scanDir)
+      watch(scanDir, {
+        ignored: [...DEFAULT_EXCLUDE, ...(options.exclude || [])],
+        ignoreInitial: true
+      })
         .on('add', async (file) => {
           await routeService.addRoute(file);
           fileChange();

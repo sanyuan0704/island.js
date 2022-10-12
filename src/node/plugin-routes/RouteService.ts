@@ -3,7 +3,7 @@ import fastGlob from 'fast-glob';
 import fs from 'fs-extra';
 import { RUNTIME_BUNDLE_OUTDIR } from '../constants';
 import path from 'path';
-import { DEFAULT_PAGE_EXTENSIONS } from '.';
+import { DEFAULT_EXCLUDE, DEFAULT_PAGE_EXTENSIONS } from '.';
 import { RouteOptions } from 'shared/types';
 
 export interface RouteMeta {
@@ -42,7 +42,7 @@ export class RouteService {
       .sync([`**/*.{${this.#extensions.join(',')}}`, ...this.#include], {
         cwd: this.scanDir,
         absolute: true,
-        ignore: ['**/node_modules/**', '**/.*', '**/dist/**', ...this.#exclude]
+        ignore: [...DEFAULT_EXCLUDE, ...this.#exclude]
       })
       .sort();
     files.forEach((file) => this.addRoute(file));
