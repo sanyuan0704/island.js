@@ -1,5 +1,17 @@
 
 
+## [0.3.5](https://github.com/sanyuan0704/island.js/compare/0.3.4...0.3.5) (2022-10-13)
+
+
+### Bug Fixes
+
+* rehype line number plugin error ([d1056ca](https://github.com/sanyuan0704/island.js/commit/d1056cae6ac3335598eb51413a698cc4ea154781))
+
+
+### Features
+
+* line numbers plugin ([#84](https://github.com/sanyuan0704/island.js/issues/84)) ([7169e50](https://github.com/sanyuan0704/island.js/commit/7169e50007e55225b4cbe90a71efb3383c71967c))
+
 ## [0.3.4](https://github.com/sanyuan0704/island.js/compare/0.3.3...0.3.4) (2022-10-12)
 
 
