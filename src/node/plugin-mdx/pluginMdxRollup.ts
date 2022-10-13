@@ -68,7 +68,7 @@ export async function pluginMdxRollup(
         }
       ],
       rehypePluginPreWrapper,
-      ...(config.markdown?.lineNumbers ? rehypePluginLineNumbers : []),
+      ...(config.markdown?.lineNumbers ? [rehypePluginLineNumbers] : []),
       ...(config.markdown?.rehypePlugins || [])
     ]
   }) as Plugin;

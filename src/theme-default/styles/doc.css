@@ -357,7 +357,6 @@
   bottom: 0;
   left: 0;
   z-index: 3;
-  border-right: 1px solid var(--island-c-divider-dark-2);
   padding-top: 16px;
   width: 36px;
   text-align: center;
