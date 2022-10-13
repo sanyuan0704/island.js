@@ -8,6 +8,7 @@ import { APILayout } from '../APILayout';
 import { DocLayoutProps } from '../DocLayout/index';
 import { HomeLayoutProps } from '../HomeLayout/index';
 import type { NavProps } from '../../components/Nav/index';
+import { BackTop } from '../../components/BackTop';
 
 export type LayoutProps = {
   top?: React.ReactNode;
@@ -75,6 +76,7 @@ export const Layout: React.FC<LayoutProps> = (props) => {
         {getContentLayout()}
       </section>
       {bottom}
+      <BackTop />
     </div>
   );
 };
