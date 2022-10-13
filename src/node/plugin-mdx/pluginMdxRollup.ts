@@ -13,6 +13,7 @@ import { remarkPluginToc } from './remarkPlugins/toc';
 import { remarkPluginTip } from './remarkPlugins/tip';
 import shiki from 'shiki';
 import { rehypePluginShiki } from './rehypePlugins/shiki';
+import { rehypePluginLineNumbers } from './rehypePlugins/lineNumbers';
 import { SiteConfig } from 'shared/types/index';
 import { Plugin } from 'vite';
 
@@ -67,6 +68,7 @@ export async function pluginMdxRollup(
         }
       ],
       rehypePluginPreWrapper,
+      ...(config.markdown?.lineNumbers ? rehypePluginLineNumbers : []),
       ...(config.markdown?.rehypePlugins || [])
     ]
   }) as Plugin;

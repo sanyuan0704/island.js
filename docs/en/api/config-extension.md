@@ -173,3 +173,20 @@ export default defineConfig({
   }
 });
 ```
+
+### markdown.lineNumbers
+
+- Type: `Boolean`,
+- Default: false
+
+You can enable line numbers for each code blocks via config:
+
+```js
+import { defineConfig } from 'islandjs';
+
+export default defineConfig({
+  markdown: {
+    lineNumbers: true
+  }
+});
+```

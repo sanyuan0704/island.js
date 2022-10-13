@@ -197,4 +197,5 @@ export interface RouteOptions {
 export interface MarkdownOptions {
   remarkPlugins?: PluggableList;
   rehypePlugins?: PluggableList;
+  lineNumbers?: boolean;
 }
