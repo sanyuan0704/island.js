@@ -21,41 +21,6 @@ export async function pluginMdxRollup(
   config: SiteConfig,
   isServer: boolean
 ): Promise<Plugin> {
-  const rehypePlugins = [
-    rehypePluginSlug,
-    [
-      rehypePluginAutolinkHeadings,
-      {
-        properties: {
-          class: 'header-anchor',
-          ariaHidden: 'true'
-        },
-        content: {
-          type: 'text',
-          value: '#'
-        }
-      }
-    ],
-    [
-      // Open new window then click external link
-      rehypePluginExternalLinks,
-      {
-        target: '_blank'
-      }
-    ],
-    [
-      rehypePluginShiki,
-      {
-        highlighter: await shiki.getHighlighter({ theme: 'nord' })
-      }
-    ],
-    rehypePluginPreWrapper,
-    ...(config.markdown?.rehypePlugins || [])
-  ];
-  if (config.markdown?.lineNumbers) {
-    rehypePlugins.push(rehypePluginLineNumbers);
-  }
-
   return pluginMdx({
     // We should reserve the jsx in ssr build
     // to ensure the island components can be collected by `babel-plugin-island`
@@ -74,6 +39,37 @@ export async function pluginMdxRollup(
       ],
       ...(config.markdown?.remarkPlugins || [])
     ],
-    rehypePlugins
+    rehypePlugins: [
+      rehypePluginSlug,
+      [
+        rehypePluginAutolinkHeadings,
+        {
+          properties: {
+            class: 'header-anchor',
+            ariaHidden: 'true'
+          },
+          content: {
+            type: 'text',
+            value: '#'
+          }
+        }
+      ],
+      [
+        // Open new window then click external link
+        rehypePluginExternalLinks,
+        {
+          target: '_blank'
+        }
+      ],
+      [
+        rehypePluginShiki,
+        {
+          highlighter: await shiki.getHighlighter({ theme: 'nord' })
+        }
+      ],
+      rehypePluginPreWrapper,
+      ...(config.markdown?.lineNumbers ? rehypePluginLineNumbers : []),
+      ...(config.markdown?.rehypePlugins || [])
+    ]
   }) as Plugin;
 }

@@ -179,7 +179,7 @@ export default defineConfig({
 - Type: `Boolean`,
 - Default: false
 
-是否给代码块加上行号，默认是不展示
+是否给代码块加上行号，默认是不展示。
 
 ```js
 import { defineConfig } from 'islandjs';
