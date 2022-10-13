@@ -28,23 +28,23 @@ export function Layout() {
 }
 ```
 
-You only need to add a `__island` prop to the component when you use it, and then the component will automatically be identified as a island component.Island.js will only inject the client script of island components as well as their props when they are rendered on the client.
+You only need to add a `__island` prop to the component when you use it, and then the component will automatically be identified as an island component. Island.js will only inject the client script of island components as well as their props when they are rendered on the client.
 
 ### Internal Implement
 
-**1. Server runtime**.The server runtime is responsible for the server-side rendering of the islands, and it is also the core of the islands architecture.The main task of the server runtime is to collect the islands information in `renderToString` process.
+**1. Server runtime**.The server runtime is responsible for the server-side rendering of the islands, and it is also the core of the islands architecture. The main task of the server runtime is to collect the islands information in `renderToString` process.
 
 In `Island.js`, it hijack the react/jsx-runtime's jsx function and collect the islands information when `__island` prop is found in the component.
 
-**2. Build time**.The build time is responsible for generating the client script of the islands and injecting it into the html.In build time, Island.js will generate three bundle:
+**2. Build time**. The build time is responsible for generating the client script of the islands and injecting it into the html. In build time, Island.js will generate three bundle:
 
 - Server bundle, for rendering to html string in server.
 - Client hydration bundle, for hydrating the islands in client.
-- Islands bundle, for registering the islands components and props on window object.
+- Islands bundle, for registering the islands components and props on `window` object.
 
-Island.js will combine all island components into a virtual module and bundle them.In the virtual module, all of the island components will be hang on `window` object.So in client hydration bundle, we can get the island components from `window` object and hydrate them separately.
+Island.js will combine all island components into a virtual module and bundle them. In the virtual module, all of the island components will be hang on `window` object. So in client hydration bundle, we can get the island components from `window` object and hydrate them separately.
 
-**3. Client runtime**.The client runtime is responsible for hydrating the islands in browser to make them interactive.
+**3. Client runtime**. The client runtime is responsible for hydrating the islands in browser to make them interactive.
 
 There are the some relevant code in repository:
 

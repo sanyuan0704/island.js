@@ -2,7 +2,7 @@
 
 ## Create config file
 
-Without any configuration, the page is pretty minimal, which has no navigation and no sidebar.However, you can configure the site by `.island/config.ts` file and custom your own site.
+Without any configuration, the page is pretty minimal, which has no navigation and no sidebar. However, you can configure the site by `.island/config.ts` file and custom your own site.
 
 For example, in the initial project created by previous guide, you can add the config file and the project structure will be like this:
 
@@ -27,11 +27,11 @@ export default defineConfig({
 
 There are some tips for the config file:
 
-- 1. Island.js support `.js`、`.ts`、`.mjs`、`.cjs` file as config file.However, it is recommended to use TypeScript config because you can use `defineConfig` to get type hint.
+- 1. Island.js support `.js`、`.ts`、`.mjs`、`.cjs` file as config file. However, it is recommended to use TypeScript config because you can use `defineConfig` to get type hint.
 
 - 2. config file should has a default export, which is a `SiteConfig` object.
 
-In above example, we set the `title` of the site to `my-site`, then you can run start the dev server by `yarn dev:docs`.You will see the title of the site has been changed to `my-site`.This means you have awake your first site config, wonderful!
+In above example, we set the `title` of the site to `my-site`, then you can start the dev server by `yarn dev`.You will see the title of the site has been changed to `my-site`. This means you have awake your first site config, wonderful!
 
 In next section, we will introduce nav and sidebar config, which is very important for a doc site.
 

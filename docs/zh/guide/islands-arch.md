@@ -28,19 +28,19 @@ export function Layout() {
 }
 ```
 
-使用时只需要在组件中添加一个`__island` prop，然后组件就会自动被识别为孤岛组件。Island.js 只会在孤岛组件的客户端脚本和它们的 props 注入在客户端中。
+使用时只需要在组件中添加一个 `__island` prop，然后组件就会自动被识别为孤岛组件。Island.js 只会在孤岛组件的客户端脚本和它们的 props 注入在客户端中。
 
 ### 内部实现细节
 
-**1. Server runtime**。服务器运行时负责服务端渲染，也就是组件到 HTML 的转换过程(renderToString)。这个阶段的主要任务是在`renderToString`过程中收集孤岛组件信息。
+**1. Server runtime**。服务器运行时负责服务端渲染，也就是组件到 HTML 的转换过程(renderToString)。这个阶段的主要任务是在 `renderToString` 过程中收集孤岛组件信息。
 
-在 Island.js 中，我们使用`react/jsx-runtime`来实现 jsx 的转换，所以我们需要在`react/jsx-runtime`中劫持 jsx 函数，当发现组件中有`__island` prop 时，就会收集孤岛组件的信息。
+在 Island.js 中，我们使用 `react/jsx-runtime` 来实现 jsx 的转换，所以我们需要在 `react/jsx-runtime` 中劫持 jsx 函数，当发现组件中有 `__island` prop 时，就会收集孤岛组件的信息。
 
 **2. Build time**。构建时负责生成孤岛组件的客户端脚本并注入到 HTML 中。在构建时 Island.js 会生成三个 bundle：
 
 - `Server bundle`，用于服务端渲染。
 - `Client hydration bundle`，用于客户端 hydration。
-- `Islands bundle`，用于注册孤岛组件的客户端脚本，所有孤岛组件将会挂载在`window`对象上。
+- `Islands bundle`，用于注册孤岛组件的客户端脚本，所有孤岛组件将会挂载在 `window` 对象上。
 
 在 Island.js 中，收集完所有的孤岛组件后，会构造一个虚拟模块，作用是将将所有的孤岛组件注册到 window 对象上，因此在客户端 hydration bundle 中，我们可以从 window 对象上获取到所有的孤岛组件，然后对其进行 hydration。
 

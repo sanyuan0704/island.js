@@ -3,7 +3,7 @@ pageType: home
 
 hero:
   name: Island
-  text: Vite & Mdx Powered Static Site Generator
+  text: Vite & MDX Powered Static Site Generator
   tagline: Simple, powerful, and performant.
   image:
     src: /island.png
