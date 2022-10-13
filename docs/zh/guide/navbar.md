@@ -90,7 +90,7 @@ export default defineConfig({
 
 ## 白天/夜间模式
 
-默认情况下导航栏会带上`白天/夜间`模式的切换按钮，你可以通过如下的配置禁用：
+默认情况下导航栏会带上 `白天/夜间` 模式的切换按钮，你可以通过如下的配置禁用：
 
 ```js
 import { defineConfig } from 'islandjs';
@@ -102,7 +102,7 @@ export default defineConfig({
 
 ## 相关链接
 
-你可以通过如下的配置添加相关链接，比如`github`链接、`twitter`链接等：
+你可以通过如下的配置添加相关链接，比如 `github` 链接、`twitter` 链接等：
 
 ```js
 import { defineConfig } from 'islandjs';

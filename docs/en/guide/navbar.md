@@ -90,7 +90,7 @@ export default defineConfig({
 
 ## Appearance
 
-The button that toggle the dark/light mode is automatically added to the navbar.But you can also close it manually:
+The button that toggle the dark/light mode is automatically added to the navbar. But you can also close it manually:
 
 ```js
 import { defineConfig } from 'islandjs';
@@ -121,4 +121,4 @@ export default defineConfig({
 
 ## Translations
 
-When you set `themeConfig.locales`, the navbar will be automatically add menu group about translations. See details in [I18n](/en/guide/i18n).
+When you set `themeConfig.locales`, the navbar will automatically adds the menu group about translations. See details in [I18n](/en/guide/i18n).

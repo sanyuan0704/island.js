@@ -131,7 +131,7 @@ The options for remark and rehype plugins.
 
 The remark plugins that will be used to parse markdown files. There are following plugins that will be used by default:
 
-- [remark-gfm](https://www.npmjs.com/package/remark-gfm): Parse common markdown syntaxes `GFM`(GitHub Flavored Markdown).
+- [remark-gfm](https://www.npmjs.com/package/remark-gfm): Parse common markdown syntaxes `GFM` (GitHub Flavored Markdown).
 - [remark-frontmatter](https://www.npmjs.com/package/remark-frontmatter): Parse front matter info in markdown files.
 - [remark-mdx-frontmatter](https://www.npmjs.com/package/remark-mdx-frontmatter): Parse front matter info in mdx files.
 

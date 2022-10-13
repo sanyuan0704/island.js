@@ -8,7 +8,7 @@ pageType: home
 
 hero:
   name: Island
-  text: Vite & Mdx Powered Static Site Generator
+  text: Vite & MDX Powered Static Site Generator
 ---
 ```
 
@@ -55,7 +55,7 @@ pageType: home
 
 hero:
   name: Island
-  text: Vite & Mdx Powered Static Site Generator
+  text: Vite & MDX Powered Static Site Generator
   tagline: Simple, powerful, and performant. Meet the modern SSG framework you've always wanted.
   image:
     src: /island.png

@@ -6,19 +6,19 @@ Understanding the tradeoffs between Multi-Page Application (MPA) and Single-Page
 
 MPA and SPA are two different ways to build web applications.
 
-`A Multi-Page Application(MPA)` is a web application that loads multiple HTML pages from server.Each page is independent of each other and has its own URL. When you click the link to navigate to another page, the browser will send a request to the server and load the new page.For example, the traditional template technology like in JSP、Python Django、PHP Laravel and so on are all MPA framework.
+`A Multi-Page Application(MPA)` is a web application that loads multiple HTML pages from server. Each page is independent of each other and has its own URL. When you click the link to navigate to another page, the browser will send a request to the server and load the new page. For example, the traditional template technology like in JSP、Python Django、PHP Laravel and so on are all MPA framework.
 
 `A Single-Page Application(SPA)` is a web application that loads a single HTML page that loads in the user's browser and renders HTML locally.The page is loaded once and then dynamically updated via JavaScript as the user interacts with the app. For example, Next.js, Nuxt、CRA(create-react-app) are all SPA framework.
 
-Fortunately, Island.js support both MPA and SPA architecture.But how do we choose between them? Let's take a look at the pros and cons of each.
+Fortunately, Island.js support both MPA and SPA architecture. But how do we choose between them? Let's take a look at the pros and cons of each.
 
 ## Comparison
 
 ### Performance
 
-In MPA, the server will response the complete HTML page to browser, but SPA need to execute javascript to render the page.So first load performance of page in MPA is better than SPA, which is important for a content-focused website.
+In MPA, the server will response the complete HTML page to browser, but SPA need to execute javascript to render the page. So first load performance of page in MPA is better than SPA, which is important for a content-focused website.
 
-However, on the other hand, SPA has a better performance and experience on subsequent page loads. Because SPA only need to dynamically load the part of the page, instead of a whole page.And also, SPA won't reload the page when you navigate to another page, which is more friendly to the user.
+However, on the other hand, SPA has a better performance and experience on subsequent page loads. Because SPA only need to dynamically load the part of the page, instead of a whole page. And also, SPA won't reload the page when you navigate to another page, which is more friendly to the user.
 
 ### SEO
 
@@ -40,15 +40,15 @@ MPA is not so complex, because the state of the page is maintained by the server
 
 ## Tradeoff
 
-So you can see, MPA make the fast first page load performance, but SPA make the better subsequent page loads performance and experience, with the cost of more complex route and state management.Both of them cannot meet all the requirements of the project, so we need to make a tradeoff, between the performance and the complexity.
+So you can see, MPA make the fast first page load performance, but SPA make the better subsequent page loads performance and experience, with the cost of more complex route and state management. Both of them cannot meet all the requirements of the project, so we need to make a tradeoff, between the performance and the complexity.
 
 However, is there a way to combine the two ways?
 
-The answer is yes.In fact, many framework use MPA for first page and then SPA for subsequent page loads, such as Next.js, Nuxt and so on.
+The answer is yes. In fact, many framework use MPA for first page and then SPA for subsequent page loads, such as Next.js, Nuxt and so on.
 
-How are they done?
+How did they implement it?
 
-Firstly, the framework will render the page on the server side(be called `SSR` or `SSG`), and then send the complete HTML page to the browser, so the first page load performance is good.It's important that the client script for SPA is injected in the HTML page at the same time.So the result is that when the page is loaded, the client script will be executed to rerender the page and manage route and state via JavaScript, as well as binding the DOM event to make the page interactive.
+Firstly, the framework will render the page on the server side(be called `SSR` or `SSG`), and then send the complete HTML page to the browser, so the first page load performance is good. It's important that the client script for SPA is injected in the HTML page at the same time. So the result is that when the page is loaded, the client script will be executed to rerender the page and manage route and state via JavaScript, as well as binding the DOM event to make the page interactive.
 
 The so-called rerender and binging DOM event process is also called `hydration`.
 
@@ -56,8 +56,8 @@ So in a word, MPA and SPA are not mutually exclusive, we can combine them with t
 
 ## Motivation
 
-With these cost after combining MPA and SPA, i have to say sometimes combine them is not a good choice, especially for the content-heavy website, because the hydration runtime execution and the network io caused by client script will make the first page load performance and TTI(time to interactive) worse.
+With these cost after combining MPA and SPA, I have to say sometimes combine them is not a good choice, especially for the content-heavy website, because the hydration runtime execution and the network io caused by client script will make the first page load performance and TTI(time to interactive) worse.
 
-So island.js recommended to use MPA for content-focused website, which is a default internal strategy.Then here comes the problem: MPA only generate static HTML page, how to ensure the hydration process if there are some interactive parts in the page?
+So island.js recommends to use MPA for content-focused website, which is a default internal strategy. Then here comes the problem: MPA only generate static HTML page, how to ensure the hydration process if there are some interactive parts in the page?
 
-That's the motivation of island architecture.You will find the answer in the next article: [Islands Architecture](/en/guide/islands-arch)
+That's the motivation of island architecture. You will find the answer in the next article: [Islands Architecture](/en/guide/islands-arch)

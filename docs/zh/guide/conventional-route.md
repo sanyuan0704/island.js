@@ -17,9 +17,9 @@ docs
 └── foo.md
 ```
 
-> 在之前的入门项目中，启动脚本是`island dev docs`，所以根目录是`docs`。
+> 在之前的入门项目中，启动脚本是 `island dev docs`，所以根目录是 `docs`。
 
-那么`bar.md`的路由路径会是`/foo/bar`，`foo.md`的路由路径会是`/foo`。
+那么 `bar.md` 的路由路径会是 `/foo/bar`，`foo.md` 的路由路径会是 `/foo`。
 
 具体映射规则如下：
 

@@ -131,7 +131,7 @@ remark 和 rehype 插件的选项。
 
 用于解析 markdown 文件的备注插件。默认情况下将使用以下插件：
 
-- [remark-gfm](https://www.npmjs.com/package/remark-gfm): 解析常用 markdown 语法 `GFM`(GitHub Flavored Markdown)。
+- [remark-gfm](https://www.npmjs.com/package/remark-gfm): 解析常用 markdown 语法 `GFM` (GitHub Flavored Markdown)。
 - [remark-frontmatter](https://www.npmjs.com/package/remark-frontmatter): 解析 Markdown 文件中的 Front Matter 信息。
 - [remark-mdx-frontmatter](https://www.npmjs.com/package/remark-mdx-frontmatter): 解析 MDX 文件中的 Front Matter 信息。
 
