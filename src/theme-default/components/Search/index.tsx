@@ -9,7 +9,8 @@ import { SuggestionContent } from './Suggestion';
 const KEY_CODE = {
   ARROW_UP: 'ArrowUp',
   ARROW_DOWN: 'ArrowDown',
-  ENTER: 'Enter'
+  ENTER: 'Enter',
+  SEARCH: 'KeyK'
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -25,6 +26,7 @@ export function Search(
   const psRef = useRef<PageSearcher>();
   const initPageSearcherPromiseRef = useRef<Promise<void>>();
   const [disableInput, setDisableInput] = useState(true);
+  const searchInputRef = useRef<HTMLInputElement | null>(null);
   // initializing or searching
   const showLoading = !initialized || searching;
   // 1. page searcher has been initialized and finish searching
@@ -60,6 +62,18 @@ export function Search(
   useEffect(() => {
     const onKeyDown = throttle((e: KeyboardEvent) => {
       switch (e.code) {
+        case KEY_CODE.SEARCH:
+          if ((e.ctrlKey || e.metaKey) && searchInputRef.current) {
+            e.preventDefault();
+            if (!focused) {
+              setFocused(true);
+              searchInputRef.current.focus();
+            } else {
+              setFocused(false);
+              searchInputRef.current.blur();
+            }
+          }
+          break;
         case KEY_CODE.ARROW_DOWN:
           e.preventDefault();
           setCurrentSuggestionIndex(
@@ -87,7 +101,7 @@ export function Search(
     return () => {
       document.removeEventListener('keydown', onKeyDown);
     };
-  }, [currentSuggestionIndex, suggestions]);
+  }, [currentSuggestionIndex, focused, suggestions]);
 
   useEffect(() => {
     setDisableInput(false);
@@ -115,6 +129,7 @@ export function Search(
           setFocused(true);
           initPageSearcherPromiseRef.current = initPageSearcher();
         }}
+        ref={searchInputRef}
       />
       {focused && query && (
         <ul
