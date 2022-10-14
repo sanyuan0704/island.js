@@ -112,7 +112,7 @@ export function Search(
       <input
         disabled={disableInput}
         cursor="text focus:auto"
-        w="40"
+        w="35"
         placeholder="Search"
         height="8"
         border="none"
@@ -131,6 +131,21 @@ export function Search(
         }}
         ref={searchInputRef}
       />
+      <div
+        m="r-3"
+        w="10"
+        h="6"
+        p="x-1.5"
+        rounded="md"
+        border="1px solid gray-light-3"
+        text="xs gray-light-3"
+        flex="~"
+        items-center="~"
+        justify="around"
+      >
+        <span>⌘</span>
+        <span>K</span>
+      </div>
       {focused && query && (
         <ul
           absolute=""
