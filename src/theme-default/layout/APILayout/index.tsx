@@ -5,6 +5,7 @@ import { normalizeHref, useSidebarData } from '../../logic';
 import { Link } from '../../components/Link/index';
 import styles from './index.module.scss';
 import { useLocation } from 'react-router-dom';
+import { isEqualPath } from '../../logic/utils';
 
 interface GroupItem {
   text?: string;
@@ -25,7 +26,9 @@ export function APILayout() {
   const initialGroups: Group[] = apiSidebarGroups.map((sidebarGroup) => ({
     name: sidebarGroup.text || '',
     items: sidebarGroup.items.map((item) => {
-      const pageModule = apiPageModules.find((m) => m.routePath === item.link);
+      const pageModule = apiPageModules.find((m) =>
+        isEqualPath(m.routePath as string, item.link || '')
+      );
       return {
         ...item,
         headers: (pageModule?.toc as Header[]).filter(
