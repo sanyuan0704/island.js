@@ -1,5 +1,19 @@
 
 
+## [0.3.6](https://github.com/sanyuan0704/island.js/compare/0.3.5...0.3.6) (2022-10-15)
+
+
+### Bug Fixes
+
+* compat windows ([#93](https://github.com/sanyuan0704/island.js/issues/93)) ([50e13ac](https://github.com/sanyuan0704/island.js/commit/50e13ac514669ad13c2942a2fe922cc253a8a5d6))
+
+
+### Features
+
+* add search hot key tip after input element ([5af471a](https://github.com/sanyuan0704/island.js/commit/5af471a97c400f1ebc28ac2d61aabd4ad1493a72))
+* search hotkey ([#91](https://github.com/sanyuan0704/island.js/issues/91)) ([5ccb930](https://github.com/sanyuan0704/island.js/commit/5ccb930adae2b2708a1905c2b0eb92338feec77a))
+* support custom global style ([#92](https://github.com/sanyuan0704/island.js/issues/92)) ([05c0d7e](https://github.com/sanyuan0704/island.js/commit/05c0d7eb70b802c4f0ce7f822a7ed8a95222ec29))
+
 ## [0.3.5](https://github.com/sanyuan0704/island.js/compare/0.3.4...0.3.5) (2022-10-13)
 
 
