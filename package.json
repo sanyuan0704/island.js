@@ -21,6 +21,10 @@
     "./theme": {
       "types": "./theme.d.ts",
       "default": "./src/theme-default/index.ts"
+    },
+    "./runtime": {
+      "type": "./runtime.d.ts",
+      "default": "./src/runtime/index.ts"
     }
   },
   "scripts": {
