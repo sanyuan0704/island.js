@@ -57,3 +57,5 @@ export const ISLAND_CLI_PATH = join(CLI_BUNDLE_OUTDIR, 'cli.js');
 export const VENDOR_PATH = join(PACKAGE_ROOT_PATH, 'vendors');
 
 export const DIRECTIVE_TYPES: string[] = ['tip', 'warning', 'danger', 'info'];
+
+export const CUSTOM_GLOBAL_STYLE = 'virtual:custom-styles';

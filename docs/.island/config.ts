@@ -126,6 +126,10 @@ function getSidebar(lang: 'zh' | 'en') {
           {
             text: getText('静态资源', 'Static Assets'),
             link: getLink('/guide/static-assets')
+          },
+          {
+            text: getText('添加全局样式', 'Add Global Styles'),
+            link: getLink('/guide/custom-global-style')
           }
         ]
       },

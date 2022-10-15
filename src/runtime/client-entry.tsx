@@ -1,15 +1,5 @@
-import { ComponentType } from 'react';
 import { setupEffects } from 'island/theme';
-
-// Type shim for window.ISLANDS
-declare global {
-  interface Window {
-    ISLANDS: Record<string, ComponentType<unknown>>;
-    // The state for island.
-    ISLAND_PROPS: Record<string, unknown[]>;
-    ISLAND_PAGE_DATA: unknown;
-  }
-}
+import { ComponentType } from 'react';
 
 async function renderInBrowser() {
   const containerEl = document.getElementById('root');
