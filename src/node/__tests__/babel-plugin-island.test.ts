@@ -2,10 +2,15 @@ import { expect, describe, test } from 'vitest';
 import { transformAsync, TransformOptions } from '@babel/core';
 import babelPluginIsland from '../babel-plugin-island';
 import { MASK_SPLITTER } from '../constants';
+import os from 'os';
+
+const isWindows = os.platform() === 'win32';
 
 describe('test babel-plugin-island', () => {
   const ISLAND_PATH = '../Comp/index';
-  const IMPORTER_PATH = '/User/code/project/test.tsx';
+  const relativePath = 'project/test.tsx';
+  const prefix = isWindows ? 'C:/' : '/User/';
+  const IMPORTER_PATH = `${prefix}${relativePath}`;
   const babelOptions: TransformOptions = {
     filename: IMPORTER_PATH,
     presets: ['@babel/preset-react'],
@@ -14,6 +19,7 @@ describe('test babel-plugin-island', () => {
   test('Should compile jsx identifier', async () => {
     const code = `import A from '${ISLAND_PATH}'; export default function App() { return <A __island>hello</A>; }`;
     const result = await transformAsync(code, babelOptions);
+    console.log(result?.code);
     expect(result?.code).toContain(
       `__island: "${ISLAND_PATH}${MASK_SPLITTER}${IMPORTER_PATH}"`
     );
