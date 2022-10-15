@@ -14,6 +14,7 @@ import { type PluginPass, types as t } from '@babel/core';
 import type { Visitor } from '@babel/traverse';
 import {} from 'vite';
 import { MASK_SPLITTER } from './constants';
+import { normalizePath } from 'vite';
 
 const ID = '__island';
 
@@ -46,8 +47,11 @@ export default declare((api) => {
         for (let i = 0; i < attributes.length; i++) {
           const name = (attributes[i] as t.JSXAttribute).name;
           if (name?.name === ID) {
+            console.log(state.filename);
             (attributes[i] as t.JSXAttribute).value = t.stringLiteral(
-              `${source.value}${MASK_SPLITTER}${state.filename}`
+              `${source.value}${MASK_SPLITTER}${normalizePath(
+                state.filename || ''
+              )}`
             );
           }
         }

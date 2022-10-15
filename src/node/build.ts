@@ -34,6 +34,7 @@ import { HelmetData } from 'react-helmet-async';
 import createDebugger from 'debug';
 import { performance } from 'perf_hooks';
 import pc from 'picocolors';
+import { pathToFileURL } from 'url';
 
 const debug = createDebugger('island:build');
 const islandInjectId = 'island:inject';
@@ -97,7 +98,7 @@ class SSGBuilder {
 
       const serverEntryPath = join(this.#root, SERVER_OUTPUT_PATH);
       const { render, routes } = (await dynamicImport(
-        serverEntryPath
+        pathToFileURL(serverEntryPath)
       )) as ServerEntryExports;
       return [render, routes];
     } catch (e) {

@@ -8,6 +8,7 @@ import resolve from 'resolve';
 import { performance } from 'perf_hooks';
 import { green } from 'picocolors';
 import { remove, pathExists } from 'fs-extra';
+import { normalizePath } from 'vite';
 
 type PreBundleItem = string;
 
@@ -61,7 +62,7 @@ async function preBundle(deps: PreBundleItem[]) {
           });
 
           build.onLoad({ filter: /.*/, namespace: 'dep' }, async (args) => {
-            const entryPath = args.path;
+            const entryPath = normalizePath(args.path);
             const code = await fs.readFile(entryPath, 'utf-8');
             const [imports, exports] = await parse(code);
             const proxyModule = [];

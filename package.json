@@ -26,7 +26,7 @@
   "scripts": {
     "pnpm-install": "pnpm install",
     "dev": "tsup --watch --format=cjs,esm",
-    "build": "NODE_ENV=production tsup --format=cjs,esm && tsx scripts/pre-bundle.cts",
+    "build": "cross-env NODE_ENV=production tsup --format=cjs,esm && tsx scripts/pre-bundle.cts",
     "dev:docs": "node ./bin/island docs",
     "build:docs": "node ./bin/island build docs && cp -r ./docs/.island/index.html ./docs/.island/dist",
     "start:docs": "node ./bin/island start docs",
@@ -129,6 +129,7 @@
     "@typescript-eslint/parser": "^5.36.1",
     "commitlint": "^17.1.2",
     "conventional-changelog-cli": "^2.2.2",
+    "cross-env": "^7.0.3",
     "es-module-lexer": "^1.0.3",
     "eslint": "^8.23.0",
     "eslint-config-prettier": "^8.5.0",
