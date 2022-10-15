@@ -28,6 +28,10 @@ export function normalizeHref(url?: string) {
   return addLeadingSlash(`${url}${suffix}`);
 }
 
+export function isEqualPath(a: string, b: string) {
+  return normalizeHref(a) === normalizeHref(b);
+}
+
 export function backTrackHeaders(
   rawHeaders: Header[],
   index: number

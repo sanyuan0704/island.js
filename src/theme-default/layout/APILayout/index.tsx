@@ -1,41 +1,65 @@
 import { usePageData } from 'island/client';
-import { useEffect, useState } from 'react';
-import { Header } from 'shared/types';
-import { normalizeHref } from '../../logic';
+import { ComponentType, useEffect, useState } from 'react';
+import { Header, PageModule } from 'shared/types';
+import { normalizeHref, useSidebarData } from '../../logic';
 import { Link } from '../../components/Link/index';
 import styles from './index.module.scss';
+import { useLocation } from 'react-router-dom';
+import { isEqualPath } from '../../logic/utils';
 
 interface GroupItem {
-  text: string;
-  link: string;
-  headers: Header[];
+  text?: string;
+  link?: string;
+  headers?: Header[];
+}
+
+interface Group {
+  name: string;
+  items: GroupItem[];
 }
 
 export function APILayout() {
-  const { subModules = [] } = usePageData();
+  const { subModules: apiPageModules = [] } = usePageData();
+  const { pathname } = useLocation();
+  const { items: apiSidebarGroups } = useSidebarData(pathname);
 
-  const initialGroups = subModules.map((subModule) => {
-    const { routePath, title } = subModule;
-    return {
-      text: title,
-      link: routePath,
-      headers: (subModule.toc as Header[]).filter((h) => h.depth === 2)
-    } as GroupItem;
-  });
+  const initialGroups: Group[] = apiSidebarGroups.map((sidebarGroup) => ({
+    name: sidebarGroup.text || '',
+    items: sidebarGroup.items.map((item) => {
+      const pageModule = apiPageModules.find((m) =>
+        isEqualPath(m.routePath as string, item.link || '')
+      );
+      return {
+        ...item,
+        headers: (pageModule?.toc as Header[]).filter(
+          (header) => header.depth === 2
+        )
+      };
+    })
+  }));
+
   const [groups, setGroups] = useState(initialGroups);
 
   useEffect(() => {
     // Handle title hmr
     if (import.meta.env.DEV) {
       import.meta.hot?.on('md(x)-changed', ({ routePath, filePath }) => {
-        const group = groups.find((group) => group.link === routePath);
+        const group = groups.find((group) =>
+          group.items.find((item) => item.link === routePath)
+        );
         if (!group) {
           return;
         }
         import(/* @vite-ignore */ `${filePath}?import&t=${Date.now()}`).then(
-          (mod) => {
-            group.headers = mod.toc;
-            group.text = mod.title;
+          (mod: PageModule<ComponentType<unknown>>) => {
+            const itemIndex = group.items.findIndex(
+              (item) => item.link === routePath
+            );
+            const targetItem = group.items[itemIndex];
+            targetItem.headers = (mod?.toc as Header[]).filter(
+              (header) => header.depth === 2
+            );
+            targetItem.text = mod?.title as string;
             setGroups([...groups]);
           }
         );
@@ -48,30 +72,32 @@ export function APILayout() {
         <h1>API Reference</h1>
       </div>
 
-      <div mb="16">
-        <h2>Config</h2>
-        <div className={styles.apiGroups}>
-          {groups.map((item) => (
-            <div className={styles.apiGroup} key={item.link}>
-              <h3>{item.text}</h3>
-              <ul list="none">
-                {item.headers?.map((header) => (
-                  <li
-                    key={header.id}
-                    className={`${styles.apiGroupLi} ${
-                      styles[`level${header.depth}`]
-                    }`}
-                  >
-                    <Link href={`${normalizeHref(item.link)}#${header.id}`}>
-                      {header.text}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+      {groups.map((group) => (
+        <div mb="16" key={group.name!}>
+          <h2>{group.name}</h2>
+          <div className={styles.apiGroups}>
+            {group.items.map((item) => (
+              <div className={styles.apiGroup} key={item.link}>
+                <h3>{item.text}</h3>
+                <ul list="none">
+                  {item.headers?.map((header) => (
+                    <li
+                      key={header.id}
+                      className={`${styles.apiGroupLi} ${
+                        styles[`level${header.depth}`]
+                      }`}
+                    >
+                      <Link href={`${normalizeHref(item.link)}#${header.id}`}>
+                        {header.text}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      ))}
     </div>
   );
 }
