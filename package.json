@@ -161,7 +161,9 @@
     "vendors",
     "template.html",
     "src/shared/constants",
-    "src/shared/utils"
+    "src/shared/utils",
+    "runtime.d.ts",
+    "theme.d.ts"
   ],
   "lint-staged": {
     "**/*.{js,jsx,tsx,ts,json}": [

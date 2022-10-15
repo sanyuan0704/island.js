@@ -1,0 +1,193 @@
+# Custom Theme
+
+import UsePageData from '../fragments/use-page-data.mdx';
+import Content from '../fragments/content.mdx';
+import RouteHook from '../fragments/route-hook.mdx';
+
+Island.js has a built-in set of default themes out of the box, and the internal components also provide config to customize, including:
+
+- [Navbar](/en/guide/navbar)
+- [Home Page](/en/guide/home-page)
+- [API Page](/en/guide/api-page)
+- [Doc Page](/en/guide/doc-page)
+- [Locales](/en/guide/i18n)
+- [Search](/en/guide/search)
+
+You can click on the corresponding page to view specific configuration items. This article is to introduce how to develop a custom theme.
+
+## Extend default theme
+
+In most cases, you do not want to develop a theme from scratch, but want to extend it based on the default theme. In this case, you can refer to the following methods for theme development.
+
+:::tip
+If you want to develop a custom theme from scratch, you can go to
+[Develop custom theme from scratch](/en/guide/custom-theme#develop-custom-theme-from-scratch)。
+:::
+
+### 1. Basic Structure
+
+By default, you need to create a `theme` directory in the `.island` directory, and then create an `index.ts(x)` file in this directory, which is your theme entry file:
+
+```bash
+.island
+├── config.ts
+└── theme
+    └── index.tsx
+```
+
+You can write the `theme/index.tsx` file as follows:
+
+```ts
+// `theme/index.tsx`
+import React from 'react';
+import {
+  Layout as DefaultLayout,
+  NotFoundLayout,
+  HomeLayout,
+  setup
+} from 'islandjs/theme';
+// Add some custom styles
+import './custom.css';
+
+const Layout = () => <DefaultLayout beforeHero={<div>beforeHero</div>} />;
+
+// Export the three components and the setup function
+export { Layout, HomeLayout, NotFoundLayout, setup };
+```
+
+As you can see, you can get and export the various components of the default theme from `islandjs/theme`, including:
+
+- **Layout component**, the layout component of the page
+- **HomeLayout component**, the layout component of the home page, used by the Layout component
+- **NotFoundLayout component**, the layout component of the 404 page, used by the Layout component
+- Also includes **setup function**, used to add an initialization logic, such as global event binding, which must be exported
+
+### 2. Use Slot
+
+It is worth noting that the Layout component has designed a series of props to support slot elements. You can use these props to extend the layout of the default theme. For example, change the above Layout component to the following form:
+
+```tsx
+import { Layout as DefaultLayout } from 'islandjs/theme';
+
+// Show all props below
+const Layout = () => (
+  <DefaultLayout
+    /* Before home hero */
+    beforeHero={<div>beforeHero</div>}
+    /* After home hero */
+    afterHero={<div>afterHero</div>}
+    /* Before home features */
+    beforeFeatures={<div>beforeFeatures</div>}
+    /* After home features */
+    afterFeatures={<div>afterFeatures</div>}
+    /* Before doc footer */
+    beforeDocFooter={<div>beforeDocFooter</div>}
+    /* Doc page front */
+    beforeDoc={<div>beforeDoc</div>}
+    /* Doc page end */
+    afterDoc={<div>afterDoc</div>}
+    /* Before the title of the navigation bar in the upper left corner */
+    beforeNavTitle={<span>😄</span>}
+    /* After the title of the navigation bar in the upper left corner
+     */
+    afterNavTitle={<div>afterNavTitle</div>}
+    /* Above the right outline column */
+    beforeOutline={<div>beforeOutline</div>}
+    /* Below the outline column on the right */
+    afterOutline={<div>afterOutline</div>}
+    /* Top of the entire page */
+    top={<div>top</div>}
+    /* Bottom of the entire page */
+    bottom={<div>bottom</div>}
+  />
+);
+```
+
+### 3. Custom Component
+
+To extend the components of the default theme, in addition to the slots, you can also customize the Home page and 404 page components, such as:
+
+```tsx
+import { Layout, setup } from 'islandjs/theme';
+// Customize Home Page
+const HomeLayout = () => <div>Home</div>;
+// Customize 404 page
+
+const NotFoundLayout = () => <div>404</div>;
+
+export { Layout, HomeLayout, NotFoundLayout, setup };
+```
+
+Of course, you may need to use page data during the development process, you can get it through the [`usePageData`](/en/guide/custom-theme#usepagedata) Hook.
+
+## Develop custom theme from scratch
+
+### 1. Basic Structure
+
+Of course, if you're going to develop a custom theme from scratch, you'll need to understand what makes up a theme.
+
+By default, you need to create a `theme` directory in the `.island` directory, and then create an `index.ts(x)` file in this directory, which is your theme entry file:
+
+```bash
+.island
+├── config.ts
+└── theme
+    └── index.tsx
+```
+
+In the `theme/index.tsx` file, you need to export a Layout component, which is the entry component of your theme:
+
+```ts
+// theme/index.tsx
+function Layout() {
+  return <div>Custom Theme Layout</div>;
+}
+
+// setup function, which will be called when the page is initialized. It is generally used to monitor global events. It can be an empty function.
+const setup = () => {};
+
+// Export the Layout component and setup function
+// Both must be exported
+export { Layout, setup };
+```
+
+This Layout component will be used by Island.js to render the layout of the entire documentation site. You can import your custom components in this component, such as:
+
+```ts
+// theme/index.tsx
+import { Navbar } from './Navbar';
+
+function Layout() {
+  return (
+    <div>
+      <Navbar />
+      <div>Custom Theme Layout</div>
+    </div>
+  );
+}
+
+export { Layout };
+
+// theme/Navbar.tsx
+export function Navbar() {
+  return <div>Custom Navbar</div>;
+}
+```
+
+So the question is, how does the theme component get the page data and the content of the body MDX component? This requires the use of the `Runtime API` of Island.js.
+
+### 2. Integrate Runtime API
+
+In the process of theme development, we generally need the following key APIs:
+
+#### usePageData
+
+<UsePageData />
+
+#### Content
+
+<Content />
+
+#### Route Hook
+
+<RouteHook />

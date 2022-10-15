@@ -16,7 +16,7 @@ export type LayoutProps = {
   HomeLayoutProps &
   NavProps;
 
-export const Layout: React.FC = (props: LayoutProps) => {
+export const Layout: React.FC<LayoutProps> = (props) => {
   const {
     top,
     bottom,

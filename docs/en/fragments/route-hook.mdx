@@ -1,0 +1,10 @@
+Island.js uses [react-router-dom](https://reactrouter.com/) internally to implement routing, so you can use `react-router-dom` Hook directly, for example:
+
+```ts
+import { useLocation } from 'islandjs/runtime';
+
+function Layout() {
+  const location = useLocation();
+  return <div>Current location: {location.pathname}</div>;
+}
+```

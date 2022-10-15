@@ -4,6 +4,7 @@ import { Aside } from '../../components/Aside/index';
 import { DocFooter } from '../../components/DocFooter/index';
 import { Content, usePageData } from '@client';
 import { useLocaleSiteData } from '../../logic';
+import { useEffect, useRef } from 'react';
 
 export interface DocLayoutProps {
   beforeDocFooter?: React.ReactNode;
@@ -32,8 +33,23 @@ export function DocLayout(props: DocLayoutProps) {
     localesData?.outlineTitle || themeConfig?.outlineTitle || 'ON THIS PAGE';
   const hasAside =
     headers.length > 0 &&
-    themeConfig.outline !== false &&
-    frontmatter?.outline !== false;
+    (frontmatter?.outline ?? themeConfig?.outline ?? true);
+  const scrollYRef = useRef<number>(0);
+
+  if (scrollYRef.current) {
+    window.scrollTo(0, scrollYRef.current);
+  }
+
+  useEffect(() => {
+    const onScroll = () => {
+      scrollYRef.current = window.scrollY;
+      console.log('scrollYRef', scrollYRef.current);
+    };
+    window.addEventListener('scroll', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, []);
 
   return (
     <div p="t-0 x-6 b-24 sm:6">

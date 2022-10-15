@@ -1,0 +1,45 @@
+用户获取页面所有数据的 Hook，比如:
+
+```tsx
+import { usePageData } from 'islandjs/runtime';
+
+function Layout() {
+  const pageData = usePageData();
+  return <div>{pageData.title}</div>;
+}
+```
+
+`usePageData` 类型如下:
+
+```ts
+const usePageData: () => PageData;
+```
+
+`PageData` 的类型如下:
+
+```ts
+export interface PageData {
+  // 站点通用信息，包含主题配置 themeConfig 信息
+  siteData: SiteData;
+  // 上次更新时间
+  lastUpdatedTime?: string;
+  // 页面标题
+  title?: string;
+  // 页面描述
+  description?: string;
+  // Front Matter 元数据
+  frontmatter?: FrontMatterMeta;
+  // 页面类型
+  pageType: PageType;
+  // TOC 数据，包含标题和对应的锚点
+  toc?: Header[];
+  // 当前路由路径
+  routePath: string;
+  // 页面的路径，去掉 query 和 hash
+  pagePath: string;
+  // 页面的正文内容
+  content?: string;
+}
+```
+
+基于此 API，你基本可以获取到需要的所有数据。
