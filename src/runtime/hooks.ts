@@ -1,8 +1,18 @@
-import { createContext, useContext } from 'react';
+import { ComponentType, createContext, useContext } from 'react';
 import { PageData } from '../shared/types';
 import { inBrowser } from '../shared/utils';
 import { routes } from 'virtual:routes';
 import { Route } from 'node/plugin-routes';
+
+// Type shim for window.ISLANDS
+declare global {
+  interface Window {
+    ISLANDS: Record<string, ComponentType<unknown>>;
+    // The state for island.
+    ISLAND_PROPS: Record<string, unknown[]>;
+    ISLAND_PAGE_DATA: unknown;
+  }
+}
 
 export const DataContext = createContext({
   data: inBrowser() ? window?.ISLAND_PAGE_DATA : null,
