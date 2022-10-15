@@ -47,7 +47,6 @@ export default declare((api) => {
         for (let i = 0; i < attributes.length; i++) {
           const name = (attributes[i] as t.JSXAttribute).name;
           if (name?.name === ID) {
-            console.log(state.filename);
             (attributes[i] as t.JSXAttribute).value = t.stringLiteral(
               `${source.value}${MASK_SPLITTER}${normalizePath(
                 state.filename || ''

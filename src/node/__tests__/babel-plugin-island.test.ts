@@ -19,7 +19,6 @@ describe('test babel-plugin-island', () => {
   test('Should compile jsx identifier', async () => {
     const code = `import A from '${ISLAND_PATH}'; export default function App() { return <A __island>hello</A>; }`;
     const result = await transformAsync(code, babelOptions);
-    console.log(result?.code);
     expect(result?.code).toContain(
       `__island: "${ISLAND_PATH}${MASK_SPLITTER}${IMPORTER_PATH}"`
     );
