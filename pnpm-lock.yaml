@@ -35,6 +35,7 @@ specifiers:
   '@unocss/vite': ^0.45.26
   '@vitejs/plugin-react': 2.0.1
   acorn: ^8.8.0
+  b-tween: ^0.3.3
   cac: 6.7.12
   check-links: ^1.1.8
   chokidar: ^3.5.3
@@ -112,6 +113,7 @@ dependencies:
   '@unocss/vite': 0.45.26_vite@3.1.4
   '@vitejs/plugin-react': registry.npmmirror.com/@vitejs/plugin-react/2.0.1_vite@3.1.4
   acorn: 8.8.0
+  b-tween: 0.3.3
   cac: registry.npmmirror.com/cac/6.7.12
   check-links: 1.1.8
   chokidar: 3.5.3
@@ -1922,6 +1924,10 @@ packages:
   /asynckit/0.4.0:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
     dev: true
+
+  /b-tween/0.3.3:
+    resolution: {integrity: sha512-oEHegcRpA7fAuc9KC4nktucuZn2aS8htymCPcP3qkEGPqiBH+GfqtqoG2l7LxHngg6O0HFM7hOeOYExl1Oz4ZA==}
+    dev: false
 
   /bail/2.0.2:
     resolution: {integrity: sha512-0xO6mYd7JB2YesxDKplafRpsiOzPt9V02ddPCLbY1xYGPOX24NTyN50qnUxgCPcSoYMhKpAuBTjQoRZCAkUDRw==}

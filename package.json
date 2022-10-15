@@ -67,6 +67,7 @@
     "@unocss/vite": "^0.45.26",
     "@vitejs/plugin-react": "2.0.1",
     "acorn": "^8.8.0",
+    "b-tween": "^0.3.3",
     "cac": "6.7.12",
     "check-links": "^1.1.8",
     "chokidar": "^3.5.3",
