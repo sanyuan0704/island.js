@@ -1,4 +1,4 @@
-import { usePageData } from 'island/client';
+import { usePageData } from '@client';
 
 export function NotFoundLayout() {
   const { siteData } = usePageData();

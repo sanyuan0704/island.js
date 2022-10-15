@@ -6,8 +6,13 @@ import 'virtual:custom-styles';
 import { NotFoundLayout } from './layout/NotFountLayout/index';
 import { Layout } from './layout/Layout';
 import { HomeLayout } from './layout/HomeLayout/index';
-
+import { setup } from './logic';
 // Tree Shaking
-export { Layout, NotFoundLayout, HomeLayout };
+export { Layout, NotFoundLayout, HomeLayout, setup };
 
-export { setupEffects } from './logic';
+export default {
+  Layout,
+  NotFoundLayout,
+  HomeLayout,
+  setup
+};

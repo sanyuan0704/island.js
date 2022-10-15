@@ -8,13 +8,13 @@ interface ImportMeta {
   readonly env: ImportMetaEnv
 }
 
-declare module 'island/theme*' {
+declare module '@theme*' {
   import { ComponentType, Component, HtmlHTMLAttributes } from 'react';
 
   export const Layout: ComponentType<unknown>;
   export const HomeLayout: ComponentType<unknown>;
   export const NotFoundLayout: ComponentType<unknown>;
-  export const setupEffects: () => void;
+  export const setup: () => void;
 }
 
 declare module 'island:site-data' {
@@ -24,7 +24,7 @@ declare module 'island:site-data' {
 }
 
 
-declare module 'island/client' {
+declare module '@client' {
   import { ComponentType, ReactElement } from 'react';
   import { PageData, SiteData } from 'shared/types';
   import { Route } from 'node/plugin-routes';

@@ -2,7 +2,6 @@ import pluginMdx from '@mdx-js/rollup';
 import { rehypePluginPreWrapper } from './rehypePlugins/preWrapper';
 import remarkPluginGFM from 'remark-gfm';
 import remarkPluginFrontMatter from 'remark-frontmatter';
-// @ts-expect-error The type problem of remark-directive
 import remarkDirective from 'remark-directive';
 import remarkPluginMDXFrontMatter from 'remark-mdx-frontmatter';
 import { remarkPluginNormalizeLink } from './remarkPlugins/link';

@@ -19,7 +19,7 @@
     "./dist/*": "./dist/*",
     "./package.json": "./package.json",
     "./theme": {
-      "types": "./dist/node/index.d.ts",
+      "types": "./theme.d.ts",
       "default": "./src/theme-default/index.ts"
     }
   },

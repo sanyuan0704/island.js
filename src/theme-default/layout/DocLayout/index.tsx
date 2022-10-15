@@ -1,12 +1,21 @@
 import { SideBar } from '../../components/Siderbar/index';
 import styles from './index.module.scss';
 import { Aside } from '../../components/Aside/index';
-
 import { DocFooter } from '../../components/DocFooter/index';
-import { Content, usePageData } from 'island/client';
+import { Content, usePageData } from '@client';
 import { useLocaleSiteData } from '../../logic';
 
-export function DocLayout() {
+export interface DocLayoutProps {
+  beforeDocFooter?: React.ReactNode;
+  beforeDoc?: React.ReactNode;
+  afterDoc?: React.ReactNode;
+  beforeOutline?: React.ReactNode;
+  afterOutline?: React.ReactNode;
+}
+
+export function DocLayout(props: DocLayoutProps) {
+  const { beforeDocFooter, beforeDoc, afterDoc, beforeOutline, afterOutline } =
+    props;
   const { toc: headers = [], siteData, pagePath, frontmatter } = usePageData();
   const themeConfig = siteData.themeConfig;
   const localesData = useLocaleSiteData();
@@ -28,6 +37,7 @@ export function DocLayout() {
 
   return (
     <div p="t-0 x-6 b-24 sm:6">
+      {beforeDoc}
       {hasSidebar ? <SideBar /> : null}
       <div flex="~ 1 shrink-0" m="x-auto" className={`${styles.content}`}>
         <div m="x-auto" flex="~ col">
@@ -44,6 +54,7 @@ export function DocLayout() {
             <div className="island-doc">
               <Content fallback={<div>Loading...</div>} />
             </div>
+            {beforeDocFooter}
             <DocFooter />
           </div>
         </div>
@@ -65,16 +76,21 @@ export function DocLayout() {
               }}
             >
               {hasAside ? (
-                <Aside
-                  headers={headers}
-                  outlineTitle={outlineTitle}
-                  pagePath={pagePath}
-                />
+                <div>
+                  {beforeOutline}
+                  <Aside
+                    headers={headers}
+                    outlineTitle={outlineTitle}
+                    pagePath={pagePath}
+                  />
+                  {afterOutline}
+                </div>
               ) : null}
             </div>
           </div>
         </div>
       </div>
+      {afterDoc}
     </div>
   );
 }

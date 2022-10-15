@@ -1,12 +1,40 @@
 import React from 'react';
 import { Nav } from '../../components/Nav';
 import { DocLayout } from '../DocLayout';
-import { usePageData, Content } from 'island/client';
+import { usePageData, Content } from '@client';
 import { Helmet } from 'react-helmet-async';
-import { HomeLayout, NotFoundLayout } from 'island/theme';
+import { HomeLayout, NotFoundLayout } from '@theme';
 import { APILayout } from '../APILayout';
+import { DocLayoutProps } from '../DocLayout/index';
+import { HomeLayoutProps } from '../HomeLayout/index';
+import type { NavProps } from '../../components/Nav/index';
 
-export const Layout: React.FC = () => {
+export type LayoutProps = {
+  top?: React.ReactNode;
+  bottom?: React.ReactNode;
+} & DocLayoutProps &
+  HomeLayoutProps &
+  NavProps;
+
+export const Layout: React.FC = (props: LayoutProps) => {
+  const {
+    top,
+    bottom,
+    beforeDocFooter,
+    beforeDoc,
+    afterDoc,
+    beforeOutline,
+    afterOutline,
+    beforeNavTitle,
+    afterNavTitle
+  } = props;
+  const docProps: DocLayoutProps = {
+    beforeDocFooter,
+    beforeDoc,
+    afterDoc,
+    beforeOutline,
+    afterOutline
+  };
   const {
     // Inject by remark-plugin-toc
     title: articleTitle,
@@ -23,7 +51,7 @@ export const Layout: React.FC = () => {
       case 'home':
         return <HomeLayout />;
       case 'doc':
-        return <DocLayout />;
+        return <DocLayout {...docProps} />;
       case 'api':
         return <APILayout />;
       case '404':
@@ -31,7 +59,7 @@ export const Layout: React.FC = () => {
       case 'custom':
         return <Content />;
       default:
-        return <DocLayout />;
+        return <DocLayout {...docProps} />;
     }
   };
 
@@ -41,10 +69,12 @@ export const Layout: React.FC = () => {
         {title ? <title>{title}</title> : null}
         {description ? <meta name="description" content={description} /> : null}
       </Helmet>
-      <Nav />
+      {top}
+      <Nav beforeNavTitle={beforeNavTitle} afterNavTitle={afterNavTitle} />
       <section style={{ paddingTop: 'var(--island-nav-height)' }}>
         {getContentLayout()}
       </section>
+      {bottom}
     </div>
   );
 };

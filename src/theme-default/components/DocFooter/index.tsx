@@ -1,5 +1,5 @@
 import styles from './index.module.scss';
-import { usePageData } from 'island/client';
+import { usePageData } from '@client';
 import { useEditLink, useLocaleSiteData, usePrevNextPage } from '../../logic';
 import { normalizeHref } from '../../logic/index';
 

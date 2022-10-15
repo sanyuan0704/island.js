@@ -221,7 +221,7 @@ function bindingMenuGroupToggle() {
   });
 }
 
-export function setupEffects() {
+export function setup() {
   if (!inBrowser()) {
     return;
   }

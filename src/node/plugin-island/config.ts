@@ -59,8 +59,8 @@ export function pluginConfig(
             ],
             exclude: [
               'islandjs',
-              'island/theme',
-              'island/client',
+              '@theme',
+              '@client',
               'island/routes',
               'island/jsx-runtime'
             ]
@@ -77,14 +77,13 @@ export function pluginConfig(
           },
           resolve: {
             alias: {
-              'island/theme': config.themeDir!,
-              'island/client': `${CLIENT_EXPORTS_PATH}`,
-              'island/routes': join(c.root!, ROUTE_PATH),
+              '@theme': config.themeDir!,
+              '@client': `${CLIENT_EXPORTS_PATH}`,
               'island/jsx-runtime': join(
                 ISLAND_JSX_RUNTIME_PATH,
                 'jsx-runtime.js'
               ),
-              'island/theme-default': DEFAULT_THEME_PATH
+              '@theme-default': DEFAULT_THEME_PATH
             }
           },
           define: {
