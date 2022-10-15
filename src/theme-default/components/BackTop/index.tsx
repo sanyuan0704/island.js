@@ -1,5 +1,6 @@
-import { React } from 'raect';
+import { React, useState, useEffect } from 'react';
 import BTween from 'b-tween';
+import { throttle } from 'lodash-es';
 
 export function BackTop() {
   const scrollToTop = () => {
@@ -22,7 +23,22 @@ export function BackTop() {
     btween.start();
   };
 
-  return (
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const scrollHandler = throttle(() => {
+      const visibleHeight = 200;
+      const scrollTop = document.documentElement.scrollTop;
+      setVisible(scrollTop >= visibleHeight);
+    }, 500);
+    document.addEventListener('scroll', scrollHandler);
+
+    return () => {
+      scrollHandler.cancel();
+      document.removeEventListener('scroll', scrollHandler);
+    };
+  });
+
+  return visible ? (
     <div className="fixed bottom-10 right-30 z-10" onClick={scrollToTop}>
       <button
         className="w-10 h-10 rounded-full duration-300 bg-white"
@@ -45,5 +61,5 @@ export function BackTop() {
         </div>
       </button>
     </div>
-  );
+  ) : null;
 }
