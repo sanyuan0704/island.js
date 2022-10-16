@@ -1,8 +1,12 @@
 import { React, useState, useEffect } from 'react';
 import BTween from 'b-tween';
 import { throttle } from 'lodash-es';
+import { usePageData } from 'island/client';
 
 export function BackTop() {
+  const { siteData } = usePageData();
+  const backTopCtrl = siteData?.themeConfig?.backTop ?? true;
+
   const scrollToTop = () => {
     // https://github.com/PengJiyuan/b-tween
     const target = document.documentElement;
@@ -38,7 +42,7 @@ export function BackTop() {
     };
   });
 
-  return visible ? (
+  return backTopCtrl && visible ? (
     <div className="fixed bottom-10 right-30 z-10" onClick={scrollToTop}>
       <button
         className="w-10 h-10 rounded-full duration-300 bg-white"
