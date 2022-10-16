@@ -1,5 +1,12 @@
 
 
+# [0.4.0](https://github.com/sanyuan0704/island.js/compare/0.3.7...0.4.0) (2022-10-16)
+
+
+### Features
+
+* support custom theme  ([#95](https://github.com/sanyuan0704/island.js/issues/95)) ([7127807](https://github.com/sanyuan0704/island.js/commit/7127807159f0601d5a9542b654adb3f5f74bbbef))
+
 ## [0.3.7](https://github.com/sanyuan0704/island.js/compare/0.3.6...0.3.7) (2022-10-16)
 
 
