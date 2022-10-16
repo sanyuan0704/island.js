@@ -1,5 +1,17 @@
 
 
+## [0.3.7](https://github.com/sanyuan0704/island.js/compare/0.3.6...0.3.7) (2022-10-16)
+
+
+### Bug Fixes
+
+* search freeze in backtrack header logic ([#97](https://github.com/sanyuan0704/island.js/issues/97)) ([949c5da](https://github.com/sanyuan0704/island.js/commit/949c5da028be3cf810325454d14520c74700d435))
+
+
+### Features
+
+* support api page multi group ([#94](https://github.com/sanyuan0704/island.js/issues/94)) ([9d038b2](https://github.com/sanyuan0704/island.js/commit/9d038b21ea21b1280d79199b3445b19fe9feb71a))
+
 ## [0.3.6](https://github.com/sanyuan0704/island.js/compare/0.3.5...0.3.6) (2022-10-15)
 
 
