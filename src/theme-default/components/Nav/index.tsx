@@ -1,13 +1,18 @@
 import styles from './index.module.scss';
 import { SwitchAppearance } from '../SwitchAppearance/index';
 import { Search } from '../Search/index';
-import { usePageData } from 'island/client';
+import { usePageData } from '@client';
 import { NavMenuSingleItem } from './NavMenuSingleItem';
 import { NavMenuGroup, NavMenuGroupItem } from './NavMenuGroup';
 import { useLocaleSiteData } from '../../logic';
 import GithubSvg from './icons/github.svg';
 import { DefaultTheme } from 'shared/types';
 import Translator from './icons/translator.svg';
+
+export interface NavProps {
+  beforeNavTitle?: React.ReactNode;
+  afterNavTitle?: React.ReactNode;
+}
 
 const IconMap = {
   github: GithubSvg
@@ -126,7 +131,8 @@ const NavSocialLinks = ({
   );
 };
 
-export function Nav() {
+export function Nav(props: NavProps) {
+  const { beforeNavTitle, afterNavTitle } = props;
   const { siteData, pageType } = usePageData();
   const hasSidebar = pageType === 'doc';
   const hasAppearanceSwitch = siteData.appearance !== false;
@@ -171,7 +177,9 @@ export function Nav() {
             hasSidebar ? styles.hasSidebar : ''
           }`}
         >
+          {beforeNavTitle}
           <NavBarTitle title={title} />
+          {afterNavTitle}
           <div
             className={styles.content}
             flex="~ 1"

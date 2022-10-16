@@ -1,4 +1,4 @@
-import { Layout } from 'island/theme';
+import { Layout } from '@theme';
 import { routes } from 'virtual:routes';
 import { matchRoutes, useLocation } from 'react-router-dom';
 import siteData from 'island:site-data';
@@ -7,7 +7,7 @@ import { getRelativePagePath, omit } from './utils';
 import { PageData } from '../shared/types';
 import { HelmetProvider } from 'react-helmet-async';
 import { useContext, useLayoutEffect } from 'react';
-import { DataContext } from 'island/client';
+import { DataContext } from '@client';
 import { cleanUrl } from '../shared/utils';
 
 export async function waitForApp(routePath: string): Promise<PageData> {

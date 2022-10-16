@@ -1,4 +1,4 @@
-import { setupEffects } from 'island/theme';
+import { setup } from '@theme';
 import { ComponentType } from 'react';
 
 async function renderInBrowser() {
@@ -11,7 +11,7 @@ async function renderInBrowser() {
     const { waitForApp, App } = await import('./app');
     const { useState } = await import('react');
     const { BrowserRouter } = await import('react-router-dom');
-    const { DataContext } = await import('island/client');
+    const { DataContext } = await import('@client');
 
     const initialPageData = await waitForApp(window.location.pathname);
 
@@ -61,6 +61,6 @@ async function renderInBrowser() {
 renderInBrowser().then(() => {
   // Binding the event after the first render
   setTimeout(() => {
-    setupEffects();
+    setup();
   });
 });

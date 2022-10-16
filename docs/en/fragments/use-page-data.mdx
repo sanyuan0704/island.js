@@ -1,0 +1,45 @@
+Hook for the user to get all the data of the page, such as:
+
+```tsx
+import { usePageData } from 'islandjs/runtime';
+
+function Layout() {
+  const pageData = usePageData();
+  return <div>{pageData.title}</div>;
+}
+```
+
+The type of `usePageData` is as follows:
+
+```ts
+const usePageData: () => PageData;
+```
+
+The type of `PageData` is as follows:
+
+```ts
+export interface PageData {
+  // Site general information, including theme configuration themeConfig information
+  siteData: SiteData;
+  // Last update time
+  lastUpdatedTime?: string;
+  // Page title
+  title?: string;
+  // Page description
+  description?: string;
+  // Front Matter of the page
+  frontmatter?: FrontMatterMeta;
+  // Page type
+  pageType: PageType;
+  // TOC data
+  toc?: Header[];
+  // Current route path
+  routePath: string;
+  // The path of the page, remove query and hash
+  pagePath: string;
+  // Doc content of the page
+  content?: string;
+}
+```
+
+Based on this API, you can almost get all the data you need.

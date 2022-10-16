@@ -1,6 +1,6 @@
 import { DefaultTheme } from 'shared/types';
 import { addLeadingSlash, removeTrailingSlash } from './index';
-import { usePageData } from 'island/client';
+import { usePageData } from '@client';
 import { useLocation } from 'react-router-dom';
 
 export function useLocaleSiteData(): DefaultTheme.LocaleConfig {

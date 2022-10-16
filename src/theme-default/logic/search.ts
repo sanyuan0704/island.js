@@ -1,6 +1,6 @@
 import FlexSearch from 'flexsearch';
 import type { Index as SearchIndex, CreateOptions } from 'flexsearch';
-import { getAllPages } from 'island/client';
+import { getAllPages } from '@client';
 import { uniqBy } from 'lodash-es';
 import { normalizeHref } from './index';
 import { Header } from 'shared/types/index';

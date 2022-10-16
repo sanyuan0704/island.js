@@ -49,9 +49,8 @@ export function Aside(
   }, [props.pagePath]);
 
   const renderHeader = (header: Header) => {
-    const isNested = header.depth > 2;
     return (
-      <li key={header.text}>
+      <li key={header.id}>
         <a
           href={`#${header.id}`}
           block=""
@@ -60,7 +59,9 @@ export function Aside(
           avoid-text-overflow=""
           hover="text-text-1"
           transition="color duration-300"
-          className={`${isNested ? 'pl-3' : ''}`}
+          style={{
+            paddingLeft: (header.depth - 2) * 12
+          }}
         >
           {header.text}
         </a>

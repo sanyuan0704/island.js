@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { usePageData } from 'island/client';
+import { usePageData } from '@client';
 
 export const useFrontmatter = () => {
   const pageData = usePageData();

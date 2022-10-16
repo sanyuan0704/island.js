@@ -1,8 +1,5 @@
 import { HeadConfig } from '.';
 
-/**
- * Modify from VitePress default theme
- */
 export namespace DefaultTheme {
   export interface Config {
     /**
@@ -10,7 +7,7 @@ export namespace DefaultTheme {
      *
      * @example '/logo.svg'
      */
-    logo?: ThemeableImage;
+    logo?: Image;
 
     /**
      * Custom site title in navbar. If the value is undefined,
@@ -129,35 +126,16 @@ export namespace DefaultTheme {
   }
 
   // image -----------------------------------------------------------------------
-
-  export type ThemeableImage = Image | { light: Image; dark: Image };
   export type Image = string | { src: string; alt?: string };
 
   // sidebar -------------------------------------------------------------------
-
-  export type Sidebar = SidebarMulti;
-
-  export interface SidebarMulti {
+  export interface Sidebar {
     [path: string]: SidebarGroup[];
   }
 
   export interface SidebarGroup {
     text?: string;
     items: SidebarItem[];
-
-    /**
-     * If `true`, toggle button is shown.
-     *
-     * @default false
-     */
-    collapsible?: boolean;
-
-    /**
-     * If `true`, collapsible group is collapsed by default.
-     *
-     * @default false
-     */
-    collapsed?: boolean;
   }
 
   export type SidebarItem =
@@ -223,19 +201,6 @@ export namespace DefaultTheme {
   export interface Footer {
     message?: string;
     copyright?: string;
-  }
-
-  // team ----------------------------------------------------------------------
-
-  export interface TeamMember {
-    avatar: string;
-    name: string;
-    title?: string;
-    org?: string;
-    orgLink?: string;
-    desc?: string;
-    links?: SocialLink[];
-    sponsor?: string;
   }
 
   // locales -------------------------------------------------------------------

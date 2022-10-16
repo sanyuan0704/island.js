@@ -17,8 +17,7 @@ export default defineConfig({
   },
   markdown: {
     rehypePlugins: [],
-    remarkPlugins: [],
-    lineNumbers: true
+    remarkPlugins: []
   },
   route: {
     exclude: ['custom.tsx', '**/fragments/**']
@@ -195,6 +194,19 @@ function getSidebar(lang: 'zh' | 'en') {
           {
             text: getText('扩展配置', 'Extension Config'),
             link: getLink('/api/config-extension')
+          }
+        ]
+      },
+      {
+        text: getText('Client API', 'Client API'),
+        items: [
+          {
+            text: getText('运行时 API', 'Runtime API'),
+            link: getLink('/api/api-runtime')
+          },
+          {
+            text: getText('默认主题', 'Default Theme'),
+            link: getLink('/api/api-theme')
           }
         ]
       }

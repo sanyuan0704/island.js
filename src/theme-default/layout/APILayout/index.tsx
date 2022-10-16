@@ -1,4 +1,4 @@
-import { usePageData } from 'island/client';
+import { usePageData } from '@client';
 import { ComponentType, useEffect, useState } from 'react';
 import { Header, PageModule } from 'shared/types';
 import { normalizeHref, useSidebarData } from '../../logic';

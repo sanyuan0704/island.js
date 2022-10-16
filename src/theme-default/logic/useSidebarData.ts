@@ -3,7 +3,7 @@ import { useLocaleSiteData } from './useLocaleSiteData';
 import { isEqualPath } from './utils';
 
 interface SidebarData {
-  // The group name ofr the sidebar
+  // The group name for the sidebar
   group: string;
   items: DefaultTheme.SidebarGroup[];
 }

@@ -1,4 +1,4 @@
-import { usePageData } from 'island/client';
+import { usePageData } from '@client';
 
 export function Footer() {
   const { siteData } = usePageData();

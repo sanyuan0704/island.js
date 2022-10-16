@@ -1,0 +1,10 @@
+Island.js 内部用 [react-router-dom](https://reactrouter.com/) 来实现路由，所以你可以直接使用 `react-router-dom` 的 Hook，比如:
+
+```ts
+import { useLocation } from 'islandjs/runtime';
+
+function Layout() {
+  const location = useLocation();
+  return <div>Current location: {location.pathname}</div>;
+}
+```
