@@ -224,6 +224,10 @@ function getNavbar(lang: 'zh' | 'en') {
       activeMatch: '/guide/'
     },
     {
+      text: getText('教程', 'Tutorial'),
+      link: `https://island-tutorial.sanyuan0704.top/${lang}/`
+    },
+    {
       text: getText('API', 'API'),
       link: getLink('/api/'),
       activeMatch: '/api/'
