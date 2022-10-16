@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from 'react';
 import BTween from 'b-tween';
 import { throttle } from 'lodash-es';
-import { usePageData } from 'island/client';
+import { usePageData } from '@client';
 
 export function BackTop() {
   const { siteData } = usePageData();
@@ -51,17 +51,7 @@ export function BackTop() {
         shadow="sm hover:md"
       >
         <div flex="~ center">
-          <svg
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="4"
-            viewBox="0 0 48 48"
-            aria-hidden="true"
-            focusable="false"
-            className="w-4 h-4"
-          >
-            <path d="M39.6 30.557 24.043 15 8.487 30.557"></path>
-          </svg>
+          <div className="i-carbon-chevron-up" text="xl"></div>
         </div>
       </button>
     </div>
