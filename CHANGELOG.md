@@ -1,5 +1,12 @@
 
 
+## [0.4.1](https://github.com/sanyuan0704/island.js/compare/0.4.0...0.4.1) (2022-10-16)
+
+
+### Bug Fixes
+
+* sidebar active ([27a2fc6](https://github.com/sanyuan0704/island.js/commit/27a2fc6ed211c11a28ce074d19af888c73a2253c))
+
 # [0.4.0](https://github.com/sanyuan0704/island.js/compare/0.3.7...0.4.0) (2022-10-16)
 
 
