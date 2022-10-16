@@ -2,13 +2,20 @@ import styles from './index.module.scss';
 import React from 'react';
 import { Link } from '../Link/index';
 import { DefaultTheme } from '../../../shared/types';
-import { normalizeHref, useSidebarData } from '../../logic/index';
+import {
+  normalizeHref,
+  useLocaleSiteData,
+  useSidebarData,
+  normalizeSlash
+} from '../../logic/index';
 import { useLocation } from 'react-router-dom';
 import { isActive } from '../../logic/index';
 
 export function SideBar() {
   const { pathname } = useLocation();
+  const localesData = useLocaleSiteData();
   const { items: sidebarData } = useSidebarData(pathname);
+  const langRoutePrefix = normalizeSlash(localesData.routePrefix || '');
 
   const renderGroupItem = (item: DefaultTheme.SidebarItem, depth = 0) => {
     const marginLeft = `${depth * 20}px`;
@@ -16,7 +23,12 @@ export function SideBar() {
     if ('items' in item) {
       children = item.items.map((child) => renderGroupItem(child, depth + 1));
     }
-    const active = isActive(pathname, item.link);
+    // Extract lang route prefix
+    // TODO: base url
+    const active = isActive(
+      pathname.replace(langRoutePrefix, ''),
+      item.link?.replace(langRoutePrefix, '')
+    );
     return (
       <div style={{ marginLeft }}>
         <div
