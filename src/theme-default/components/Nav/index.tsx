@@ -4,10 +4,11 @@ import { Search } from '../Search/index';
 import { usePageData } from '@client';
 import { NavMenuSingleItem } from './NavMenuSingleItem';
 import { NavMenuGroup, NavMenuGroupItem } from './NavMenuGroup';
-import { useLocaleSiteData } from '../../logic';
+import { useLocaleSiteData, useSidebarData } from '../../logic';
 import { DefaultTheme } from 'shared/types';
 import Translator from '../../assets/translator.svg';
 import GithubSvg from '../../assets/github.svg';
+import { useLocation } from 'react-router-dom';
 export interface NavProps {
   beforeNavTitle?: React.ReactNode;
   afterNavTitle?: React.ReactNode;
@@ -133,7 +134,9 @@ const NavSocialLinks = ({
 export function Nav(props: NavProps) {
   const { beforeNavTitle, afterNavTitle } = props;
   const { siteData, pageType } = usePageData();
-  const hasSidebar = pageType === 'doc';
+  const { pathname } = useLocation();
+  const { items: sidebarItems } = useSidebarData(pathname);
+  const hasSidebar = pageType === 'doc' && sidebarItems.length > 0;
   const hasAppearanceSwitch = siteData.appearance !== false;
   const localeData = useLocaleSiteData();
   const localeLanguages = Object.values(siteData.themeConfig.locales || {});
