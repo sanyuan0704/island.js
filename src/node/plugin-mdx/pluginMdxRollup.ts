@@ -4,6 +4,7 @@ import remarkPluginGFM from 'remark-gfm';
 import remarkPluginFrontMatter from 'remark-frontmatter';
 import remarkDirective from 'remark-directive';
 import remarkPluginMDXFrontMatter from 'remark-mdx-frontmatter';
+import remarkGemoji from 'remark-gemoji';
 import { remarkPluginNormalizeLink } from './remarkPlugins/link';
 import rehypePluginAutolinkHeadings from 'rehype-autolink-headings';
 import rehypePluginSlug from 'rehype-slug';
@@ -29,6 +30,7 @@ export async function pluginMdxRollup(
       // The following two plugin for frontmatter
       remarkPluginFrontMatter,
       [remarkPluginMDXFrontMatter, { name: 'frontmatter' }],
+      remarkGemoji,
       remarkPluginToc,
       remarkDirective,
       remarkPluginTip,

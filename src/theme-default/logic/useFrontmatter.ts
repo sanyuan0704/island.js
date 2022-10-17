@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { usePageData } from '@client';
+import { removeTrailingSlash } from './utils';
 
 export const useFrontmatter = () => {
   const pageData = usePageData();
@@ -9,10 +10,13 @@ export const useFrontmatter = () => {
   // The frontmatter data changes require us to manually trigger the react rerender
   useEffect(() => {
     if (import.meta.env.DEV) {
-      import.meta.hot?.on('md(x)-changed', ({ filePath }) => {
+      import.meta.hot?.on('md(x)-changed', ({ filePath, routePath }) => {
+        const fileRoutePath = removeTrailingSlash(routePath);
         import(/* @vite-ignore */ `${filePath}?import&t=${Date.now()}`).then(
           (mod) => {
-            setFrontmatter(mod.frontmatter);
+            // fix: updates to non-Home md documents will trigger this event,resulting in loss of Home data
+            pageData.routePath === fileRoutePath &&
+              setFrontmatter(mod.frontmatter);
           }
         );
       });
