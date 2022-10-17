@@ -4,7 +4,7 @@ import { Aside } from '../../components/Aside/index';
 import { DocFooter } from '../../components/DocFooter/index';
 import { Content, usePageData } from '@client';
 import { useLocaleSiteData } from '../../logic';
-import { useEffect, useRef } from 'react';
+import LoadingSvg from '../../assets/loading.svg';
 
 export interface DocLayoutProps {
   beforeDocFooter?: React.ReactNode;
@@ -52,7 +52,15 @@ export function DocLayout(props: DocLayoutProps) {
             }}
           >
             <div className="island-doc">
-              <Content fallback={<div>Loading...</div>} />
+              <Content
+                fallback={
+                  <div flex="center">
+                    <div p="2" text="sm">
+                      <LoadingSvg />
+                    </div>
+                  </div>
+                }
+              />
             </div>
             {beforeDocFooter}
             <DocFooter />

@@ -1,8 +1,8 @@
 import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
 import type { MatchResultItem, PageSearcher } from '../../logic/search';
 import { ComponentPropsWithIsland } from '../../../shared/types/index';
-import SearchSvg from './icons/search.svg';
-import LoadingSvg from './icons/loading.svg';
+import SearchSvg from '../../assets/search.svg';
+import LoadingSvg from '../../assets/loading.svg';
 import { throttle } from 'lodash-es';
 import { SuggestionContent } from './Suggestion';
 

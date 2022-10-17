@@ -1,6 +1,6 @@
 import { DefaultTheme } from 'shared/types';
-import Down from './icons/down.svg';
-import Right from './icons/right.svg';
+import Down from '../../assets/down.svg';
+import Right from '../../assets/right.svg';
 import { Link } from '../Link/index';
 
 export interface NavMenuGroupItem {

@@ -5,10 +5,9 @@ import { usePageData } from '@client';
 import { NavMenuSingleItem } from './NavMenuSingleItem';
 import { NavMenuGroup, NavMenuGroupItem } from './NavMenuGroup';
 import { useLocaleSiteData } from '../../logic';
-import GithubSvg from './icons/github.svg';
 import { DefaultTheme } from 'shared/types';
-import Translator from './icons/translator.svg';
-
+import Translator from '../../assets/translator.svg';
+import GithubSvg from '../../assets/github.svg';
 export interface NavProps {
   beforeNavTitle?: React.ReactNode;
   afterNavTitle?: React.ReactNode;

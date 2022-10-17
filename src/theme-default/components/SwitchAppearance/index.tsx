@@ -1,7 +1,7 @@
 import { Switch } from '../Switch';
 import styles from './index.module.scss';
-import SunSvg from './sun.svg';
-import MoonSvg from './moon.svg';
+import SunSvg from '../../assets/sun.svg';
+import MoonSvg from '../../assets/moon.svg';
 import { ComponentPropsWithIsland } from '../../../shared/types';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
