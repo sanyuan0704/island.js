@@ -1,5 +1,5 @@
 import { CUSTOM_GLOBAL_STYLE } from '../../node/constants';
-import { Plugin } from 'vite';
+import { Plugin, normalizePath } from 'vite';
 import { join } from 'path';
 import { pathExists } from 'fs-extra';
 import { SiteConfig } from 'shared/types';
@@ -17,7 +17,7 @@ export function pluginCustomStyle(config: SiteConfig): Plugin {
       const styleExists = await pathExists(stylePath);
 
       if (id === `\0${CUSTOM_GLOBAL_STYLE}`) {
-        return styleExists ? `import '${stylePath}';` : '';
+        return styleExists ? `import '${normalizePath(stylePath)}';` : '';
       }
     }
   };
