@@ -1,5 +1,12 @@
 
 
+## [0.4.2](https://github.com/sanyuan0704/island.js/compare/0.4.1...0.4.2) (2022-10-17)
+
+
+### Bug Fixes
+
+* custom style error in windows ([2a15d56](https://github.com/sanyuan0704/island.js/commit/2a15d567714b06bcc456722de6b8b00a64670e7e))
+
 ## [0.4.1](https://github.com/sanyuan0704/island.js/compare/0.4.0...0.4.1) (2022-10-16)
 
 
