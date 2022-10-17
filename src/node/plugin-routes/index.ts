@@ -28,10 +28,12 @@ export const CONVENTIONAL_ROUTE_ID = 'virtual:routes';
 
 export const DEFAULT_PAGE_EXTENSIONS = ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'];
 
+// It is convenient for other plugins to obtain route information
+export let routeService: RouteService;
+
 export function pluginRoutes(options: RouteOptions = {}): Plugin {
   const { root = 'src', prefix = '' } = options;
   let scanDir: string;
-  let routeService: RouteService;
   return {
     name: 'island:vite-plugin-routes',
     async configResolved() {

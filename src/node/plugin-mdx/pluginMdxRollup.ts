@@ -3,6 +3,7 @@ import { rehypePluginPreWrapper } from './rehypePlugins/preWrapper';
 import remarkPluginGFM from 'remark-gfm';
 import remarkPluginFrontMatter from 'remark-frontmatter';
 import remarkDirective from 'remark-directive';
+import { remarkCheckDeadLinks } from './remarkPlugins/deadLinks';
 import remarkPluginMDXFrontMatter from 'remark-mdx-frontmatter';
 import { remarkPluginNormalizeLink } from './remarkPlugins/link';
 import rehypePluginAutolinkHeadings from 'rehype-autolink-headings';
@@ -36,6 +37,7 @@ export async function pluginMdxRollup(
         remarkPluginNormalizeLink,
         { base: config.base || '/', enableSpa: config.enableSpa }
       ],
+      remarkCheckDeadLinks,
       ...(config.markdown?.remarkPlugins || [])
     ],
     rehypePlugins: [
