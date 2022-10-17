@@ -134,6 +134,7 @@ The remark plugins that will be used to parse markdown files. There are followin
 - [remark-gfm](https://www.npmjs.com/package/remark-gfm): Parse common markdown syntaxes `GFM` (GitHub Flavored Markdown).
 - [remark-frontmatter](https://www.npmjs.com/package/remark-frontmatter): Parse front matter info in markdown files.
 - [remark-mdx-frontmatter](https://www.npmjs.com/package/remark-mdx-frontmatter): Parse front matter info in mdx files.
+- [remark-gemoji](https://www.npmjs.com/package/remark-gemoji): Turn gemoji shortcodes `(:+1:)` into emoji (:+1:).
 
 You can also use this option to add some extra remark plugins. For example:
 
