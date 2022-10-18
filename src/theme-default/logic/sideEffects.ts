@@ -2,6 +2,7 @@ import { throttle } from 'lodash-es';
 import { APPEARANCE_KEY } from '../../shared/constants';
 import { inBrowser } from '../../shared/utils';
 import { setupCopyCodeButton } from './copyCode';
+import Viewer from 'viewerjs';
 
 const DEFAULT_NAV_HEIGHT = 60;
 
@@ -221,6 +222,13 @@ function bindingMenuGroupToggle() {
   });
 }
 
+function bindingImagePreview() {
+  const wrapper = document.getElementsByTagName('html');
+  if (wrapper.length > 0) {
+    new Viewer(wrapper?.[0]);
+  }
+}
+
 export function setup() {
   if (!inBrowser()) {
     return;
@@ -230,6 +238,7 @@ export function setup() {
   if (!import.meta.env.DEV && !import.meta.env.ENABLE_SPA) {
     bindingAsideScroll();
   }
+  bindingImagePreview();
   bindingWindowScroll();
   bindingMenuGroupToggle();
   setupCopyCodeButton();

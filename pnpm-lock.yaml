@@ -94,6 +94,7 @@ specifiers:
   unist-util-visit: ^4.1.1
   unist-util-visit-children: ^2.0.0
   unocss: ^0.45.26
+  viewerjs: ^1.11.0
   vite: ~3.1.4
   vite-plugin-inspect: ^0.7.4
   vitest: ^0.23.1
@@ -150,6 +151,7 @@ dependencies:
   unist-util-visit: 4.1.1
   unist-util-visit-children: 2.0.0
   unocss: 0.45.26_vite@3.1.4
+  viewerjs: 1.11.0
   vite: 3.1.4_sass@1.54.5
   vite-plugin-inspect: 0.7.4_vite@3.1.4
 
@@ -7917,6 +7919,10 @@ packages:
       is-buffer: 2.0.5
       unist-util-stringify-position: 3.0.2
       vfile-message: 3.1.2
+    dev: false
+
+  /viewerjs/1.11.0:
+    resolution: {integrity: sha512-TE3XvfEXqKV+LdHsRdMSPsCaq0PfKDXm4SjGzfty7CzVxlDbBbT4x38vAqfXfNITmHhHUQefdxdg0Vv4ia+Z9w==}
     dev: false
 
   /vite-plugin-inspect/0.7.4_vite@3.1.4:
