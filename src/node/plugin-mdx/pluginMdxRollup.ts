@@ -33,11 +33,11 @@ export async function pluginMdxRollup(
       remarkPluginToc,
       remarkDirective,
       remarkPluginTip,
+      [remarkCheckDeadLinks, { checkLink: config.markdown?.checkLink }],
       [
         remarkPluginNormalizeLink,
         { base: config.base || '/', enableSpa: config.enableSpa }
       ],
-      remarkCheckDeadLinks,
       ...(config.markdown?.remarkPlugins || [])
     ],
     rehypePlugins: [
