@@ -26,7 +26,7 @@ export const remarkCheckDeadLinks: Plugin<
 
       if (
         checkLink.exclude &&
-        checkLink.exclude.some((skipPattern) =>
+        checkLink.exclude.some((skipPattern: string | RegExp) =>
           new RegExp(skipPattern).test(url)
         )
       ) {
