@@ -237,7 +237,6 @@ export function setup() {
   bindingAppearanceToggle();
   // In spa, we set the logic in useEffect instead here because the event should be rebind when the page is changed
   if (!import.meta.env.DEV && !import.meta.env.ENABLE_SPA) {
-    console.log(1111);
     bindingAsideScroll();
   }
   bindingWindowScroll();
