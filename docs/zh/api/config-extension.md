@@ -197,7 +197,7 @@ export default defineConfig({
 - Type: `Object`
 - default: `null`
 
-是否开启文档的链接检查，该配置仅在构建开发环境代码时生效。
+配置文档的链接检查功能。
 
 当文档中的链接无法正常访问时，会抛出错误并终止构建。
 
@@ -209,6 +209,10 @@ export default defineConfig({
     checkLink: {
       exclude: ['github.com'],
       timeout: 30000
+    },
+    checkLink: {
+      // 将会关闭死链检查功能
+      disable: true
     }
   }
 });

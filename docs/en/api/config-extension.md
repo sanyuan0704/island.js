@@ -197,7 +197,7 @@ export default defineConfig({
 - Type: `Object`
 - default: `null`
 
-Whether to enable the link check of the document, this configuration only takes effect when building the development environment code.
+Configure the dead link check behavior of the document.
 
 When a link in the documentation is not accessible properly, an error is thrown and the build is terminated.
 
@@ -209,6 +209,10 @@ export default defineConfig({
     checkLink: {
       exclude: ['github.com'],
       timeout: 30000
+    },
+    checkLink: {
+      // will close the dead link check
+      disable: true
     }
   }
 });

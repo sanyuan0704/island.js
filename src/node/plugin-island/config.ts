@@ -7,7 +7,6 @@ import {
   ISLAND_JSX_RUNTIME_PATH,
   isProduction,
   PUBLIC_DIR,
-  ROUTE_PATH,
   SHARED_PATH
 } from '../constants';
 import { Plugin, UserConfig } from 'vite';

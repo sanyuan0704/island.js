@@ -1,11 +1,10 @@
-import { MarkdownOptions } from './../../../shared/types/index';
 import { normalizeRoutePath } from '../../plugin-routes/RouteService';
-import { isProduction } from '../../../node/constants';
 import type { Plugin } from 'unified';
 import { visit } from 'unist-util-visit';
 import { routeService } from '../../plugin-routes';
 import checkLinks from 'check-links';
 import ora from 'ora';
+import { MarkdownOptions } from 'shared/types/index';
 
 /**
  * Remark plugin to normalize a link href
@@ -13,7 +12,11 @@ import ora from 'ora';
 export const remarkCheckDeadLinks: Plugin<
   [{ checkLink: MarkdownOptions['checkLink'] }]
 > = ({ checkLink }) => {
-  if (!checkLink || !isProduction()) return;
+  if (checkLink?.disable) {
+    return;
+  }
+
+  const { exclude = [], timeout = 10000 } = checkLink || {};
 
   return async (tree) => {
     const externalLinks: string[] = [];
@@ -21,12 +24,16 @@ export const remarkCheckDeadLinks: Plugin<
 
     visit(tree, 'link', (node: { url: string }) => {
       const url = node.url;
-      if (!url) return;
-      if (internalLinks.includes(url) || externalLinks.includes(url)) return;
+      if (!url) {
+        return;
+      }
+      if (internalLinks.includes(url) || externalLinks.includes(url)) {
+        return;
+      }
 
       if (
-        checkLink.exclude &&
-        checkLink.exclude.some((skipPattern: string | RegExp) =>
+        exclude &&
+        exclude.some((skipPattern: string | RegExp) =>
           new RegExp(skipPattern).test(url)
         )
       ) {
@@ -54,12 +61,16 @@ export const remarkCheckDeadLinks: Plugin<
 
     // If the timeout is set too short, some links will be judged as dead links
     const results = await checkLinks(externalLinks, {
-      timeout: checkLink?.timeout || 30000
+      timeout
     });
     Object.keys(results).forEach((url) => {
       const result = results[url];
-      if (result.status !== 'dead') return;
-      if (!externalLinks.includes(url)) return;
+      if (result.status !== 'dead') {
+        return;
+      }
+      if (!externalLinks.includes(url)) {
+        return;
+      }
       errorInfos.push(`External link to ${url} is dead`);
     });
 
