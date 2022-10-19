@@ -83,6 +83,10 @@ export class RouteService {
     return this.#routeData;
   }
 
+  isExistRoute(routePath: string) {
+    return this.#routeData.find((route) => route.routePath === routePath);
+  }
+
   generateRoutesCode(ssr?: boolean) {
     return `
 ${lazyWithPreloadRuntimeCode.toString()};

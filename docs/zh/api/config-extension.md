@@ -178,7 +178,7 @@ export default defineConfig({
 ### markdown.lineNumbers
 
 - Type: `Boolean`,
-- Default: false
+- Default: `false`
 
 是否给代码块加上行号，默认是不展示。
 
@@ -188,6 +188,32 @@ import { defineConfig } from 'islandjs';
 export default defineConfig({
   markdown: {
     lineNumbers: true
+  }
+});
+```
+
+### markdown.checkLink
+
+- Type: `Object`
+- default: `null`
+
+配置文档的链接检查功能。
+
+当文档中的链接无法正常访问时，会抛出错误并终止构建。
+
+```js
+import { defineConfig } from 'islandjs';
+
+export default defineConfig({
+  markdown: {
+    checkLink: {
+      exclude: ['github.com'],
+      timeout: 30000
+    },
+    checkLink: {
+      // 将会关闭死链检查功能
+      disable: true
+    }
   }
 });
 ```

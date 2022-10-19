@@ -198,4 +198,9 @@ export interface MarkdownOptions {
   remarkPlugins?: PluggableList;
   rehypePlugins?: PluggableList;
   lineNumbers?: boolean;
+  checkLink?: {
+    exclude?: (string | RegExp)[];
+    timeout?: number;
+    disable?: true;
+  };
 }

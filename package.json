@@ -68,6 +68,7 @@
     "@vitejs/plugin-react": "2.0.1",
     "acorn": "^8.8.0",
     "cac": "6.7.12",
+    "check-links": "^1.1.8",
     "chokidar": "^3.5.3",
     "compression": "^1.7.4",
     "copy-to-clipboard": "^3.3.2",
