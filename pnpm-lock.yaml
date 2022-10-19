@@ -61,6 +61,7 @@ specifiers:
   lint-staged: ^13.0.3
   lodash-es: ^4.17.21
   mdast-util-mdxjs-esm: ^1.3.0
+  medium-zoom: ^1.0.6
   ora: ^6.1.2
   picocolors: ^1.0.0
   pnpm: 7.9.2
@@ -94,7 +95,6 @@ specifiers:
   unist-util-visit: ^4.1.1
   unist-util-visit-children: ^2.0.0
   unocss: ^0.45.26
-  viewerjs: ^1.11.0
   vite: ~3.1.4
   vite-plugin-inspect: ^0.7.4
   vitest: ^0.23.1
@@ -127,6 +127,7 @@ dependencies:
   husky: 8.0.1
   lodash-es: 4.17.21
   mdast-util-mdxjs-esm: 1.3.0
+  medium-zoom: 1.0.6
   ora: 6.1.2
   picocolors: 1.0.0
   polka: 0.5.2
@@ -151,7 +152,6 @@ dependencies:
   unist-util-visit: 4.1.1
   unist-util-visit-children: 2.0.0
   unocss: 0.45.26_vite@3.1.4
-  viewerjs: 1.11.0
   vite: 3.1.4_sass@1.54.5
   vite-plugin-inspect: 0.7.4_vite@3.1.4
 
@@ -5244,6 +5244,10 @@ packages:
     resolution: {integrity: sha512-/sKlQJCBYVY9Ers9hqzKou4H6V5UWc/M59TH2dvkt+84itfnq7uFOMLpOiOS4ujvHP4etln18fmIxA5R5fll0g==}
     dev: false
 
+  /medium-zoom/1.0.6:
+    resolution: {integrity: sha512-UdiUWfvz9fZMg1pzf4dcuqA0W079o0mpqbTnOz5ip4VGYX96QjmbM+OgOU/0uOzAytxC0Ny4z+VcYQnhdifimg==}
+    dev: false
+
   /meow/8.1.2:
     resolution: {integrity: sha512-r85E3NdZ+mpYk1C6RjPFEMSE+s1iZMuHtsHAqY0DT3jZczl0diWUZ8g6oU7h0M9cD2EL+PzaYghhCLzR0ZNn5Q==}
     engines: {node: '>=10'}
@@ -7919,10 +7923,6 @@ packages:
       is-buffer: 2.0.5
       unist-util-stringify-position: 3.0.2
       vfile-message: 3.1.2
-    dev: false
-
-  /viewerjs/1.11.0:
-    resolution: {integrity: sha512-TE3XvfEXqKV+LdHsRdMSPsCaq0PfKDXm4SjGzfty7CzVxlDbBbT4x38vAqfXfNITmHhHUQefdxdg0Vv4ia+Z9w==}
     dev: false
 
   /vite-plugin-inspect/0.7.4_vite@3.1.4:

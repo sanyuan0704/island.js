@@ -2,7 +2,7 @@ import { throttle } from 'lodash-es';
 import { APPEARANCE_KEY } from '../../shared/constants';
 import { inBrowser } from '../../shared/utils';
 import { setupCopyCodeButton } from './copyCode';
-import Viewer from 'viewerjs';
+import mediumZoom from 'medium-zoom';
 
 const DEFAULT_NAV_HEIGHT = 60;
 
@@ -223,10 +223,11 @@ function bindingMenuGroupToggle() {
 }
 
 function bindingImagePreview() {
-  const wrapper = document.getElementsByTagName('html');
-  if (wrapper.length > 0) {
-    new Viewer(wrapper?.[0]);
-  }
+  const imageList = document.querySelectorAll<HTMLImageElement>('img');
+  mediumZoom(imageList, {
+    margin: 100,
+    background: 'rgba(0, 0, 0, 0.7)'
+  });
 }
 
 export function setup() {
@@ -236,10 +237,11 @@ export function setup() {
   bindingAppearanceToggle();
   // In spa, we set the logic in useEffect instead here because the event should be rebind when the page is changed
   if (!import.meta.env.DEV && !import.meta.env.ENABLE_SPA) {
+    console.log(1111);
     bindingAsideScroll();
   }
-  bindingImagePreview();
   bindingWindowScroll();
   bindingMenuGroupToggle();
   setupCopyCodeButton();
+  bindingImagePreview();
 }
