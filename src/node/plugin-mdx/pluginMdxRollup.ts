@@ -9,7 +9,7 @@ import remarkGemoji from 'remark-gemoji';
 import { remarkPluginNormalizeLink } from './remarkPlugins/link';
 import rehypePluginAutolinkHeadings from 'rehype-autolink-headings';
 import rehypePluginSlug from 'rehype-slug';
-import rehypePluginExternalLinks from 'rehype-external-links';
+import rehypePluginExternalLinks, { Element } from 'rehype-external-links';
 import { remarkPluginToc } from './remarkPlugins/toc';
 import { remarkPluginTip } from './remarkPlugins/tip';
 import shiki from 'shiki';
@@ -17,6 +17,7 @@ import { rehypePluginShiki } from './rehypePlugins/shiki';
 import { rehypePluginLineNumbers } from './rehypePlugins/lineNumbers';
 import { SiteConfig } from 'shared/types/index';
 import { Plugin } from 'vite';
+import { TARGET_BLANK_WHITE_LIST } from '../../shared/constants';
 
 export async function pluginMdxRollup(
   config: SiteConfig,
@@ -61,7 +62,15 @@ export async function pluginMdxRollup(
         // Open new window then click external link
         rehypePluginExternalLinks,
         {
-          target: '_blank'
+          target: (node: Element) => {
+            const href = node.properties?.href;
+            if (typeof href === 'string') {
+              const inWhiteList = TARGET_BLANK_WHITE_LIST.some((item) =>
+                href.startsWith(item)
+              );
+              return inWhiteList ? '_self' : '_blank';
+            }
+          }
         }
       ],
       [

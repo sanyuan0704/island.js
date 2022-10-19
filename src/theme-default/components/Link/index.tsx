@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './index.module.scss';
 import { Link as RouterLink } from 'react-router-dom';
+import { TARGET_BLANK_WHITE_LIST } from '../../../shared/constants';
 
 export interface LinkProps {
   href?: string;
@@ -10,15 +11,12 @@ export interface LinkProps {
 
 const EXTERNAL_URL_RE = /^(https?:)?\/\//;
 
-const WHITE_LIST = [
-  'https://island-tutorial.sanyuan0704.top',
-  'https://island.sanyuan0704.top'
-];
-
 export function Link(props: LinkProps) {
   const { href = '/', children, className = '' } = props;
   const isExternal = EXTERNAL_URL_RE.test(href);
-  const isWhiteList = WHITE_LIST.some((item) => href.startsWith(item));
+  const isWhiteList = TARGET_BLANK_WHITE_LIST.some((item) =>
+    href.startsWith(item)
+  );
   const target = isExternal && !isWhiteList ? '_blank' : '';
   const rel = isExternal ? 'noopener noreferrer' : undefined;
   if (import.meta.env.ENABLE_SPA && !isExternal) {
