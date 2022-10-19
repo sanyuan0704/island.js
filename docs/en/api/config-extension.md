@@ -191,3 +191,25 @@ export default defineConfig({
   }
 });
 ```
+
+### markdown.checkLink
+
+- Type: `Object`
+- default: `null`
+
+Whether to enable the link check of the document, this configuration only takes effect when building the development environment code.
+
+When a link in the documentation is not accessible properly, an error is thrown and the build is terminated.
+
+```js
+import { defineConfig } from 'islandjs';
+
+export default defineConfig({
+  markdown: {
+    checkLink: {
+      exclude: ['github.com'],
+      timeout: 30000
+    }
+  }
+});
+```
