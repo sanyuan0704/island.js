@@ -5,7 +5,7 @@ import { ComponentPropsWithIsland } from 'shared/types/index';
 
 export function BackTop({
   backTop
-}: { backTop: string } & ComponentPropsWithIsland) {
+}: { backTop?: boolean } & ComponentPropsWithIsland) {
   const backTopCtrl = backTop ?? true;
 
   const scrollToTop = () => {
