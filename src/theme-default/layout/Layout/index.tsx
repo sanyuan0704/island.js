@@ -43,6 +43,7 @@ export const Layout: React.FC<LayoutProps> = (props) => {
     siteData,
     pageType
   } = usePageData();
+  const { backTop } = siteData.themeConfig;
   // Priority: front matter title > h1 title > site title
   const title = (frontmatter?.title ?? articleTitle) || siteData?.title;
   const description = frontmatter?.description || siteData.description;
@@ -76,7 +77,7 @@ export const Layout: React.FC<LayoutProps> = (props) => {
         {getContentLayout()}
       </section>
       {bottom}
-      <BackTop />
+      <BackTop __island backTop={backTop} />
     </div>
   );
 };

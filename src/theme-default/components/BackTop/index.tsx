@@ -1,11 +1,12 @@
-import { React, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import BTween from 'b-tween';
 import { throttle } from 'lodash-es';
-import { usePageData } from '@client';
+import { ComponentPropsWithIsland } from 'shared/types/index';
 
-export function BackTop() {
-  const { siteData } = usePageData();
-  const backTopCtrl = siteData?.themeConfig?.backTop ?? true;
+export function BackTop({
+  backTop
+}: { backTop: string } & ComponentPropsWithIsland) {
+  const backTopCtrl = backTop ?? true;
 
   const scrollToTop = () => {
     // https://github.com/PengJiyuan/b-tween
