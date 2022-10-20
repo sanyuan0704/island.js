@@ -1,3 +1,4 @@
+import { isProduction } from '../../constants';
 import { normalizeRoutePath } from '../../plugin-routes/RouteService';
 import type { Plugin } from 'unified';
 import { visit } from 'unist-util-visit';
@@ -6,13 +7,14 @@ import checkLinks from 'check-links';
 import ora from 'ora';
 import { MarkdownOptions } from 'shared/types/index';
 
+const checkedLinks = new Map();
 /**
  * Remark plugin to normalize a link href
  */
 export const remarkCheckDeadLinks: Plugin<
   [{ checkLink: MarkdownOptions['checkLink'] }]
 > = ({ checkLink }) => {
-  if (checkLink?.disable) {
+  if (!checkLink?.enable) {
     return;
   }
 
@@ -27,7 +29,11 @@ export const remarkCheckDeadLinks: Plugin<
       if (!url) {
         return;
       }
-      if (internalLinks.includes(url) || externalLinks.includes(url)) {
+      if (
+        internalLinks.includes(url) ||
+        externalLinks.includes(url) ||
+        checkedLinks.has(url)
+      ) {
         return;
       }
 
@@ -41,7 +47,9 @@ export const remarkCheckDeadLinks: Plugin<
       }
 
       if (!url.startsWith('http') && !url.startsWith('https')) {
-        internalLinks.push(normalizeRoutePath(url?.split('#')[0]));
+        const normalizeUrl = normalizeRoutePath(url?.split('#')[0]);
+        internalLinks.push(normalizeUrl);
+        checkedLinks.set(normalizeUrl, true);
         return;
       }
 
@@ -50,6 +58,7 @@ export const remarkCheckDeadLinks: Plugin<
         return;
       }
       externalLinks.push(url);
+      checkedLinks.set(url, true);
     });
 
     const errorInfos: string[] = [];
@@ -58,7 +67,6 @@ export const remarkCheckDeadLinks: Plugin<
         errorInfos.push(`Internal link to ${link} is dead`);
       }
     });
-
     // If the timeout is set too short, some links will be judged as dead links
     const results = await checkLinks(externalLinks, {
       timeout
@@ -77,7 +85,7 @@ export const remarkCheckDeadLinks: Plugin<
     // output error info
     if (errorInfos.length > 0) {
       errorInfos?.forEach((err) => ora().fail(err));
-      process.exit();
+      isProduction() && process.exit();
     }
   };
 };

@@ -201,6 +201,10 @@ Configure the dead link check behavior of the document.
 
 When a link in the documentation is not accessible properly, an error is thrown and the build is terminated.
 
+:::danger
+This configuration is off by default. When manually turned on, the build will be blocked under poor network conditions.
+:::
+
 ```js
 import { defineConfig } from 'islandjs';
 
@@ -211,8 +215,8 @@ export default defineConfig({
       timeout: 30000
     },
     checkLink: {
-      // will close the dead link check
-      disable: true
+      // will enable the dead link check
+      enable: true
     }
   }
 });
