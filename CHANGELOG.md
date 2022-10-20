@@ -1,5 +1,21 @@
 
 
+## [0.4.3](https://github.com/sanyuan0704/island.js/compare/0.4.2...0.4.3) (2022-10-20)
+
+
+### Bug Fixes
+
+* hasSidebar in navbar title ([0c05644](https://github.com/sanyuan0704/island.js/commit/0c05644f6b9b30cc2d0e0a4094a4db9d027f1383))
+* off by default and increase the cache to avoid secondary detection ([#108](https://github.com/sanyuan0704/island.js/issues/108)) ([d7b8265](https://github.com/sanyuan0704/island.js/commit/d7b8265e70a86097975c6f78fd8b79c743fa9cc3))
+* other md document updates cause home page data loss ([#99](https://github.com/sanyuan0704/island.js/issues/99)) ([b5edd92](https://github.com/sanyuan0704/island.js/commit/b5edd927ffec699ea8bfbdb0d36c40284dd6eed5))
+
+
+### Features
+
+* check dead link ([#103](https://github.com/sanyuan0704/island.js/issues/103)) ([538dfcc](https://github.com/sanyuan0704/island.js/commit/538dfcc95b5a42319b7c9b0a063b4ec3cf2d7dd0))
+* emoji ([#101](https://github.com/sanyuan0704/island.js/issues/101)) ([d3b5acd](https://github.com/sanyuan0704/island.js/commit/d3b5acd21f181138c1751ccc9d07a2c3bb72e868))
+* support disable in checkLink ([97c9209](https://github.com/sanyuan0704/island.js/commit/97c9209fd013ee294c66bc3f3086f66f0c2438db))
+
 ## [0.4.2](https://github.com/sanyuan0704/island.js/compare/0.4.1...0.4.2) (2022-10-17)
 
 
