@@ -153,6 +153,7 @@ export interface FrontMatterMeta {
   hero?: Hero;
   sidebar?: boolean;
   outline?: boolean;
+  lineNumbers?: boolean;
 }
 
 export interface PageData {

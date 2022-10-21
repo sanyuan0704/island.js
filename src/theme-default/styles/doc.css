@@ -351,6 +351,10 @@
   padding-left: 32px;
 }
 
+.island-doc.line-number-disable div[class*='language-'].line-numbers-mode {
+  padding-left: 0px;
+}
+
 .island-doc .line-numbers-wrapper {
   position: absolute;
   top: 0;
@@ -367,6 +371,10 @@
   transition: border-color 0.5s, color 0.5s;
   display: flex;
   flex-direction: column;
+}
+
+.island-doc.line-number-disable .line-numbers-wrapper {
+  display: none;
 }
 
 .island-doc [class*='language-'] > button.copy {

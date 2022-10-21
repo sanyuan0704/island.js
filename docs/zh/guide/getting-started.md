@@ -1,3 +1,7 @@
+---
+lineNumbers: false
+---
+
 # 快速开始
 
 ## 为什么选择 Island.js?
