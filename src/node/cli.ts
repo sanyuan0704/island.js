@@ -6,16 +6,33 @@ import { serve } from './serve';
 const version = require('./../../package.json');
 
 const cli = cac('island').version(version).help();
-
+export interface DevOption {
+  host?: string | boolean;
+  port?: number;
+  cacheDir?: string;
+  c?: string;
+  force?: boolean;
+  open?: boolean;
+  '--'?: string[];
+}
+cli.option(
+  '--clearScreen',
+  '[boolean] allow/disable clear screen when logging'
+);
 cli
   .command('[root]', 'start dev server') // default command
   .alias('dev')
-  .action(async (root: string) => {
+  .option('--host <host>', 'SpecifyIP addresses for the server')
+  .option('-p, --port <port>', 'use specified port (default: 8080)')
+  .option('-c, --cacheDir [cacheDir]', 'set the directory of cache')
+  .option('-o,--open', 'open browser when ready')
+  .option('--force [force]', 'clean the cache before build')
+  .action(async (root: string, devOptions: DevOption) => {
     try {
       root = resolve(root);
       const createServer = async () => {
         const { createDevServer } = await import(`./dev.js?t=${Date.now()}`);
-        const server = await createDevServer(root, async () => {
+        const server = await createDevServer(root, devOptions, async () => {
           await server.close();
           await createServer();
         });
@@ -25,6 +42,7 @@ cli
       await createServer();
     } catch (e) {
       console.log(e);
+      process.exit(1);
     }
   });
 
