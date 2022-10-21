@@ -1,9 +1,10 @@
 import { VitePluginConfig } from 'unocss/vite';
 import presetWind from '@unocss/preset-wind';
 import presetAttributify from '@unocss/preset-attributify';
+import presetIcons from '@unocss/preset-icons';
 
 const options: VitePluginConfig = {
-  presets: [presetAttributify(), presetWind({})],
+  presets: [presetAttributify(), presetWind({}), presetIcons()],
   shortcuts: {
     'flex-center': 'flex justify-center items-center',
     menu: 'flex justify-around items-center text-sm font-bold'

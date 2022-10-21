@@ -79,6 +79,10 @@ export namespace DefaultTheme {
      * Whether to open the full text search
      */
     search?: boolean;
+    /**
+     * Whether to use back top
+     */
+    backTop?: boolean;
   }
 
   /**
