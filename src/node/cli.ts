@@ -2,17 +2,14 @@ import { resolve } from 'path';
 import { cac } from 'cac';
 import { build } from './build';
 import { serve } from './serve';
+import { UserConfig } from 'vite/dist/node/index';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const version = require('./../../package.json');
 
 const cli = cac('island').version(version).help();
-export interface DevOption {
-  host?: string | boolean;
-  port?: number;
-  cacheDir?: string;
+export interface DevOption extends UserConfig {
   c?: string;
   force?: boolean;
-  open?: boolean;
   '--'?: string[];
 }
 cli.option(
