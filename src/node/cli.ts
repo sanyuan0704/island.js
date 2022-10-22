@@ -8,22 +8,31 @@ const version = require('./../../package.json');
 
 const cli = cac('island').version(version).help();
 export interface DevOption extends UserConfig {
-  c?: string;
   force?: boolean;
+  viteConfig?: string;
   '--'?: string[];
 }
-cli.option(
-  '--clearScreen',
-  '[boolean] allow/disable clear screen when logging'
-);
 cli
   .command('[root]', 'start dev server') // default command
   .alias('dev')
-  .option('--host <host>', 'SpecifyIP addresses for the server')
-  .option('-p, --port <port>', 'use specified port (default: 8080)')
-  .option('-c, --cacheDir [cacheDir]', 'set the directory of cache')
-  .option('-o,--open', 'open browser when ready')
-  .option('--force [force]', 'clean the cache before build')
+  .option(
+    '--viteConfig [config]',
+    'explicitly specify a config file to use with the --config CLI option'
+  )
+  .option('--host <host>', '[string] specify hostname')
+  .option('-p, --port <port>', '[number] specify port')
+  .option('--cacheDir [cacheDir]', '[string] set the directory of cache')
+  .option(
+    '--force [force]',
+    '[boolean] force the optimizer to ignore the cache and re-bundle'
+  )
+  .option('-m, --mode <mode>', '[string] set env mode')
+  .option('-l, --logLevel <level>', '[string] info | warn | error | silent')
+  .option('--clearScreen', '[boolean] allow/disable clear screen when logging')
+  .option('--https', '[boolean] use TLS + HTTP/2')
+  .option('--cors', '[boolean] enable CORS')
+  .option('--strictPort', '[boolean] exit if specified port is already in use')
+  .option('--open [path]', '[boolean | string] open browser on startup')
   .action(async (root: string, devOptions: DevOption) => {
     try {
       root = resolve(root);
