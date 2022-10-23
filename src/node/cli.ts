@@ -2,23 +2,20 @@ import { resolve } from 'path';
 import { cac } from 'cac';
 import { build } from './build';
 import { serve } from './serve';
-import { UserConfig } from 'vite/dist/node/index';
+import type { UserConfig } from 'vite';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const version = require('./../../package.json');
 
 const cli = cac('island').version(version).help();
+
 export interface DevOption extends UserConfig {
   force?: boolean;
-  viteConfig?: string;
   '--'?: string[];
 }
+
 cli
   .command('[root]', 'start dev server') // default command
   .alias('dev')
-  .option(
-    '--viteConfig [config]',
-    'explicitly specify a config file to use with the --config CLI option'
-  )
   .option('--host <host>', '[string] specify hostname')
   .option('-p, --port <port>', '[number] specify port')
   .option('--cacheDir [cacheDir]', '[string] set the directory of cache')
