@@ -2,6 +2,7 @@ import { throttle } from 'lodash-es';
 import { APPEARANCE_KEY } from '../../shared/constants';
 import { inBrowser } from '../../shared/utils';
 import { setupCopyCodeButton } from './copyCode';
+import mediumZoom from 'medium-zoom';
 
 const DEFAULT_NAV_HEIGHT = 60;
 
@@ -221,6 +222,14 @@ function bindingMenuGroupToggle() {
   });
 }
 
+function bindingImagePreview() {
+  const imageList = document.querySelectorAll<HTMLImageElement>('img');
+  mediumZoom(imageList, {
+    margin: 100,
+    background: 'rgba(0, 0, 0, 0.7)'
+  });
+}
+
 export function setup() {
   if (!inBrowser()) {
     return;
@@ -233,4 +242,5 @@ export function setup() {
   bindingWindowScroll();
   bindingMenuGroupToggle();
   setupCopyCodeButton();
+  bindingImagePreview();
 }
