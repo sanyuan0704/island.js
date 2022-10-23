@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import BTween, { BTWeenType } from 'b-tween';
+import BTween from 'b-tween';
 import { throttle } from 'lodash-es';
 import { ComponentPropsWithIsland } from 'shared/types/index';
 
