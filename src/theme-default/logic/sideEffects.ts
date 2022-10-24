@@ -15,7 +15,26 @@ function bindingAppearanceToggle() {
       return () => undefined;
     }
     const setClass = (dark: boolean): void => {
+      const css = document.createElement('style');
+      css.type = 'text/css';
+      css.appendChild(
+        document.createTextNode(
+          `:not(#appearance):not(#appearance *) {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  -ms-transition: none !important;
+  transition: none !important;
+}`
+        )
+      );
+      document.head.appendChild(css);
+
       classList[dark ? 'add' : 'remove']('dark');
+
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const _ = window.getComputedStyle(css).opacity;
+      document.head.removeChild(css);
     };
     // Determine if the theme mode of the user's operating system is dark
     const query = window.matchMedia('(prefers-color-scheme: dark)');
