@@ -201,6 +201,6 @@ export interface MarkdownOptions {
   checkLink?: {
     exclude?: (string | RegExp)[];
     timeout?: number;
-    disable?: true;
+    enable?: boolean;
   };
 }

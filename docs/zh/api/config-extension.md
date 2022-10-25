@@ -201,6 +201,10 @@ export default defineConfig({
 
 当文档中的链接无法正常访问时，会抛出错误并终止构建。
 
+:::danger
+该配置默认关闭。当手动开启后，在网络状况不好的情况下会阻塞构建
+:::
+
 ```js
 import { defineConfig } from 'islandjs';
 
@@ -211,8 +215,8 @@ export default defineConfig({
       timeout: 30000
     },
     checkLink: {
-      // 将会关闭死链检查功能
-      disable: true
+      // 将会开启死链检查功能
+      enable: true
     }
   }
 });

@@ -8,6 +8,7 @@ import { APILayout } from '../APILayout';
 import { DocLayoutProps } from '../DocLayout/index';
 import { HomeLayoutProps } from '../HomeLayout/index';
 import type { NavProps } from '../../components/Nav/index';
+import { BackTop } from '../../components/BackTop';
 
 export type LayoutProps = {
   top?: React.ReactNode;
@@ -42,6 +43,7 @@ export const Layout: React.FC<LayoutProps> = (props) => {
     siteData,
     pageType
   } = usePageData();
+  const { backTop } = siteData.themeConfig;
   // Priority: front matter title > h1 title > site title
   const title = (frontmatter?.title ?? articleTitle) || siteData?.title;
   const description = frontmatter?.description || siteData.description;
@@ -75,6 +77,7 @@ export const Layout: React.FC<LayoutProps> = (props) => {
         {getContentLayout()}
       </section>
       {bottom}
+      <BackTop __island backTop={backTop} />
     </div>
   );
 };
