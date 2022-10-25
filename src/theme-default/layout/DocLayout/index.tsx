@@ -34,6 +34,8 @@ export function DocLayout(props: DocLayoutProps) {
   const hasAside =
     headers.length > 0 &&
     (frontmatter?.outline ?? themeConfig?.outline ?? true);
+  const isDisableLineNumbers =
+    frontmatter?.lineNumbers === undefined ? false : !frontmatter.lineNumbers;
 
   return (
     <div p="t-0 x-6 b-24 sm:6">
@@ -51,7 +53,11 @@ export function DocLayout(props: DocLayoutProps) {
               paddingLeft: hasAside ? '0' : '72px'
             }}
           >
-            <div className="island-doc">
+            <div
+              className={`island-doc ${
+                isDisableLineNumbers ? 'line-number-disable' : ''
+              }`}
+            >
               <Content
                 fallback={
                   <div flex="center">

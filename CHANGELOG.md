@@ -1,5 +1,20 @@
 
 
+# [0.5.0](https://github.com/sanyuan0704/island.js/compare/0.4.3...0.5.0) (2022-10-23)
+
+
+### Bug Fixes
+
+* b-tween lib type error ([501dc01](https://github.com/sanyuan0704/island.js/commit/501dc0145abe2663f555d89bfdc8d3ed326676e5))
+
+
+### Features
+
+* back top ([#98](https://github.com/sanyuan0704/island.js/issues/98)) ([9395fd7](https://github.com/sanyuan0704/island.js/commit/9395fd7c65d5c372e2009c8dcd4dfb6a6c1cfd14))
+* lineNumber in frontmatter ([#110](https://github.com/sanyuan0704/island.js/issues/110)) ([c090d4c](https://github.com/sanyuan0704/island.js/commit/c090d4cb53c9612ee35dd71611cfb36941eb33d7))
+* support cli params ([#109](https://github.com/sanyuan0704/island.js/issues/109)) ([eae06bd](https://github.com/sanyuan0704/island.js/commit/eae06bd00f0d2b9cbdb8f74ba5c0a76e55b8a397))
+* support image preview ([#105](https://github.com/sanyuan0704/island.js/issues/105)) ([f7330a8](https://github.com/sanyuan0704/island.js/commit/f7330a85892a97cf6b6986df987833afab67c481))
+
 ## [0.4.3](https://github.com/sanyuan0704/island.js/compare/0.4.2...0.4.3) (2022-10-20)
 
 

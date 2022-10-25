@@ -2,6 +2,7 @@ import { throttle } from 'lodash-es';
 import { APPEARANCE_KEY } from '../../shared/constants';
 import { inBrowser } from '../../shared/utils';
 import { setupCopyCodeButton } from './copyCode';
+import mediumZoom from 'medium-zoom';
 
 const DEFAULT_NAV_HEIGHT = 60;
 
@@ -14,7 +15,26 @@ function bindingAppearanceToggle() {
       return () => undefined;
     }
     const setClass = (dark: boolean): void => {
+      const css = document.createElement('style');
+      css.type = 'text/css';
+      css.appendChild(
+        document.createTextNode(
+          `:not(#appearance):not(#appearance *) {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  -ms-transition: none !important;
+  transition: none !important;
+}`
+        )
+      );
+      document.head.appendChild(css);
+
       classList[dark ? 'add' : 'remove']('dark');
+
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const _ = window.getComputedStyle(css).opacity;
+      document.head.removeChild(css);
     };
     // Determine if the theme mode of the user's operating system is dark
     const query = window.matchMedia('(prefers-color-scheme: dark)');
@@ -221,6 +241,14 @@ function bindingMenuGroupToggle() {
   });
 }
 
+function bindingImagePreview() {
+  const imageList = document.querySelectorAll<HTMLImageElement>('img');
+  mediumZoom(imageList, {
+    margin: 100,
+    background: 'rgba(0, 0, 0, 0.7)'
+  });
+}
+
 export function setup() {
   if (!inBrowser()) {
     return;
@@ -233,4 +261,5 @@ export function setup() {
   bindingWindowScroll();
   bindingMenuGroupToggle();
   setupCopyCodeButton();
+  bindingImagePreview();
 }

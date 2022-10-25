@@ -1,1 +1,2 @@
 declare module "check-links" 
+

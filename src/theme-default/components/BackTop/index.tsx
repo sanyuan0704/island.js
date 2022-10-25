@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import BTween, { BTWeenType } from 'b-tween';
+import BTween from 'b-tween';
 import { throttle } from 'lodash-es';
 import { ComponentPropsWithIsland } from 'shared/types/index';
 
@@ -12,7 +12,7 @@ export function BackTop({
     // https://github.com/PengJiyuan/b-tween
     const target = document.documentElement;
     const targetScrollTop = target.scrollTop;
-    const btween: BTWeenType = new BTween({
+    const btween = new BTween({
       from: {
         scrollTop: targetScrollTop
       },
@@ -21,8 +21,9 @@ export function BackTop({
       },
       easing: 'quadIn',
       duration: 500,
-      onUpdate: (keys: Record<string, string | number>) => {
-        target.scrollTop = keys.scrollTop;
+      onUpdate: (info?: Record<string, string | number>) => {
+        target.scrollTop = Number(info?.scrollTop);
+        return;
       }
     });
     btween.start();
@@ -47,8 +48,8 @@ export function BackTop({
     <div className="fixed bottom-10 right-30 z-10" onClick={scrollToTop}>
       <button
         className="w-10 h-10 rounded-full duration-300 bg-white"
-        c="gray hover:gray-500"
-        b="~ gray-200 hover:gray-300"
+        color="gray hover:gray-500"
+        bg="~ gray-200 hover:gray-300"
         shadow="sm hover:md"
       >
         <div flex="~ center">

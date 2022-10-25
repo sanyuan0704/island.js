@@ -2,8 +2,8 @@ import { resolve } from 'path';
 import { cac } from 'cac';
 import { build } from './build';
 import { serve } from './serve';
-import { UserConfig } from 'vite/dist/node/index';
 import { ServeOptions } from './serve';
+import type { UserConfig } from 'vite';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const version = require('./../../package.json');
 
