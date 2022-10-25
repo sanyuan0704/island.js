@@ -10,6 +10,7 @@ import fs from 'fs-extra';
 import { loadConfigFromFile } from 'vite';
 import { DEFAULT_THEME_PATH, DIST_PATH } from './constants';
 import { APPEARANCE_KEY } from '../shared/constants';
+import pc from 'picocolors';
 
 const { pathExistsSync } = fs;
 
@@ -18,18 +19,53 @@ type RawConfig<ThemeConfig = unknown> =
   | Promise<UserConfig<ThemeConfig>>
   | (() => UserConfig<ThemeConfig> | Promise<UserConfig<ThemeConfig>>);
 
+/**
+ * resolve .island files
+ */
 const resolve = (root: string, ...files: string[]) =>
   path.resolve(root, '.island', ...files);
 
+/**
+ * get get defaultConfigName or userConfigName
+ */
+const getConfigFileName = (customizePath?: string) => {
+  if (customizePath) {
+    const [path] = customizePath.split('.');
+    return path;
+  } else {
+    return 'config';
+  }
+};
+/**
+ * get defaultConfigPath or userConfigPath
+ */
+const getUserConfigPath = (root: string, customizePath?: string) => {
+  try {
+    const supportExtensions = ['js', 'ts'];
+    const configFileName = getConfigFileName(customizePath);
+    const [configPath] = supportExtensions
+      .map((extension) => resolve(root, `${configFileName}.${extension}`))
+      .filter(pathExistsSync);
+    if (configFileName !== 'config' && !pathExistsSync(configPath)) {
+      const errorPath = resolve(root, `${customizePath}`);
+      throw new Error(`failed to load config from ${errorPath}`);
+    }
+    return configPath;
+  } catch (e) {
+    console.log(pc.red('failed to load config file'));
+    throw e;
+  }
+};
+/**
+ * resolve user`s config
+ */
 export async function resolveUserConfig(
   root: string,
   command: 'serve' | 'build',
-  mode: 'development' | 'production'
+  mode: 'development' | 'production',
+  customizeConfig?: string
 ): Promise<[string, UserConfig<DefaultTheme.Config>, string[]]> {
-  const supportExtensions = ['js', 'ts'];
-  const [configPath] = supportExtensions
-    .map((extension) => resolve(root, `config.${extension}`))
-    .filter(pathExistsSync);
+  const configPath = getUserConfigPath(root, customizeConfig);
   // Use vite internal config loader
   const result = await loadConfigFromFile({ command, mode }, configPath, root);
   if (result) {
@@ -99,12 +135,14 @@ export function resolveSiteData(
 export async function resolveConfig(
   root: string,
   command: 'serve' | 'build',
-  mode: 'development' | 'production'
+  mode: 'development' | 'production',
+  customizeConfig?: string
 ): Promise<SiteConfig> {
   const [configPath, userConfig, configDeps] = await resolveUserConfig(
     root,
     command,
-    mode
+    mode,
+    customizeConfig
   );
   const srcDir = path.resolve(root, userConfig.srcDir || '');
   const outDir = path.resolve(root, userConfig.outDir || DIST_PATH);

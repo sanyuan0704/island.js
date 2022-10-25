@@ -9,7 +9,7 @@ function cleanOptions(options: DevOption) {
   delete option.force;
   delete option.logLevel;
   delete option.clearScreen;
-  delete option.viteConfig;
+  delete option.config;
   return option;
 }
 export async function createDevServer(
@@ -17,11 +17,15 @@ export async function createDevServer(
   options: DevOption,
   restartServer: () => Promise<void>
 ) {
-  const config = await resolveConfig(root, 'serve', 'development');
+  const config = await resolveConfig(
+    root,
+    'serve',
+    'development',
+    options.config
+  );
   return createViteDevServer({
     root,
     base: '/',
-    configFile: options.viteConfig,
     optimizeDeps: { force: options.force },
     cacheDir: options.cacheDir,
     logLevel: options.logLevel,

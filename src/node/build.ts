@@ -35,6 +35,7 @@ import createDebugger from 'debug';
 import { performance } from 'perf_hooks';
 import pc from 'picocolors';
 import { pathToFileURL } from 'url';
+import { BuildOption } from './cli';
 
 const debug = createDebugger('island:build');
 const islandInjectId = 'island:inject';
@@ -394,8 +395,13 @@ class SSGBuilder {
   }
 }
 
-export async function build(root: string) {
-  const config = await resolveConfig(root, 'build', 'production');
+export async function build(root: string, options: BuildOption) {
+  const config = await resolveConfig(
+    root,
+    'build',
+    'production',
+    options.config
+  );
   const builder = new SSGBuilder(config);
 
   const [render, routes] = await builder.build();

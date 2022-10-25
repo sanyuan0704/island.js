@@ -9,16 +9,19 @@ const version = require('./../../package.json');
 const cli = cac('island').version(version).help();
 export interface DevOption extends UserConfig {
   force?: boolean;
-  viteConfig?: string;
+  config?: string;
   '--'?: string[];
 }
+export interface BuildOption {
+  config: string;
+}
+cli.option(
+  '--config [config]',
+  '[string]explicitly specify a config file to use with the --config CLI option'
+);
 cli
   .command('[root]', 'start dev server') // default command
   .alias('dev')
-  .option(
-    '--viteConfig [config]',
-    'explicitly specify a config file to use with the --config CLI option'
-  )
   .option('--host <host>', '[string] specify hostname')
   .option('-p, --port <port>', '[number] specify port')
   .option('--cacheDir [cacheDir]', '[string] set the directory of cache')
@@ -54,10 +57,10 @@ cli
 
 cli
   .command('build [root]', 'build for production') // default command
-  .action(async (root: string) => {
+  .action(async (root: string, buildOptions: BuildOption) => {
     try {
       root = resolve(root);
-      await build(root);
+      await build(root, buildOptions);
     } catch (e) {
       console.log(e);
     }
