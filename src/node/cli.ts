@@ -16,6 +16,7 @@ export interface DevOption extends UserConfig {
 export interface BuildOption extends UserConfig {
   config?: string;
   force?: boolean;
+  sourcemap?: boolean | 'inline' | 'hidden';
 }
 cli.option(
   '--config [config]',
@@ -59,7 +60,6 @@ cli
 
 cli
   .command('build [root]', 'build for production') // default command
-  .option('--cacheDir [cacheDir]', '[string] set the directory of cache')
   .option(
     '--force [force]',
     '[boolean] force the optimizer to ignore the cache and re-bundle'

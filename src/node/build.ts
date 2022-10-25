@@ -359,8 +359,7 @@ class SSGBuilder {
       ...options,
       mode: 'production',
       root: this.#root,
-      optimizeDeps: { force: this.#options.force },
-      cacheDir: this.#options.cacheDir,
+      optimizeDeps: { force: this.#options?.force },
       plugins: [
         await createIslandPlugins(this.#config, isServer),
         ...(options?.plugins || [])
@@ -383,8 +382,8 @@ class SSGBuilder {
           },
           input: isServer ? SERVER_ENTRY_PATH : CLIENT_ENTRY_PATH
         },
-        ...options?.build,
-        ...this.#options?.build
+        sourcemap: this.#options?.sourcemap,
+        ...options?.build
       }
     });
 
