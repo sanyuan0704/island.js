@@ -3,6 +3,7 @@ import { cac } from 'cac';
 import { build } from './build';
 import { serve } from './serve';
 import { UserConfig } from 'vite/dist/node/index';
+import { ServeOptions } from './serve';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const version = require('./../../package.json');
 
@@ -12,8 +13,9 @@ export interface DevOption extends UserConfig {
   config?: string;
   '--'?: string[];
 }
-export interface BuildOption {
-  config: string;
+export interface BuildOption extends UserConfig {
+  config?: string;
+  force?: boolean;
 }
 cli.option(
   '--config [config]',
@@ -57,6 +59,15 @@ cli
 
 cli
   .command('build [root]', 'build for production') // default command
+  .option('--cacheDir [cacheDir]', '[string] set the directory of cache')
+  .option(
+    '--force [force]',
+    '[boolean] force the optimizer to ignore the cache and re-bundle'
+  )
+  .option(
+    '--sourcemap',
+    '[boolean] output source maps for build (default: false)'
+  )
   .action(async (root: string, buildOptions: BuildOption) => {
     try {
       root = resolve(root);
@@ -69,10 +80,11 @@ cli
 cli
   .command('start [root]', 'serve for production') // default command
   .option('--port <port>', 'port to use for serve')
-  .action(async (root: string, { port }: { port: number }) => {
+  .option('--host <host>', '[string] specify hostname')
+  .action(async (root: string, serveOptions: ServeOptions) => {
     try {
       root = resolve(root);
-      await serve(root, port);
+      await serve(root, serveOptions);
     } catch (e) {
       console.log(e);
     }

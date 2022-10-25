@@ -61,13 +61,15 @@ interface ServerEntryExports {
 class SSGBuilder {
   #root: string;
   #config: SiteConfig<unknown>;
+  #options: BuildOption;
   #clientBundle?: RollupOutput;
   #serverBundle?: RollupOutput;
   #islandsInjectCache: Map<string, Promise<string>> = new Map();
 
-  constructor(config: SiteConfig<unknown>) {
+  constructor(config: SiteConfig<unknown>, options: BuildOption) {
     this.#config = config;
     this.#root = this.#config.root;
+    this.#options = options;
   }
 
   async build() {
@@ -357,6 +359,8 @@ class SSGBuilder {
       ...options,
       mode: 'production',
       root: this.#root,
+      optimizeDeps: { force: this.#options.force },
+      cacheDir: this.#options.cacheDir,
       plugins: [
         await createIslandPlugins(this.#config, isServer),
         ...(options?.plugins || [])
@@ -379,7 +383,8 @@ class SSGBuilder {
           },
           input: isServer ? SERVER_ENTRY_PATH : CLIENT_ENTRY_PATH
         },
-        ...options?.build
+        ...options?.build,
+        ...this.#options?.build
       }
     });
 
@@ -402,7 +407,7 @@ export async function build(root: string, options: BuildOption) {
     'production',
     options.config
   );
-  const builder = new SSGBuilder(config);
+  const builder = new SSGBuilder(config, options);
 
   const [render, routes] = await builder.build();
 
