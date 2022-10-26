@@ -22,7 +22,7 @@ export default defineConfig({
 });
 ```
 
-当然你也可以通过命令行选项来添加 vite 配置，但是仅限于` island build docs`与` island dev docs`命令（我们的构建预览并没有使用 vite），目前支持的命令行选项可以通过`--help`命令来获取：
+当然你也可以通过命令行选项来添加 vite 配置，但是仅限于`island build docs`与`island dev docs`命令（我们的构建预览并没有使用 vite），目前支持的命令行选项可以通过`--help`命令来获取：
 
 ```js
 island build --help

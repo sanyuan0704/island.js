@@ -26,7 +26,7 @@ const resolve = (root: string, ...files: string[]) =>
   path.resolve(root, '.island', ...files);
 
 /**
- * get get defaultConfigName or userConfigName
+ * Get default config fileName or user custom config fileName.
  */
 const getConfigFileName = (customizePath?: string) => {
   if (customizePath) {
@@ -37,7 +37,7 @@ const getConfigFileName = (customizePath?: string) => {
   }
 };
 /**
- * get defaultConfigPath or userConfigPath
+ * Get userConfigPath
  */
 const getUserConfigPath = (root: string, customizePath?: string) => {
   try {

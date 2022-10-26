@@ -14,8 +14,8 @@ export interface ServeOptions {
 
 // Serve ssg site in production
 export async function serve(root: string, options: ServeOptions) {
-  const port = options.port !== undefined ? options.port : 4173;
-  const host = options.host !== undefined ? options.host : 'localhost';
+  const port = options.port ?? 4173;
+  const host = options.host ?? 'localhost';
   const config = await resolveConfig(root, 'serve', 'production');
   const base = config.base?.replace(/^\//, '').replace(/\/$/, '') || '';
   const notAnAsset = (pathname: string) => !pathname.includes('/assets/');

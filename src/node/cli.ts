@@ -13,7 +13,7 @@ export interface DevOption extends UserConfig {
   config?: string;
   '--'?: string[];
 }
-export interface BuildOption extends UserConfig {
+export interface CLIBuildOption extends UserConfig {
   config?: string;
   force?: boolean;
   sourcemap?: boolean | 'inline' | 'hidden';
@@ -68,7 +68,7 @@ cli
     '--sourcemap',
     '[boolean] output source maps for build (default: false)'
   )
-  .action(async (root: string, buildOptions: BuildOption) => {
+  .action(async (root: string, buildOptions: CLIBuildOption) => {
     try {
       root = resolve(root);
       await build(root, buildOptions);
