@@ -1,8 +1,8 @@
 import { createServer as createViteDevServer } from 'vite';
-import { DevOption } from './cli';
+import { CLIDevOption } from './cli';
 import { resolveConfig } from './config';
 import { createIslandPlugins } from './plugin';
-function cleanOptions(options: DevOption) {
+function cleanOptions(options: CLIDevOption) {
   const option = { ...options };
   delete option['--'];
   delete option.cacheDir;
@@ -14,23 +14,23 @@ function cleanOptions(options: DevOption) {
 }
 export async function createDevServer(
   root = process.cwd(),
-  options: DevOption,
+  cliOptions: CLIDevOption,
   restartServer: () => Promise<void>
 ) {
   const config = await resolveConfig(
     root,
     'serve',
     'development',
-    options.config
+    cliOptions.config
   );
   return createViteDevServer({
     root,
     base: '/',
-    optimizeDeps: { force: options.force },
-    cacheDir: options.cacheDir,
-    logLevel: options.logLevel,
-    clearScreen: options.clearScreen,
-    server: cleanOptions(options),
+    optimizeDeps: { force: cliOptions.force },
+    cacheDir: cliOptions.cacheDir,
+    logLevel: cliOptions.logLevel,
+    clearScreen: cliOptions.clearScreen,
+    server: cleanOptions(cliOptions),
     plugins: [await createIslandPlugins(config, false, restartServer)]
   });
 }

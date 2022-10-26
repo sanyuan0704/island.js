@@ -37,7 +37,7 @@ const getConfigFileName = (customizePath?: string) => {
   }
 };
 /**
- * Get userConfigPath
+ * Get user config path.
  */
 const getUserConfigPath = (root: string, customizePath?: string) => {
   try {

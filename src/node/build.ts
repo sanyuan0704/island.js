@@ -66,10 +66,10 @@ class SSGBuilder {
   #serverBundle?: RollupOutput;
   #islandsInjectCache: Map<string, Promise<string>> = new Map();
 
-  constructor(config: SiteConfig<unknown>, options: CLIBuildOption) {
+  constructor(config: SiteConfig<unknown>, cliOptions: CLIBuildOption) {
     this.#config = config;
     this.#root = this.#config.root;
-    this.#cliOptions = options;
+    this.#cliOptions = cliOptions;
   }
 
   async build() {

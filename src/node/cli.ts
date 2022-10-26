@@ -2,13 +2,13 @@ import { resolve } from 'path';
 import { cac } from 'cac';
 import { build } from './build';
 import { serve } from './serve';
-import { ServeOptions } from './serve';
+import { CLIServeOption } from './serve';
 import type { UserConfig } from 'vite';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const version = require('./../../package.json');
 
 const cli = cac('island').version(version).help();
-export interface DevOption extends UserConfig {
+export interface CLIDevOption extends UserConfig {
   force?: boolean;
   config?: string;
   '--'?: string[];
@@ -39,7 +39,7 @@ cli
   .option('--cors', '[boolean] enable CORS')
   .option('--strictPort', '[boolean] exit if specified port is already in use')
   .option('--open [path]', '[boolean | string] open browser on startup')
-  .action(async (root: string, devOptions: DevOption) => {
+  .action(async (root: string, devOptions: CLIDevOption) => {
     try {
       root = resolve(root);
       const createServer = async () => {
@@ -81,7 +81,7 @@ cli
   .command('start [root]', 'serve for production') // default command
   .option('--port <port>', 'port to use for serve')
   .option('--host <host>', '[string] specify hostname')
-  .action(async (root: string, serveOptions: ServeOptions) => {
+  .action(async (root: string, serveOptions: CLIServeOption) => {
     try {
       root = resolve(root);
       await serve(root, serveOptions);

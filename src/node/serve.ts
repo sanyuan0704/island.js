@@ -5,7 +5,7 @@ import compression from 'compression';
 import polka from 'polka';
 import { resolveConfig } from './config';
 
-export interface ServeOptions {
+export interface CLIServeOption {
   base?: string;
   root?: string;
   port?: number;
@@ -13,9 +13,9 @@ export interface ServeOptions {
 }
 
 // Serve ssg site in production
-export async function serve(root: string, options: ServeOptions) {
-  const port = options.port ?? 4173;
-  const host = options.host ?? 'localhost';
+export async function serve(root: string, cliOptions: CLIServeOption) {
+  const port = cliOptions.port ?? 4173;
+  const host = cliOptions.host ?? 'localhost';
   const config = await resolveConfig(root, 'serve', 'production');
   const base = config.base?.replace(/^\//, '').replace(/\/$/, '') || '';
   const notAnAsset = (pathname: string) => !pathname.includes('/assets/');
