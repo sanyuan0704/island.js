@@ -1,5 +1,13 @@
 
 
+## [0.5.1](https://github.com/sanyuan0704/island.js/compare/0.5.0...0.5.1) (2022-10-26)
+
+
+### Bug Fixes
+
+* `@iconify-json/carbon` should't be devDeps ([#115](https://github.com/sanyuan0704/island.js/issues/115)) ([81ecc77](https://github.com/sanyuan0704/island.js/commit/81ecc770495d53f31733c89723bb7166caefd53b))
+* disable transition when toggle to dark mode ([#112](https://github.com/sanyuan0704/island.js/issues/112)) ([43890bf](https://github.com/sanyuan0704/island.js/commit/43890bfc8a29123dadc4046b36396b7ff2f1ecd8))
+
 # [0.5.0](https://github.com/sanyuan0704/island.js/compare/0.4.3...0.5.0) (2022-10-23)
 
 
