@@ -25,7 +25,9 @@ export default defineConfig({
 });
 ```
 
-关于配置文件，有以下两个注意事项:
+你也可以显式地通过 --config 命令行选项指定一个配置文件（配置文件仍然需要放在 .island 路径下）。
+
+另外，关于配置文件有以下两个注意事项:
 
 - 1. Island.js 支持 `.js`、`.ts`、`.mjs`、`.cjs` 文件作为配置文件。但是推荐使用 TypeScript 配置，因为可以使用`defineConfig`获取类型提示。
 

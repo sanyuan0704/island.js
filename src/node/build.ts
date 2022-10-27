@@ -35,6 +35,7 @@ import createDebugger from 'debug';
 import { performance } from 'perf_hooks';
 import pc from 'picocolors';
 import { pathToFileURL } from 'url';
+import { CLIBuildOption } from './cli';
 
 const debug = createDebugger('island:build');
 const islandInjectId = 'island:inject';
@@ -60,13 +61,15 @@ interface ServerEntryExports {
 class SSGBuilder {
   #root: string;
   #config: SiteConfig<unknown>;
+  #cliOptions: CLIBuildOption;
   #clientBundle?: RollupOutput;
   #serverBundle?: RollupOutput;
   #islandsInjectCache: Map<string, Promise<string>> = new Map();
 
-  constructor(config: SiteConfig<unknown>) {
+  constructor(config: SiteConfig<unknown>, cliOptions: CLIBuildOption) {
     this.#config = config;
     this.#root = this.#config.root;
+    this.#cliOptions = cliOptions;
   }
 
   async build() {
@@ -356,6 +359,7 @@ class SSGBuilder {
       ...options,
       mode: 'production',
       root: this.#root,
+      optimizeDeps: { force: this.#cliOptions?.force },
       plugins: [
         await createIslandPlugins(this.#config, isServer),
         ...(options?.plugins || [])
@@ -378,6 +382,7 @@ class SSGBuilder {
           },
           input: isServer ? SERVER_ENTRY_PATH : CLIENT_ENTRY_PATH
         },
+        sourcemap: this.#cliOptions?.sourcemap,
         ...options?.build
       }
     });
@@ -394,9 +399,14 @@ class SSGBuilder {
   }
 }
 
-export async function build(root: string) {
-  const config = await resolveConfig(root, 'build', 'production');
-  const builder = new SSGBuilder(config);
+export async function build(root: string, options: CLIBuildOption) {
+  const config = await resolveConfig(
+    root,
+    'build',
+    'production',
+    options.config
+  );
+  const builder = new SSGBuilder(config, options);
 
   const [render, routes] = await builder.build();
 
