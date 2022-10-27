@@ -1,5 +1,7 @@
 
 
+## [0.5.2](https://github.com/sanyuan0704/island.js/compare/0.5.1...0.5.2) (2022-10-27)
+
 ## [0.5.1](https://github.com/sanyuan0704/island.js/compare/0.5.0...0.5.1) (2022-10-26)
 
 
