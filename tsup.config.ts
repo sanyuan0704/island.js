@@ -16,7 +16,8 @@ export default defineConfig([
     skipNodeModulesBundle: true,
     outDir: 'dist/node',
     clean: true,
-    shims: true
+    shims: true,
+    noExternal: ['hast', 'github-slugger', 'hast-util-from-html']
   },
   {
     entry: {
