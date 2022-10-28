@@ -11,6 +11,10 @@
 
 Next we will walk you through the steps to create a new Island.js doc site.
 
+:::tip
+At present, we also provide independent tutorial documents to complete project initialization, development, bundling and deployment from scratch, with a better reading and interactive experience, you can click [[here]](https://island-tutorial.sanyuan0704.top/en) to view.
+:::
+
 ## 1. Init project
 
 First, you can create a new directory by following command:
