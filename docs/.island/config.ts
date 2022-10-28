@@ -17,7 +17,10 @@ export default defineConfig({
   },
   markdown: {
     rehypePlugins: [],
-    remarkPlugins: []
+    remarkPlugins: [],
+    checkLink: {
+      disable: true
+    }
   },
   route: {
     exclude: ['custom.tsx', '**/fragments/**']
