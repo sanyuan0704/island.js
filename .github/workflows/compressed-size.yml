@@ -1,0 +1,47 @@
+name: Compressed Size
+
+env:
+  NODE_OPTIONS: --max-old-space-size=6144
+
+on:
+  pull_request:
+    types:
+      - 'opened'
+      - 'synchronize'
+    paths-ignore:
+      - 'docs/**'
+      - '**/*.md'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v2.2.4
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'pnpm'
+          registry-url: 'https://registry.npmjs.org/'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build Packages
+        run: pnpm run build
+
+      - uses: preactjs/compressed-size-action@v2
+        with:
+          build-script: 'build'
+          repo-token: '${{ secrets.GITHUB_TOKEN }}'
+          pattern: './dist/**/*.{js,cjs,mjs,d.ts}'
