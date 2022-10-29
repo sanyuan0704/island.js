@@ -1,0 +1,23 @@
+{
+  "name": "island-dev",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc -w"
+  },
+  "bin": {
+    "island": "bin/island.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.11.7",
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "cac": "^6.7.14",
+    "vite": "^3.2.1"
+  }
+}
