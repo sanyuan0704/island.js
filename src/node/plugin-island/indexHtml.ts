@@ -1,11 +1,6 @@
 import { readFile } from "fs/promises";
-import { join } from "path";
 import { Plugin } from "vite";
-import {
-  CLIENT_ENTRY_PATH,
-  PACKAGE_ROOT,
-  DEFAULT_HTML_PATH,
-} from "../constants";
+import { CLIENT_ENTRY_PATH, DEFAULT_HTML_PATH } from "../constants";
 
 export function pluginIndexHtml(): Plugin {
   return {
