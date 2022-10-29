@@ -204,5 +204,5 @@ export interface MarkdownOptions {
     timeout?: number;
     enable?: boolean;
   };
-  targetBlankWhiteList?: string[];
+  targetBlankWhiteList?: (string | RegExp)[];
 }

@@ -69,9 +69,10 @@ export async function pluginMdxRollup(
               ...(config.markdown?.targetBlankWhiteList ?? [])
             ];
             if (typeof href === 'string') {
-              const inWhiteList = whiteList.some((item) =>
-                href.startsWith(item)
-              );
+              const inWhiteList = whiteList.some((item) => {
+                if (item instanceof RegExp) return item.test(href);
+                else return href.startsWith(item);
+              });
               return inWhiteList ? '_self' : '_blank';
             }
           }
