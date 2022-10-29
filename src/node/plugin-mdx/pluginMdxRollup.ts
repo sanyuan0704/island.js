@@ -64,8 +64,12 @@ export async function pluginMdxRollup(
         {
           target: (node: Element) => {
             const href = node.properties?.href;
+            const whiteList = [
+              ...TARGET_BLANK_WHITE_LIST,
+              ...(config.markdown?.targetBlankWhiteList ?? [])
+            ];
             if (typeof href === 'string') {
-              const inWhiteList = TARGET_BLANK_WHITE_LIST.some((item) =>
+              const inWhiteList = whiteList.some((item) =>
                 href.startsWith(item)
               );
               return inWhiteList ? '_self' : '_blank';
