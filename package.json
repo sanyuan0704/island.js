@@ -19,6 +19,7 @@
     "typescript": "^4.8.4"
   },
   "dependencies": {
+    "@vitejs/plugin-react": "^2.2.0",
     "cac": "^6.7.14",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
