@@ -39,6 +39,7 @@ export async function bundle(root: string) {
     });
     return [clientBundle, serverBundle] as [RollupOutput, RollupOutput];
   } catch (e) {
+    console.log(e);
     spinner.stopAndPersist({
       symbol: failMark,
     });

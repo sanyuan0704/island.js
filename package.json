@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsc -w"
+    "start": "tsc -w",
+    "preview": "cd build && serve ."
   },
   "bin": {
     "island": "bin/island.js"
@@ -18,6 +19,7 @@
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",
     "rollup": "^3.2.3",
+    "serve": "^14.0.1",
     "typescript": "^4.8.4"
   },
   "dependencies": {
