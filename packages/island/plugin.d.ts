@@ -1,0 +1,1 @@
+export { IslandPlugin } from './src/shared/types/Plugin';

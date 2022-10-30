@@ -1,4 +1,4 @@
-import { defineConfig } from '../../dist/node';
+import { defineConfig } from 'islandjs';
 
 function getI18nHelper(lang: 'zh' | 'en') {
   const cn = lang === 'zh';
@@ -22,6 +22,7 @@ export default defineConfig({
   route: {
     exclude: ['custom.tsx', '**/fragments/**']
   },
+  plugins: [],
   themeConfig: {
     locales: {
       '/zh/': {
