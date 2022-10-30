@@ -64,10 +64,15 @@ export async function pluginMdxRollup(
         {
           target: (node: Element) => {
             const href = node.properties?.href;
+            const whiteList = [
+              ...TARGET_BLANK_WHITE_LIST,
+              ...(config.markdown?.targetBlankWhiteList ?? [])
+            ];
             if (typeof href === 'string') {
-              const inWhiteList = TARGET_BLANK_WHITE_LIST.some((item) =>
-                href.startsWith(item)
-              );
+              const inWhiteList = whiteList.some((item) => {
+                if (item instanceof RegExp) return item.test(href);
+                else return href.startsWith(item);
+              });
               return inWhiteList ? '_self' : '_blank';
             }
           }

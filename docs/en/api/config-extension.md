@@ -195,7 +195,7 @@ export default defineConfig({
 ### markdown.checkLink
 
 - Type: `Object`
-- default: `null`
+- Default: `null`
 
 Configure the dead link check behavior of the document.
 
@@ -221,3 +221,28 @@ export default defineConfig({
   }
 });
 ```
+
+### markdown.targetBlankWhiteList
+
+- Type: `Array`
+- Default: `['https://island-tutorial.sanyuan0704.top', 'https://island.sanyuan0704.top']`
+
+External links within this configuration will be loaded on the current page.
+
+By default, click on an external url and it will open in a new tab. Under the hood, `Island.js` converts an external url(starts with `http://` or `https://`) in md(x) to a `<a>` tag in html with setting `target="_blank"`. For links within this configuration, the `target` attribute will be assigned the value `_self` instead, so it will load on the current page.
+
+The type of links could be `string` or `RegExp`, e.g.
+
+```js
+import { defineConfig } from 'islandjs';
+
+export default defineConfig({
+  markdown: {
+    targetBlankWhiteList: [
+      'https://github.com/sanyuan0704/island.js/',
+      /^(http|https):\/\/.*vite.*/i
+    ]
+  }
+});
+```
+
