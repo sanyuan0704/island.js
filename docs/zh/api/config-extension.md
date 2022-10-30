@@ -202,7 +202,7 @@ export default defineConfig({
 ### markdown.checkLink
 
 - Type: `Object`
-- default: `null`
+- Default: `null`
 
 配置文档的链接检查功能。
 
@@ -225,6 +225,30 @@ export default defineConfig({
       // 将会开启死链检查功能
       enable: true
     }
+  }
+});
+```
+
+### markdown.targetBlankWhiteList
+
+- Type: `Array`
+- Default: `['https://island-tutorial.sanyuan0704.top', 'https://island.sanyuan0704.top']`
+
+这个配置内的外部链接将在当前页面加载。
+
+默认情况下，点击一个外部链接，其会在新标签页打开，然而在某些情况下，我们可能并不希望这么做。`Island.js` 会在内部将 md(x) 文件中的外部 urls（以 `http://` 或 `https://` 开头）转化为 html 中的 `<a>` 标签，并为其设置 `target="_blank"`。对于此配置内的链接，其 `target` 属性会被赋值为 `_self`，因此其会在当前页面加载。
+
+链接的类型即可以是 `string`，也可以是 `RegExp`，例如：
+
+```js
+import { defineConfig } from 'islandjs';
+
+export default defineConfig({
+  markdown: {
+    targetBlankWhiteList: [
+      'https://github.com/sanyuan0704/island.js/',
+      /^(http|https):\/\/.*vite.*/i
+    ]
   }
 });
 ```
