@@ -14,3 +14,4 @@ vendors
 .vite-inspect
 .eslintcache
 package-lock.json
+.turbo
