@@ -35,27 +35,27 @@ export function pluginCustomUI(config: SiteConfig): Plugin {
           .map((style) => `import ${normalizePath(style)};`)
           .join('\n');
       }
-
-      if (id === `\0${CUSTOM_UI_COMPONENTS}`) {
-        const components = config.plugins
-          ?.map((plugin) => plugin.globalUIComponents)
-          .flat()
-          .filter(Boolean);
-        const code = `${components
-          ?.map(
-            (component, index) => `import Comp_${index} from '${component}';`
-          )
-          .join('\n')}
-          export default [
-            ${
-              components
-                ? components.map((_, index) => `Comp_${index}`).join(',')
-                : ''
-            }
-          ]
-        `;
-        return code;
-      }
+      // TODO: support island component in global ui component
+      // if (id === `\0${CUSTOM_UI_COMPONENTS}`) {
+      //   const components = config.plugins
+      //     ?.map((plugin) => plugin.globalUIComponents)
+      //     .flat()
+      //     .filter(Boolean);
+      //   const code = `${components
+      //     ?.map(
+      //       (component, index) => `import Comp_${index} from '${component}';`
+      //     )
+      //     .join('\n')}
+      //     export default [
+      //       ${
+      //         components
+      //           ? components.map((_, index) => `Comp_${index}`).join(',')
+      //           : ''
+      //       }
+      //     ]
+      //   `;
+      //   return code;
+      // }
     }
   };
 }

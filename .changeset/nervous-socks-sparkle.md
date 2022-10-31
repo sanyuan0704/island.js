@@ -1,7 +1,7 @@
 ---
-'islandjs': patch
-'@islandjs/plugin-backtop': patch
-'@islandjs/plugin-search': patch
+'islandjs': minor
+'@islandjs/plugin-backtop': minor
+'@islandjs/plugin-search': minor
 ---
 
 init monorepo

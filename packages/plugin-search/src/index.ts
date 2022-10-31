@@ -6,7 +6,7 @@ export interface SearchOptions {
 }
 
 export function pluginSearch(options: SearchOptions = {}): IslandPlugin {
-  const { maxSuggestions = 3 } = options;
+  const { maxSuggestions = 7 } = options;
   return {
     name: 'island:plugin-search',
     alias: {

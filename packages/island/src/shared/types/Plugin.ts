@@ -7,10 +7,6 @@ export interface IslandPlugin {
    */
   name: string;
   /**
-   * Path list of global components.
-   */
-  globalUIComponents?: string[];
-  /**
    * Global style
    */
   globalStyles?: string;
@@ -37,4 +33,8 @@ export interface IslandPlugin {
    * To ensure hmr works properly, we need to watch some files.
    */
   watchFiles?: string[];
+  /**
+   * TODO:Path list of global components.
+   */
+  // globalUIComponents?: string[];
 }

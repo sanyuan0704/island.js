@@ -11,7 +11,6 @@ import type { NavProps } from '../../components/Nav/index';
 import { BackTop } from '@back-top';
 import LoadingSvg from '../../assets/loading.svg';
 import 'virtual:custom-styles';
-import globalComponents from 'virtual:ui-components';
 
 export type LayoutProps = {
   top?: React.ReactNode;
@@ -91,9 +90,6 @@ export const Layout: React.FC<LayoutProps> = (props) => {
       </section>
       {bottom}
       <BackTop __island backTop={backTop} />
-      {globalComponents.map((Comp, index) => (
-        <Comp key={index} />
-      ))}
     </div>
   );
 };
