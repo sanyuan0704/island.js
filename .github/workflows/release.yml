@@ -8,13 +8,15 @@ env:
 on:
   pull_request:
     branches:
-      - 'master'
       - 'changeset-release/master'
+  push:
+    branches:
+      - 'master'
   workflow_dispatch:
 
 jobs:
   release:
-    if: ${{ github.event.pull_request.merged == true }}
+    if: ${{ github.event.pull_request.merged == true || github.event.pusher.name == 'sanyuan0704' }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
