@@ -1,120 +1,114 @@
+## 0.6.0
 
+### Minor Changes
+
+- 98f671b: init monorepo
+
+### Patch Changes
+
+- Updated dependencies [98f671b]
+  - @islandjs/plugin-backtop@0.6.0
+  - @islandjs/plugin-search@0.6.0
 
 ## [0.5.2](https://github.com/sanyuan0704/island.js/compare/0.5.1...0.5.2) (2022-10-27)
 
 ## [0.5.1](https://github.com/sanyuan0704/island.js/compare/0.5.0...0.5.1) (2022-10-26)
 
-
 ### Bug Fixes
 
-* `@iconify-json/carbon` should't be devDeps ([#115](https://github.com/sanyuan0704/island.js/issues/115)) ([81ecc77](https://github.com/sanyuan0704/island.js/commit/81ecc770495d53f31733c89723bb7166caefd53b))
-* disable transition when toggle to dark mode ([#112](https://github.com/sanyuan0704/island.js/issues/112)) ([43890bf](https://github.com/sanyuan0704/island.js/commit/43890bfc8a29123dadc4046b36396b7ff2f1ecd8))
+- `@iconify-json/carbon` should't be devDeps ([#115](https://github.com/sanyuan0704/island.js/issues/115)) ([81ecc77](https://github.com/sanyuan0704/island.js/commit/81ecc770495d53f31733c89723bb7166caefd53b))
+- disable transition when toggle to dark mode ([#112](https://github.com/sanyuan0704/island.js/issues/112)) ([43890bf](https://github.com/sanyuan0704/island.js/commit/43890bfc8a29123dadc4046b36396b7ff2f1ecd8))
 
 # [0.5.0](https://github.com/sanyuan0704/island.js/compare/0.4.3...0.5.0) (2022-10-23)
 
-
 ### Bug Fixes
 
-* b-tween lib type error ([501dc01](https://github.com/sanyuan0704/island.js/commit/501dc0145abe2663f555d89bfdc8d3ed326676e5))
-
+- b-tween lib type error ([501dc01](https://github.com/sanyuan0704/island.js/commit/501dc0145abe2663f555d89bfdc8d3ed326676e5))
 
 ### Features
 
-* back top ([#98](https://github.com/sanyuan0704/island.js/issues/98)) ([9395fd7](https://github.com/sanyuan0704/island.js/commit/9395fd7c65d5c372e2009c8dcd4dfb6a6c1cfd14))
-* lineNumber in frontmatter ([#110](https://github.com/sanyuan0704/island.js/issues/110)) ([c090d4c](https://github.com/sanyuan0704/island.js/commit/c090d4cb53c9612ee35dd71611cfb36941eb33d7))
-* support cli params ([#109](https://github.com/sanyuan0704/island.js/issues/109)) ([eae06bd](https://github.com/sanyuan0704/island.js/commit/eae06bd00f0d2b9cbdb8f74ba5c0a76e55b8a397))
-* support image preview ([#105](https://github.com/sanyuan0704/island.js/issues/105)) ([f7330a8](https://github.com/sanyuan0704/island.js/commit/f7330a85892a97cf6b6986df987833afab67c481))
+- back top ([#98](https://github.com/sanyuan0704/island.js/issues/98)) ([9395fd7](https://github.com/sanyuan0704/island.js/commit/9395fd7c65d5c372e2009c8dcd4dfb6a6c1cfd14))
+- lineNumber in frontmatter ([#110](https://github.com/sanyuan0704/island.js/issues/110)) ([c090d4c](https://github.com/sanyuan0704/island.js/commit/c090d4cb53c9612ee35dd71611cfb36941eb33d7))
+- support cli params ([#109](https://github.com/sanyuan0704/island.js/issues/109)) ([eae06bd](https://github.com/sanyuan0704/island.js/commit/eae06bd00f0d2b9cbdb8f74ba5c0a76e55b8a397))
+- support image preview ([#105](https://github.com/sanyuan0704/island.js/issues/105)) ([f7330a8](https://github.com/sanyuan0704/island.js/commit/f7330a85892a97cf6b6986df987833afab67c481))
 
 ## [0.4.3](https://github.com/sanyuan0704/island.js/compare/0.4.2...0.4.3) (2022-10-20)
 
-
 ### Bug Fixes
 
-* hasSidebar in navbar title ([0c05644](https://github.com/sanyuan0704/island.js/commit/0c05644f6b9b30cc2d0e0a4094a4db9d027f1383))
-* off by default and increase the cache to avoid secondary detection ([#108](https://github.com/sanyuan0704/island.js/issues/108)) ([d7b8265](https://github.com/sanyuan0704/island.js/commit/d7b8265e70a86097975c6f78fd8b79c743fa9cc3))
-* other md document updates cause home page data loss ([#99](https://github.com/sanyuan0704/island.js/issues/99)) ([b5edd92](https://github.com/sanyuan0704/island.js/commit/b5edd927ffec699ea8bfbdb0d36c40284dd6eed5))
-
+- hasSidebar in navbar title ([0c05644](https://github.com/sanyuan0704/island.js/commit/0c05644f6b9b30cc2d0e0a4094a4db9d027f1383))
+- off by default and increase the cache to avoid secondary detection ([#108](https://github.com/sanyuan0704/island.js/issues/108)) ([d7b8265](https://github.com/sanyuan0704/island.js/commit/d7b8265e70a86097975c6f78fd8b79c743fa9cc3))
+- other md document updates cause home page data loss ([#99](https://github.com/sanyuan0704/island.js/issues/99)) ([b5edd92](https://github.com/sanyuan0704/island.js/commit/b5edd927ffec699ea8bfbdb0d36c40284dd6eed5))
 
 ### Features
 
-* check dead link ([#103](https://github.com/sanyuan0704/island.js/issues/103)) ([538dfcc](https://github.com/sanyuan0704/island.js/commit/538dfcc95b5a42319b7c9b0a063b4ec3cf2d7dd0))
-* emoji ([#101](https://github.com/sanyuan0704/island.js/issues/101)) ([d3b5acd](https://github.com/sanyuan0704/island.js/commit/d3b5acd21f181138c1751ccc9d07a2c3bb72e868))
-* support disable in checkLink ([97c9209](https://github.com/sanyuan0704/island.js/commit/97c9209fd013ee294c66bc3f3086f66f0c2438db))
+- check dead link ([#103](https://github.com/sanyuan0704/island.js/issues/103)) ([538dfcc](https://github.com/sanyuan0704/island.js/commit/538dfcc95b5a42319b7c9b0a063b4ec3cf2d7dd0))
+- emoji ([#101](https://github.com/sanyuan0704/island.js/issues/101)) ([d3b5acd](https://github.com/sanyuan0704/island.js/commit/d3b5acd21f181138c1751ccc9d07a2c3bb72e868))
+- support disable in checkLink ([97c9209](https://github.com/sanyuan0704/island.js/commit/97c9209fd013ee294c66bc3f3086f66f0c2438db))
 
 ## [0.4.2](https://github.com/sanyuan0704/island.js/compare/0.4.1...0.4.2) (2022-10-17)
 
-
 ### Bug Fixes
 
-* custom style error in windows ([2a15d56](https://github.com/sanyuan0704/island.js/commit/2a15d567714b06bcc456722de6b8b00a64670e7e))
+- custom style error in windows ([2a15d56](https://github.com/sanyuan0704/island.js/commit/2a15d567714b06bcc456722de6b8b00a64670e7e))
 
 ## [0.4.1](https://github.com/sanyuan0704/island.js/compare/0.4.0...0.4.1) (2022-10-16)
 
-
 ### Bug Fixes
 
-* sidebar active ([27a2fc6](https://github.com/sanyuan0704/island.js/commit/27a2fc6ed211c11a28ce074d19af888c73a2253c))
+- sidebar active ([27a2fc6](https://github.com/sanyuan0704/island.js/commit/27a2fc6ed211c11a28ce074d19af888c73a2253c))
 
 # [0.4.0](https://github.com/sanyuan0704/island.js/compare/0.3.7...0.4.0) (2022-10-16)
 
-
 ### Features
 
-* support custom theme  ([#95](https://github.com/sanyuan0704/island.js/issues/95)) ([7127807](https://github.com/sanyuan0704/island.js/commit/7127807159f0601d5a9542b654adb3f5f74bbbef))
+- support custom theme ([#95](https://github.com/sanyuan0704/island.js/issues/95)) ([7127807](https://github.com/sanyuan0704/island.js/commit/7127807159f0601d5a9542b654adb3f5f74bbbef))
 
 ## [0.3.7](https://github.com/sanyuan0704/island.js/compare/0.3.6...0.3.7) (2022-10-16)
 
-
 ### Bug Fixes
 
-* search freeze in backtrack header logic ([#97](https://github.com/sanyuan0704/island.js/issues/97)) ([949c5da](https://github.com/sanyuan0704/island.js/commit/949c5da028be3cf810325454d14520c74700d435))
-
+- search freeze in backtrack header logic ([#97](https://github.com/sanyuan0704/island.js/issues/97)) ([949c5da](https://github.com/sanyuan0704/island.js/commit/949c5da028be3cf810325454d14520c74700d435))
 
 ### Features
 
-* support api page multi group ([#94](https://github.com/sanyuan0704/island.js/issues/94)) ([9d038b2](https://github.com/sanyuan0704/island.js/commit/9d038b21ea21b1280d79199b3445b19fe9feb71a))
+- support api page multi group ([#94](https://github.com/sanyuan0704/island.js/issues/94)) ([9d038b2](https://github.com/sanyuan0704/island.js/commit/9d038b21ea21b1280d79199b3445b19fe9feb71a))
 
 ## [0.3.6](https://github.com/sanyuan0704/island.js/compare/0.3.5...0.3.6) (2022-10-15)
 
-
 ### Bug Fixes
 
-* compat windows ([#93](https://github.com/sanyuan0704/island.js/issues/93)) ([50e13ac](https://github.com/sanyuan0704/island.js/commit/50e13ac514669ad13c2942a2fe922cc253a8a5d6))
-
+- compat windows ([#93](https://github.com/sanyuan0704/island.js/issues/93)) ([50e13ac](https://github.com/sanyuan0704/island.js/commit/50e13ac514669ad13c2942a2fe922cc253a8a5d6))
 
 ### Features
 
-* add search hot key tip after input element ([5af471a](https://github.com/sanyuan0704/island.js/commit/5af471a97c400f1ebc28ac2d61aabd4ad1493a72))
-* search hotkey ([#91](https://github.com/sanyuan0704/island.js/issues/91)) ([5ccb930](https://github.com/sanyuan0704/island.js/commit/5ccb930adae2b2708a1905c2b0eb92338feec77a))
-* support custom global style ([#92](https://github.com/sanyuan0704/island.js/issues/92)) ([05c0d7e](https://github.com/sanyuan0704/island.js/commit/05c0d7eb70b802c4f0ce7f822a7ed8a95222ec29))
+- add search hot key tip after input element ([5af471a](https://github.com/sanyuan0704/island.js/commit/5af471a97c400f1ebc28ac2d61aabd4ad1493a72))
+- search hotkey ([#91](https://github.com/sanyuan0704/island.js/issues/91)) ([5ccb930](https://github.com/sanyuan0704/island.js/commit/5ccb930adae2b2708a1905c2b0eb92338feec77a))
+- support custom global style ([#92](https://github.com/sanyuan0704/island.js/issues/92)) ([05c0d7e](https://github.com/sanyuan0704/island.js/commit/05c0d7eb70b802c4f0ce7f822a7ed8a95222ec29))
 
 ## [0.3.5](https://github.com/sanyuan0704/island.js/compare/0.3.4...0.3.5) (2022-10-13)
 
-
 ### Bug Fixes
 
-* rehype line number plugin error ([d1056ca](https://github.com/sanyuan0704/island.js/commit/d1056cae6ac3335598eb51413a698cc4ea154781))
-
+- rehype line number plugin error ([d1056ca](https://github.com/sanyuan0704/island.js/commit/d1056cae6ac3335598eb51413a698cc4ea154781))
 
 ### Features
 
-* line numbers plugin ([#84](https://github.com/sanyuan0704/island.js/issues/84)) ([7169e50](https://github.com/sanyuan0704/island.js/commit/7169e50007e55225b4cbe90a71efb3383c71967c))
+- line numbers plugin ([#84](https://github.com/sanyuan0704/island.js/issues/84)) ([7169e50](https://github.com/sanyuan0704/island.js/commit/7169e50007e55225b4cbe90a71efb3383c71967c))
 
 ## [0.3.4](https://github.com/sanyuan0704/island.js/compare/0.3.3...0.3.4) (2022-10-12)
 
-
 ### Bug Fixes
 
-* home page hmr doesn't work ([#79](https://github.com/sanyuan0704/island.js/issues/79)) ([1358b13](https://github.com/sanyuan0704/island.js/commit/1358b13056a9e1a6ab46062ca0264f6c7dad6cba))
-* the server watcher ([#78](https://github.com/sanyuan0704/island.js/issues/78)) ([bfaaffe](https://github.com/sanyuan0704/island.js/commit/bfaaffe71111be6d522f093aaeffd373c58a04fc))
-* **theme-default:** unocss errors ([#76](https://github.com/sanyuan0704/island.js/issues/76)) ([523480b](https://github.com/sanyuan0704/island.js/commit/523480bda076ce93419c5fe64a95ea34cb4a4619))
-* unexpect chokidar watch ([ad3db51](https://github.com/sanyuan0704/island.js/commit/ad3db513f7c459fc3c0929d729b93944b3da94c1))
-
+- home page hmr doesn't work ([#79](https://github.com/sanyuan0704/island.js/issues/79)) ([1358b13](https://github.com/sanyuan0704/island.js/commit/1358b13056a9e1a6ab46062ca0264f6c7dad6cba))
+- the server watcher ([#78](https://github.com/sanyuan0704/island.js/issues/78)) ([bfaaffe](https://github.com/sanyuan0704/island.js/commit/bfaaffe71111be6d522f093aaeffd373c58a04fc))
+- **theme-default:** unocss errors ([#76](https://github.com/sanyuan0704/island.js/issues/76)) ([523480b](https://github.com/sanyuan0704/island.js/commit/523480bda076ce93419c5fe64a95ea34cb4a4619))
+- unexpect chokidar watch ([ad3db51](https://github.com/sanyuan0704/island.js/commit/ad3db513f7c459fc3c0929d729b93944b3da94c1))
 
 ### Features
 
-* code line highlight ([#82](https://github.com/sanyuan0704/island.js/issues/82)) ([e5bb344](https://github.com/sanyuan0704/island.js/commit/e5bb3446930162908a5cebfb667beff56b4ef6bc))
-* custom container render function ([#81](https://github.com/sanyuan0704/island.js/issues/81)) ([4ebd099](https://github.com/sanyuan0704/island.js/commit/4ebd09952154890a38968bbdafa854d84f16ff60))
+- code line highlight ([#82](https://github.com/sanyuan0704/island.js/issues/82)) ([e5bb344](https://github.com/sanyuan0704/island.js/commit/e5bb3446930162908a5cebfb667beff56b4ef6bc))
+- custom container render function ([#81](https://github.com/sanyuan0704/island.js/issues/81)) ([4ebd099](https://github.com/sanyuan0704/island.js/commit/4ebd09952154890a38968bbdafa854d84f16ff60))
 
 ## [0.3.3](https://github.com/sanyuan0704/island.js/compare/0.3.2...0.3.3) (2022-10-10)
 
