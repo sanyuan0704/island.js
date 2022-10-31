@@ -1,5 +1,14 @@
 ## 0.6.0
 
+## 0.6.2
+
+### Patch Changes
+
+- 17ceaf8: fix: plugin component not found
+- Updated dependencies [17ceaf8]
+  - @islandjs/plugin-backtop@0.6.2
+  - @islandjs/plugin-search@0.6.2
+
 ## 0.6.1
 
 ### Patch Changes
