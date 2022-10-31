@@ -5,10 +5,15 @@ env:
   # https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources
   NODE_OPTIONS: --max-old-space-size=6144
 
-on: workflow_dispatch
+on:
+  pull_request:
+    branches:
+      - 'master'
+  workflow_dispatch:
 
 jobs:
   release:
+    if: ${{ github.event.pull_request.merged == true }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
