@@ -3,7 +3,6 @@ import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
 import type { MatchResultItem, PageSearcher } from '../logic/search';
 import SearchSvg from '../assets/search.svg';
 import LoadingSvg from '../assets/loading.svg';
-import { throttle } from 'lodash-es';
 import { SuggestionContent } from './Suggestion';
 
 const KEY_CODE = {
@@ -59,7 +58,7 @@ export function Search(
   );
 
   useEffect(() => {
-    const onKeyDown = throttle((e: KeyboardEvent) => {
+    const onKeyDown = (e: KeyboardEvent) => {
       switch (e.code) {
         case KEY_CODE.SEARCH:
           if ((e.ctrlKey || e.metaKey) && searchInputRef.current) {
@@ -95,7 +94,7 @@ export function Search(
         default:
           break;
       }
-    }, 200);
+    };
     document.addEventListener('keydown', onKeyDown);
     return () => {
       document.removeEventListener('keydown', onKeyDown);
