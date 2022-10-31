@@ -3,7 +3,7 @@ import type { PlaywrightTestConfig } from '@playwright/test';
 const siteUrl = 'http://localhost:5173/';
 
 const config: PlaywrightTestConfig = {
-  testDir: './src/node/__tests__/e2e',
+  testDir: './packages/island/src/node/__tests__/e2e',
   timeout: 50000,
   webServer: {
     command: 'npm run e2e:prepare',
