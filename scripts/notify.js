@@ -91,7 +91,6 @@ async function run() {
   await generatePackageMap();
   // eslint-disable-next-line no-undef
   const releases = process.argv.slice(2)[0];
-  console.log('release:', releases);
 
   const data = JSON.parse(releases);
   const packages = await Promise.all(
