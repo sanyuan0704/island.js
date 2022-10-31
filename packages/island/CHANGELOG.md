@@ -1,5 +1,14 @@
 ## 0.6.0
 
+## 0.6.1
+
+### Patch Changes
+
+- 66e5d7d: test notification
+- Updated dependencies [66e5d7d]
+  - @islandjs/plugin-backtop@0.6.1
+  - @islandjs/plugin-search@0.6.1
+
 ### Minor Changes
 
 - 98f671b: init monorepo
