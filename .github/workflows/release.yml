@@ -64,6 +64,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+
+      - name: Generate Notification
+        id: notification
+        if: steps.changesets.outputs.published == 'true'
+        run: message=$(node scripts/notify.js '${{ steps.changesets.outputs.publishedPackages }}') && echo ::set-output name=message::${message//$'\n'/'%0A'}
+
       - name: Discord Notification
         if: steps.changesets.outputs.published == 'true'
         id: discord-notification
