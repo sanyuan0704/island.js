@@ -23,7 +23,10 @@
     "dev:docs": "island dev docs",
     "build:docs": "island build docs && cp -r ./docs/.island/index.html ./docs/.island/dist",
     "build": "turbo run build",
-    "dev": "turbo run dev"
+    "dev": "turbo run dev",
+    "change": "changeset",
+    "version": "changeset version",
+    "publish": "changeset publish"
   },
   "keywords": [
     "vite",
@@ -35,11 +38,11 @@
   "author": "Sanyuan0704",
   "license": "MIT",
   "devDependencies": {
+    "@changesets/cli": "^2.25.1",
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
     "@islandjs/plugin-search": "workspace:*",
     "@playwright/test": "^1.26.1",
-    "@release-it/conventional-changelog": "^5.1.0",
     "@types/node": "^18.11.7",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
@@ -57,7 +60,6 @@
     "lint-staged": "^13.0.3",
     "pnpm": "7.9.2",
     "prettier": "^2.7.1",
-    "release-it": "^15.4.2",
     "rollup": "^2.78.1",
     "serve": "^14.0.1",
     "tsup": "^6.2.3",

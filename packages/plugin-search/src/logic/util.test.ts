@@ -1,6 +1,6 @@
 import { expect, test, describe } from 'vitest';
-import { Header } from 'shared/types';
-import { backTrackHeaders } from './utils';
+import { Header } from 'islandjs';
+import { backTrackHeaders } from './util';
 
 describe('utils logic', () => {
   test('back track the headers', () => {
