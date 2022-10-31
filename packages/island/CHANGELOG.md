@@ -7,8 +7,8 @@
 ### Patch Changes
 
 - Updated dependencies [98f671b]
-  - @islandjs/plugin-backtop@1.0.0
-  - @islandjs/plugin-search@1.0.0
+  - @islandjs/plugin-backtop@0.6.0
+  - @islandjs/plugin-search@0.6.0
 
 ## [0.5.2](https://github.com/sanyuan0704/island.js/compare/0.5.1...0.5.2) (2022-10-27)
 
