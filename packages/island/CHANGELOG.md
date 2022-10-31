@@ -1,5 +1,14 @@
 ## 0.6.0
 
+## 0.6.3
+
+### Patch Changes
+
+- 5c1be07: feat: remove throttle for keydown handler
+- Updated dependencies [5c1be07]
+  - @islandjs/plugin-search@0.6.3
+  - @islandjs/plugin-backtop@0.6.3
+
 ## 0.6.2
 
 ### Patch Changes

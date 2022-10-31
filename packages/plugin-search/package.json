@@ -1,6 +1,6 @@
 {
   "name": "@islandjs/plugin-search",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "Search plugin for islandjs",
   "packageManager": "pnpm@7.9.2",
   "type": "module",
