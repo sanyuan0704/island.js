@@ -17,7 +17,7 @@ Detailed changes for each release are documented in the [CHANGELOG](https://gith
 
 ## Contribution
 
-Please make sure to read the [Contributing Guide](https://github.com/sanyuan0704/island/blob/master/.github/contributing.md) before making a pull request.
+Please make sure to read the [Contributing Guide](https://github.com/sanyuan0704/island/blob/master/.github/contributing.md) before making a pull request. And you can join the [Discord](https://discord.gg/Nvy4YSerjM) to discuss with us.
 
 ## Credits
 
