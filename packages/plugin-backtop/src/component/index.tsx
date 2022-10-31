@@ -3,7 +3,7 @@ import BTween from 'b-tween';
 import { throttle } from 'lodash-es';
 import type { ComponentPropsWithIsland } from 'islandjs';
 
-export default function BackTop({
+export function BackTop({
   backTop
 }: { backTop?: boolean } & ComponentPropsWithIsland) {
   const backTopCtrl = backTop ?? true;
@@ -59,3 +59,5 @@ export default function BackTop({
     </div>
   ) : null;
 }
+
+export default BackTop;

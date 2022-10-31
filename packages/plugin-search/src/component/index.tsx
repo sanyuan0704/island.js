@@ -13,7 +13,7 @@ const KEY_CODE = {
   SEARCH: 'KeyK'
 };
 
-export default function Search(
+export function Search(
   props: ComponentPropsWithIsland & { langRoutePrefix: string }
 ) {
   const [query, setQuery] = useState('');
@@ -212,3 +212,5 @@ export default function Search(
     </div>
   );
 }
+
+export default Search;

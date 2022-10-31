@@ -53,12 +53,12 @@ declare module '*.svg' {
 
 declare module '@search-box' {
   import type { ComponentType } from 'react';
-  const SearchBox: ComponentType<ComponentPropsWithIsland>;
-  export default SearchBox;
+  export const Search: ComponentType<ComponentPropsWithIsland>;
+  export default Search;
 }
 
 declare module '@back-top' {
   import type { ComponentType } from 'react';
-  const BackTop: ComponentType<ComponentPropsWithIsland>;
+  export const BackTop: ComponentType<ComponentPropsWithIsland>;
   export default BackTop;
 }

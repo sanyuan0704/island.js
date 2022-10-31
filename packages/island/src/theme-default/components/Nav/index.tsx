@@ -1,6 +1,6 @@
 import styles from './index.module.scss';
 import { SwitchAppearance } from '../SwitchAppearance/index';
-import Search from '@search-box';
+import { Search } from '@search-box';
 import { usePageData } from '@client';
 import { NavMenuSingleItem } from './NavMenuSingleItem';
 import { NavMenuGroup, NavMenuGroupItem } from './NavMenuGroup';
