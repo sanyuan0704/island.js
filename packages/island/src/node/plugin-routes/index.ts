@@ -86,3 +86,5 @@ export function pluginRoutes(options: RouteOptions = {}): Plugin {
     }
   };
 }
+
+export { normalizeRoutePath } from './RouteService';

@@ -207,10 +207,5 @@ export interface MarkdownOptions {
   remarkPlugins?: PluggableList;
   rehypePlugins?: PluggableList;
   lineNumbers?: boolean;
-  checkLink?: {
-    exclude?: (string | RegExp)[];
-    timeout?: number;
-    enable?: boolean;
-  };
   targetBlankWhiteList?: (string | RegExp)[];
 }

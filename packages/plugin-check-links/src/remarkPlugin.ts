@@ -1,26 +1,23 @@
-import { isProduction } from '../../constants';
-import { normalizeRoutePath } from '../../plugin-routes/RouteService';
-import type { Plugin } from 'unified';
 import { visit } from 'unist-util-visit';
-import { routeService } from '../../plugin-routes';
 import checkLinks from 'check-links';
 import ora from 'ora';
-import { MarkdownOptions } from 'shared/types/index';
+import type { DeadLinkCheckOptions } from './index';
+import type { Plugin } from 'unified';
 
 const checkedLinks = new Map();
 /**
  * Remark plugin to normalize a link href
  */
 export const remarkCheckDeadLinks: Plugin<
-  [{ checkLink: MarkdownOptions['checkLink'] }]
+  [{ checkLink: DeadLinkCheckOptions }]
 > = ({ checkLink }) => {
-  if (!checkLink?.enable) {
-    return;
-  }
-
   const { exclude = [], timeout = 10000 } = checkLink || {};
 
   return async (tree) => {
+    const { isProduction, routeService, normalizeRoutePath } = await import(
+      'islandjs'
+    );
+
     const externalLinks: string[] = [];
     const internalLinks: string[] = [];
 
@@ -81,7 +78,6 @@ export const remarkCheckDeadLinks: Plugin<
       }
       errorInfos.push(`External link to ${url} is dead`);
     });
-
     // output error info
     if (errorInfos.length > 0) {
       errorInfos?.forEach((err) => ora().fail(err));

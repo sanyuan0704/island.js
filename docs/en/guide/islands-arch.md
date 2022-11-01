@@ -48,10 +48,10 @@ Island.js will combine all island components into a virtual module and bundle th
 
 There are the some relevant code in repository:
 
-[island-jsx-runtime.js](https://github.com/sanyuan0704/island.js/blob/master/src/runtime/island-jsx-runtime.js): The jsx runtime will collect the islands information when `__island` prop is found in the component, served as the server runtime.
+[island-jsx-runtime.js](https://github.com/sanyuan0704/island.js/blob/master/packages/island/src/runtime/island-jsx-runtime.js): The jsx runtime will collect the islands information when `__island` prop is found in the component, served as the server runtime.
 
-[babel-plugin-island](https://github.com/sanyuan0704/island.js/blob/master/src/node/babel-plugin-island.ts): The babel plugin will transform the `__island` prop to `__island=${islandAbsoluteFilePath}` prop, so in build time, bundler will find the island component file path.
+[babel-plugin-island](https://github.com/sanyuan0704/island.js/blob/master/packages/island/src/node/babel-plugin-island.ts): The babel plugin will transform the `__island` prop to `__island=${islandAbsoluteFilePath}` prop, so in build time, bundler will find the island component file path.
 
-[SSGBuilder](https://github.com/sanyuan0704/island.js/blob/master/src/node/build.ts): The complete build time implement.
+[SSGBuilder](https://github.com/sanyuan0704/island.js/blob/master/packages/island/src/node/build.ts): The complete build time implement.
 
-[client-entry](https://github.com/sanyuan0704/island.js/blob/master/src/runtime/client-entry.tsx#L50): The client runtime will hydrate the islands in browser to make them interactive.
+[client-entry](https://github.com/sanyuan0704/island.js/blob/master/packages/island/src/runtime/client-entry.tsx#L50): The client runtime will hydrate the islands in browser to make them interactive.
