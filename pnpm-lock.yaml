@@ -7,7 +7,7 @@ importers:
       '@changesets/cli': ^2.25.1
       '@commitlint/cli': ^17.1.2
       '@commitlint/config-conventional': ^17.1.0
-      '@islandjs/plugin-search': workspace:*
+      '@islandjs/plugin-check-links': workspace:*
       '@playwright/test': ^1.26.1
       '@types/node': ^18.11.7
       '@typescript-eslint/eslint-plugin': ^5.36.1
@@ -38,7 +38,7 @@ importers:
       '@changesets/cli': 2.25.1
       '@commitlint/cli': 17.1.2
       '@commitlint/config-conventional': 17.1.0
-      '@islandjs/plugin-search': link:packages/plugin-search
+      '@islandjs/plugin-check-links': link:packages/plugin-check-links
       '@playwright/test': 1.26.1
       '@types/node': 18.11.7
       '@typescript-eslint/eslint-plugin': 5.36.1_uoznksvaqimddkvahx6c3yyzku
@@ -101,7 +101,6 @@ importers:
       '@vitejs/plugin-react': 2.0.1
       acorn: ^8.8.0
       cac: 6.7.12
-      check-links: ^1.1.8
       chokidar: ^3.5.3
       compression: ^1.7.4
       copy-to-clipboard: ^3.3.2
@@ -163,7 +162,6 @@ importers:
       '@vitejs/plugin-react': 2.0.1_vite@3.1.4
       acorn: 8.8.0
       cac: 6.7.12
-      check-links: 1.1.8
       chokidar: 3.5.3
       compression: 1.7.4
       copy-to-clipboard: 3.3.2
@@ -238,6 +236,31 @@ importers:
     dependencies:
       b-tween: 0.3.3
       lodash-es: 4.17.21
+    devDependencies:
+      '@types/lodash-es': 4.17.6
+      '@types/node': 18.11.7
+      '@types/react': 18.0.17
+      '@types/react-dom': 18.0.6
+      '@unocss/preset-attributify': 0.45.26
+      react: 18.2.0
+
+  packages/plugin-check-links:
+    specifiers:
+      '@types/lodash-es': ^4.17.6
+      '@types/node': ^18.11.7
+      '@types/react': ^18.0.17
+      '@types/react-dom': ^18.0.6
+      '@unocss/preset-attributify': ^0.45.26
+      check-links: ^1.1.8
+      ora: ^6.1.2
+      react: ^18.2.0
+      unified: ^10.1.2
+      unist-util-visit: ^4.1.1
+    dependencies:
+      check-links: 1.1.8
+      ora: 6.1.2
+      unified: 10.1.2
+      unist-util-visit: 4.1.1
     devDependencies:
       '@types/lodash-es': 4.17.6
       '@types/node': 18.11.7
