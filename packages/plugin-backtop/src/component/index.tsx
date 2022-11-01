@@ -45,7 +45,11 @@ export function BackTop({
   });
 
   return backTopCtrl && visible ? (
-    <div className="fixed bottom-10 right-30 z-10" onClick={scrollToTop}>
+    <div
+      className="fixed bottom-10 right-30 z-10"
+      display="none md:block"
+      onClick={scrollToTop}
+    >
       <button
         className="w-10 h-10 rounded-full duration-300 bg-white"
         color="gray hover:gray-500"
