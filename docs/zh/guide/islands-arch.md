@@ -48,10 +48,10 @@ export function Layout() {
 
 下面是一些相关的实现代码:
 
-[island-jsx-runtime.js](https://github.com/sanyuan0704/island.js/blob/master/src/runtime/island-jsx-runtime.js): 拦截 jsx 运行时，收集孤岛组件信息。
+[island-jsx-runtime.js](https://github.com/sanyuan0704/island.js/blob/master/packages/island/src/runtime/island-jsx-runtime.js): 拦截 jsx 运行时，收集孤岛组件信息。
 
-[babel-plugin-island](https://github.com/sanyuan0704/island.js/blob/master/src/node/babel-plugin-island.ts): 注册孤岛组件文件路径的 babel 插件。
+[babel-plugin-island](https://github.com/sanyuan0704/island.js/blob/master/packages/island/src/node/babel-plugin-island.ts): 注册孤岛组件文件路径的 babel 插件。
 
-[SSGBuilder](https://github.com/sanyuan0704/island.js/blob/master/src/node/build.ts): 完整的构建时实现。
+[SSGBuilder](https://github.com/sanyuan0704/island.js/blob/master/packages/island/src/node/build.ts): 完整的构建时实现。
 
-[client-entry](https://github.com/sanyuan0704/island.js/blob/master/src/runtime/client-entry.tsx#L50): 客户端运行时代码，主要是负责孤岛组件的 hydration。
+[client-entry](https://github.com/sanyuan0704/island.js/blob/master/packages/island/src/runtime/client-entry.tsx#L50): 客户端运行时代码，主要是负责孤岛组件的 hydration。

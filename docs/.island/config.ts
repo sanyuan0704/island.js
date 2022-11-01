@@ -1,4 +1,5 @@
 import { defineConfig } from 'islandjs';
+import { pluginCheckLinks } from '@islandjs/plugin-check-links';
 
 function getI18nHelper(lang: 'zh' | 'en') {
   const cn = lang === 'zh';
@@ -22,7 +23,7 @@ export default defineConfig({
   route: {
     exclude: ['custom.tsx', '**/fragments/**']
   },
-  plugins: [],
+  plugins: [pluginCheckLinks({})],
   themeConfig: {
     locales: {
       '/zh/': {

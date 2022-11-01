@@ -64,8 +64,7 @@ export function pluginConfig(
               'react/jsx-runtime',
               'react-helmet-async',
               'lodash-es',
-              'copy-to-clipboard',
-              'flexsearch'
+              'copy-to-clipboard'
             ],
             exclude: [
               'islandjs',

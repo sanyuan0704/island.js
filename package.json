@@ -41,7 +41,7 @@
     "@changesets/cli": "^2.25.1",
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
-    "@islandjs/plugin-search": "workspace:*",
+    "@islandjs/plugin-check-links": "workspace:*",
     "@playwright/test": "^1.26.1",
     "@types/node": "^18.11.7",
     "@typescript-eslint/eslint-plugin": "^5.36.1",

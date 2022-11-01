@@ -5,7 +5,7 @@ export type PreloadableComponent<T extends ComponentType<unknown>> = T & {
   preload: () => Promise<PageModule<T>>;
 };
 
-// Inspired by https://github.com/ianschmitz/react-lazy-with-preload/blob/master/src/index.ts
+// Inspired by https://github.com/ianschmitz/react-lazy-with-preload/blob/master/packages/island/src/index.ts
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function lazyWithPreload<T extends ComponentType<any>>(
   factory: () => Promise<{ default: T }>
