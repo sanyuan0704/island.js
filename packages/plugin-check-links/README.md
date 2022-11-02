@@ -26,3 +26,18 @@ export default defineConfig({
   plugins: [pluginCheckLinks()]
 });
 ```
+
+## Options
+
+```ts
+interface DeadLinkCheckOptions {
+  /**
+   * Exclude links
+   */
+  exclude?: (string | RegExp)[];
+  /**
+   * External link request timeout time
+   */
+  timeout?: number;
+}
+```
