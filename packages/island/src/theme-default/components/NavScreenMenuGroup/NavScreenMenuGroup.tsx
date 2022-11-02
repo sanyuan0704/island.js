@@ -33,7 +33,7 @@ export function NavScreenMenuGroup(item: NavScreenMenuGroupItem) {
           {item.items.map((child, index) => {
             if (index === activeIndex) {
               return (
-                <div key={child.link}>
+                <div className="pa-1" key={child.link}>
                   <span mr="1" text="brand">
                     {child.text}
                   </span>
@@ -41,7 +41,7 @@ export function NavScreenMenuGroup(item: NavScreenMenuGroupItem) {
               );
             } else {
               return (
-                <div key={child.link} font="medium">
+                <div className="pa-1" key={child.link} font="medium">
                   <Link href={child.link}>
                     <div>
                       <div flex="">

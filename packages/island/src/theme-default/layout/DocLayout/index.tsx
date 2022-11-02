@@ -49,10 +49,11 @@ export function DocLayout(props: DocLayoutProps) {
       {beforeDoc}
       {hasSidebar ? <SideBar isSidebarOpen={isSidebarOpen} /> : null}
       <div flex="~ 1 shrink-0" m="x-auto" className={`${styles.content}`}>
-        <div m="x-auto" flex="~ col">
+        <div m="x-auto" flex="~ col" w="100%">
           <div
             relative="~"
             m="x-auto"
+            w="100%"
             p="l-2"
             className={'md:max-w-712px lg:min-w-640px'}
             style={{

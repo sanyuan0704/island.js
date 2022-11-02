@@ -13,12 +13,14 @@
   background-color: var(--island-c-bg);
   .menu {
     padding: 12px 28px 11px;
+    transition: color 0.5s;
   }
   &:hover {
-    color: var(--island-c-text-3);
+    .menu {
+      color: var(--island-c-text-3);
+    }
   }
 }
-
 @media (min-width: 960px) {
   .localNav {
     display: none;
