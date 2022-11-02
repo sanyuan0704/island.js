@@ -8,9 +8,9 @@ const checkedLinks = new Map();
 /**
  * Remark plugin to normalize a link href
  */
-export const remarkCheckDeadLinks: Plugin<
-  [{ checkLink: DeadLinkCheckOptions }]
-> = ({ checkLink }) => {
+export const remarkCheckDeadLinks: Plugin<DeadLinkCheckOptions[]> = (
+  checkLink
+) => {
   const { exclude = [], timeout = 10000 } = checkLink || {};
 
   return async (tree) => {
