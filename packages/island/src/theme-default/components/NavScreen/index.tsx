@@ -109,9 +109,8 @@ const NavAppearance = () => {
     </div>
   );
 };
-export function NavScreen(props: Props) {
-  const { isScreenOpen } = props;
-  const screen = useRef();
+export function NavScreen() {
+  // const { isScreenOpen } = props;
   const localeData = useLocaleSiteData();
   const { siteData } = usePageData();
   const localeLanguages = Object.values(siteData.themeConfig.locales || {});
@@ -133,13 +132,15 @@ export function NavScreen(props: Props) {
       }
     : null;
   useEffect(() => {
-    disableBodyScroll(!screen.value, { reserveScrollBarGap: true });
+    const screen = document.getElementById('navScreen');
+    console.log(screen);
+    screen && disableBodyScroll(screen, { reserveScrollBarGap: true });
     return () => {
       clearAllBodyScrollLocks();
     };
   }, []);
-  return isScreenOpen ? (
-    <div className={styles.navScreen} ref={screen}>
+  return (
+    <div className={styles.navScreen} id="navScreen">
       <div className={styles.container}>
         <NavMenu menuItems={menuItems}></NavMenu>
         <div
@@ -156,5 +157,5 @@ export function NavScreen(props: Props) {
         )}
       </div>
     </div>
-  ) : null;
+  );
 }
