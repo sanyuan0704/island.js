@@ -217,6 +217,7 @@ export function Nav(props: NavProps) {
             )}
             {rightNav()}
             <NavHamburger
+              __island
               toggleScreen={toggleScreen}
               isScreenOpen={isScreenOpen}
             />

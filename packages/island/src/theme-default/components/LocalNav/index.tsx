@@ -1,8 +1,9 @@
 import styles from './index.module.scss';
+import type { ComponentPropsWithIsland } from 'islandjs';
 interface Props {
   openSidebar: () => void;
 }
-export function LocalNav(props: Props) {
+export function LocalNav(props: Props & ComponentPropsWithIsland) {
   const { openSidebar } = props;
   return (
     <div className={styles.localNav}>
