@@ -22,6 +22,7 @@
     "prepare": "husky install",
     "dev:docs": "island dev docs",
     "build:docs": "island build docs && cp -r ./docs/.island/index.html ./docs/.island/dist",
+    "start:docs": "island start docs",
     "build": "turbo run build",
     "dev": "turbo run dev",
     "change": "changeset",
