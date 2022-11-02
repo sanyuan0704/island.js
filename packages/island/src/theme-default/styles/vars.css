@@ -190,6 +190,19 @@
 }
 
 /**
+ * Z-indexes
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --island-z-index-local-nav: 10;
+  --island-z-index-nav: 20;
+  --island-z-index-layout-top: 30;
+  --island-z-index-backdrop: 40;
+  --island-z-index-sidebar: 50;
+  --island-z-index-footer: 60;
+}
+
+/**
  * Component: Button
  * -------------------------------------------------------------------------- */
 

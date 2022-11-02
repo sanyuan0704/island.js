@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import { Nav } from '../../components/Nav';
 import { DocLayout } from '../DocLayout';
 import { usePageData, Content } from '@client';
@@ -11,6 +11,11 @@ import type { NavProps } from '../../components/Nav/index';
 import { BackTop } from '@back-top';
 import LoadingSvg from '../../assets/loading.svg';
 import 'virtual:custom-styles';
+import { LocalNav } from '../../components/LocalNav';
+import { useSideBar } from './useSidebar';
+import { BackDrop } from '../../components/BackDrop';
+import { NavScreen } from '../../components/NavScreen';
+import { useNav } from './useNav';
 
 export type LayoutProps = {
   top?: React.ReactNode;
@@ -31,12 +36,19 @@ export const Layout: React.FC<LayoutProps> = (props) => {
     beforeNavTitle,
     afterNavTitle
   } = props;
+  const { isScreenOpen, closeScreen, toggleScreen } = useNav();
+  const {
+    isOpen: isSidebarOpen,
+    open: openSidebar,
+    close: closeSidebar
+  } = useSideBar();
   const docProps: DocLayoutProps = {
     beforeDocFooter,
     beforeDoc,
     afterDoc,
     beforeOutline,
-    afterOutline
+    afterOutline,
+    isSidebarOpen
   };
   const {
     // Inject by remark-plugin-toc
@@ -79,12 +91,21 @@ export const Layout: React.FC<LayoutProps> = (props) => {
 
   return (
     <div style={{ height: '100%' }}>
+      <BackDrop closeSidebar={closeSidebar} isOpen={isSidebarOpen} />
+      <NavScreen isScreenOpen={isScreenOpen}></NavScreen>
       <Helmet>
         {title ? <title>{title}</title> : null}
         {description ? <meta name="description" content={description} /> : null}
       </Helmet>
       {top}
-      <Nav beforeNavTitle={beforeNavTitle} afterNavTitle={afterNavTitle} />
+      <Nav
+        closeScreen={closeScreen}
+        toggleScreen={toggleScreen}
+        isScreenOpen={isScreenOpen}
+        beforeNavTitle={beforeNavTitle}
+        afterNavTitle={afterNavTitle}
+      />
+      {pageType === 'doc' ? <LocalNav openSidebar={openSidebar} /> : null}
       <section style={{ paddingTop: 'var(--island-nav-height)' }}>
         {getContentLayout()}
       </section>

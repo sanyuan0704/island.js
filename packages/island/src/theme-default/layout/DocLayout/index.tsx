@@ -12,11 +12,18 @@ export interface DocLayoutProps {
   afterDoc?: React.ReactNode;
   beforeOutline?: React.ReactNode;
   afterOutline?: React.ReactNode;
+  isSidebarOpen?: boolean;
 }
 
 export function DocLayout(props: DocLayoutProps) {
-  const { beforeDocFooter, beforeDoc, afterDoc, beforeOutline, afterOutline } =
-    props;
+  const {
+    beforeDocFooter,
+    beforeDoc,
+    afterDoc,
+    beforeOutline,
+    afterOutline,
+    isSidebarOpen
+  } = props;
   const { toc: headers = [], siteData, pagePath, frontmatter } = usePageData();
   const themeConfig = siteData.themeConfig;
   const localesData = useLocaleSiteData();
@@ -40,7 +47,7 @@ export function DocLayout(props: DocLayoutProps) {
   return (
     <div p="t-0 x-6 b-24 sm:6">
       {beforeDoc}
-      {hasSidebar ? <SideBar /> : null}
+      {hasSidebar ? <SideBar isSidebarOpen={isSidebarOpen} /> : null}
       <div flex="~ 1 shrink-0" m="x-auto" className={`${styles.content}`}>
         <div m="x-auto" flex="~ col">
           <div

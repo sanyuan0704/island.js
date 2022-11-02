@@ -6,8 +6,11 @@ import { useLocaleSiteData, useSidebarData } from '../../logic/index';
 import { normalizeHref, normalizeSlash } from '@client';
 import { useLocation } from 'react-router-dom';
 import { isActive } from '../../logic/index';
-
-export function SideBar() {
+interface Props {
+  isSidebarOpen?: boolean;
+}
+export function SideBar(props: Props) {
+  const { isSidebarOpen } = props;
   const { pathname } = useLocation();
   const localesData = useLocaleSiteData();
   const { items: sidebarData } = useSidebarData(pathname);
@@ -59,7 +62,7 @@ export function SideBar() {
   };
 
   return (
-    <aside className={styles.sidebar}>
+    <aside className={`${styles.sidebar} ${isSidebarOpen ? styles.open : ''}`}>
       <nav>
         {[sidebarData]
           .filter(Boolean)

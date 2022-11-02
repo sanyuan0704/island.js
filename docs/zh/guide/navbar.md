@@ -49,14 +49,14 @@ export interface NavItemWithLink {
 ```ts
 export interface NavItemWithChildren {
   text: string;
-  children: NavItem[];
+  items: NavItem[];
 }
 ```
 
 其中各项属性的含义如下:
 
 - `text` - 导航栏文本
-- `children` - 子导航栏元素
+- `items` - 子导航栏元素
 
 ### 示例
 
@@ -73,7 +73,7 @@ export default defineConfig({
       },
       {
         text: '更多链接',
-        children: [
+        items: [
           {
             text: 'Github',
             link: 'http://github.com/sanyuan0704/island.js',
