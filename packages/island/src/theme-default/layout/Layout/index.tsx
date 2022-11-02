@@ -105,7 +105,9 @@ export const Layout: React.FC<LayoutProps> = (props) => {
         beforeNavTitle={beforeNavTitle}
         afterNavTitle={afterNavTitle}
       />
-      {pageType === 'doc' ? <LocalNav openSidebar={openSidebar} /> : null}
+      {pageType === 'doc' ? (
+        <LocalNav __island openSidebar={openSidebar} />
+      ) : null}
       <section style={{ paddingTop: 'var(--island-nav-height)' }}>
         {getContentLayout()}
       </section>

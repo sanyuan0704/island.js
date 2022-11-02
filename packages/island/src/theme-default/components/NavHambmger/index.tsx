@@ -1,9 +1,10 @@
 import styles from './index.module.scss';
+import type { ComponentPropsWithIsland } from 'islandjs';
 interface Props {
   toggleScreen?: () => void;
   isScreenOpen?: boolean;
 }
-export function NavHamburger(props: Props) {
+export function NavHamburger(props: Props & ComponentPropsWithIsland) {
   const { toggleScreen, isScreenOpen } = props;
   return (
     <button
