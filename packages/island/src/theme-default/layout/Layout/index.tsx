@@ -92,7 +92,7 @@ export const Layout: React.FC<LayoutProps> = (props) => {
   return (
     <div style={{ height: '100%' }}>
       <BackDrop closeSidebar={closeSidebar} isOpen={isSidebarOpen} />
-      <NavScreen isScreenOpen={isScreenOpen}></NavScreen>
+      {isScreenOpen && <NavScreen></NavScreen>}
       <Helmet>
         {title ? <title>{title}</title> : null}
         {description ? <meta name="description" content={description} /> : null}
