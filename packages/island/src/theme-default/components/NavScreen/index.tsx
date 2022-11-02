@@ -50,7 +50,6 @@ const NavTranslations = ({
       flex="~"
       text="sm"
       font="bold"
-      items-center="~"
       justify="center"
     >
       <div m="x-1.5">

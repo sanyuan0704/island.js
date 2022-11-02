@@ -1,3 +1,4 @@
+import styles from './index.module.scss';
 import type { ComponentPropsWithIsland } from 'islandjs';
 import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
 import type { MatchResultItem, PageSearcher } from '../logic/search';
@@ -106,11 +107,18 @@ export function Search(
   }, []);
   return (
     <div flex="" items-center="~" relative="" mr="4" font="semibold">
-      <SearchSvg w="5" h="5" fill="currentColor" />
+      <SearchSvg
+        w="5"
+        h="5"
+        fill="currentColor"
+        onClick={() => {
+          setFocused(true);
+          searchInputRef.current.focus();
+        }}
+      />
       <input
         disabled={disableInput}
         cursor="text focus:auto"
-        w="35"
         placeholder="Search"
         height="8"
         border="none"
@@ -118,7 +126,9 @@ export function Search(
         text="sm"
         p="t-0 r-2 b-0 l-2"
         transition="all duration-200 ease"
-        className="rounded-sm"
+        className={`rounded-sm ${styles.searchInput} ${
+          focused ? styles.focus : ''
+        }`}
         aria-label="Search"
         autoComplete="off"
         onChange={onQueryChanged}
@@ -140,20 +150,28 @@ export function Search(
         flex="~"
         items-center="~"
         justify="around"
+        className={styles.searchCommand}
       >
         <span>⌘</span>
         <span>K</span>
       </div>
       {focused && query && (
         <ul
-          absolute=""
+          // absolute=""
+          // z="60"
+          // pos="top-8"
+          // border-1=""
+          // border-rd-1=""
+          // p="2"
+          // list="none"
+          // className="min-w-500px max-w-700px bg-white"
+          pos="fixed sm:absolute top-12 sm:top-8 left-0"
           z="60"
-          pos="top-8"
           border-1=""
-          border-rd-1=""
           p="2"
           list="none"
-          className="min-w-500px max-w-700px bg-white"
+          bg="bg-default"
+          className="w-100% sm:min-w-500px sm:max-w-700px"
         >
           {/* Show the suggestions */}
           {suggestions.map((item, index) => (

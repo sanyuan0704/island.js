@@ -51,7 +51,8 @@ export function BackTop({
       onClick={scrollToTop}
     >
       <button
-        className="w-10 h-10 rounded-full duration-300 bg-white"
+        className="w-10 h-10 rounded-full duration-300"
+        style={{ backgroundColor: 'var(--island-c-bg)' }}
         color="gray hover:gray-500"
         bg="~ gray-200 hover:gray-300"
         shadow="sm hover:md"
