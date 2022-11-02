@@ -1,4 +1,5 @@
 import styles from './index.module.scss';
+import type { ComponentPropsWithIsland } from 'islandjs';
 import { SwitchAppearance } from '../SwitchAppearance/index';
 import { Search } from '@search-box';
 import { usePageData } from '@client';
@@ -134,7 +135,7 @@ const NavSocialLinks = ({
   );
 };
 
-export function Nav(props: NavProps) {
+export function Nav(props: NavProps & ComponentPropsWithIsland) {
   const {
     beforeNavTitle,
     afterNavTitle,
