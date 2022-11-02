@@ -9,10 +9,13 @@ import { DefaultTheme } from 'shared/types';
 import Translator from '../../assets/translator.svg';
 import GithubSvg from '../../assets/github.svg';
 import { useLocation } from 'react-router-dom';
-
+import { NavHamburger } from '../NavHambmger';
 export interface NavProps {
   beforeNavTitle?: React.ReactNode;
   afterNavTitle?: React.ReactNode;
+  closeScreen?: () => void;
+  toggleScreen?: () => void;
+  isScreenOpen?: boolean;
 }
 const IconMap = {
   github: GithubSvg
@@ -40,7 +43,6 @@ const NavBarTitle = ({ title }: { title: string }) => {
     </div>
   );
 };
-
 const NavMenu = ({ menuItems }: { menuItems: DefaultTheme.NavItem[] }) => {
   return (
     <div className="menu">
@@ -132,7 +134,13 @@ const NavSocialLinks = ({
 };
 
 export function Nav(props: NavProps) {
-  const { beforeNavTitle, afterNavTitle } = props;
+  const {
+    beforeNavTitle,
+    afterNavTitle,
+    closeScreen,
+    toggleScreen,
+    isScreenOpen
+  } = props;
   const { siteData, pageType } = usePageData();
   const { pathname } = useLocation();
   const { items: sidebarItems } = useSidebarData(pathname);
@@ -160,14 +168,25 @@ export function Nav(props: NavProps) {
 
   const title =
     localeData.title ?? siteData.themeConfig.siteTitle ?? siteData.title;
-
+  const rightNav = () => {
+    return (
+      <div className={styles.rightNav}>
+        <NavMenu menuItems={menuItems} />
+        {hasMultiLanguage && (
+          <NavTranslations translationMenuData={translationMenuData!} />
+        )}
+        {hasAppearanceSwitch && <NavAppearance />}
+        {hasSocialLinks && <NavSocialLinks socialLinks={socialLinks} />}
+      </div>
+    );
+  };
   return (
     <header relative="" z="4" fixed="md:~" className="top-0 left-0" w="100%">
       <div
         relative=""
         p="l-8 sm:x-8"
         transition="background-color duration-500"
-        className="divider-bottom sm:border-b-transparent lg:border-b-transparent"
+        className="divider-bottom md:border-b-transparent lg:border-b-transparent"
         nav-h="mobile lg:desktop"
       >
         <div
@@ -196,12 +215,11 @@ export function Nav(props: NavProps) {
                 />
               </div>
             )}
-            <NavMenu menuItems={menuItems} />
-            {hasMultiLanguage && (
-              <NavTranslations translationMenuData={translationMenuData!} />
-            )}
-            {hasAppearanceSwitch && <NavAppearance />}
-            {hasSocialLinks && <NavSocialLinks socialLinks={socialLinks} />}
+            {rightNav()}
+            <NavHamburger
+              toggleScreen={toggleScreen}
+              isScreenOpen={isScreenOpen}
+            />
           </div>
         </div>
       </div>

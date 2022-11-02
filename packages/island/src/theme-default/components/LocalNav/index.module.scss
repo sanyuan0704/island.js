@@ -1,0 +1,26 @@
+.localNav {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--island-c-divider-light);
+  width: 100%;
+  color: var(--island-c-text-1);
+  transition: border-color 0.5s, background-color 0.5s, color 0.5s;
+  background-color: var(--island-c-bg);
+  .menu {
+    padding: 12px 28px 11px;
+  }
+  &:hover {
+    color: var(--island-c-text-3);
+  }
+}
+
+@media (min-width: 960px) {
+  .localNav {
+    display: none;
+  }
+}

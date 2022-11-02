@@ -46,7 +46,15 @@
     }
   }
 }
-
+.rightNav {
+  display: none;
+}
+@media (min-width: 768px) {
+  .rightNav {
+    display: flex;
+    align-items: center;
+  }
+}
 .container {
   max-width: calc(var(--island-layout-max-width) - 64px);
 }
