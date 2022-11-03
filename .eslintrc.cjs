@@ -18,7 +18,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
-  plugins: ['react', '@typescript-eslint', 'prettier', 'react-hooks'],
+  plugins: ['react', '@typescript-eslint', 'prettier', 'react-hooks', 'import'],
   rules: {
     'prettier/prettier': 'error',
     quotes: ['error', 'single'],
@@ -27,7 +27,9 @@ module.exports = {
     '@typescript-eslint/no-non-null-assertion': 'off',
     'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
     'react-hooks/exhaustive-deps': 'warn', // Checks effect dependencies
-    '@typescript-eslint/no-namespace': 'off'
+    '@typescript-eslint/no-namespace': 'off',
+    'padding-line-between-statements': 'error',
+    'import/newline-after-import': 'error'
   },
   settings: {
     react: {

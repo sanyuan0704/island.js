@@ -14,7 +14,6 @@ export interface NavProps {
   beforeNavTitle?: React.ReactNode;
   afterNavTitle?: React.ReactNode;
 }
-
 const IconMap = {
   github: GithubSvg
 };
