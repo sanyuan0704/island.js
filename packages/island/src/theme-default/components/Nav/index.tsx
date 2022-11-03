@@ -11,6 +11,8 @@ import Translator from '../../assets/translator.svg';
 import GithubSvg from '../../assets/github.svg';
 import { useLocation } from 'react-router-dom';
 import { NavHamburger } from '../NavHambmger';
+import { NavScreen } from '../NavScreen';
+
 export interface NavProps {
   beforeNavTitle?: React.ReactNode;
   afterNavTitle?: React.ReactNode;
@@ -89,7 +91,7 @@ const NavAppearance = () => {
       display="none sm:flex"
       items-center="center"
     >
-      <SwitchAppearance />
+      <SwitchAppearance __island />
     </div>
   );
 };
@@ -135,13 +137,7 @@ const NavSocialLinks = ({
 };
 
 export function Nav(props: NavProps & ComponentPropsWithIsland) {
-  const {
-    beforeNavTitle,
-    afterNavTitle,
-    closeScreen,
-    toggleScreen,
-    isScreenOpen
-  } = props;
+  const { beforeNavTitle, afterNavTitle, toggleScreen, isScreenOpen } = props;
   const { siteData, pageType } = usePageData();
   const { pathname } = useLocation();
   const { items: sidebarItems } = useSidebarData(pathname);
@@ -199,6 +195,7 @@ export function Nav(props: NavProps & ComponentPropsWithIsland) {
             hasSidebar ? styles.hasSidebar : ''
           }`}
         >
+          {isScreenOpen && <NavScreen></NavScreen>}
           {beforeNavTitle}
           <NavBarTitle title={title} />
           {afterNavTitle}

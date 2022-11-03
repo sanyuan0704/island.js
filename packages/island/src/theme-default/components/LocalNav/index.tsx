@@ -1,5 +1,6 @@
 import styles from './index.module.scss';
 import type { ComponentPropsWithIsland } from 'islandjs';
+
 interface Props {
   openSidebar: () => void;
 }
