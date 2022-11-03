@@ -1,4 +1,4 @@
-import React, { createContext } from 'react';
+import React from 'react';
 import { Nav } from '../../components/Nav';
 import { DocLayout } from '../DocLayout';
 import { usePageData, Content } from '@client';
@@ -12,10 +12,9 @@ import { BackTop } from '@back-top';
 import LoadingSvg from '../../assets/loading.svg';
 import 'virtual:custom-styles';
 import { LocalNav } from '../../components/LocalNav';
-import { useSideBar } from './useSidebar';
+import { useSideBar } from '../../logic/useSidebar';
 import { BackDrop } from '../../components/BackDrop';
-import { NavScreen } from '../../components/NavScreen';
-import { useNav } from './useNav';
+import { useNav } from '../../logic/useNav';
 
 export type LayoutProps = {
   top?: React.ReactNode;
@@ -92,14 +91,12 @@ export const Layout: React.FC<LayoutProps> = (props) => {
   return (
     <div style={{ height: '100%' }}>
       <BackDrop __island closeSidebar={closeSidebar} isOpen={isSidebarOpen} />
-      {isScreenOpen && <NavScreen></NavScreen>}
       <Helmet>
         {title ? <title>{title}</title> : null}
         {description ? <meta name="description" content={description} /> : null}
       </Helmet>
       {top}
       <Nav
-        __island
         closeScreen={closeScreen}
         toggleScreen={toggleScreen}
         isScreenOpen={isScreenOpen}

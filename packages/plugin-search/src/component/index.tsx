@@ -157,14 +157,6 @@ export function Search(
       </div>
       {focused && query && (
         <ul
-          // absolute=""
-          // z="60"
-          // pos="top-8"
-          // border-1=""
-          // border-rd-1=""
-          // p="2"
-          // list="none"
-          // className="min-w-500px max-w-700px bg-white"
           pos="fixed sm:absolute top-12 sm:top-8 left-0"
           z="60"
           border-1=""

@@ -12,13 +12,10 @@ import { NavMenuSingleItem } from '../Nav/NavMenuSingleItem';
 import { SwitchAppearance } from '../SwitchAppearance/index';
 import Translator from '../../assets/translator.svg';
 import GithubSvg from '../../assets/github.svg';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 const IconMap = {
   github: GithubSvg
 };
-interface Props {
-  isScreenOpen: boolean;
-}
 
 const NavMenu = ({ menuItems }: { menuItems: DefaultTheme.NavItem[] }) => {
   return (
@@ -109,7 +106,6 @@ const NavAppearance = () => {
   );
 };
 export function NavScreen() {
-  // const { isScreenOpen } = props;
   const localeData = useLocaleSiteData();
   const { siteData } = usePageData();
   const localeLanguages = Object.values(siteData.themeConfig.locales || {});
