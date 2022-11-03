@@ -1,6 +1,5 @@
 import { useState } from 'react';
 export function useNav() {
-  // const isScreenOpen = useState(false);
   const [isScreenOpen, setIsScreenOpen] = useState(false);
   function openScreen() {
     setIsScreenOpen(true);
