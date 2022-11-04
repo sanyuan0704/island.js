@@ -11,7 +11,6 @@ export interface NavMenuGroupItem {
 
 export function NavMenuGroup(item: NavMenuGroupItem) {
   const { activeIndex } = item;
-  console.log(item.items, 'item');
   return (
     <div relative="" className="nav-menu-group">
       <button

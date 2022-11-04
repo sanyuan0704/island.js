@@ -12,7 +12,6 @@ export function useNav() {
   }
 
   function toggleScreen() {
-    console.log(isScreenOpen);
     isScreenOpen ? closeScreen() : openScreen();
   }
 

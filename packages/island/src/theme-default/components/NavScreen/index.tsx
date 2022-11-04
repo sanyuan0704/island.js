@@ -1,4 +1,6 @@
 import styles from './index.module.scss';
+import { CSSProperties, useEffect, useRef } from 'react';
+import { Transition } from 'react-transition-group';
 import { useLocaleSiteData } from '../../logic';
 import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import { DefaultTheme } from 'shared/types';
@@ -7,12 +9,14 @@ import {
   NavScreenMenuGroup,
   NavScreenMenuGroupItem
 } from '../NavScreenMenuGroup/NavScreenMenuGroup';
-
 import { NavMenuSingleItem } from '../Nav/NavMenuSingleItem';
 import { SwitchAppearance } from '../SwitchAppearance/index';
 import Translator from '../../assets/translator.svg';
 import GithubSvg from '../../assets/github.svg';
-import { useEffect } from 'react';
+
+interface Props {
+  isScreenOpen: boolean;
+}
 const IconMap = {
   github: GithubSvg
 };
@@ -105,9 +109,11 @@ const NavAppearance = () => {
     </div>
   );
 };
-export function NavScreen() {
+export function NavScreen(props: Props) {
+  const { isScreenOpen } = props;
   const localeData = useLocaleSiteData();
   const { siteData } = usePageData();
+  const screen = useRef<HTMLDivElement | null>(null);
   const localeLanguages = Object.values(siteData.themeConfig.locales || {});
   const hasMultiLanguage = localeLanguages.length > 1;
   const menuItems = localeData.nav || [];
@@ -126,31 +132,56 @@ export function NavScreen() {
         )
       }
     : null;
+  const duration = 300;
+
+  const defaultStyle = {
+    transition: `opacity ${duration}ms ease-in-out`,
+    opacity: 0
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const transitionStyles: any = {
+    entering: { opacity: 1 },
+    entered: { opacity: 1 },
+    exiting: { opacity: 0 },
+    exited: { opacity: 0 }
+  };
   useEffect(() => {
-    const screen = document.getElementById('navScreen');
-    console.log(screen);
-    screen && disableBodyScroll(screen, { reserveScrollBarGap: true });
+    screen.current &&
+      disableBodyScroll(screen.current, { reserveScrollBarGap: true });
     return () => {
       clearAllBodyScrollLocks();
     };
   }, []);
   return (
-    <div className={styles.navScreen} id="navScreen">
-      <div className={styles.container}>
-        <NavMenu menuItems={menuItems}></NavMenu>
+    <Transition nodeRef={screen} in={isScreenOpen} timeout={duration}>
+      {(state) => (
         <div
-          className={styles.socialAndAppearance}
-          flex="~"
-          justify="center"
-          items-center="center"
+          style={{
+            ...defaultStyle,
+            ...transitionStyles[state]
+          }}
+          className={styles.navScreen}
+          ref={screen}
+          id="navScreen"
         >
-          {hasAppearanceSwitch && <NavAppearance />}
-          {hasSocialLinks && <NavSocialLinks socialLinks={socialLinks} />}
+          <div className={styles.container}>
+            <NavMenu menuItems={menuItems}></NavMenu>
+            <div
+              className={styles.socialAndAppearance}
+              flex="~"
+              justify="center"
+              items-center="center"
+            >
+              {hasAppearanceSwitch && <NavAppearance />}
+              {hasSocialLinks && <NavSocialLinks socialLinks={socialLinks} />}
+            </div>
+            {hasMultiLanguage && (
+              <NavTranslations translationMenuData={translationMenuData!} />
+            )}
+          </div>
         </div>
-        {hasMultiLanguage && (
-          <NavTranslations translationMenuData={translationMenuData!} />
-        )}
-      </div>
-    </div>
+      )}
+    </Transition>
   );
 }
