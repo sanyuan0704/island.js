@@ -14,9 +14,7 @@
   .menu {
     padding: 12px 28px 11px;
     transition: color 0.5s;
-  }
-  &:hover {
-    .menu {
+    &:hover {
       color: var(--island-c-text-3);
     }
   }

@@ -18,7 +18,7 @@ export interface NavProps {
   afterNavTitle?: React.ReactNode;
   closeScreen?: () => void;
   toggleScreen?: () => void;
-  isScreenOpen?: boolean;
+  isScreenOpen: boolean;
 }
 const IconMap = {
   github: GithubSvg
@@ -195,7 +195,7 @@ export function Nav(props: NavProps & ComponentPropsWithIsland) {
             hasSidebar ? styles.hasSidebar : ''
           }`}
         >
-          {isScreenOpen && <NavScreen></NavScreen>}
+          <NavScreen isScreenOpen={isScreenOpen}></NavScreen>
           {beforeNavTitle}
           <NavBarTitle title={title} />
           {afterNavTitle}
