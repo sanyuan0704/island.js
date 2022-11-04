@@ -1,5 +1,5 @@
 import styles from './index.module.scss';
-import { CSSProperties, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Transition } from 'react-transition-group';
 import { useLocaleSiteData } from '../../logic';
 import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
