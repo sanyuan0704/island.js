@@ -62,3 +62,14 @@
 .container :deep(*) {
   pointer-events: all;
 }
+
+.social-links-icon {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  color: var(--island-c-text-2);
+
+  &:hover {
+    color: var(--island-c-text-1);
+  }
+}

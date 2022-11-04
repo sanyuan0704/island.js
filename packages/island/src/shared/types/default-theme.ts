@@ -198,6 +198,12 @@ export namespace DefaultTheme {
     | 'slack'
     | 'twitter'
     | 'youtube'
+    | 'weixin'
+    | 'qq'
+    | 'juejin'
+    | 'zhihu'
+    | 'bilibili'
+    | 'weibo'
     | { svg: string };
 
   // footer --------------------------------------------------------------------
