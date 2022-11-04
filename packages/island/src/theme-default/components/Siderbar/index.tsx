@@ -6,9 +6,11 @@ import { useLocaleSiteData, useSidebarData } from '../../logic/index';
 import { normalizeHref, normalizeSlash } from '@client';
 import { useLocation } from 'react-router-dom';
 import { isActive } from '../../logic/index';
+
 interface Props {
   isSidebarOpen?: boolean;
 }
+
 export function SideBar(props: Props) {
   const { isSidebarOpen } = props;
   const { pathname } = useLocation();
