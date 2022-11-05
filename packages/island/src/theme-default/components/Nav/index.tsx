@@ -12,13 +12,14 @@ import GithubSvg from '../../assets/github.svg';
 import { useLocation } from 'react-router-dom';
 import { NavHamburger } from '../NavHambmger';
 import { NavScreen } from '../NavScreen';
+import { useAppearance } from '../../logic/useAppearance';
 
 export interface NavProps {
   beforeNavTitle?: React.ReactNode;
   afterNavTitle?: React.ReactNode;
+  isScreenOpen: boolean;
   closeScreen?: () => void;
   toggleScreen?: () => void;
-  isScreenOpen: boolean;
 }
 const IconMap = {
   github: GithubSvg
@@ -83,19 +84,6 @@ const NavTranslations = ({
   );
 };
 
-const NavAppearance = () => {
-  return (
-    <div
-      className="appearance"
-      before="menu-item-before"
-      display="none sm:flex"
-      items-center="center"
-    >
-      <SwitchAppearance __island />
-    </div>
-  );
-};
-
 const NavSocialLinks = ({
   socialLinks
 }: {
@@ -138,6 +126,7 @@ const NavSocialLinks = ({
 
 export function Nav(props: NavProps & ComponentPropsWithIsland) {
   const { beforeNavTitle, afterNavTitle, toggleScreen, isScreenOpen } = props;
+  const toggleAppearance = useAppearance();
   const { siteData, pageType } = usePageData();
   const { pathname } = useLocation();
   const { items: sidebarItems } = useSidebarData(pathname);
@@ -158,6 +147,18 @@ export function Nav(props: NavProps & ComponentPropsWithIsland) {
         )
       }
     : null;
+  const NavAppearance = (toggleAppearance: () => void | undefined) => {
+    return (
+      <div
+        className="appearance"
+        before="menu-item-before"
+        display="none sm:flex"
+        items-center="center"
+      >
+        <SwitchAppearance __island toggleAppearance={toggleAppearance} />
+      </div>
+    );
+  };
   const menuItems = localeData.nav || [];
   const socialLinks = siteData?.themeConfig?.socialLinks || [];
   const hasSocialLinks = socialLinks.length > 0;
@@ -172,7 +173,7 @@ export function Nav(props: NavProps & ComponentPropsWithIsland) {
         {hasMultiLanguage && (
           <NavTranslations translationMenuData={translationMenuData!} />
         )}
-        {hasAppearanceSwitch && <NavAppearance />}
+        {hasAppearanceSwitch && NavAppearance(toggleAppearance)}
         {hasSocialLinks && <NavSocialLinks socialLinks={socialLinks} />}
       </div>
     );
@@ -195,7 +196,11 @@ export function Nav(props: NavProps & ComponentPropsWithIsland) {
             hasSidebar ? styles.hasSidebar : ''
           }`}
         >
-          <NavScreen isScreenOpen={isScreenOpen}></NavScreen>
+          <NavScreen
+            __island
+            isScreenOpen={isScreenOpen}
+            toggleAppearance={toggleAppearance}
+          ></NavScreen>
           {beforeNavTitle}
           <NavBarTitle title={title} />
           {afterNavTitle}

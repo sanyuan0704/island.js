@@ -3,11 +3,14 @@ import styles from './index.module.scss';
 import SunSvg from '../../assets/sun.svg';
 import MoonSvg from '../../assets/moon.svg';
 import { ComponentPropsWithIsland } from '../../../shared/types';
-
+interface Props {
+  toggleAppearance: () => void | undefined;
+}
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function SwitchAppearance(_props: ComponentPropsWithIsland) {
+export function SwitchAppearance(_props: ComponentPropsWithIsland & Props) {
+  const { toggleAppearance } = _props;
   return (
-    <Switch id="appearance">
+    <Switch onClick={toggleAppearance}>
       <SunSvg className={styles.sun}></SunSvg>
       <MoonSvg className={styles.moon}></MoonSvg>
     </Switch>

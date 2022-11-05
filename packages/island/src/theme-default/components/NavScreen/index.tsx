@@ -13,9 +13,11 @@ import { NavMenuSingleItem } from '../Nav/NavMenuSingleItem';
 import { SwitchAppearance } from '../SwitchAppearance/index';
 import Translator from '../../assets/translator.svg';
 import GithubSvg from '../../assets/github.svg';
+import type { ComponentPropsWithIsland } from 'islandjs';
 
 interface Props {
   isScreenOpen: boolean;
+  toggleAppearance: () => void | undefined;
 }
 const IconMap = {
   github: GithubSvg
@@ -98,19 +100,8 @@ const NavSocialLinks = ({
     </div>
   );
 };
-const NavAppearance = () => {
-  return (
-    <div
-      className={`items-center appearance pa-2 ${styles.navAppearance}`}
-      flex="~"
-      justify="center"
-    >
-      <SwitchAppearance />
-    </div>
-  );
-};
-export function NavScreen(props: Props) {
-  const { isScreenOpen } = props;
+export function NavScreen(props: Props & ComponentPropsWithIsland) {
+  const { isScreenOpen, toggleAppearance } = props;
   const localeData = useLocaleSiteData();
   const { siteData } = usePageData();
   const screen = useRef<HTMLDivElement | null>(null);
@@ -133,7 +124,17 @@ export function NavScreen(props: Props) {
       }
     : null;
   const duration = 300;
-
+  const NavAppearance = () => {
+    return (
+      <div
+        className={`items-center appearance pa-2 ${styles.navAppearance}`}
+        flex="~"
+        justify="center"
+      >
+        <SwitchAppearance toggleAppearance={toggleAppearance} />
+      </div>
+    );
+  };
   const defaultStyle = {
     transition: `opacity ${duration}ms ease-in-out`,
     opacity: 0
@@ -148,11 +149,12 @@ export function NavScreen(props: Props) {
   };
   useEffect(() => {
     screen.current &&
+      isScreenOpen &&
       disableBodyScroll(screen.current, { reserveScrollBarGap: true });
     return () => {
       clearAllBodyScrollLocks();
     };
-  }, []);
+  }, [isScreenOpen]);
   return (
     <Transition nodeRef={screen} in={isScreenOpen} timeout={duration}>
       {(state) => (
