@@ -12,7 +12,6 @@ import GithubSvg from '../../assets/github.svg';
 import { useLocation } from 'react-router-dom';
 import { NavHamburger } from '../NavHambmger';
 import { NavScreen } from '../NavScreen';
-import { useAppearance } from '../../logic/useAppearance';
 
 export interface NavProps {
   beforeNavTitle?: React.ReactNode;
@@ -126,7 +125,6 @@ const NavSocialLinks = ({
 
 export function Nav(props: NavProps & ComponentPropsWithIsland) {
   const { beforeNavTitle, afterNavTitle, toggleScreen, isScreenOpen } = props;
-  const toggleAppearance = useAppearance();
   const { siteData, pageType } = usePageData();
   const { pathname } = useLocation();
   const { items: sidebarItems } = useSidebarData(pathname);
@@ -147,7 +145,7 @@ export function Nav(props: NavProps & ComponentPropsWithIsland) {
         )
       }
     : null;
-  const NavAppearance = (toggleAppearance: () => void | undefined) => {
+  const NavAppearance = () => {
     return (
       <div
         className="appearance"
@@ -155,7 +153,7 @@ export function Nav(props: NavProps & ComponentPropsWithIsland) {
         display="none sm:flex"
         items-center="center"
       >
-        <SwitchAppearance __island toggleAppearance={toggleAppearance} />
+        <SwitchAppearance __island />
       </div>
     );
   };
@@ -173,7 +171,7 @@ export function Nav(props: NavProps & ComponentPropsWithIsland) {
         {hasMultiLanguage && (
           <NavTranslations translationMenuData={translationMenuData!} />
         )}
-        {hasAppearanceSwitch && NavAppearance(toggleAppearance)}
+        {hasAppearanceSwitch && <NavAppearance />}
         {hasSocialLinks && <NavSocialLinks socialLinks={socialLinks} />}
       </div>
     );
@@ -196,11 +194,7 @@ export function Nav(props: NavProps & ComponentPropsWithIsland) {
             hasSidebar ? styles.hasSidebar : ''
           }`}
         >
-          <NavScreen
-            __island
-            isScreenOpen={isScreenOpen}
-            toggleAppearance={toggleAppearance}
-          ></NavScreen>
+          <NavScreen isScreenOpen={isScreenOpen}></NavScreen>
           {beforeNavTitle}
           <NavBarTitle title={title} />
           {afterNavTitle}

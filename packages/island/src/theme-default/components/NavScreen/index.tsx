@@ -17,7 +17,6 @@ import type { ComponentPropsWithIsland } from 'islandjs';
 
 interface Props {
   isScreenOpen: boolean;
-  toggleAppearance: () => void | undefined;
 }
 const IconMap = {
   github: GithubSvg
@@ -101,7 +100,7 @@ const NavSocialLinks = ({
   );
 };
 export function NavScreen(props: Props & ComponentPropsWithIsland) {
-  const { isScreenOpen, toggleAppearance } = props;
+  const { isScreenOpen } = props;
   const localeData = useLocaleSiteData();
   const { siteData } = usePageData();
   const screen = useRef<HTMLDivElement | null>(null);
@@ -131,7 +130,7 @@ export function NavScreen(props: Props & ComponentPropsWithIsland) {
         flex="~"
         justify="center"
       >
-        <SwitchAppearance toggleAppearance={toggleAppearance} />
+        <SwitchAppearance />
       </div>
     );
   };
