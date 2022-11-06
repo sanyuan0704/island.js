@@ -1,0 +1,39 @@
+.localNav {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transform: translateX(-24px);
+  border-bottom: 1px solid var(--island-c-divider-light);
+  width: calc(100% + 48px);
+  color: var(--island-c-text-1);
+  transition: border-color 0.5s, background-color 0.5s, color 0.5s;
+  background-color: var(--island-c-bg);
+  .menu {
+    padding: 12px 28px 11px;
+    transition: color 0.5s;
+    &:hover {
+      color: var(--island-c-text-3);
+    }
+  }
+}
+@media (min-width: 960px) {
+  .localNav {
+    display: none;
+  }
+  .backDrop {
+    display: none;
+  }
+}
+.backDrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: var(--island-z-index-backdrop);
+  background: rgba(0, 0, 0, 0.6);
+}

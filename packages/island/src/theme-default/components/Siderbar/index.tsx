@@ -2,21 +2,19 @@ import styles from './index.module.scss';
 import React from 'react';
 import { Link } from '../Link/index';
 import { DefaultTheme } from '../../../shared/types';
-import { useLocaleSiteData, useSidebarData } from '../../logic/index';
-import { normalizeHref, normalizeSlash } from '@client';
-import { useLocation } from 'react-router-dom';
+import { normalizeHref } from '@client';
 import { isActive } from '../../logic/index';
+import { ComponentPropsWithIsland } from '../../../shared/types';
 
 interface Props {
   isSidebarOpen?: boolean;
+  pathname: string;
+  langRoutePrefix: string;
+  sidebarData: DefaultTheme.SidebarGroup[];
 }
 
-export function SideBar(props: Props) {
-  const { isSidebarOpen } = props;
-  const { pathname } = useLocation();
-  const localesData = useLocaleSiteData();
-  const { items: sidebarData } = useSidebarData(pathname);
-  const langRoutePrefix = normalizeSlash(localesData.routePrefix || '');
+export function SideBar(props: Props & ComponentPropsWithIsland) {
+  const { isSidebarOpen, langRoutePrefix, pathname, sidebarData } = props;
 
   const renderGroupItem = (item: DefaultTheme.SidebarItem, depth = 0) => {
     const marginLeft = `${depth * 20}px`;

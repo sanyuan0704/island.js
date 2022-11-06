@@ -4,7 +4,20 @@
     padding-left: var(--island-sidebar-width);
   }
 }
-
+@media (max-width: 960px) {
+  .docLayout {
+    position: relative;
+    top: -80px;
+  }
+  .content {
+    padding-top: 12px;
+  }
+}
+@media (max-width: 768px) {
+  .docLayout {
+    top: -56px;
+  }
+}
 @media (min-width: 1440px) {
   .content {
     padding-right: calc((100vw - var(--island-layout-max-width)) / 2);

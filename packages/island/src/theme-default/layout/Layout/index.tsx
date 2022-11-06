@@ -11,9 +11,6 @@ import type { NavProps } from '../../components/Nav/index';
 import { BackTop } from '@back-top';
 import LoadingSvg from '../../assets/loading.svg';
 import 'virtual:custom-styles';
-import { LocalNav } from '../../components/LocalNav';
-import { useSideBar } from '../../logic/useSidebar';
-import { BackDrop } from '../../components/BackDrop';
 import { useNav } from '../../logic/useNav';
 
 export type LayoutProps = {
@@ -36,18 +33,12 @@ export const Layout: React.FC<LayoutProps> = (props) => {
     afterNavTitle
   } = props;
   const { isScreenOpen, closeScreen, toggleScreen } = useNav();
-  const {
-    isOpen: isSidebarOpen,
-    open: openSidebar,
-    close: closeSidebar
-  } = useSideBar();
   const docProps: DocLayoutProps = {
     beforeDocFooter,
     beforeDoc,
     afterDoc,
     beforeOutline,
-    afterOutline,
-    isSidebarOpen
+    afterOutline
   };
   const {
     // Inject by remark-plugin-toc
@@ -90,7 +81,6 @@ export const Layout: React.FC<LayoutProps> = (props) => {
 
   return (
     <div style={{ height: '100%' }}>
-      <BackDrop __island closeSidebar={closeSidebar} isOpen={isSidebarOpen} />
       <Helmet>
         {title ? <title>{title}</title> : null}
         {description ? <meta name="description" content={description} /> : null}
@@ -103,9 +93,6 @@ export const Layout: React.FC<LayoutProps> = (props) => {
         beforeNavTitle={beforeNavTitle}
         afterNavTitle={afterNavTitle}
       />
-      {pageType === 'doc' ? (
-        <LocalNav __island openSidebar={openSidebar} />
-      ) : null}
       <section style={{ paddingTop: 'var(--island-nav-height)' }}>
         {getContentLayout()}
       </section>
