@@ -229,11 +229,6 @@ class SSGBuilder {
         const rawInjectCode = this.#generateIslandInjectCode(islandToPathMap);
         injectBundlePromise = (async () => {
           const injectBundle = await this.islandsBuild(rawInjectCode);
-          // Get complete css from server bundle
-          await copy(
-            join(this.#root, TEMP_PATH, 'assets'),
-            join(this.#root, DIST_PATH, 'assets')
-          );
           return injectBundle.output[0].fileName;
         })();
         this.#islandsInjectCache.set(islandHash, injectBundlePromise);
