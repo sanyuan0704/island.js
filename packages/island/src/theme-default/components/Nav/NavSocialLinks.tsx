@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { DefaultTheme } from 'shared/types';
 import styles from './index.module.scss';
 
@@ -154,15 +155,38 @@ export const NavSocialLinks = ({
 }: {
   socialLinks: DefaultTheme.SocialLink[];
 }) => {
+  const moreThanThree = socialLinks.length > 3;
+
+  const shownLinks = [];
+  const hiddenLinks = [];
+  for (const i in socialLinks) {
+    if (i < 3) {
+      shownLinks.push(socialLinks[i]);
+    } else {
+      hiddenLinks.push(socialLinks[i]);
+    }
+  }
+
+  const [moreLinksVisible, setMoreLinksVisible] = useState(false);
+  const mouseEnter = () => {
+    setMoreLinksVisible(true);
+  };
+  const mouseLeave = () => {
+    setMoreLinksVisible(false);
+  };
+
   return (
     <div
       className="social-links"
+      h="100%"
       flex=""
       items-center=""
       before="menu-item-before"
+      relative=""
+      onMouseLeave={mouseLeave}
     >
       <div flex="" items-center="" transition="color duration-300">
-        {socialLinks.map((item) => {
+        {shownLinks.map((item) => {
           const IconComp = icons[item.icon as keyof typeof icons];
           return (
             <a
@@ -176,7 +200,45 @@ export const NavSocialLinks = ({
             </a>
           );
         })}
+        {moreThanThree ? (
+          <div
+            className="i-carbon-chevron-sort-down"
+            onMouseEnter={mouseEnter}
+          ></div>
+        ) : null}
       </div>
+      {moreLinksVisible ? (
+        <div
+          absolute=""
+          pos="top-13 right-0"
+          p="3"
+          w="30"
+          border-1=""
+          rounded="xl"
+          bg="bg-default"
+          style={{
+            boxShadow: 'var(--island-shadow-3)',
+            marginRight: '-8px'
+          }}
+          flex="~ wrap"
+          gap="y-3"
+        >
+          {hiddenLinks.map((item) => {
+            const IconComp = icons[item.icon as keyof typeof icons];
+            return (
+              <a
+                className="mx-1"
+                key={item.icon}
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className={`${styles.socialLinksIcon}`}>{IconComp}</div>
+              </a>
+            );
+          })}
+        </div>
+      ) : null}
     </div>
   );
 };

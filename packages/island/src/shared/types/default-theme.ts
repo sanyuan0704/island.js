@@ -187,6 +187,8 @@ export namespace DefaultTheme {
   export interface SocialLink {
     icon: SocialLinkIcon;
     link: string;
+    mode: 'link' | 'text' | 'pic';
+    content: string;
   }
 
   export type SocialLinkIcon =

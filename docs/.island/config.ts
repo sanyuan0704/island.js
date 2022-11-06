@@ -66,9 +66,61 @@ export default defineConfig({
     outlineTitle: 'ON THIS PAGE',
     socialLinks: [
       {
+        icon: 'discord',
+        link: 'https://github.com/sanyuan0704/island'
+      },
+      {
+        icon: 'facebook',
+        link: 'https://github.com/sanyuan0704/island'
+      },
+      {
         icon: 'github',
         link: 'https://github.com/sanyuan0704/island'
-      }
+      },
+      {
+        icon: 'instagram',
+        link: 'https://github.com/sanyuan0704/island'
+      },
+      {
+        icon: 'linkedin',
+        link: 'https://github.com/sanyuan0704/island'
+      },
+      {
+        icon: 'slack',
+        link: 'https://github.com/sanyuan0704/island'
+      },
+      {
+        icon: 'twitter',
+        link: 'https://github.com/sanyuan0704/island'
+      },
+      {
+        icon: 'youtube',
+        link: 'https://github.com/sanyuan0704/island'
+      },
+      {
+        icon: 'juejin',
+        link: 'https://github.com/sanyuan0704/island'
+      },
+      {
+        icon: 'qq',
+        link: 'https://github.com/sanyuan0704/island'
+      },
+      {
+        icon: 'wechat',
+        link: 'https://github.com/sanyuan0704/island'
+      },
+      {
+        icon: 'weibo',
+        link: 'https://github.com/sanyuan0704/island'
+      },
+      {
+        icon: 'zhihu',
+        link: 'https://github.com/sanyuan0704/island'
+      },
+      {
+        icon: 'bilibili',
+        link: 'https://github.com/sanyuan0704/island'
+      },
     ],
 
     footer: {
