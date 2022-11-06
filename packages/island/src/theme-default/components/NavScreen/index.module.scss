@@ -1,4 +1,5 @@
 .navScreen {
+  display: none;
   position: fixed;
   top: var(--island-nav-height-mobile);
   right: 0;
@@ -12,11 +13,10 @@
   pointer-events: auto;
   z-index: 20;
 }
-@media (min-width: 768px) {
-  .navScreen {
-    display: none;
-  }
+.active {
+  display: block;
 }
+
 .container {
   margin: 0 auto;
   padding: 24px 0 96px;

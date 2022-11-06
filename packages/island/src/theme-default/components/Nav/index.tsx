@@ -11,14 +11,10 @@ import Translator from '../../assets/translator.svg';
 import GithubSvg from '../../assets/github.svg';
 import { useLocation } from 'react-router-dom';
 import { NavHamburger } from '../NavHambmger';
-import { NavScreen } from '../NavScreen';
 
 export interface NavProps {
   beforeNavTitle?: React.ReactNode;
   afterNavTitle?: React.ReactNode;
-  isScreenOpen: boolean;
-  closeScreen?: () => void;
-  toggleScreen?: () => void;
 }
 const IconMap = {
   github: GithubSvg
@@ -43,21 +39,6 @@ const NavBarTitle = ({ title }: { title: string }) => {
       >
         <span>{title}</span>
       </a>
-    </div>
-  );
-};
-const NavMenu = ({ menuItems }: { menuItems: DefaultTheme.NavItem[] }) => {
-  return (
-    <div className="menu">
-      {menuItems.map((item, index) =>
-        'link' in item ? (
-          <NavMenuSingleItem key={index} {...item} />
-        ) : (
-          <div m="x-3" last="mr-0" key={index}>
-            <NavMenuGroup {...item} />
-          </div>
-        )
-      )}
     </div>
   );
 };
@@ -124,7 +105,7 @@ const NavSocialLinks = ({
 };
 
 export function Nav(props: NavProps & ComponentPropsWithIsland) {
-  const { beforeNavTitle, afterNavTitle, toggleScreen, isScreenOpen } = props;
+  const { beforeNavTitle, afterNavTitle } = props;
   const { siteData, pageType } = usePageData();
   const { pathname } = useLocation();
   const { items: sidebarItems } = useSidebarData(pathname);
@@ -154,6 +135,21 @@ export function Nav(props: NavProps & ComponentPropsWithIsland) {
         items-center="center"
       >
         <SwitchAppearance __island />
+      </div>
+    );
+  };
+  const NavMenu = ({ menuItems }: { menuItems: DefaultTheme.NavItem[] }) => {
+    return (
+      <div className="menu">
+        {menuItems.map((item, index) =>
+          'link' in item ? (
+            <NavMenuSingleItem pathname={pathname} key={index} {...item} />
+          ) : (
+            <div m="x-3" last="mr-0" key={index}>
+              <NavMenuGroup {...item} />
+            </div>
+          )
+        )}
       </div>
     );
   };
@@ -194,7 +190,6 @@ export function Nav(props: NavProps & ComponentPropsWithIsland) {
             hasSidebar ? styles.hasSidebar : ''
           }`}
         >
-          <NavScreen isScreenOpen={isScreenOpen}></NavScreen>
           {beforeNavTitle}
           <NavBarTitle title={title} />
           {afterNavTitle}
@@ -214,9 +209,10 @@ export function Nav(props: NavProps & ComponentPropsWithIsland) {
             )}
             {rightNav()}
             <NavHamburger
+              localeData={localeData}
+              siteData={siteData}
+              pathname={pathname}
               __island
-              toggleScreen={toggleScreen}
-              isScreenOpen={isScreenOpen}
             />
           </div>
         </div>
