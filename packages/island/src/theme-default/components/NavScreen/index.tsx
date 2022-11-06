@@ -1,10 +1,7 @@
 import styles from './index.module.scss';
 import { useEffect, useRef } from 'react';
-import { Transition } from 'react-transition-group';
-import { useLocaleSiteData } from '../../logic';
 import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import { DefaultTheme } from 'shared/types';
-import { usePageData } from '@client';
 import {
   NavScreenMenuGroup,
   NavScreenMenuGroupItem
@@ -13,34 +10,19 @@ import { NavMenuSingleItem } from '../Nav/NavMenuSingleItem';
 import { SwitchAppearance } from '../SwitchAppearance/index';
 import Translator from '../../assets/translator.svg';
 import GithubSvg from '../../assets/github.svg';
-import type { ComponentPropsWithIsland } from 'islandjs';
+import type { ComponentPropsWithIsland, SiteData } from 'islandjs';
 
 interface Props {
   isScreenOpen: boolean;
+  localeData: DefaultTheme.LocaleConfig;
+  siteData: SiteData<DefaultTheme.Config>;
+  pathname: string;
 }
+
 const IconMap = {
   github: GithubSvg
 };
 
-const NavMenu = ({ menuItems }: { menuItems: DefaultTheme.NavItem[] }) => {
-  return (
-    <div className={styles.navMenu}>
-      {menuItems.map((item, index) => {
-        return (
-          <div key={index} w="100%" className={styles.navMenuItem}>
-            {'link' in item ? (
-              <NavMenuSingleItem key={index} {...item} />
-            ) : (
-              <div m="x-3" last="mr-0" key={index}>
-                <NavScreenMenuGroup {...item} />
-              </div>
-            )}
-          </div>
-        );
-      })}
-    </div>
-  );
-};
 const NavTranslations = ({
   translationMenuData
 }: {
@@ -99,10 +81,9 @@ const NavSocialLinks = ({
     </div>
   );
 };
+
 export function NavScreen(props: Props & ComponentPropsWithIsland) {
-  const { isScreenOpen } = props;
-  const localeData = useLocaleSiteData();
-  const { siteData } = usePageData();
+  const { isScreenOpen, localeData, siteData, pathname } = props;
   const screen = useRef<HTMLDivElement | null>(null);
   const localeLanguages = Object.values(siteData.themeConfig.locales || {});
   const hasMultiLanguage = localeLanguages.length > 1;
@@ -122,7 +103,6 @@ export function NavScreen(props: Props & ComponentPropsWithIsland) {
         )
       }
     : null;
-  const duration = 300;
   const NavAppearance = () => {
     return (
       <div
@@ -134,17 +114,24 @@ export function NavScreen(props: Props & ComponentPropsWithIsland) {
       </div>
     );
   };
-  const defaultStyle = {
-    transition: `opacity ${duration}ms ease-in-out`,
-    opacity: 0
-  };
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const transitionStyles: any = {
-    entering: { opacity: 1 },
-    entered: { opacity: 1 },
-    exiting: { opacity: 0 },
-    exited: { opacity: 0 }
+  const NavMenu = ({ menuItems }: { menuItems: DefaultTheme.NavItem[] }) => {
+    return (
+      <div className={styles.navMenu}>
+        {menuItems.map((item, index) => {
+          return (
+            <div key={index} w="100%" className={styles.navMenuItem}>
+              {'link' in item ? (
+                <NavMenuSingleItem pathname={pathname} key={index} {...item} />
+              ) : (
+                <div m="x-3" last="mr-0" key={index}>
+                  <NavScreenMenuGroup {...item} />
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    );
   };
   useEffect(() => {
     screen.current &&
@@ -155,34 +142,26 @@ export function NavScreen(props: Props & ComponentPropsWithIsland) {
     };
   }, [isScreenOpen]);
   return (
-    <Transition nodeRef={screen} in={isScreenOpen} timeout={duration}>
-      {(state) => (
+    <div
+      className={`${styles.navScreen} ${isScreenOpen ? styles.active : ''}`}
+      ref={screen}
+      id="navScreen"
+    >
+      <div className={styles.container}>
+        <NavMenu menuItems={menuItems}></NavMenu>
         <div
-          style={{
-            ...defaultStyle,
-            ...transitionStyles[state]
-          }}
-          className={styles.navScreen}
-          ref={screen}
-          id="navScreen"
+          className={styles.socialAndAppearance}
+          flex="~"
+          justify="center"
+          items-center="center"
         >
-          <div className={styles.container}>
-            <NavMenu menuItems={menuItems}></NavMenu>
-            <div
-              className={styles.socialAndAppearance}
-              flex="~"
-              justify="center"
-              items-center="center"
-            >
-              {hasAppearanceSwitch && <NavAppearance />}
-              {hasSocialLinks && <NavSocialLinks socialLinks={socialLinks} />}
-            </div>
-            {hasMultiLanguage && (
-              <NavTranslations translationMenuData={translationMenuData!} />
-            )}
-          </div>
+          {hasAppearanceSwitch && <NavAppearance />}
+          {hasSocialLinks && <NavSocialLinks socialLinks={socialLinks} />}
         </div>
-      )}
-    </Transition>
+        {hasMultiLanguage && (
+          <NavTranslations translationMenuData={translationMenuData!} />
+        )}
+      </div>
+    </div>
   );
 }

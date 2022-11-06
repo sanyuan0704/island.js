@@ -11,7 +11,6 @@ import type { NavProps } from '../../components/Nav/index';
 import { BackTop } from '@back-top';
 import LoadingSvg from '../../assets/loading.svg';
 import 'virtual:custom-styles';
-import { useNav } from '../../logic/useNav';
 
 export type LayoutProps = {
   top?: React.ReactNode;
@@ -32,7 +31,6 @@ export const Layout: React.FC<LayoutProps> = (props) => {
     beforeNavTitle,
     afterNavTitle
   } = props;
-  const { isScreenOpen, closeScreen, toggleScreen } = useNav();
   const docProps: DocLayoutProps = {
     beforeDocFooter,
     beforeDoc,
@@ -86,13 +84,7 @@ export const Layout: React.FC<LayoutProps> = (props) => {
         {description ? <meta name="description" content={description} /> : null}
       </Helmet>
       {top}
-      <Nav
-        closeScreen={closeScreen}
-        toggleScreen={toggleScreen}
-        isScreenOpen={isScreenOpen}
-        beforeNavTitle={beforeNavTitle}
-        afterNavTitle={afterNavTitle}
-      />
+      <Nav beforeNavTitle={beforeNavTitle} afterNavTitle={afterNavTitle} />
       <section style={{ paddingTop: 'var(--island-nav-height)' }}>
         {getContentLayout()}
       </section>
