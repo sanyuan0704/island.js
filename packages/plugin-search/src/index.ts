@@ -9,6 +9,11 @@ export function pluginSearch(options: SearchOptions = {}): IslandPlugin {
   const { maxSuggestions = 7 } = options;
   return {
     name: 'island:plugin-search',
+    vite: {
+      optimizeDeps: {
+        include: ['flexsearch']
+      }
+    },
     alias: {
       '@search-box': join(__dirname, '../src/component/index.tsx')
     },

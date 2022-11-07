@@ -9,6 +9,11 @@ export interface BackTopOptions {}
 export function pluginBackTop(options: BackTopOptions = {}): IslandPlugin {
   return {
     name: 'island:plugin-backtop',
+    vite: {
+      optimizeDeps: {
+        include: ['b-tween', 'lodash-es']
+      }
+    },
     alias: {
       '@back-top': join(__dirname, '../src/component/index.tsx')
     },
