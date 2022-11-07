@@ -4,7 +4,6 @@ import { Link } from '../Link/index';
 import { DefaultTheme } from '../../../shared/types';
 import { normalizeHref } from '@client';
 import { isActive } from '../../logic/index';
-import { ComponentPropsWithIsland } from '../../../shared/types';
 
 interface Props {
   isSidebarOpen?: boolean;
