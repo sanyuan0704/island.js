@@ -20,7 +20,7 @@ export const useFrontmatter = () => {
         );
       });
     }
-  }, []);
+  }, [pageData.routePath]);
 
   return frontmatter;
 };

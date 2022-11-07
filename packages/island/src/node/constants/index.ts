@@ -1,5 +1,6 @@
 import { join } from 'path';
 import { fileURLToPath } from 'url';
+
 export const isProduction = () => process.env.NODE_ENV === 'production';
 
 export const TS_REGEX = /(c|m)?tsx?$/;

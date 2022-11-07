@@ -3,6 +3,7 @@ import type { Plugin } from 'unified';
 import { visit } from 'unist-util-visit';
 
 export const remarkPluginTip: Plugin = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return (tree: any) => {
     visit(tree, (node) => {
       if (node.type === 'containerDirective') {
