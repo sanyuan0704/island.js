@@ -29,7 +29,6 @@ export function NavHamburger(props: Props & ComponentPropsWithIsland) {
         </span>
       </button>
       <NavScreen
-        __island
         isScreenOpen={isScreenOpen}
         localeData={localeData}
         siteData={siteData}

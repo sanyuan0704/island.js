@@ -10,7 +10,7 @@ import { NavMenuSingleItem } from '../Nav/NavMenuSingleItem';
 import { SwitchAppearance } from '../SwitchAppearance/index';
 import Translator from '../../assets/translator.svg';
 import GithubSvg from '../../assets/github.svg';
-import type { ComponentPropsWithIsland, SiteData } from 'islandjs';
+import type { SiteData } from 'islandjs';
 
 interface Props {
   isScreenOpen: boolean;
@@ -23,7 +23,7 @@ const IconMap = {
   github: GithubSvg
 };
 
-const NavTranslations = ({
+const NavScreenTranslations = ({
   translationMenuData
 }: {
   translationMenuData: NavScreenMenuGroupItem;
@@ -42,7 +42,7 @@ const NavTranslations = ({
     </div>
   );
 };
-const NavSocialLinks = ({
+const NavScreenSocialLinks = ({
   socialLinks
 }: {
   socialLinks: DefaultTheme.SocialLink[];
@@ -82,7 +82,7 @@ const NavSocialLinks = ({
   );
 };
 
-export function NavScreen(props: Props & ComponentPropsWithIsland) {
+export function NavScreen(props: Props) {
   const { isScreenOpen, localeData, siteData, pathname } = props;
   const screen = useRef<HTMLDivElement | null>(null);
   const localeLanguages = Object.values(siteData.themeConfig.locales || {});
@@ -103,7 +103,7 @@ export function NavScreen(props: Props & ComponentPropsWithIsland) {
         )
       }
     : null;
-  const NavAppearance = () => {
+  const NavScreenAppearance = () => {
     return (
       <div
         className={`items-center appearance pa-2 ${styles.navAppearance}`}
@@ -114,7 +114,11 @@ export function NavScreen(props: Props & ComponentPropsWithIsland) {
       </div>
     );
   };
-  const NavMenu = ({ menuItems }: { menuItems: DefaultTheme.NavItem[] }) => {
+  const NavScreenMenu = ({
+    menuItems
+  }: {
+    menuItems: DefaultTheme.NavItem[];
+  }) => {
     return (
       <div className={styles.navMenu}>
         {menuItems.map((item, index) => {
@@ -148,18 +152,18 @@ export function NavScreen(props: Props & ComponentPropsWithIsland) {
       id="navScreen"
     >
       <div className={styles.container}>
-        <NavMenu menuItems={menuItems}></NavMenu>
+        <NavScreenMenu menuItems={menuItems}></NavScreenMenu>
         <div
           className={styles.socialAndAppearance}
           flex="~"
           justify="center"
           items-center="center"
         >
-          {hasAppearanceSwitch && <NavAppearance />}
-          {hasSocialLinks && <NavSocialLinks socialLinks={socialLinks} />}
+          {hasAppearanceSwitch && <NavScreenAppearance />}
+          {hasSocialLinks && <NavScreenSocialLinks socialLinks={socialLinks} />}
         </div>
         {hasMultiLanguage && (
-          <NavTranslations translationMenuData={translationMenuData!} />
+          <NavScreenTranslations translationMenuData={translationMenuData!} />
         )}
       </div>
     </div>

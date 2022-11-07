@@ -36,7 +36,6 @@ export function SideMenu(_props: ComponentPropsWithIsland & Props) {
         </button>
       </div>
       <SideBar
-        __island
         langRoutePrefix={langRoutePrefix}
         pathname={pathname}
         sidebarData={sidebarData}

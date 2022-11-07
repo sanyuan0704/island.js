@@ -4,8 +4,7 @@ import { DocFooter } from '../../components/DocFooter/index';
 import { Content, usePageData } from '@client';
 import { useLocaleSiteData, useSidebarData } from '../../logic';
 import LoadingSvg from '../../assets/loading.svg';
-import { SideMenu } from '../../components/SideMenu';
-import { DefaultTheme } from '../../../shared/types';
+import { SideMenu } from '../../components/LocalSideBar';
 import { normalizeSlash } from '@client';
 import { useLocation } from 'react-router-dom';
 

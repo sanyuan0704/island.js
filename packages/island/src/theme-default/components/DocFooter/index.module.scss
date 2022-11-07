@@ -10,7 +10,14 @@
     padding-left: 16px;
   }
 }
-
+@media (min-width: 768px) {
+  .prev {
+    width: 50%;
+  }
+  .next {
+    width: 50%;
+  }
+}
 .pager-link {
   display: block;
   border: 1px solid var(--island-c-divider-light);
