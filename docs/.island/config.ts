@@ -67,23 +67,28 @@ export default defineConfig({
     socialLinks: [
       {
         icon: 'discord',
-        link: 'https://github.com/sanyuan0704/island'
+        mode: 'text',
+        content: '我是discord我是discord我是discord'
       },
       {
         icon: 'facebook',
-        link: 'https://github.com/sanyuan0704/island'
+        mode: 'text',
+        content: 'https://github.com/sanyuan0704/island'
       },
       {
         icon: 'github',
-        link: 'https://github.com/sanyuan0704/island'
+        mode: 'link',
+        content: 'https://github.com/sanyuan0704/island'
       },
       {
         icon: 'instagram',
-        link: 'https://github.com/sanyuan0704/island'
+        mode: 'text',
+        content: '我是instagram'
       },
       {
         icon: 'linkedin',
-        link: 'https://github.com/sanyuan0704/island'
+        mode: 'text',
+        content: '我是linkedinasdsssssss1111111萨达萨达萨达萨达'
       },
       {
         icon: 'slack',

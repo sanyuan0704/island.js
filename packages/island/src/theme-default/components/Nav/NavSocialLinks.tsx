@@ -150,6 +150,135 @@ export const icons = {
   )
 };
 
+interface IShownLinksProps {
+  links: DefaultTheme.SocialLink[];
+  moreIconVisible?: boolean;
+  mouseEnter: () => void;
+}
+
+type IHiddenLinksProps = Omit<
+  IShownLinksProps,
+  'moreIconVisible' | 'mouseEnter'
+>;
+
+interface ILinkContentComp {
+  link: DefaultTheme.SocialLink;
+  popperStyle?: Record<string, unknown>;
+}
+
+const LinkContentComp = (props: ILinkContentComp) => {
+  const { link, popperStyle = {} } = props;
+  const { icon, mode = 'link', content } = link;
+  const IconComp = icons[icon as keyof typeof icons];
+
+  const [contentVisible, setContentVisible] = useState(false);
+  const mouseEnterIcon = () => {
+    setContentVisible(true);
+  };
+  const mouseLeavePopper = () => {
+    setContentVisible(false);
+  };
+
+  if (mode === 'link') {
+    return (
+      <a key={icon} href={content} target="_blank" rel="noopener noreferrer">
+        <div className={`${styles.socialLinksIcon}`}>{IconComp}</div>
+      </a>
+    );
+  }
+  if (mode === 'text') {
+    return (
+      <div
+        className={`${styles.socialLinksIcon}`}
+        cursor="pointer"
+        relative=""
+        onMouseEnter={mouseEnterIcon}
+        onMouseLeave={mouseLeavePopper}
+      >
+        {IconComp}
+        {contentVisible ? (
+          <div
+            absolute=""
+            p="3"
+            w="50"
+            break="all"
+            pos="right-0"
+            border-1=""
+            rounded="xl"
+            bg="bg-default"
+            style={{
+              boxShadow: 'var(--island-shadow-3)',
+              ...popperStyle
+            }}
+          >
+            <div text="ml">{content}</div>
+          </div>
+        ) : null}
+      </div>
+    );
+  }
+
+  return;
+};
+
+const ShownLinksComp = (props: IShownLinksProps) => {
+  const { links, moreIconVisible = false, mouseEnter } = props;
+
+  return (
+    <div
+      h="100%"
+      flex=""
+      gap="x-2"
+      items-center=""
+      transition="color duration-300"
+    >
+      {links.map((item) => (
+        <LinkContentComp
+          key={item.icon}
+          link={item}
+          popperStyle={{ top: '2.5rem' }}
+        />
+      ))}
+      {moreIconVisible ? (
+        <div
+          className="i-carbon-chevron-sort-down"
+          onMouseEnter={mouseEnter}
+        ></div>
+      ) : null}
+    </div>
+  );
+};
+
+const HiddenLinksComp = (props: IHiddenLinksProps) => {
+  const { links } = props;
+
+  return (
+    <div
+      absolute=""
+      pos="top-13 right-0"
+      p="3"
+      w="26"
+      border-1=""
+      rounded="xl"
+      bg="bg-default"
+      style={{
+        boxShadow: 'var(--island-shadow-3)',
+        marginRight: '10px'
+      }}
+      flex="~ wrap"
+      gap="2"
+    >
+      {links.map((item) => (
+        <LinkContentComp
+          key={item.icon}
+          link={item}
+          popperStyle={{ top: '1.25rem' }}
+        />
+      ))}
+    </div>
+  );
+};
+
 export const NavSocialLinks = ({
   socialLinks
 }: {
@@ -185,60 +314,12 @@ export const NavSocialLinks = ({
       relative=""
       onMouseLeave={mouseLeave}
     >
-      <div flex="" items-center="" transition="color duration-300">
-        {shownLinks.map((item) => {
-          const IconComp = icons[item.icon as keyof typeof icons];
-          return (
-            <a
-              className="mx-1"
-              key={item.icon}
-              href={item.link}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div className={`${styles.socialLinksIcon}`}>{IconComp}</div>
-            </a>
-          );
-        })}
-        {moreThanThree ? (
-          <div
-            className="i-carbon-chevron-sort-down"
-            onMouseEnter={mouseEnter}
-          ></div>
-        ) : null}
-      </div>
-      {moreLinksVisible ? (
-        <div
-          absolute=""
-          pos="top-13 right-0"
-          p="3"
-          w="30"
-          border-1=""
-          rounded="xl"
-          bg="bg-default"
-          style={{
-            boxShadow: 'var(--island-shadow-3)',
-            marginRight: '-8px'
-          }}
-          flex="~ wrap"
-          gap="y-3"
-        >
-          {hiddenLinks.map((item) => {
-            const IconComp = icons[item.icon as keyof typeof icons];
-            return (
-              <a
-                className="mx-1"
-                key={item.icon}
-                href={item.link}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className={`${styles.socialLinksIcon}`}>{IconComp}</div>
-              </a>
-            );
-          })}
-        </div>
-      ) : null}
+      <ShownLinksComp
+        links={shownLinks}
+        moreIconVisible={moreThanThree}
+        mouseEnter={mouseEnter}
+      />
+      {moreLinksVisible ? <HiddenLinksComp links={hiddenLinks} /> : null}
     </div>
   );
 };
