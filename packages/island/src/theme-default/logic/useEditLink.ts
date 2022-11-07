@@ -1,4 +1,5 @@
 import { DefaultTheme } from 'shared/types';
+
 export function useEditLink(
   editLink: DefaultTheme.EditLink,
   relativePagePath: string
