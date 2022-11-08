@@ -3,6 +3,7 @@ import checkLinks from 'check-links';
 import ora from 'ora';
 import type { DeadLinkCheckOptions } from './index';
 import type { Plugin } from 'unified';
+import path from 'path';
 
 const checkedLinks = new Map();
 /**
@@ -44,7 +45,10 @@ export const remarkCheckDeadLinks: Plugin<DeadLinkCheckOptions[]> = (
       }
 
       if (!url.startsWith('http') && !url.startsWith('https')) {
-        const normalizeUrl = normalizeRoutePath(url?.split('#')[0]);
+        const normalizeUrl = normalizeRoutePath(
+          // fix: windows path
+          url?.split(path.sep).join('/')?.split('#')[0]
+        );
         internalLinks.push(normalizeUrl);
         checkedLinks.set(normalizeUrl, true);
         return;
