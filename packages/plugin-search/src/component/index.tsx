@@ -106,7 +106,7 @@ export function Search(
     setDisableInput(false);
   }, []);
   return (
-    <div flex="" items-center="~" relative="" mr="4" font="semibold">
+    <div flex="" items-center="~" relative="" mr="2" font="semibold">
       <SearchSvg
         w="5"
         h="5"

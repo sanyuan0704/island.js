@@ -26,7 +26,7 @@ export function NavScreenMenuGroup(item: NavScreenMenuGroupItem) {
         }}
       >
         <span className={styles.buttonSpan}>{item.text}</span>
-        <Down className={`${!isOpen ? styles.open : ''} ${styles.down} `} />
+        <Down className={`${isOpen ? styles.open : ''} ${styles.down} `} />
       </button>
       <div>
         <div className={styles.items}>

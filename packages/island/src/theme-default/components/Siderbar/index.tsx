@@ -4,6 +4,7 @@ import { Link } from '../Link/index';
 import { DefaultTheme } from '../../../shared/types';
 import { normalizeHref } from '@client';
 import { isActive } from '../../logic/index';
+import { ComponentPropsWithIsland } from 'shared/types/index';
 
 interface Props {
   isSidebarOpen?: boolean;
@@ -12,7 +13,7 @@ interface Props {
   sidebarData: DefaultTheme.SidebarGroup[];
 }
 
-export function SideBar(props: Props) {
+export function SideBar(props: Props & ComponentPropsWithIsland) {
   const { isSidebarOpen, langRoutePrefix, pathname, sidebarData } = props;
 
   const renderGroupItem = (item: DefaultTheme.SidebarItem, depth = 0) => {

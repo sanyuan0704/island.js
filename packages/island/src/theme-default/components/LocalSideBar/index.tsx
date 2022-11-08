@@ -10,9 +10,8 @@ interface Props {
   sidebarData: DefaultTheme.SidebarGroup[];
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function SideMenu(_props: ComponentPropsWithIsland & Props) {
-  const { langRoutePrefix, pathname, sidebarData } = _props;
+export function SideMenu(props: ComponentPropsWithIsland & Props) {
+  const { langRoutePrefix, pathname, sidebarData } = props;
   const [isSidebarOpen, setIsOpen] = useState<boolean>(false);
   function openSidebar() {
     setIsOpen(true);
@@ -23,14 +22,8 @@ export function SideMenu(_props: ComponentPropsWithIsland & Props) {
   }
   return (
     <Fragment>
-      {/* <LocalNav openSidebar={openSidebar}></LocalNav> */}
       <div className={styles.localNav}>
-        <button
-          flex="center"
-          ml="4"
-          onClick={openSidebar}
-          className={styles.menu}
-        >
+        <button flex="center" onClick={openSidebar} className={styles.menu}>
           <div text="md" mr="2" className="i-carbon:menu"></div>
           <span text="md ">Menu</span>
         </button>
