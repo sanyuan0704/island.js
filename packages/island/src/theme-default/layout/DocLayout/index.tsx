@@ -1,10 +1,12 @@
-import { SideBar } from '../../components/Siderbar/index';
 import styles from './index.module.scss';
 import { Aside } from '../../components/Aside/index';
 import { DocFooter } from '../../components/DocFooter/index';
 import { Content, usePageData } from '@client';
-import { useLocaleSiteData } from '../../logic';
+import { useLocaleSiteData, useSidebarData } from '../../logic';
 import LoadingSvg from '../../assets/loading.svg';
+import { SideMenu } from '../../components/LocalSideBar';
+import { normalizeSlash } from '@client';
+import { useLocation } from 'react-router-dom';
 
 export interface DocLayoutProps {
   beforeDocFooter?: React.ReactNode;
@@ -21,6 +23,9 @@ export function DocLayout(props: DocLayoutProps) {
   const themeConfig = siteData.themeConfig;
   const localesData = useLocaleSiteData();
   const sidebar = localesData.sidebar || [];
+  const { pathname } = useLocation();
+  const { items: sidebarData } = useSidebarData(pathname);
+  const langRoutePrefix = normalizeSlash(localesData.routePrefix || '');
   // siderbar Priority
   // 1. frontmatter.sidebar
   // 2. themeConfig.locales.sidebar
@@ -38,14 +43,22 @@ export function DocLayout(props: DocLayoutProps) {
     frontmatter?.lineNumbers === undefined ? false : !frontmatter.lineNumbers;
 
   return (
-    <div p="t-0 x-6 b-24 sm:6">
+    <div p="t-0 x-6 b-24 sm:6" className={styles.docLayout}>
       {beforeDoc}
-      {hasSidebar ? <SideBar /> : null}
+      {hasSidebar ? (
+        <SideMenu
+          pathname={pathname}
+          langRoutePrefix={langRoutePrefix}
+          sidebarData={sidebarData}
+          __island
+        ></SideMenu>
+      ) : null}
       <div flex="~ 1 shrink-0" m="x-auto" className={`${styles.content}`}>
-        <div m="x-auto" flex="~ col">
+        <div m="x-auto" flex="~ col" w="100%">
           <div
             relative="~"
             m="x-auto"
+            w="100%"
             p="l-2"
             className={'md:max-w-712px lg:min-w-640px'}
             style={{

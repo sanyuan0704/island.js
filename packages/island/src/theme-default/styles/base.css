@@ -26,6 +26,7 @@ body {
   color: var(--island-c-text-1);
   background-color: var(--island-c-bg);
   direction: ltr;
+  transition: background-color 0.5s;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

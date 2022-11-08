@@ -1,74 +1,9 @@
 import { throttle } from 'lodash-es';
-import { APPEARANCE_KEY } from '../../shared/constants';
 import { inBrowser } from '../../shared/utils';
 import { setupCopyCodeButton } from './copyCode';
 import mediumZoom from 'medium-zoom';
 
 const DEFAULT_NAV_HEIGHT = 60;
-
-function bindingAppearanceToggle() {
-  // Appearance click event
-  const appearanceEl = document.getElementById('appearance');
-
-  function getAppearanceToggle() {
-    if (typeof localStorage === 'undefined') {
-      return () => undefined;
-    }
-    const setClass = (dark: boolean): void => {
-      const css = document.createElement('style');
-      css.type = 'text/css';
-      css.appendChild(
-        document.createTextNode(
-          `:not(#appearance):not(#appearance *) {
-  -webkit-transition: none !important;
-  -moz-transition: none !important;
-  -o-transition: none !important;
-  -ms-transition: none !important;
-  transition: none !important;
-}`
-        )
-      );
-      document.head.appendChild(css);
-
-      classList[dark ? 'add' : 'remove']('dark');
-
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const _ = window.getComputedStyle(css).opacity;
-      document.head.removeChild(css);
-    };
-    // Determine if the theme mode of the user's operating system is dark
-    const query = window.matchMedia('(prefers-color-scheme: dark)');
-
-    const classList = document.documentElement.classList;
-
-    let userPreference = localStorage.getItem(APPEARANCE_KEY) || 'auto';
-    // When user preference is auto,the island theme will change with the system user's operating system theme.
-    let isDark =
-      userPreference === 'auto' ? query.matches : userPreference === 'dark';
-
-    query.onchange = (e) => {
-      // If user preference is not auto, the island theme will not change with the system user's operating system theme.
-      if (userPreference === 'auto') {
-        setClass((isDark = e.matches));
-      }
-    };
-    const toggle = () => {
-      setClass((isDark = !isDark));
-      if (isDark) {
-        // When the user's operating system theme is light, and actively switch the theme to dark，that mean the user preference is dark.
-        userPreference = query.matches ? 'auto' : 'dark';
-      } else {
-        // When the user's operating system theme is dark, and actively switch the theme to light，that mean user Preference is light
-        userPreference = query.matches ? 'light' : 'auto';
-      }
-
-      localStorage.setItem(APPEARANCE_KEY, userPreference);
-    };
-
-    return toggle;
-  }
-  appearanceEl!.addEventListener('click', getAppearanceToggle());
-}
 
 // Control the scroll behavior of the browser when user clicks on a link
 function bindingWindowScroll() {
@@ -253,7 +188,6 @@ export function setup() {
   if (!inBrowser()) {
     return;
   }
-  bindingAppearanceToggle();
   // In spa, we set the logic in useEffect instead here because the event should be rebind when the page is changed
   if (!import.meta.env.DEV && !import.meta.env.ENABLE_SPA) {
     bindingAsideScroll();
