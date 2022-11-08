@@ -92,40 +92,24 @@ export default defineConfig({
       },
       {
         icon: 'slack',
-        link: 'https://github.com/sanyuan0704/island'
+        mode: 'img',
+        content: '/island.png'
       },
       {
         icon: 'twitter',
-        link: 'https://github.com/sanyuan0704/island'
-      },
-      {
-        icon: 'youtube',
-        link: 'https://github.com/sanyuan0704/island'
-      },
-      {
-        icon: 'juejin',
-        link: 'https://github.com/sanyuan0704/island'
-      },
-      {
-        icon: 'qq',
-        link: 'https://github.com/sanyuan0704/island'
+        mode: 'img',
+        content: '/island.png'
       },
       {
         icon: 'wechat',
-        link: 'https://github.com/sanyuan0704/island'
+        mode: 'img',
+        content: '/island.png'
       },
       {
-        icon: 'weibo',
-        link: 'https://github.com/sanyuan0704/island'
-      },
-      {
-        icon: 'zhihu',
-        link: 'https://github.com/sanyuan0704/island'
-      },
-      {
-        icon: 'bilibili',
-        link: 'https://github.com/sanyuan0704/island'
-      },
+        icon: 'qq',
+        mode: 'img',
+        content: '/island.png'
+      }
     ],
 
     footer: {

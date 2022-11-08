@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { DefaultTheme } from 'shared/types';
 import styles from './index.module.scss';
+import type { ComponentPropsWithIsland } from 'shared/types';
 
 export const icons = {
   discord: (
@@ -199,6 +200,7 @@ const LinkContentComp = (props: ILinkContentComp) => {
         {contentVisible ? (
           <div
             absolute=""
+            z="1"
             p="3"
             w="50"
             break="all"
@@ -212,6 +214,38 @@ const LinkContentComp = (props: ILinkContentComp) => {
             }}
           >
             <div text="ml">{content}</div>
+          </div>
+        ) : null}
+      </div>
+    );
+  }
+  if (mode === 'img') {
+    return (
+      <div
+        className={`${styles.socialLinksIcon}`}
+        cursor="pointer"
+        relative=""
+        onMouseEnter={mouseEnterIcon}
+        onMouseLeave={mouseLeavePopper}
+      >
+        {IconComp}
+        {contentVisible ? (
+          <div
+            absolute=""
+            z="1"
+            p="3"
+            w="50"
+            break="all"
+            pos="right-0"
+            border-1=""
+            rounded="xl"
+            bg="bg-default"
+            style={{
+              boxShadow: 'var(--island-shadow-3)',
+              ...popperStyle
+            }}
+          >
+            <img src={content} alt="img" />
           </div>
         ) : null}
       </div>
@@ -283,7 +317,7 @@ export const NavSocialLinks = ({
   socialLinks
 }: {
   socialLinks: DefaultTheme.SocialLink[];
-}) => {
+} & ComponentPropsWithIsland) => {
   const moreThanThree = socialLinks.length > 3;
 
   const shownLinks = [];
