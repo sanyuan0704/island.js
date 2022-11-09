@@ -16,12 +16,12 @@ async function prepareE2E() {
   // ensure after build
   if (!fse.existsSync(path.resolve(__dirname, '../dist'))) {
     // exec build command
-    execa.execaCommandSync('npm run build', {
+    execa.commandSync('npm run build', {
       cwd: path.resolve(__dirname, '../')
     });
   }
 
-  execa.execaCommandSync('npx playwright install', {
+  execa.commandSync('npx playwright install', {
     cwd: path.join(__dirname, '../'),
     stdout: process.stdout,
     stdin: process.stdin,
@@ -29,13 +29,13 @@ async function prepareE2E() {
   });
 
   // exec install
-  execa.execaCommandSync(
+  execa.commandSync(
     'npm i --registry=https://registry.npmmirror.com/',
     defaultExecaOpts
   );
 
   // exec dev command
-  execa.execaCommandSync('npm run dev', defaultExecaOpts);
+  execa.commandSync('npm run dev', defaultExecaOpts);
 }
 
 prepareE2E();
