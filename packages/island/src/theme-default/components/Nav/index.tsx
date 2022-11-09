@@ -5,7 +5,7 @@ import { Search } from '@search-box';
 import { usePageData } from '@client';
 import { NavMenuSingleItem } from './NavMenuSingleItem';
 import { NavMenuGroup, NavMenuGroupItem } from './NavMenuGroup';
-import { NavSocialLinks } from './NavSocialLinks';
+import { SocialLinks } from '../SocialLinks';
 import { useLocaleSiteData, useSidebarData } from '../../logic';
 import { DefaultTheme } from 'shared/types';
 import { useLocation } from 'react-router-dom';
