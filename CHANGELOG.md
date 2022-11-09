@@ -1,3 +1,33 @@
+# [0.7.0](https://github.com/sanyuan0704/island.js/compare/0.5.2...0.7.0) (2022-11-09)
+
+
+### Bug Fixes
+
+* build error in production ([599f93a](https://github.com/sanyuan0704/island.js/commit/599f93ad8b01e6eb97e2ee0aa97721afd2b2fa8b))
+* hidden backTop button on mobile device ([#136](https://github.com/sanyuan0704/island.js/issues/136)) ([278d59b](https://github.com/sanyuan0704/island.js/commit/278d59b104a94c2b94caefc7f2c3a327d877ac7e))
+* parameters of checkLink plugin ([#137](https://github.com/sanyuan0704/island.js/issues/137)) ([e30ce24](https://github.com/sanyuan0704/island.js/commit/e30ce24150ba09f8dad60c319e86d51208c615d1))
+* plugin checkLinks in windows system path parsing error ([#141](https://github.com/sanyuan0704/island.js/issues/141)) ([52611fd](https://github.com/sanyuan0704/island.js/commit/52611fdb65a7c3982e8b481767f8d8c1f6c94077))
+* plugin component not found ([#130](https://github.com/sanyuan0704/island.js/issues/130)) ([17ceaf8](https://github.com/sanyuan0704/island.js/commit/17ceaf8ddfd7935ee29c408fdf6395e7065752c8))
+* remove changesets because it cannot publish consistent version in minor change ([a72cec8](https://github.com/sanyuan0704/island.js/commit/a72cec8b41e638b1a6553cedd7b3c49dfe7d48a8))
+* search error ([#139](https://github.com/sanyuan0704/island.js/issues/139)) ([83a726e](https://github.com/sanyuan0704/island.js/commit/83a726eb15d78b77fc2f0b81d8e198ec9d19992a))
+
+
+### Features
+
+* add check links plugin ([#134](https://github.com/sanyuan0704/island.js/issues/134)) ([72cdd5f](https://github.com/sanyuan0704/island.js/commit/72cdd5f42bae8dead6a9663d3731c7298fe23eaf))
+* expose `markdown.targetBlankWhiteList` to user config ([#123](https://github.com/sanyuan0704/island.js/issues/123)) ([64343e8](https://github.com/sanyuan0704/island.js/commit/64343e836e4fa5bb7ee91f3e488c363ae2e581de))
+* plugin system ([#122](https://github.com/sanyuan0704/island.js/issues/122)) ([98f671b](https://github.com/sanyuan0704/island.js/commit/98f671baaed0e0ff2bb7781195d80f4b038c731f))
+* remove throttle for keydown handler ([#132](https://github.com/sanyuan0704/island.js/issues/132)) ([5c1be07](https://github.com/sanyuan0704/island.js/commit/5c1be077ec7f185ed671f61b65e7f4700825deab))
+* responsible layout ([#143](https://github.com/sanyuan0704/island.js/issues/143)) ([7aaaddb](https://github.com/sanyuan0704/island.js/commit/7aaaddbf049157bdfe45202d23e5863bb2609667)), closes [#138](https://github.com/sanyuan0704/island.js/issues/138) [#139](https://github.com/sanyuan0704/island.js/issues/139) [#140](https://github.com/sanyuan0704/island.js/issues/140)
+* support target blank white list in remark plugin ([#107](https://github.com/sanyuan0704/island.js/issues/107)) ([267c699](https://github.com/sanyuan0704/island.js/commit/267c699a379f3b8b72fbaf5cf75438db3ded463d))
+
+
+### Reverts
+
+* Revert "chore: release (#124)" (#125) ([6db12a5](https://github.com/sanyuan0704/island.js/commit/6db12a5e0aa399c5eb6785aa323d57f991975aae)), closes [#124](https://github.com/sanyuan0704/island.js/issues/124) [#125](https://github.com/sanyuan0704/island.js/issues/125)
+
+
+
 ## 0.6.0
 
 ## 0.6.5
