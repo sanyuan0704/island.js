@@ -8,3 +8,4 @@
 turbo.json
 vendors
 **/__tests__/**
+**/scripts/**
