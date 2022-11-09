@@ -1,5 +1,17 @@
 ## 0.6.0
 
+## 0.7.0
+
+### Minor Changes
+
+- [#143](https://github.com/sanyuan0704/island.js/pull/143) [`7aaaddb`](https://github.com/sanyuan0704/island.js/commit/7aaaddbf049157bdfe45202d23e5863bb2609667) Thanks [@sanyuan0704](https://github.com/sanyuan0704)! - feat: responsible layout
+
+### Patch Changes
+
+- Updated dependencies [[`7aaaddb`](https://github.com/sanyuan0704/island.js/commit/7aaaddbf049157bdfe45202d23e5863bb2609667)]:
+  - @islandjs/plugin-backtop@1.0.0
+  - @islandjs/plugin-search@1.0.0
+
 ## 0.6.5
 
 ### Patch Changes
