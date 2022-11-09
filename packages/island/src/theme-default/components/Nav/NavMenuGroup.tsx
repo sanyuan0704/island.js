@@ -11,7 +11,6 @@ export interface NavMenuGroupItem {
 
 export function NavMenuGroup(item: NavMenuGroupItem) {
   const { activeIndex } = item;
-
   return (
     <div relative="" className="nav-menu-group">
       <button
@@ -31,7 +30,6 @@ export function NavMenuGroup(item: NavMenuGroupItem) {
         absolute=""
         pos="top-13 right-0"
         m="x-0.8"
-        opacity="0"
         transition="opacity duration-300"
         className="nav-menu-group-content invisible"
       >
@@ -45,7 +43,8 @@ export function NavMenuGroup(item: NavMenuGroupItem) {
           bg="bg-default"
           style={{
             boxShadow: 'var(--island-shadow-3)',
-            marginRight: '-1.5rem'
+            marginRight: '-1.5rem',
+            zIndex: 100
           }}
         >
           {item.items.map((child, index) => {

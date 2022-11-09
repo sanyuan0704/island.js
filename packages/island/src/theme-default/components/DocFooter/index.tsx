@@ -61,7 +61,7 @@ export function DocFooter() {
         divider-top=""
         pt="6"
       >
-        <div flex="~ col" w="50%">
+        <div flex="~ col" className={styles.prev}>
           {prevPage ? (
             <a href={normalizeHref(prevPage.link)} className={styles.pagerLink}>
               <span className={styles.desc}>{prevPageText}</span>
@@ -69,7 +69,7 @@ export function DocFooter() {
             </a>
           ) : null}
         </div>
-        <div flex="~ col" w="50%">
+        <div flex="~ col" className={styles.next}>
           {nextPage ? (
             <a
               href={normalizeHref(nextPage.link)}

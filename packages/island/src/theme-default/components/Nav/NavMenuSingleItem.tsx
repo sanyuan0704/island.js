@@ -1,13 +1,14 @@
-import { useLocation } from 'react-router-dom';
 import { DefaultTheme } from 'shared/types';
 import { normalizeHref } from '@client';
 import { Link } from '../Link/index';
 
-export function NavMenuSingleItem(item: DefaultTheme.NavItemWithLink) {
-  const location = useLocation();
-  const isActive = new RegExp(item.activeMatch || item.link).test(
-    location.pathname
-  );
+interface Props {
+  pathname: string;
+}
+
+export function NavMenuSingleItem(item: DefaultTheme.NavItemWithLink & Props) {
+  const { pathname } = item;
+  const isActive = new RegExp(item.activeMatch || item.link).test(pathname);
   return (
     <div
       key={item.text}

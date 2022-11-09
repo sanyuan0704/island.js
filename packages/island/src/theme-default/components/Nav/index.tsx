@@ -1,4 +1,5 @@
 import styles from './index.module.scss';
+import type { ComponentPropsWithIsland } from 'islandjs';
 import { SwitchAppearance } from '../SwitchAppearance/index';
 import { Search } from '@search-box';
 import { usePageData } from '@client';
@@ -9,6 +10,7 @@ import { DefaultTheme } from 'shared/types';
 import Translator from '../../assets/translator.svg';
 import GithubSvg from '../../assets/github.svg';
 import { useLocation } from 'react-router-dom';
+import { NavHamburger } from '../NavHambmger';
 
 export interface NavProps {
   beforeNavTitle?: React.ReactNode;
@@ -41,22 +43,6 @@ const NavBarTitle = ({ title }: { title: string }) => {
   );
 };
 
-const NavMenu = ({ menuItems }: { menuItems: DefaultTheme.NavItem[] }) => {
-  return (
-    <div className="menu">
-      {menuItems.map((item, index) =>
-        'link' in item ? (
-          <NavMenuSingleItem key={index} {...item} />
-        ) : (
-          <div m="x-3" last="mr-0" key={index}>
-            <NavMenuGroup {...item} />
-          </div>
-        )
-      )}
-    </div>
-  );
-};
-
 const NavTranslations = ({
   translationMenuData
 }: {
@@ -74,19 +60,6 @@ const NavTranslations = ({
       <div m="x-1.5">
         <NavMenuGroup {...translationMenuData!} />
       </div>
-    </div>
-  );
-};
-
-const NavAppearance = () => {
-  return (
-    <div
-      className="appearance"
-      before="menu-item-before"
-      display="none sm:flex"
-      items-center="center"
-    >
-      <SwitchAppearance />
     </div>
   );
 };
@@ -131,7 +104,7 @@ const NavSocialLinks = ({
   );
 };
 
-export function Nav(props: NavProps) {
+export function Nav(props: NavProps & ComponentPropsWithIsland) {
   const { beforeNavTitle, afterNavTitle } = props;
   const { siteData, pageType } = usePageData();
   const { pathname } = useLocation();
@@ -153,6 +126,33 @@ export function Nav(props: NavProps) {
         )
       }
     : null;
+  const NavAppearance = () => {
+    return (
+      <div
+        className="appearance"
+        before="menu-item-before"
+        display="none sm:flex"
+        items-center="center"
+      >
+        <SwitchAppearance __island />
+      </div>
+    );
+  };
+  const NavMenu = ({ menuItems }: { menuItems: DefaultTheme.NavItem[] }) => {
+    return (
+      <div className="menu">
+        {menuItems.map((item, index) =>
+          'link' in item ? (
+            <NavMenuSingleItem pathname={pathname} key={index} {...item} />
+          ) : (
+            <div m="x-3" last="mr-0" key={index}>
+              <NavMenuGroup {...item} />
+            </div>
+          )
+        )}
+      </div>
+    );
+  };
   const menuItems = localeData.nav || [];
   const socialLinks = siteData?.themeConfig?.socialLinks || [];
   const hasSocialLinks = socialLinks.length > 0;
@@ -160,14 +160,25 @@ export function Nav(props: NavProps) {
 
   const title =
     localeData.title ?? siteData.themeConfig.siteTitle ?? siteData.title;
-
+  const rightNav = () => {
+    return (
+      <div className={styles.rightNav}>
+        <NavMenu menuItems={menuItems} />
+        {hasMultiLanguage && (
+          <NavTranslations translationMenuData={translationMenuData!} />
+        )}
+        {hasAppearanceSwitch && <NavAppearance />}
+        {hasSocialLinks && <NavSocialLinks socialLinks={socialLinks} />}
+      </div>
+    );
+  };
   return (
     <header relative="" z="4" fixed="md:~" className="top-0 left-0" w="100%">
       <div
         relative=""
         p="l-8 sm:x-8"
         transition="background-color duration-500"
-        className="divider-bottom sm:border-b-transparent lg:border-b-transparent"
+        className="divider-bottom md:border-b-transparent lg:border-b-transparent"
         nav-h="mobile lg:desktop"
       >
         <div
@@ -196,12 +207,13 @@ export function Nav(props: NavProps) {
                 />
               </div>
             )}
-            <NavMenu menuItems={menuItems} />
-            {hasMultiLanguage && (
-              <NavTranslations translationMenuData={translationMenuData!} />
-            )}
-            {hasAppearanceSwitch && <NavAppearance />}
-            {hasSocialLinks && <NavSocialLinks socialLinks={socialLinks} />}
+            {rightNav()}
+            <NavHamburger
+              localeData={localeData}
+              siteData={siteData}
+              pathname={pathname}
+              __island
+            />
           </div>
         </div>
       </div>
