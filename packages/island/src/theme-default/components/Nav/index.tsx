@@ -7,7 +7,6 @@ import { NavMenuSingleItem } from './NavMenuSingleItem';
 import { NavMenuGroup, NavMenuGroupItem } from './NavMenuGroup';
 import { useLocaleSiteData, useSidebarData } from '../../logic';
 import { DefaultTheme } from 'shared/types';
-import Translator from '../../assets/translator.svg';
 import GithubSvg from '../../assets/github.svg';
 import { useLocation } from 'react-router-dom';
 import { NavHamburger } from '../NavHambmger';
@@ -58,7 +57,7 @@ const NavTranslations = ({
       before="menu-item-before"
     >
       <div m="x-1.5">
-        <NavMenuGroup {...translationMenuData!} />
+        <NavMenuGroup {...translationMenuData!} isTranslation __island />
       </div>
     </div>
   );
@@ -116,7 +115,6 @@ export function Nav(props: NavProps & ComponentPropsWithIsland) {
   const hasMultiLanguage = localeLanguages.length > 1;
   const translationMenuData = hasMultiLanguage
     ? {
-        text: <Translator w="18px" h="18px" />,
         items: localeLanguages.map((item) => ({
           text: item.label,
           link: `/${item.lang}`
@@ -146,7 +144,7 @@ export function Nav(props: NavProps & ComponentPropsWithIsland) {
             <NavMenuSingleItem pathname={pathname} key={index} {...item} />
           ) : (
             <div m="x-3" last="mr-0" key={index}>
-              <NavMenuGroup {...item} />
+              <NavMenuGroup {...item} __island />
             </div>
           )
         )}

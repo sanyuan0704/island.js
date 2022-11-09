@@ -1,5 +1,9 @@
 import { defineConfig } from 'islandjs';
 import { pluginCheckLinks } from '@islandjs/plugin-check-links';
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
+const version = require('../../package.json').version;
 
 function getI18nHelper(lang: 'zh' | 'en') {
   const cn = lang === 'zh';
@@ -233,6 +237,19 @@ function getNavbar(lang: 'zh' | 'en') {
       text: getText('API', 'API'),
       link: getLink('/api/'),
       activeMatch: '/api/'
+    },
+    {
+      text: `v${version}`,
+      items: [
+        {
+          text: getText('更新日志', 'Changelog'),
+          link: 'https://github.com/sanyuan0704/island.js/blob/master/CHANGELOG.md'
+        },
+        {
+          text: getText('贡献指南', 'Contributing'),
+          link: 'https://github.com/sanyuan0704/island.js/blob/master/.github/contributing.md'
+        }
+      ]
     }
   ];
 }

@@ -2,18 +2,27 @@ import { DefaultTheme } from 'shared/types';
 import Down from '../../assets/down.svg';
 import Right from '../../assets/right.svg';
 import { Link } from '../Link/index';
+import { ComponentPropsWithIsland } from 'shared/types/index';
+import { useState } from 'react';
+import Translator from '../../assets/translator.svg';
 
 export interface NavMenuGroupItem {
   text?: string | React.ReactElement;
   items: DefaultTheme.NavItemWithLink[];
   activeIndex?: number;
+  // When the item is transition, we need to give a react element instead of a string.
+  isTranslation?: boolean;
 }
 
-export function NavMenuGroup(item: NavMenuGroupItem) {
-  const { activeIndex } = item;
+export function NavMenuGroup(
+  item: NavMenuGroupItem & ComponentPropsWithIsland
+) {
+  const { activeIndex, isTranslation } = item;
+  const [isOpen, setIsOpen] = useState(false);
   return (
-    <div relative="" className="nav-menu-group">
+    <div relative="" onMouseLeave={() => setIsOpen(false)}>
       <button
+        onMouseEnter={() => setIsOpen(true)}
         flex="center"
         nav-h="mobile sm:desktop"
         font="medium"
@@ -22,7 +31,7 @@ export function NavMenuGroup(item: NavMenuGroupItem) {
         className="nav-menu-group-button"
       >
         <span mr="1" text="sm" font="medium">
-          {item.text}
+          {isTranslation ? <Translator w="18px" h="18px" /> : item.text}
         </span>
         <Down />
       </button>
@@ -31,7 +40,11 @@ export function NavMenuGroup(item: NavMenuGroupItem) {
         pos="top-13 right-0"
         m="x-0.8"
         transition="opacity duration-300"
-        className="nav-menu-group-content invisible"
+        className="nav-menu-group-content"
+        style={{
+          opacity: isOpen ? 1 : 0,
+          visibility: isOpen ? 'visible' : 'hidden'
+        }}
       >
         <div
           p="3"
