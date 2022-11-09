@@ -20,8 +20,7 @@
     "pnpm-install": "pnpm install",
     "dev": "tsup --watch --format=cjs,esm",
     "build": "cross-env NODE_ENV=production tsup --format=cjs,esm",
-    "prepublishOnly": "pnpm build",
-    "release": "release-it"
+    "prepublishOnly": "pnpm build"
   },
   "keywords": [
     "vite",

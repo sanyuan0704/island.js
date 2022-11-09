@@ -99,7 +99,6 @@
     "@commitlint/config-conventional": "^17.1.0",
     "@islandjs/plugin-check-links": "workspace:*",
     "@playwright/test": "^1.26.1",
-    "@release-it/conventional-changelog": "^5.1.0",
     "@types/babel__core": "^7.1.19",
     "@types/babel__helper-plugin-utils": "^7.10.0",
     "@types/babel__traverse": "^7.18.1",
