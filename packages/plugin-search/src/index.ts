@@ -11,7 +11,7 @@ export function pluginSearch(options: SearchOptions = {}): IslandPlugin {
     name: 'island:plugin-search',
     vite: {
       optimizeDeps: {
-        include: ['flexsearch']
+        include: ['islandjs > @islandjs/plugin-search > flexsearch']
       }
     },
     alias: {

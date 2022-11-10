@@ -50,7 +50,10 @@ export function pluginIndexHtml(config: SiteConfig): Plugin {
         ?.map((plugin) => plugin.watchFiles)
         .filter(Boolean)
         .flat();
-      server.watcher.add([ISLAND_CLI_PATH, ...watchFilesFromPlugins]);
+      server.watcher.add([
+        ISLAND_CLI_PATH,
+        ...(watchFilesFromPlugins as string[])
+      ]);
       return () => {
         server.middlewares.use(async (req, res, next) => {
           if (res.writableEnded) {
