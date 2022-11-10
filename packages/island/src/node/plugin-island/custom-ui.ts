@@ -21,18 +21,17 @@ export function pluginCustomUI(config: SiteConfig): Plugin {
     async load(id) {
       if (id === `\0${CUSTOM_GLOBAL_STYLE}`) {
         const stylePath = join(config.root!, '.island', 'styles', 'index.css');
-
         const styles =
           [stylePath]
             .concat(
               config.plugins?.map((plugin) => plugin.globalStyles || '') || []
             )
             .filter((pluginStylePath) => {
-              pluginStylePath && fs.existsSync(pluginStylePath);
+              return pluginStylePath && fs.existsSync(pluginStylePath);
             }) || [];
 
         return styles
-          .map((style) => `import ${normalizePath(style)};`)
+          .map((style) => `import '${normalizePath(style)}';`)
           .join('\n');
       }
       // TODO: support island component in global ui component
