@@ -18,6 +18,11 @@
     top: -56px;
   }
 }
+@media (min-width: 1280px) {
+  .contentArticle {
+    padding-left: 72px;
+  }
+}
 @media (min-width: 1440px) {
   .content {
     padding-right: calc((100vw - var(--island-layout-max-width)) / 2);

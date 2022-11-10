@@ -58,10 +58,11 @@ export function DocLayout(props: DocLayoutProps) {
             relative="~"
             m="x-auto"
             p="l-2"
-            className={'w-100% md:max-w-712px lg:min-w-640px'}
+            className={`w-100% md:max-w-712px lg:min-w-640px ${
+              hasAside ? '' : styles.contentArticle
+            }`}
             style={{
-              maxWidth: hasAside ? '' : '1024px',
-              paddingLeft: hasAside ? '0' : '72px'
+              maxWidth: hasAside ? '' : '1024px'
             }}
           >
             <div

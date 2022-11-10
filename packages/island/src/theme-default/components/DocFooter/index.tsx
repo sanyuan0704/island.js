@@ -20,7 +20,7 @@ export function DocFooter() {
 
   return (
     <footer mt="8">
-      <div p="b-5" flex="~" justify="between" items-center="~">
+      <div className="xs:flex" p="b-5" justify="between" items-center="~">
         {editLink ? (
           <a
             flex="~"
