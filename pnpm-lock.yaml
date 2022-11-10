@@ -4,17 +4,10 @@ importers:
 
   .:
     specifiers:
-      '@babel/core': ^7.19.0
-      '@babel/helper-plugin-utils': ^7.19.0
-      '@babel/preset-react': ^7.18.6
       '@commitlint/cli': ^17.1.2
       '@commitlint/config-conventional': ^17.1.0
       '@islandjs/plugin-check-links': workspace:*
-      '@mdx-js/mdx': ^2.1.3
-      '@mdx-js/react': ^2.1.3
-      '@mdx-js/rollup': '2'
       '@playwright/test': ^1.26.1
-      '@svgr/core': 6.3.1
       '@types/babel__core': ^7.1.19
       '@types/babel__helper-plugin-utils': ^7.10.0
       '@types/babel__traverse': ^7.18.1
@@ -34,25 +27,11 @@ importers:
       '@types/resolve': ^1.20.2
       '@typescript-eslint/eslint-plugin': ^5.36.1
       '@typescript-eslint/parser': ^5.36.1
-      '@unocss/preset-attributify': ^0.45.26
-      '@unocss/preset-wind': ^0.45.26
-      '@unocss/vite': ^0.45.26
-      '@vitejs/plugin-react': 2.0.1
-      acorn: ^8.8.0
-      b-tween: ^0.3.3
-      body-scroll-lock: 4.0.0-beta.0
-      cac: 6.7.12
       chalk: '4'
-      check-links: ^1.1.8
-      chokidar: ^3.5.3
       commitlint: ^17.1.2
-      compression: ^1.7.4
       conventional-changelog-cli: ^2.2.2
-      copy-to-clipboard: ^3.3.2
       cross-env: ^7.0.3
-      debug: ^4.3.4
       enquirer: ^2.3.6
-      esbuild: 0.15.5
       eslint: ^8.23.0
       eslint-config-prettier: ^8.5.0
       eslint-plugin-import: ^2.26.0
@@ -60,112 +39,21 @@ importers:
       eslint-plugin-react: ^7.31.1
       eslint-plugin-react-hooks: ^4.6.0
       execa: '5'
-      fast-glob: 3.2.11
-      flexsearch: 0.6.32
-      fs-extra: 10.1.0
-      github-slugger: ^1.4.0
       globby: ^13.1.2
-      hast: ^1.0.0
-      hast-util-from-html: ^1.0.0
       husky: ^8.0.1
       islandjs: workspace:*
       lint-staged: ^13.0.3
-      lodash-es: ^4.17.21
-      mdast-util-mdxjs-esm: ^1.3.0
       minimist: ^1.2.7
-      ora: ^6.1.2
-      picocolors: ^1.0.0
       pnpm: 7.9.2
-      polka: ^0.5.2
       prettier: ^2.7.1
-      react: ^18.2.0
-      react-dom: ^18.2.0
-      react-helmet-async: ^1.3.0
-      react-router-dom: ^6.3.0
-      rehype-autolink-headings: ^6.1.1
-      rehype-external-links: ^2.0.1
-      rehype-highlight: ^5.0.2
-      rehype-slug: ^5.0.1
-      remark-directive: ^2.0.1
-      remark-frontmatter: ^4.0.1
-      remark-gemoji: ^7.0.1
-      remark-gfm: ^3.0.1
-      remark-mdx-frontmatter: ^2.0.3
       rollup: ^2.78.1
-      sass: ^1.54.5
       semver: ^7.3.8
       serve: ^14.0.1
-      shiki: ^0.11.1
-      simple-git: ^3.14.1
-      sirv: ^2.0.2
       tsup: ^6.2.3
       tsx: ^3.8.2
       turbo: ^1.6.2
       typescript: ^4.7.4
-      unified: ^10.1.2
-      unist-util-visit: ^4.1.1
-      unist-util-visit-children: ^2.0.0
-      unocss: ^0.45.26
-      vite: ~3.1.4
-      vite-plugin-inspect: ^0.7.4
       vitest: ^0.23.1
-    dependencies:
-      '@babel/core': 7.19.0
-      '@babel/helper-plugin-utils': 7.19.0
-      '@babel/preset-react': 7.18.6_@babel+core@7.19.0
-      '@mdx-js/mdx': 2.1.3
-      '@mdx-js/react': 2.1.3_react@18.2.0
-      '@mdx-js/rollup': 2.1.3_rollup@2.78.1
-      '@svgr/core': 6.3.1
-      '@unocss/preset-attributify': 0.45.26
-      '@unocss/preset-wind': 0.45.26
-      '@unocss/vite': 0.45.26_vite@3.1.4
-      '@vitejs/plugin-react': 2.0.1_vite@3.1.4
-      acorn: 8.8.0
-      b-tween: 0.3.3
-      body-scroll-lock: 4.0.0-beta.0
-      cac: 6.7.12
-      check-links: 1.1.8
-      chokidar: 3.5.3
-      compression: 1.7.4
-      copy-to-clipboard: 3.3.2
-      debug: 4.3.4
-      esbuild: 0.15.5
-      fast-glob: 3.2.11
-      flexsearch: 0.6.32
-      fs-extra: 10.1.0
-      github-slugger: 1.4.0
-      hast: 1.0.0
-      hast-util-from-html: 1.0.0
-      husky: 8.0.1
-      lodash-es: 4.17.21
-      mdast-util-mdxjs-esm: 1.3.0
-      ora: 6.1.2
-      picocolors: 1.0.0
-      polka: 0.5.2
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
-      react-helmet-async: 1.3.0_biqbaboplfbrettd7655fr4n2y
-      react-router-dom: 6.3.0_biqbaboplfbrettd7655fr4n2y
-      rehype-autolink-headings: 6.1.1
-      rehype-external-links: 2.0.1
-      rehype-highlight: 5.0.2
-      rehype-slug: 5.0.1
-      remark-directive: 2.0.1
-      remark-frontmatter: 4.0.1
-      remark-gemoji: 7.0.1
-      remark-gfm: 3.0.1
-      remark-mdx-frontmatter: 2.0.3
-      sass: 1.54.5
-      shiki: 0.11.1
-      simple-git: 3.14.1
-      sirv: 2.0.2
-      unified: 10.1.2
-      unist-util-visit: 4.1.1
-      unist-util-visit-children: 2.0.0
-      unocss: 0.45.26_vite@3.1.4
-      vite: 3.1.4_sass@1.54.5
-      vite-plugin-inspect: 0.7.4_vite@3.1.4
     devDependencies:
       '@commitlint/cli': 17.1.2
       '@commitlint/config-conventional': 17.1.0
@@ -203,6 +91,7 @@ importers:
       eslint-plugin-react-hooks: 4.6.0_eslint@8.23.0
       execa: 5.1.1
       globby: 13.1.2
+      husky: 8.0.1
       islandjs: link:packages/island
       lint-staged: 13.0.3_enquirer@2.3.6
       minimist: 1.2.7
@@ -215,7 +104,7 @@ importers:
       tsx: 3.8.2
       turbo: 1.6.2
       typescript: 4.7.4
-      vitest: 0.23.1_sass@1.54.5
+      vitest: 0.23.1
 
   packages/island:
     specifiers:
@@ -252,6 +141,7 @@ importers:
       '@unocss/vite': ^0.45.26
       '@vitejs/plugin-react': 2.0.1
       acorn: ^8.8.0
+      body-scroll-lock: 4.0.0-beta.0
       cac: 6.7.12
       chokidar: ^3.5.3
       compression: ^1.7.4
@@ -315,6 +205,7 @@ importers:
       '@unocss/vite': 0.45.26_vite@3.1.4
       '@vitejs/plugin-react': 2.0.1_vite@3.1.4
       acorn: 8.8.0
+      body-scroll-lock: 4.0.0-beta.0
       cac: 6.7.12
       chokidar: 3.5.3
       compression: 1.7.4
@@ -1127,20 +1018,6 @@ packages:
     dependencies:
       '@mdx-js/mdx': 2.1.3
       '@rollup/pluginutils': 4.2.1
-      source-map: 0.7.4
-      vfile: 5.3.4
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
-
-  /@mdx-js/rollup/2.1.3_rollup@2.78.1:
-    resolution: {integrity: sha512-KaX9GcZ63TDaLNH9UYYE94+naZQldV2IUzmMkDVOlPxDtTh8kcEn8l6/4W1P79wxZZbakSOFejTuaYmcstl5sA==}
-    peerDependencies:
-      rollup: '>=2'
-    dependencies:
-      '@mdx-js/mdx': 2.1.3
-      '@rollup/pluginutils': 4.2.1
-      rollup: 2.78.1
       source-map: 0.7.4
       vfile: 5.3.4
     transitivePeerDependencies:
@@ -4367,7 +4244,6 @@ packages:
     resolution: {integrity: sha512-xs7/chUH/CKdOCs7Zy0Aev9e/dKOMZf3K1Az1nar3tzlv0jfqnYtu235bstsWTmXOR0EfINrPa97yy4Lz6RiKw==}
     engines: {node: '>=14'}
     hasBin: true
-    dev: false
 
   /ieee754/1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
@@ -4380,6 +4256,7 @@ packages:
 
   /immutable/4.1.0:
     resolution: {integrity: sha512-oNkuqVTA8jqG1Q6c+UglTOD1xhC1BtjKI7XkCXRkZHrN5m18/XsnUp8Q89GkQO/z+0WjonSvl0FLhDYftp46nQ==}
+    dev: false
 
   /import-fresh/3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
@@ -6634,6 +6511,7 @@ packages:
       chokidar: 3.5.3
       immutable: 4.1.0
       source-map-js: 1.0.2
+    dev: false
 
   /scheduler/0.23.0:
     resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}
@@ -7614,6 +7492,33 @@ packages:
       - supports-color
     dev: false
 
+  /vite/3.1.4:
+    resolution: {integrity: sha512-JoQI08aBjY9lycL7jcEq4p9o1xUjq5aRvdH4KWaXtkSx7e7RpAh9D3IjzDWRD4Fg44LS3oDAIOG/Kq1L+82psA==}
+    engines: {node: ^14.18.0 || >=16.0.0}
+    hasBin: true
+    peerDependencies:
+      less: '*'
+      sass: '*'
+      stylus: '*'
+      terser: ^5.4.0
+    peerDependenciesMeta:
+      less:
+        optional: true
+      sass:
+        optional: true
+      stylus:
+        optional: true
+      terser:
+        optional: true
+    dependencies:
+      esbuild: 0.15.7
+      postcss: 8.4.16
+      resolve: 1.22.1
+      rollup: 2.78.1
+    optionalDependencies:
+      fsevents: 2.3.2
+    dev: true
+
   /vite/3.1.4_sass@1.54.5:
     resolution: {integrity: sha512-JoQI08aBjY9lycL7jcEq4p9o1xUjq5aRvdH4KWaXtkSx7e7RpAh9D3IjzDWRD4Fg44LS3oDAIOG/Kq1L+82psA==}
     engines: {node: ^14.18.0 || >=16.0.0}
@@ -7640,8 +7545,9 @@ packages:
       sass: 1.54.5
     optionalDependencies:
       fsevents: 2.3.2
+    dev: false
 
-  /vitest/0.23.1_sass@1.54.5:
+  /vitest/0.23.1:
     resolution: {integrity: sha512-kn9pG+h6VA3yj/xRvwgLKEd33rOlzMqJEg3tl5HSm3WUPlkY1Lr1FK8RN1uIqVKvFxmz6HGU3EQW+xW2kazRkQ==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
@@ -7673,7 +7579,7 @@ packages:
       tinybench: 2.1.5
       tinypool: 0.2.4
       tinyspy: 1.0.2
-      vite: 3.1.4_sass@1.54.5
+      vite: 3.1.4
     transitivePeerDependencies:
       - less
       - sass
