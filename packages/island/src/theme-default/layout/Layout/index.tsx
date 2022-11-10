@@ -9,7 +9,6 @@ import { DocLayoutProps } from '../DocLayout/index';
 import { HomeLayoutProps } from '../HomeLayout/index';
 import type { NavProps } from '../../components/Nav/index';
 import { BackTop } from '@back-top';
-import LoadingSvg from '../../assets/loading.svg';
 import 'virtual:custom-styles';
 
 export type LayoutProps = {
@@ -61,17 +60,7 @@ export const Layout: React.FC<LayoutProps> = (props) => {
       case '404':
         return <NotFoundLayout />;
       case 'custom':
-        return (
-          <Content
-            fallback={
-              <div flex="center">
-                <div p="2" text="sm">
-                  <LoadingSvg />
-                </div>
-              </div>
-            }
-          />
-        );
+        return <Content />;
       default:
         return <DocLayout {...docProps} />;
     }

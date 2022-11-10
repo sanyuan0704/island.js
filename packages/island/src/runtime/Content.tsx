@@ -1,8 +1,15 @@
-import { useRoutes } from 'react-router-dom';
+import { useRoutes, useLocation } from 'react-router-dom';
 import { routes } from 'virtual:routes';
-import { ReactElement, Suspense } from 'react';
+import { Suspense } from 'react';
 
-export const Content = ({ fallback }: { fallback: ReactElement }) => {
+interface LocationState {
+  from?: string;
+}
+
+export const Content = () => {
   const routesElement = useRoutes(routes);
-  return <Suspense fallback={fallback}>{routesElement}</Suspense>;
+  const location = useLocation();
+  const prevRoute = (location.state as LocationState)?.from;
+  const prevRouteElement = useRoutes(routes, prevRoute);
+  return <Suspense fallback={prevRouteElement}>{routesElement}</Suspense>;
 };

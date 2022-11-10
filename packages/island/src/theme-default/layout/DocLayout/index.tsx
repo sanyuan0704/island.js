@@ -3,7 +3,6 @@ import { Aside } from '../../components/Aside/index';
 import { DocFooter } from '../../components/DocFooter/index';
 import { Content, usePageData } from '@client';
 import { useLocaleSiteData, useSidebarData } from '../../logic';
-import LoadingSvg from '../../assets/loading.svg';
 import { SideMenu } from '../../components/LocalSideBar';
 import { normalizeSlash } from '@client';
 import { useLocation } from 'react-router-dom';
@@ -70,15 +69,7 @@ export function DocLayout(props: DocLayoutProps) {
                 isDisableLineNumbers ? 'line-number-disable' : ''
               }`}
             >
-              <Content
-                fallback={
-                  <div flex="center">
-                    <div p="2" text="sm">
-                      <LoadingSvg />
-                    </div>
-                  </div>
-                }
-              />
+              <Content />
             </div>
             {beforeDocFooter}
             <DocFooter />

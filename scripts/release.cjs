@@ -113,7 +113,7 @@ async function main() {
     await runIfNotDry('git', [
       'commit',
       '-m',
-      `"chore: release v${targetVersion}"`,
+      `chore: release v${targetVersion}`,
       '-n'
     ]);
   } else {
