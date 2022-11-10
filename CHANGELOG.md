@@ -1,3 +1,12 @@
+## [0.7.3](https://github.com/sanyuan0704/island.js/compare/v0.7.2...v0.7.3) (2022-11-10)
+
+
+### Bug Fixes
+
+* custom style cannot work ([d1f3e8d](https://github.com/sanyuan0704/island.js/commit/d1f3e8de86a10a326fcdb73a1ec90d3040717835))
+
+
+
 ## [0.7.2](https://github.com/sanyuan0704/island.js/compare/v0.7.0...v0.7.2) (2022-11-10)
 
 ### Bug Fixes

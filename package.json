@@ -1,7 +1,7 @@
 {
   "name": "islandjs-monorepo",
   "private": true,
-  "version": "0.7.2",
+  "version": "0.7.3",
   "description": "Vite & Islands architecture SSG framework",
   "packageManager": "pnpm@7.9.2",
   "type": "module",
