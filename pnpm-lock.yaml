@@ -252,6 +252,7 @@ importers:
       '@unocss/vite': ^0.45.26
       '@vitejs/plugin-react': 2.0.1
       acorn: ^8.8.0
+      body-scroll-lock: 4.0.0-beta.0
       cac: 6.7.12
       chokidar: ^3.5.3
       compression: ^1.7.4
@@ -315,6 +316,7 @@ importers:
       '@unocss/vite': 0.45.26_vite@3.1.4
       '@vitejs/plugin-react': 2.0.1_vite@3.1.4
       acorn: 8.8.0
+      body-scroll-lock: 4.0.0-beta.0
       cac: 6.7.12
       chokidar: 3.5.3
       compression: 1.7.4
