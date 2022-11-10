@@ -1,3 +1,20 @@
+## [0.7.2](https://github.com/sanyuan0704/island.js/compare/v0.7.0...v0.7.2) (2022-11-10)
+
+
+### Bug Fixes
+
+* doc content width in mobile device ([a5ab3c8](https://github.com/sanyuan0704/island.js/commit/a5ab3c802d968deb048ba97783bb2d62d6a30522))
+* e2e test error ([84de728](https://github.com/sanyuan0704/island.js/commit/84de72842c635618327b115b0202e1359206e948))
+* missing dependencies ([c1cf1c6](https://github.com/sanyuan0704/island.js/commit/c1cf1c69568fb22aaa3ec2fa5eb9672a20efc95d))
+* prebundle problem ([888c15a](https://github.com/sanyuan0704/island.js/commit/888c15a060841f21a1a09b0f103698cbab8ccb05))
+
+
+### Features
+
+* add version in nav bar ([fd7d100](https://github.com/sanyuan0704/island.js/commit/fd7d100a28afbd5352dd208fdfc5bb43b88dfb31))
+
+
+
 ## [0.7.1](https://github.com/sanyuan0704/island.js/compare/v0.7.0...v0.7.1) (2022-11-10)
 
 
