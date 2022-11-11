@@ -26,17 +26,16 @@ async function preBundle(deps: PreBundleItem[]) {
     await remove(path.join(process.cwd(), PRE_BUNDLE_DIR));
   }
   await init;
+  const env = process.env.NODE_ENV || 'production';
   await build({
     entryPoints: flattenDepMap,
     outdir: PRE_BUNDLE_DIR,
     bundle: true,
-    minify: process.env.NODE_ENV === 'production',
+    minify: env === 'production',
     splitting: true,
     format: 'esm',
     define: {
-      'process.env.NODE_ENV': JSON.stringify(
-        process.env.NODE_ENV || 'production'
-      )
+      'process.env.NODE_ENV': JSON.stringify(env || 'production')
     },
     platform: 'browser',
     plugins: [
