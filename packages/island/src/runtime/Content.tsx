@@ -9,7 +9,11 @@ interface LocationState {
 export const Content = () => {
   const routesElement = useRoutes(routes);
   const location = useLocation();
-  const prevRoute = (location.state as LocationState)?.from;
-  const prevRouteElement = useRoutes(routes, prevRoute);
+  let prevRouteElement: React.ReactNode = null;
+  if (import.meta.env.ENABLE_SPA) {
+    const prevRoute = (location.state as LocationState)?.from;
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    prevRouteElement = prevRoute ? useRoutes(routes, prevRoute) : null;
+  }
   return <Suspense fallback={prevRouteElement}>{routesElement}</Suspense>;
 };

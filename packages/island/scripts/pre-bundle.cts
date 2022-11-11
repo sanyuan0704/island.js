@@ -30,7 +30,7 @@ async function preBundle(deps: PreBundleItem[]) {
     entryPoints: flattenDepMap,
     outdir: PRE_BUNDLE_DIR,
     bundle: true,
-    minify: true,
+    minify: process.env.NODE_ENV === 'production',
     splitting: true,
     format: 'esm',
     define: {

@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from './index.module.scss';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import { TARGET_BLANK_WHITE_LIST } from '../../../shared/constants';
+import { inBrowser } from '../../../shared/utils';
 
 export interface LinkProps {
   href?: string;
@@ -17,9 +18,9 @@ export function Link(props: LinkProps) {
   const isWhiteList = TARGET_BLANK_WHITE_LIST.some((item) =>
     href.startsWith(item)
   );
-  const location = useLocation();
   const target = isExternal && !isWhiteList ? '_blank' : '';
   const rel = isExternal ? 'noopener noreferrer' : undefined;
+  const pathname = inBrowser() ? window.location.pathname : '';
   if (import.meta.env.ENABLE_SPA && !isExternal) {
     return (
       <RouterLink
@@ -27,7 +28,7 @@ export function Link(props: LinkProps) {
         to={href}
         rel={rel}
         target={target}
-        state={{ from: location.pathname }}
+        state={{ from: pathname }}
       >
         {children}
       </RouterLink>

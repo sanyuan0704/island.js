@@ -27,7 +27,7 @@ export default defineConfig({
   route: {
     exclude: ['custom.tsx', '**/fragments/**']
   },
-  plugins: [pluginCheckLinks({})],
+  // plugins: [pluginCheckLinks({})],
   themeConfig: {
     locales: {
       '/zh/': {
