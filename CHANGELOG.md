@@ -1,3 +1,12 @@
+## [0.7.5](https://github.com/sanyuan0704/island.js/compare/v0.7.4...v0.7.5) (2022-11-11)
+
+
+### Bug Fixes
+
+* island error ([2201c2b](https://github.com/sanyuan0704/island.js/commit/2201c2b6993ddbb62c93fc7f9aeaf9b958b79ba8))
+
+
+
 ## [0.7.4](https://github.com/sanyuan0704/island.js/compare/v0.7.3...v0.7.4) (2022-11-11)
 
 
