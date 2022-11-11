@@ -1,3 +1,12 @@
+## [0.7.4](https://github.com/sanyuan0704/island.js/compare/v0.7.3...v0.7.4) (2022-11-11)
+
+
+### Features
+
+* avoid loading after route navigation in spa mode ([2d704c1](https://github.com/sanyuan0704/island.js/commit/2d704c1d2f9c7a4fff02cdee06ce3e18e4ed549f))
+
+
+
 ## [0.7.3](https://github.com/sanyuan0704/island.js/compare/v0.7.2...v0.7.3) (2022-11-10)
 
 
