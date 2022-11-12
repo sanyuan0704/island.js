@@ -11,7 +11,7 @@ export function pluginBackTop(options: BackTopOptions = {}): IslandPlugin {
     name: 'island:plugin-backtop',
     vite: {
       optimizeDeps: {
-        include: ['islandjs > @islandjs/plugin-backtop > b-tween']
+        include: ['b-tween']
       }
     },
     alias: {
