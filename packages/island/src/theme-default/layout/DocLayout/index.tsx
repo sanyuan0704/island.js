@@ -2,10 +2,11 @@ import styles from './index.module.scss';
 import { Aside } from '../../components/Aside/index';
 import { DocFooter } from '../../components/DocFooter/index';
 import { Content, usePageData } from '@client';
-import { useLocaleSiteData, useSidebarData } from '../../logic';
+import { useHeaders, useLocaleSiteData, useSidebarData } from '../../logic';
 import { SideMenu } from '../../components/LocalSideBar';
 import { normalizeSlash } from '@client';
 import { useLocation } from 'react-router-dom';
+import { Header } from 'shared/types/index';
 
 export interface DocLayoutProps {
   beforeDocFooter?: React.ReactNode;
@@ -18,7 +19,8 @@ export interface DocLayoutProps {
 export function DocLayout(props: DocLayoutProps) {
   const { beforeDocFooter, beforeDoc, afterDoc, beforeOutline, afterOutline } =
     props;
-  const { toc: headers = [], siteData, pagePath, frontmatter } = usePageData();
+  const { toc = [], siteData, pagePath, frontmatter } = usePageData();
+  const [headers] = useHeaders(toc, pagePath);
   const themeConfig = siteData.themeConfig;
   const localesData = useLocaleSiteData();
   const sidebar = localesData.sidebar || [];

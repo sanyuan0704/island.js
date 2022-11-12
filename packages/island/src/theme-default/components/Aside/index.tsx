@@ -1,7 +1,6 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { ComponentPropsWithIsland, Header } from 'shared/types/index';
-import { bindingAsideScroll } from '../../logic';
+import { bindingAsideScroll, useHeaders } from '../../logic';
 
 export function Aside(
   props: ComponentPropsWithIsland<{
@@ -10,12 +9,13 @@ export function Aside(
     outlineTitle: string;
   }>
 ) {
-  const [headers, setHeaders] = useState(props.headers || []);
+  const [headers, setHeaders] = useHeaders(props.headers || [], props.pagePath);
   const hasOutline = headers.length > 0;
   // For outline text highlight
   const markerRef = useRef<HTMLDivElement>(null);
   // We promise: in complete dev/prod render process, the hooks order will be consistent
   if (import.meta.env.ENABLE_SPA || import.meta.env.DEV) {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
       if (markerRef.current) {
         markerRef.current.style.opacity = '0';
@@ -28,25 +28,7 @@ export function Aside(
 
   useEffect(() => {
     setHeaders(props.headers);
-  }, [props.headers]);
-
-  useEffect(() => {
-    // Handle aside hmr:
-    // When mdx file changed, server will send a custom event to client.
-    // Then we listen the event and pull the latest page module so we can get and render the new headers.
-    if (import.meta.env.DEV) {
-      import.meta.hot?.on('md(x)-changed', ({ filePath }) => {
-        if (filePath !== props.pagePath) {
-          return;
-        }
-        import(/* @vite-ignore */ `${filePath}?import&t=${Date.now()}`).then(
-          (mod) => {
-            setHeaders(mod.toc);
-          }
-        );
-      });
-    }
-  }, [props.pagePath]);
+  }, [props.headers, setHeaders]);
 
   const renderHeader = (header: Header) => {
     return (
