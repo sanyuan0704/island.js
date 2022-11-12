@@ -1,3 +1,18 @@
+## [0.7.6](https://github.com/sanyuan0704/island.js/compare/v0.7.5...v0.7.6) (2022-11-12)
+
+
+### Bug Fixes
+
+* aside hmr ([60bbdf2](https://github.com/sanyuan0704/island.js/commit/60bbdf2c0b829bf01e5866c30158c4518e44d8d0))
+* optimizeDeps for plugin ([273c9d2](https://github.com/sanyuan0704/island.js/commit/273c9d2c118b4f5b3f0f2c684be1f0960cb9b267))
+
+
+### Features
+
+* theme optimization ([#148](https://github.com/sanyuan0704/island.js/issues/148)) ([297a821](https://github.com/sanyuan0704/island.js/commit/297a82189cca0d3b6ddf664f500dbfd3118b8664))
+
+
+
 ## [0.7.5](https://github.com/sanyuan0704/island.js/compare/v0.7.4...v0.7.5) (2022-11-11)
 
 
