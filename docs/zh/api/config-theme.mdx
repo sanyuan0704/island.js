@@ -52,6 +52,43 @@ export default defineConfig({
 });
 ```
 
+当然 `nav` 数组中也可以配置多级菜单，类型如下:
+
+```ts
+interface NavGroup {
+  // 导航栏文本
+  text: string;
+  // 子菜单
+  items: NavItem[];
+}
+```
+
+例如下面的配置:
+
+```js
+import { defineConfig } from 'islandjs';
+
+export default defineConfig({
+  themeConfig: {
+    nav: [
+      {
+        text: 'Home',
+        items: [
+          {
+            text: 'Menu 1',
+            link: '/menu1'
+          },
+          {
+            text: 'Menu 2',
+            link: '/menu2'
+          }
+        ]
+      }
+    ]
+  }
+});
+```
+
 ## sidebar
 
 - Type: `Object`

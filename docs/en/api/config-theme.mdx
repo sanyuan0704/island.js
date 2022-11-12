@@ -52,6 +52,43 @@ export default defineConfig({
 });
 ```
 
+And you can also use the NavGroup config in `nav` array, which has following type:
+
+```ts
+interface NavGroup {
+  // The text of the nav group
+  text: string;
+  // The children of the nav group
+  items: NavItem[];
+}
+```
+
+For example:
+
+```js
+import { defineConfig } from 'islandjs';
+
+export default defineConfig({
+  themeConfig: {
+    nav: [
+      {
+        text: 'Home',
+        items: [
+          {
+            text: 'Menu 1',
+            link: '/menu1'
+          },
+          {
+            text: 'Menu 2',
+            link: '/menu2'
+          }
+        ]
+      }
+    ]
+  }
+});
+```
+
 ## sidebar
 
 - Type: `Object`
