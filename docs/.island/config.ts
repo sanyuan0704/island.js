@@ -66,49 +66,14 @@ export default defineConfig({
     outlineTitle: 'ON THIS PAGE',
     socialLinks: [
       {
-        icon: 'discord',
-        mode: 'text',
-        content: '我是discord我是discord我是discord'
-      },
-      {
-        icon: 'facebook',
-        mode: 'text',
-        content: 'https://github.com/sanyuan0704/island'
-      },
-      {
         icon: 'github',
         mode: 'link',
         content: 'https://github.com/sanyuan0704/island'
       },
       {
-        icon: 'instagram',
-        mode: 'text',
-        content: '我是instagram'
-      },
-      {
-        icon: 'linkedin',
-        mode: 'text',
-        content: '我是linkedinasdsssssss1111111萨达萨达萨达萨达'
-      },
-      {
-        icon: 'slack',
-        mode: 'img',
-        content: '/island.png'
-      },
-      {
-        icon: 'twitter',
-        mode: 'img',
-        content: '/island.png'
-      },
-      {
-        icon: 'wechat',
-        mode: 'img',
-        content: '/island.png'
-      },
-      {
-        icon: 'qq',
-        mode: 'img',
-        content: '/island.png'
+        icon: 'discord',
+        mode: 'link',
+        content: 'https://discord.gg/Nvy4YSerjM'
       }
     ],
 

@@ -22,27 +22,21 @@ export const SocialLinks = ({
   }
 
   const [moreLinksVisible, setMoreLinksVisible] = useState(false);
-  const mouseEnter = () => {
-    setMoreLinksVisible(true);
-  };
-  const mouseLeave = () => {
-    setMoreLinksVisible(false);
-  };
 
   return (
     <div
       className="social-links"
-      h="100%"
+      nav-h="mobile sm:desktop"
       flex=""
       items-center=""
       before="menu-item-before"
       relative=""
-      onMouseLeave={mouseLeave}
+      onMouseLeave={() => setMoreLinksVisible(false)}
     >
       <ShownLinks
         links={shownLinks}
         moreIconVisible={moreThanThree}
-        mouseEnter={mouseEnter}
+        mouseEnter={() => setMoreLinksVisible(true)}
       />
       {moreLinksVisible ? <HiddenLinks links={hiddenLinks} /> : null}
     </div>

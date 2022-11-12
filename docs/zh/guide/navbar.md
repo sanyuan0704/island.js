@@ -102,7 +102,8 @@ export default defineConfig({
 
 ## 相关链接
 
-你可以通过如下的配置添加相关链接，比如 `github` 链接、`twitter` 链接等：
+你可以通过如下的配置添加相关链接，比如 `github` 链接、`twitter` 链接等。
+相关链接支持三种模式：`链接模式link` `文本模式text` `图片模式img`，相关例子如下：
 
 ```js
 import { defineConfig } from 'islandjs';
@@ -112,8 +113,64 @@ export default defineConfig({
     socialLinks: [
       {
         icon: 'github',
-        link: 'https://github.com/sanyuan0704/island.js'
+        mode: 'link',
+        content: 'https://github.com/sanyuan0704/island.js'
+      },
+      {
+        icon: 'wechat',
+        mode: 'text',
+        content: '微信号xxx'
+      },
+      {
+        icon: 'qq',
+        mode: 'img',
+        content: '/qrcode.png'
       }
+    ]
+  }
+});
+```
+
+- 当`link`模式时，点击icon即可跳转链接
+- 当`text`模式时，鼠标移到icon上会显示弹框，弹框内容是输入的文本
+- 当`img`模式时，鼠标移到icon上会显示弹框，弹框内容是指定的图片，需要注意的是，图片需要放在`public`目录下
+
+相关链接支持以下几种图片，通过icon属性来选择：
+
+```ts
+export type SocialLinkIcon =
+  | 'discord'
+  | 'facebook'
+  | 'github'
+  | 'instagram'
+  | 'linkedin'
+  | 'slack'
+  | 'twitter'
+  | 'youtube'
+  | 'weixin'
+  | 'qq'
+  | 'juejin'
+  | 'zhihu'
+  | 'bilibili'
+  | 'weibo'
+  | { svg: string };
+```
+
+如果需要自定义icon，可以通过传入一个带有`svg属性`的对象，svg的值为自定义图标内容即可，比如：
+
+```js
+import { defineConfig } from 'islandjs';
+
+export default defineConfig({
+  themeConfig: {
+    socialLinks: [
+      {
+        icon: {
+          svg: 'svg图标内容'
+        },
+        mode: 'link',
+        content: 'https://github.com/sanyuan0704/island.js'
+      },
     ]
   }
 });

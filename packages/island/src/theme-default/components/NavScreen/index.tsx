@@ -7,6 +7,7 @@ import {
   NavScreenMenuGroupItem
 } from '../NavScreenMenuGroup/NavScreenMenuGroup';
 import { NavMenuSingleItem } from '../Nav/NavMenuSingleItem';
+import { SocialLinks } from '../SocialLinks';
 import { SwitchAppearance } from '../SwitchAppearance/index';
 import Translator from '../../assets/translator.svg';
 import GithubSvg from '../../assets/github.svg';
@@ -38,45 +39,6 @@ const NavScreenTranslations = ({
     >
       <div m="x-1.5">
         <NavScreenMenuGroup {...translationMenuData!} />
-      </div>
-    </div>
-  );
-};
-const NavScreenSocialLinks = ({
-  socialLinks
-}: {
-  socialLinks: DefaultTheme.SocialLink[];
-}) => {
-  return (
-    <div
-      className="social-links"
-      flex=""
-      items-center=""
-      before="menu-item-before"
-    >
-      <div
-        flex=""
-        items-center=""
-        w="9"
-        h="9"
-        transition="color duration-300"
-        color="hover:brand"
-      >
-        {socialLinks.map((item) => {
-          const IconComp = IconMap[item.icon as keyof typeof IconMap];
-          return (
-            <a
-              key={item.link}
-              href={item.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              w="5"
-              h="5"
-            >
-              <IconComp fill="currentColor" />
-            </a>
-          );
-        })}
       </div>
     </div>
   );
@@ -160,7 +122,7 @@ export function NavScreen(props: Props) {
           items-center="center"
         >
           {hasAppearanceSwitch && <NavScreenAppearance />}
-          {hasSocialLinks && <NavScreenSocialLinks socialLinks={socialLinks} />}
+          {hasSocialLinks && <SocialLinks __island socialLinks={socialLinks} />}
         </div>
         {hasMultiLanguage && (
           <NavScreenTranslations translationMenuData={translationMenuData!} />

@@ -102,7 +102,9 @@ export default defineConfig({
 
 ## Social Links
 
-You can add social links to the navbar:
+You can add social links to the navbar, such as `github`link, `twitter` link and so on.
+
+Social links support three modes: `link mode` `text mode` `img mode`, for example: 
 
 ```js
 import { defineConfig } from 'islandjs';
@@ -112,8 +114,64 @@ export default defineConfig({
     socialLinks: [
       {
         icon: 'github',
-        link: 'https://github.com/sanyuan0704/island.js'
+        mode: 'link',
+        content: 'https://github.com/sanyuan0704/island.js'
+      },
+      {
+        icon: 'wechat',
+        mode: 'text',
+        content: 'wechat ID xxx'
+      },
+      {
+        icon: 'qq',
+        mode: 'img',
+        content: '/qrcode.png'
       }
+    ]
+  }
+});
+```
+
+- for `link mode`, click the icon will jump to preset link.
+- for `text mode`, hover the icon will show a popper, which contain the preset content.
+- for `img mode`, hover the icon will show a popper, which contain the preset image. Need to be aware that, the image should put in the `public` folder.
+
+Social links support the following icons: 
+
+```ts
+export type SocialLinkIcon =
+  | 'discord'
+  | 'facebook'
+  | 'github'
+  | 'instagram'
+  | 'linkedin'
+  | 'slack'
+  | 'twitter'
+  | 'youtube'
+  | 'weixin'
+  | 'qq'
+  | 'juejin'
+  | 'zhihu'
+  | 'bilibili'
+  | 'weibo'
+  | { svg: string };
+```
+
+If you want to use other icon, you can pass in an object that have the `svg` key, for example:
+
+```js
+import { defineConfig } from 'islandjs';
+
+export default defineConfig({
+  themeConfig: {
+    socialLinks: [
+      {
+        icon: {
+          svg: 'svg content'
+        },
+        mode: 'link',
+        content: 'https://github.com/sanyuan0704/island.js'
+      },
     ]
   }
 });

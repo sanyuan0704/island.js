@@ -12,6 +12,7 @@ export const HiddenLinks = (props: IHiddenLinksProps) => {
     <div
       absolute=""
       pos="top-13 right-0"
+      z="1"
       p="3"
       w="26"
       border-1=""

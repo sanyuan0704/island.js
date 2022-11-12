@@ -122,7 +122,7 @@ export function Nav(props: NavProps & ComponentPropsWithIsland) {
           <NavTranslations translationMenuData={translationMenuData!} />
         )}
         {hasAppearanceSwitch && <NavAppearance />}
-        {hasSocialLinks && <NavSocialLinks socialLinks={socialLinks} />}
+        {hasSocialLinks && <SocialLinks __island socialLinks={socialLinks} />}
       </div>
     );
   };

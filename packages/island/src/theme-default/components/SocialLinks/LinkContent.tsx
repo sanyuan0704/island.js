@@ -10,7 +10,12 @@ interface ILinkContentComp {
 export const LinkContent = (props: ILinkContentComp) => {
   const { link, popperStyle = {} } = props;
   const { icon, mode = 'link', content } = link;
-  const IconComp = presetIcons[icon as keyof typeof presetIcons];
+  const IconComp =
+    typeof icon === 'object' ? (
+      <div dangerouslySetInnerHTML={{ __html: icon.svg }}></div>
+    ) : (
+      presetIcons[icon as keyof typeof presetIcons]
+    );
 
   const [contentVisible, setContentVisible] = useState(false);
   const mouseEnterIcon = () => {
