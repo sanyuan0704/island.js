@@ -1,8 +1,5 @@
 import { APPEARANCE_KEY } from '../../shared/constants';
 
-const setClass = (dark: boolean): void => {
-  classList[dark ? 'add' : 'remove']('dark');
-};
 let isDark = true;
 let classList: DOMTokenList;
 // Determine if the theme mode of the user's operating system is dark
@@ -21,19 +18,36 @@ if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
     }
   };
 }
-export const toggle = () => {
-  if (classList === undefined) {
+
+const setClass = (dark: boolean): void => {
+  classList[dark ? 'add' : 'remove']('dark');
+};
+
+export const getToggle = () => {
+  if (typeof window !== 'undefined' && classList === undefined) {
     classList = document.documentElement.classList;
+    const storageChange = (): void => {
+      const userPreference = localStorage.getItem(APPEARANCE_KEY) || 'auto';
+      if (classList) {
+        setClass(
+          userPreference === 'auto' ? query.matches : userPreference === 'dark'
+        );
+        isDark = !isDark;
+      }
+    };
+    window.addEventListener('storage', storageChange);
   }
-  setClass((isDark = !isDark));
-  if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
-    if (isDark) {
-      // When the user's operating system theme is light, and actively switch the theme to dark，that mean the user preference is dark.
-      userPreference = query.matches ? 'auto' : 'dark';
-    } else {
-      // When the user's operating system theme is dark, and actively switch the theme to light，that mean user Preference is light
-      userPreference = query.matches ? 'light' : 'auto';
+  return () => {
+    setClass((isDark = !isDark));
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      if (isDark) {
+        // When the user's operating system theme is light, and actively switch the theme to dark，that mean the user preference is dark.
+        userPreference = query.matches ? 'auto' : 'dark';
+      } else {
+        // When the user's operating system theme is dark, and actively switch the theme to light，that mean user Preference is light
+        userPreference = query.matches ? 'light' : 'auto';
+      }
+      localStorage.setItem(APPEARANCE_KEY, userPreference);
     }
-    localStorage.setItem(APPEARANCE_KEY, userPreference);
-  }
+  };
 };
