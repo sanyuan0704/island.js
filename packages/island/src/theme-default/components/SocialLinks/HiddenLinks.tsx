@@ -14,16 +14,16 @@ export const HiddenLinks = (props: IHiddenLinksProps) => {
       pos="top-13 right-0"
       z="1"
       p="3"
-      w="26"
+      w="32"
       border-1=""
       rounded="xl"
       bg="bg-default"
       style={{
         boxShadow: 'var(--island-shadow-3)',
-        marginRight: '10px'
+        marginRight: '-2px'
       }}
       flex="~ wrap"
-      gap="2"
+      gap="4"
     >
       {links.map((item) => (
         <LinkContent
