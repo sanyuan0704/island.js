@@ -1,6 +1,6 @@
 # Extension
 
-Island.js is simple and it doesn't has own plugin system. But it is also flexible and extensible because it exposes a lot of ways to help you customize the behavior of the framework.
+Island.js is simple but it is also flexible and extensible because it exposes a lot of ways to help you customize the behavior of the framework.
 
 ## Vite
 
