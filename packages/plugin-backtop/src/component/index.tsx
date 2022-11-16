@@ -1,12 +1,23 @@
 import { useState, useEffect } from 'react';
 import BTween from 'b-tween';
 import { throttle } from 'lodash-es';
-import type { ComponentPropsWithIsland } from 'islandjs';
+import type { ComponentPropsWithIsland, DefaultTheme } from 'islandjs';
+
+const isObject = (val: unknown) => typeof val === 'object';
 
 export function BackTop({
   backTop
-}: { backTop?: boolean } & ComponentPropsWithIsland) {
-  const backTopCtrl = backTop ?? true;
+}: { backTop?: DefaultTheme.BackTopOptions } & ComponentPropsWithIsland) {
+  const backTopCtrl = isObject(backTop) ? true : backTop ?? true;
+
+  let visibleHeight = 200;
+  let duration = 500;
+  let animation = 'quadIn';
+  if (isObject(backTop)) {
+    visibleHeight = backTop.visibleHeight ?? visibleHeight;
+    duration = backTop.duration ?? duration;
+    animation = backTop.animation ?? animation;
+  }
 
   const scrollToTop = () => {
     // https://github.com/PengJiyuan/b-tween
@@ -19,8 +30,8 @@ export function BackTop({
       to: {
         scrollTop: 0
       },
-      easing: 'quadIn',
-      duration: 500,
+      easing: animation,
+      duration,
       onUpdate: (info?: Record<string, string | number>) => {
         target.scrollTop = Number(info?.scrollTop);
         return;
@@ -32,7 +43,6 @@ export function BackTop({
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     const scrollHandler = throttle(() => {
-      const visibleHeight = 200;
       const scrollTop = document.documentElement.scrollTop;
       setVisible(scrollTop >= visibleHeight);
     }, 500);
