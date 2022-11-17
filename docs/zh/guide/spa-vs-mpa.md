@@ -1,6 +1,6 @@
 # MPA 和 SPA 对比
 
-理解多页应用程序(MPA)和单页多页程序(SPA)的区别和取舍是理解 Islands 架构的关键，这也可以让你更好的使用 Island.js。
+理解多页应用程序(MPA)和单页应用程序(SPA)的区别和取舍是理解 Islands 架构的关键，这也可以让你更好的使用 Island.js。
 
 ## 什么是 MPA 和 SPA ?
 
