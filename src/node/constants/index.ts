@@ -1,6 +1,6 @@
 import { join } from "path";
 
-export const PACKAGE_ROOT = join(__dirname, "..", "..", "..");
+export const PACKAGE_ROOT = join(__dirname, "..");
 
 export const RUNTIME_PATH = join(PACKAGE_ROOT, "src", "runtime");
 
