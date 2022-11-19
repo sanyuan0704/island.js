@@ -8,5 +8,5 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
   },
-  "include": ["e2e/**/*.ts"]
+  "include": ["e2e/**/*.ts", "src/**/*.ts", "src/**/*.tsx"]
 }
