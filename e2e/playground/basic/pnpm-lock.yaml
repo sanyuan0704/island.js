@@ -1,0 +1,7 @@
+lockfileVersion: 5.4
+
+specifiers:
+  islandjs: ../../..
+
+dependencies:
+  islandjs: link:../../..
