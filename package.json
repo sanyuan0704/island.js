@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "tsup --watch",
     "build": "tsup",
-    "preview": "cd build && serve ."
+    "preview": "cd build && serve .",
+    "lint": "eslint --ext .ts,.tsx,.js,.jsx ./",
+    "lint:fix": "eslint --fix --ext .ts,.tsx,.js,.jsx --quiet ./",
+    "prepare": "husky install"
   },
   "bin": {
     "island": "bin/island.js"
@@ -14,11 +17,29 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "lint-staged": {
+    "**/*.{js,jsx,tsx,ts}": [
+      "npm run lint"
+    ]
+  },
   "devDependencies": {
+    "@commitlint/cli": "^17.2.0",
+    "@commitlint/config-conventional": "^17.2.0",
     "@types/fs-extra": "^9.0.13",
     "@types/node": "^18.11.7",
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",
+    "@typescript-eslint/eslint-plugin": "^5.43.0",
+    "@typescript-eslint/parser": "^5.43.0",
+    "commitlint": "^17.2.0",
+    "eslint": "^8.27.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.10",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
     "rollup": "^3.2.3",
     "serve": "^14.0.1",
     "tsup": "^6.5.0",
