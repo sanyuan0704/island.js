@@ -75,4 +75,5 @@ export function BackTop({
   ) : null;
 }
 
+export * from './BackTopDemo';
 export default BackTop;

@@ -59,6 +59,7 @@ declare module '@search-box' {
 
 declare module '@back-top' {
   import type { ComponentType } from 'react';
+  export const BackTopDemo: ComponentType<unknown>;
   export const BackTop: ComponentType<ComponentPropsWithIsland>;
   export default BackTop;
 }

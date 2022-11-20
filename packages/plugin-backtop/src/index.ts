@@ -1,7 +1,6 @@
 import type { IslandPlugin } from 'islandjs/plugin';
 import { join } from 'path';
 
-// TODO: expose options
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface BackTopOptions {}
 
