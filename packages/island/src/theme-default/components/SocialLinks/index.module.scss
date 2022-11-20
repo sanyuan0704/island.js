@@ -1,0 +1,11 @@
+.social-links-icon {
+  width: 20px;
+  height: 100%;
+  display: flex;
+  fill: currentColor;
+  color: var(--island-c-text-2);
+
+  &:hover {
+    color: var(--island-c-text-1);
+  }
+}

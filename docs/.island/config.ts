@@ -67,7 +67,13 @@ export default defineConfig({
     socialLinks: [
       {
         icon: 'github',
-        link: 'https://github.com/sanyuan0704/island'
+        mode: 'link',
+        content: 'https://github.com/sanyuan0704/island'
+      },
+      {
+        icon: 'discord',
+        mode: 'link',
+        content: 'https://discord.gg/Nvy4YSerjM'
       }
     ],
 

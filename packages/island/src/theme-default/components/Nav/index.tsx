@@ -5,9 +5,9 @@ import { Search } from '@search-box';
 import { usePageData } from '@client';
 import { NavMenuSingleItem } from './NavMenuSingleItem';
 import { NavMenuGroup, NavMenuGroupItem } from './NavMenuGroup';
+import { SocialLinks } from '../SocialLinks';
 import { useLocaleSiteData, useSidebarData } from '../../logic';
 import { DefaultTheme } from 'shared/types';
-import GithubSvg from '../../assets/github.svg';
 import { useLocation } from 'react-router-dom';
 import { NavHamburger } from '../NavHambmger';
 
@@ -15,10 +15,6 @@ export interface NavProps {
   beforeNavTitle?: React.ReactNode;
   afterNavTitle?: React.ReactNode;
 }
-const IconMap = {
-  github: GithubSvg
-};
-
 const NavBarTitle = ({ title }: { title: string }) => {
   return (
     <div
@@ -58,46 +54,6 @@ const NavTranslations = ({
     >
       <div m="x-1.5">
         <NavMenuGroup {...translationMenuData!} isTranslation __island />
-      </div>
-    </div>
-  );
-};
-
-const NavSocialLinks = ({
-  socialLinks
-}: {
-  socialLinks: DefaultTheme.SocialLink[];
-}) => {
-  return (
-    <div
-      className="social-links"
-      flex=""
-      items-center=""
-      before="menu-item-before"
-    >
-      <div
-        flex=""
-        items-center=""
-        w="9"
-        h="9"
-        transition="color duration-300"
-        color="hover:brand"
-      >
-        {socialLinks.map((item) => {
-          const IconComp = IconMap[item.icon as keyof typeof IconMap];
-          return (
-            <a
-              key={item.link}
-              href={item.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              w="5"
-              h="5"
-            >
-              <IconComp fill="currentColor" />
-            </a>
-          );
-        })}
       </div>
     </div>
   );
@@ -166,7 +122,7 @@ export function Nav(props: NavProps & ComponentPropsWithIsland) {
           <NavTranslations translationMenuData={translationMenuData!} />
         )}
         {hasAppearanceSwitch && <NavAppearance />}
-        {hasSocialLinks && <NavSocialLinks socialLinks={socialLinks} />}
+        {hasSocialLinks && <SocialLinks __island socialLinks={socialLinks} />}
       </div>
     );
   };

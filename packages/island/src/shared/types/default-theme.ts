@@ -186,7 +186,8 @@ export namespace DefaultTheme {
 
   export interface SocialLink {
     icon: SocialLinkIcon;
-    link: string;
+    mode: 'link' | 'text' | 'img';
+    content: string;
   }
 
   export type SocialLinkIcon =
@@ -198,6 +199,12 @@ export namespace DefaultTheme {
     | 'slack'
     | 'twitter'
     | 'youtube'
+    | 'weixin'
+    | 'qq'
+    | 'juejin'
+    | 'zhihu'
+    | 'bilibili'
+    | 'weibo'
     | { svg: string };
 
   // footer --------------------------------------------------------------------
