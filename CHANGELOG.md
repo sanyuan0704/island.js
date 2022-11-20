@@ -1,3 +1,13 @@
+## [0.7.7](https://github.com/sanyuan0704/island.js/compare/v0.7.6...v0.7.7) (2022-11-20)
+
+
+### Features
+
+* custom container supports custom titles ([#153](https://github.com/sanyuan0704/island.js/issues/153)) ([729a693](https://github.com/sanyuan0704/island.js/commit/729a693e8fff1748dad1aed1229f209a637b214f))
+* social links ([#149](https://github.com/sanyuan0704/island.js/issues/149)) ([9682e3d](https://github.com/sanyuan0704/island.js/commit/9682e3db6c175cee7e210e77bca9f9bf67f0f2fd))
+
+
+
 ## [0.7.6](https://github.com/sanyuan0704/island.js/compare/v0.7.5...v0.7.6) (2022-11-12)
 
 
