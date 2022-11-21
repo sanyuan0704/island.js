@@ -3,7 +3,8 @@ import BTween from 'b-tween';
 import { throttle } from 'lodash-es';
 import type { ComponentPropsWithIsland, DefaultTheme } from 'islandjs';
 
-const isObject = (val: unknown) => typeof val === 'object';
+const isObject = (val: unknown): val is DefaultTheme.BackTopOptions =>
+  typeof val === 'object';
 
 export function BackTop({
   backTop

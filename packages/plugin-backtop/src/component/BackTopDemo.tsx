@@ -5,7 +5,7 @@ import type { ComponentPropsWithIsland } from 'islandjs';
 export function BackTopDemo(props: ComponentPropsWithIsland) {
   const [duration, setDuration] = useState(500);
   const [animation, setAnimation] = useState('quadIn');
-  const ballRef = useRef(null);
+  const ballRef = useRef<HTMLDivElement>(null);
 
   const onStart = () => {
     const btween = new BTween({
@@ -18,13 +18,13 @@ export function BackTopDemo(props: ComponentPropsWithIsland) {
       duration,
       easing: animation,
       onUpdate: (keys) => {
-        ballRef.current.style.left = keys.left + 'px';
+        ballRef.current!.style.left = keys!.left + 'px';
       }
     });
     btween.start();
   };
   const onReset = () => {
-    ballRef.current.style.left = '20px';
+    ballRef.current!.style.left = '20px';
   };
 
   return (

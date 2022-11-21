@@ -334,7 +334,7 @@ export default defineConfig({
 
 ## backTop
 
-- Typs: `boolean`
+- Type: `object | boolean`
 - Default: `true`
 
 是否开启返回顶部功能。默认情况下开启，你也通过如下的配置禁用:
@@ -348,5 +348,46 @@ export default defineConfig({
   }
 });
 ```
+
+可以通过传入一个对象来进行更个性化的功能定制，比如：
+
+```js
+import { defineConfig } from 'islandjs';
+
+export default defineConfig({
+  themeConfig: {
+    visibleHeight: 200, // number类型，控制功能按钮显示的下划距离
+    duration: 500, // number类型, 控制返回顶部的时间
+    animation: 'quadIn' // string类型，控制返回顶部的动画
+  }
+});
+```
+
+其中，动画有如下几个选项：
+
+```ts
+type BackTopAnimation =
+  | 'linear'
+  | 'quadIn'
+  | 'quadOut'
+  | 'quadInOut'
+  | 'cubicIn'
+  | 'cubicOut'
+  | 'cubicInOut'
+  | 'quartIn'
+  | 'quartOut'
+  | 'quartInOut'
+  | 'quintIn'
+  | 'quintOut'
+  | 'quintInOut'
+  | 'sineIn'
+  | 'sineOut'
+  | 'sineInOut'
+  | 'bounceIn'
+  | 'bounceOut'
+  | 'bounceInOut';
+```
+
+可以通过以下组件来查看各个动画效果：
 
 <BackTopDemo __island />

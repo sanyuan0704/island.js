@@ -342,7 +342,7 @@ export default defineConfig({
 
 ## backTop
 
-- Typs: `boolean`
+- Typs: `object | boolean`
 - Default: `true`
 
 Whether to enable back top.You can disable it by setting it to `false`:
@@ -356,5 +356,46 @@ export default defineConfig({
   }
 });
 ```
+
+Provide an object config can use more detailed functions, for example:
+
+```js
+import { defineConfig } from 'islandjs';
+
+export default defineConfig({
+  themeConfig: {
+    visibleHeight: 200, // number，backtop button visible height
+    duration: 500, // number, back to top duration
+    animation: 'quadIn' // string，back to top animation
+  }
+});
+```
+
+We support the following animation:
+
+```ts
+type BackTopAnimation =
+  | 'linear'
+  | 'quadIn'
+  | 'quadOut'
+  | 'quadInOut'
+  | 'cubicIn'
+  | 'cubicOut'
+  | 'cubicInOut'
+  | 'quartIn'
+  | 'quartOut'
+  | 'quartInOut'
+  | 'quintIn'
+  | 'quintOut'
+  | 'quintInOut'
+  | 'sineIn'
+  | 'sineOut'
+  | 'sineInOut'
+  | 'bounceIn'
+  | 'bounceOut'
+  | 'bounceInOut';
+```
+
+Experience different animations with the following components:
 
 <BackTopDemo __island />
