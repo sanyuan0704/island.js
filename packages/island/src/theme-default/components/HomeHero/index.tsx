@@ -15,7 +15,6 @@ export function HomeHero() {
   const frontmatter = useFrontmatter();
   const hero = frontmatter?.hero || DEFAULT_HERO;
   const hasImage = hero.image !== undefined;
-
   return (
     <div
       m="auto"
