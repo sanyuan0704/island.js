@@ -1,3 +1,12 @@
+## [0.7.8](https://github.com/sanyuan0704/island.js/compare/v0.7.7...v0.7.8) (2022-11-23)
+
+
+### Bug Fixes
+
+* home page hmr ([087b5be](https://github.com/sanyuan0704/island.js/commit/087b5bec17bc1f4f9051be9d9b7f6969e1212ffe))
+
+
+
 ## [0.7.7](https://github.com/sanyuan0704/island.js/compare/v0.7.6...v0.7.7) (2022-11-20)
 
 
