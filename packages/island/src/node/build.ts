@@ -370,7 +370,7 @@ class SSGBuilder {
         ...(options?.plugins || [])
       ],
       ssr: {
-        noExternal: ['lodash-es', 'react-router-dom', 'react-router', 'history']
+        noExternal: ['lodash-es', 'react-router-dom']
       },
       build: {
         minify: !process.env.NO_MINIFY && !isServer,
