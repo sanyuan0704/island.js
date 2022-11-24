@@ -1,3 +1,12 @@
+## [0.7.10](https://github.com/sanyuan0704/island.js/compare/v0.7.9...v0.7.10) (2022-11-24)
+
+
+### Bug Fixes
+
+* revert noExternal config ([ef9a779](https://github.com/sanyuan0704/island.js/commit/ef9a7795a019122d53d91870532d2c4653dce055))
+
+
+
 ## [0.7.9](https://github.com/sanyuan0704/island.js/compare/v0.7.8...v0.7.9) (2022-11-24)
 
 
