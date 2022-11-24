@@ -1,3 +1,12 @@
+## [0.7.9](https://github.com/sanyuan0704/island.js/compare/v0.7.8...v0.7.9) (2022-11-24)
+
+
+### Bug Fixes
+
+* lock react-router-dom version ([1838117](https://github.com/sanyuan0704/island.js/commit/183811703369b85b8738a71b1578da53f42792de))
+
+
+
 ## [0.7.8](https://github.com/sanyuan0704/island.js/compare/v0.7.7...v0.7.8) (2022-11-23)
 
 
