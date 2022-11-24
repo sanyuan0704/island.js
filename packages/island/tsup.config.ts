@@ -15,7 +15,8 @@ export default defineConfig([
     minify: process.env.NODE_ENV === 'production',
     skipNodeModulesBundle: true,
     outDir: 'dist/node',
-    shims: true
+    shims: true,
+    clean: true
   },
   {
     entry: {

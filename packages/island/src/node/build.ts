@@ -370,7 +370,7 @@ class SSGBuilder {
         ...(options?.plugins || [])
       ],
       ssr: {
-        noExternal: ['lodash-es', 'react-router-dom']
+        noExternal: ['lodash-es', 'react-router-dom', 'react-router', 'history']
       },
       build: {
         minify: !process.env.NO_MINIFY && !isServer,
@@ -380,6 +380,7 @@ class SSGBuilder {
           : join(this.#root, DIST_PATH),
         cssCodeSplit: false,
         ssrManifest: !isServer,
+        emptyOutDir: true,
         rollupOptions: {
           output: {
             entryFileNames: isServer ? '[name].js' : undefined,
