@@ -1,10 +1,10 @@
 declare module 'b-tween' {
   interface BTWeenType {
     from?: {
-      scrollTop?: number;
+      [key in string]: number;
     };
     to?: {
-      scrollTop?: number;
+      [key in string]: number;
     },
     duration?: number;
     delay?: number;

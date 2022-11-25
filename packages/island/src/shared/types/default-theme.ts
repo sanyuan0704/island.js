@@ -82,7 +82,7 @@ export namespace DefaultTheme {
     /**
      * Whether to use back top
      */
-    backTop?: boolean;
+    backTop?: BackTopOptions;
   }
 
   /**
@@ -225,4 +225,33 @@ export namespace DefaultTheme {
     text: string;
     link: string;
   }
+
+  export type BackTopOptions =
+    | boolean
+    | {
+        visibleHeight?: number;
+        duration?: number;
+        animation?: BackTopAnimation;
+      };
+
+  export type BackTopAnimation =
+    | 'linear'
+    | 'quadIn'
+    | 'quadOut'
+    | 'quadInOut'
+    | 'cubicIn'
+    | 'cubicOut'
+    | 'cubicInOut'
+    | 'quartIn'
+    | 'quartOut'
+    | 'quartInOut'
+    | 'quintIn'
+    | 'quintOut'
+    | 'quintInOut'
+    | 'sineIn'
+    | 'sineOut'
+    | 'sineInOut'
+    | 'bounceIn'
+    | 'bounceOut'
+    | 'bounceInOut';
 }
