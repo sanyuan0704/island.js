@@ -3,7 +3,7 @@ import type { RollupOutput } from 'rollup';
 import { CLIENT_ENTRY_PATH, SERVER_ENTRY_PATH } from './constants';
 import { join } from 'path';
 import fs from 'fs-extra';
-import ora from 'ora';
+// import ora from 'ora';
 
 export async function bundle(root: string) {
   const resolveViteConfig = (isServer: boolean): InlineConfig => ({
@@ -20,8 +20,7 @@ export async function bundle(root: string) {
       }
     }
   });
-  const spinner = ora();
-
+  // const spinner = ora();
   // spinner.start(`Building client + server bundles...`);
 
   try {
