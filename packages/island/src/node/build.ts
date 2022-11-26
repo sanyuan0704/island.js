@@ -36,6 +36,7 @@ import { performance } from 'perf_hooks';
 import pc from 'picocolors';
 import { pathToFileURL } from 'url';
 import { CLIBuildOption } from './cli';
+import { withBase } from '../shared/utils';
 
 const debug = createDebugger('island:build');
 const islandInjectId = 'island:inject';
@@ -260,7 +261,10 @@ class SSGBuilder {
         }
       })
       .join('\n');
-
+    const normalizeVendorFilename = (fileName: string) =>
+      fileName.replace(/\//g, '_') + '.js';
+    const withBaseUrl = (url: string) =>
+      withBase(url, this.#config.base || '/');
     const html = `
   <!DOCTYPE html>
   <html>
@@ -280,14 +284,18 @@ class SSGBuilder {
         {
           "imports": {
             ${DEFAULT_EXTERNALS.map(
-              (name) => `"${name}": "/${name.replace(/\//g, '_')}.js"`
+              (name) =>
+                `"${name}": "${withBaseUrl(normalizeVendorFilename(name))}"`
             ).join(',')}
           }
         }
       </script>
 
       ${styleAssets
-        .map((item) => `<link rel="stylesheet" href="/${item.fileName}">`)
+        .map(
+          (item) =>
+            `<link rel="stylesheet" href="${withBaseUrl(item.fileName)}">`
+        )
         .join('\n')}
 
     </head>
@@ -304,12 +312,16 @@ class SSGBuilder {
         !this.#config.enableSpa && hasIsland
           ? `<script id="island-props">${JSON.stringify(
               propsData
-            )}</script><script type="module" src="/${injectIslandsPath}"></script>`
+            )}</script><script type="module" src="${withBaseUrl(
+              injectIslandsPath
+            )}"></script>`
           : ''
       }
       ${
         this.#config.enableSpa
-          ? `<script type="module" src="/${clientChunk.fileName}"></script>`
+          ? `<script type="module" src="${withBaseUrl(
+              clientChunk.fileName!
+            )}"></script>`
           : `<script type="module">${clientChunk.code}</script>`
       }
     </body>

@@ -17,3 +17,9 @@ export function removeTrailingSlash(url: string) {
 export function normalizeSlash(url: string) {
   return removeTrailingSlash(addLeadingSlash(url));
 }
+
+export function withBase(url: string, base: string) {
+  const normalizedBase = normalizeSlash(base);
+  const normalizedUrl = normalizeSlash(url);
+  return normalizedBase ? `${normalizedBase}${normalizedUrl}` : normalizedUrl;
+}

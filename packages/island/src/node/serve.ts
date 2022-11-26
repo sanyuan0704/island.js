@@ -45,7 +45,7 @@ export async function serve(root: string, cliOptions: CLIServeOption) {
 
   if (base) {
     polka({ onNoMatch })
-      .use(base, compress, serve)
+      .use(base, serve)
       .listen(port, host, (err: Error) => {
         if (err) throw err;
         console.log(`Built site served at http://${host}:${port}/${base}/\n`);

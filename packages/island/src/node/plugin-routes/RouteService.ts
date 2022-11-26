@@ -5,7 +5,7 @@ import { RUNTIME_BUNDLE_OUTDIR } from '../constants';
 import path from 'path';
 import { DEFAULT_EXCLUDE, DEFAULT_PAGE_EXTENSIONS } from '.';
 import { RouteOptions } from 'shared/types';
-import { normalizeSlash } from '../../shared/utils';
+import { withBase } from '../../shared/utils';
 
 export interface RouteMeta {
   routePath: string;
@@ -59,12 +59,7 @@ export class RouteService {
   ): string | undefined {
     const fileRelativePath = path.relative(root, filePath);
     const routePath = normalizeRoutePath(fileRelativePath);
-    return RouteService.withBase(routePath, base);
-  }
-
-  static withBase(url: string, base: string) {
-    const normalizedBase = normalizeSlash(base);
-    return normalizedBase ? `${normalizedBase}${url}` : url;
+    return withBase(routePath, base);
   }
 
   addRoute(filePath: string) {
@@ -131,7 +126,7 @@ ${this.#routeData
      *   filePath: '/Users/xxx/xxx/index.md'
      * }
      */
-    return `{ path: '${RouteService.withBase(
+    return `{ path: '${withBase(
       route.routePath,
       this.#base
     )}', element: React.createElement(${component}), filePath: '${
