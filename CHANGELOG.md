@@ -1,3 +1,12 @@
+## [0.7.15](https://github.com/sanyuan0704/island.js/compare/v0.7.14...v0.7.15) (2022-11-26)
+
+
+### Features
+
+* support single #xxx in md link ([d90d60d](https://github.com/sanyuan0704/island.js/commit/d90d60d3fbd568b4b618ba311d652a76d2686911))
+
+
+
 ## [0.7.14](https://github.com/sanyuan0704/island.js/compare/v0.7.13...v0.7.14) (2022-11-26)
 
 
