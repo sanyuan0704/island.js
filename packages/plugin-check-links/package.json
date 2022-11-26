@@ -1,6 +1,6 @@
 {
   "name": "@islandjs/plugin-check-links",
-  "version": "0.7.12",
+  "version": "0.7.13",
   "description": "Dead links check plugin for islandjs",
   "packageManager": "pnpm@7.9.2",
   "type": "module",
@@ -40,7 +40,7 @@
     "react": "^18.2.0"
   },
   "peerDependencies": {
-    "islandjs": "0.7.12"
+    "islandjs": "0.7.13"
   },
   "files": [
     "dist",

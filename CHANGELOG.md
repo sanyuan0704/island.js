@@ -1,3 +1,12 @@
+## [0.7.13](https://github.com/sanyuan0704/island.js/compare/v0.7.12...v0.7.13) (2022-11-26)
+
+
+### Bug Fixes
+
+* dist structure ([0bb0a25](https://github.com/sanyuan0704/island.js/commit/0bb0a252da55c57a25c9ad4bce4b193d6e83b6a1))
+
+
+
 ## [0.7.12](https://github.com/sanyuan0704/island.js/compare/v0.7.11...v0.7.12) (2022-11-26)
 
 
