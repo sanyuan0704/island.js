@@ -2,7 +2,7 @@ import styles from './index.module.scss';
 import type { ComponentPropsWithIsland } from 'islandjs';
 import { SwitchAppearance } from '../SwitchAppearance/index';
 import { Search } from '@search-box';
-import { usePageData } from '@client';
+import { usePageData, withBase } from '@runtime';
 import { NavMenuSingleItem } from './NavMenuSingleItem';
 import { NavMenuGroup, NavMenuGroupItem } from './NavMenuGroup';
 import { SocialLinks } from '../SocialLinks';
@@ -15,7 +15,13 @@ export interface NavProps {
   beforeNavTitle?: React.ReactNode;
   afterNavTitle?: React.ReactNode;
 }
-const NavBarTitle = ({ title }: { title: string }) => {
+
+interface NavBarTitleProps {
+  title: string;
+  langRoutePrefix: string;
+}
+
+const NavBarTitle = ({ title, langRoutePrefix }: NavBarTitleProps) => {
   return (
     <div
       shrink="0"
@@ -23,7 +29,7 @@ const NavBarTitle = ({ title }: { title: string }) => {
       className={`${styles.navBarTitle}`}
     >
       <a
-        href="/"
+        href={withBase(langRoutePrefix)}
         w="100%"
         h="100%"
         text="1rem"
@@ -114,6 +120,7 @@ export function Nav(props: NavProps & ComponentPropsWithIsland) {
 
   const title =
     localeData.title ?? siteData.themeConfig.siteTitle ?? siteData.title;
+
   const rightNav = () => {
     return (
       <div className={styles.rightNav}>
@@ -145,7 +152,10 @@ export function Nav(props: NavProps & ComponentPropsWithIsland) {
           }`}
         >
           {beforeNavTitle}
-          <NavBarTitle title={title} />
+          <NavBarTitle
+            title={title}
+            langRoutePrefix={localeData.langRoutePrefix || '/'}
+          />
           {afterNavTitle}
           <div
             className={styles.content}
@@ -157,7 +167,7 @@ export function Nav(props: NavProps & ComponentPropsWithIsland) {
               <div className="search" flex="sm:1" pl="sm:8">
                 <Search
                   __island
-                  langRoutePrefix={localeData.routePrefix || ''}
+                  langRoutePrefix={localeData.langRoutePrefix || ''}
                 />
               </div>
             )}

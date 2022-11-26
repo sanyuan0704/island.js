@@ -1,8 +1,9 @@
 import React from 'react';
 import styles from './index.module.scss';
 import { Link as RouterLink } from 'react-router-dom';
-import { TARGET_BLANK_WHITE_LIST } from '../../../shared/constants';
-import { inBrowser } from '../../../shared/utils';
+import { withBase } from '@runtime';
+import { TARGET_BLANK_WHITE_LIST } from '@shared/constants';
+import { inBrowser } from '@shared/utils';
 
 export interface LinkProps {
   href?: string;
@@ -21,11 +22,12 @@ export function Link(props: LinkProps) {
   const target = isExternal && !isWhiteList ? '_blank' : '';
   const rel = isExternal ? 'noopener noreferrer' : undefined;
   const pathname = inBrowser() ? window.location.pathname : '';
+  const withBaseUrl = isExternal ? href : withBase(href);
   if (import.meta.env.ENABLE_SPA && !isExternal) {
     return (
       <RouterLink
         className={`${styles.link} ${className}`}
-        to={href}
+        to={withBaseUrl}
         rel={rel}
         target={target}
         state={{ from: pathname }}
@@ -36,7 +38,7 @@ export function Link(props: LinkProps) {
   } else {
     return (
       <a
-        href={href}
+        href={withBaseUrl}
         target={target}
         rel={rel}
         className={`${styles.link} ${className}`}

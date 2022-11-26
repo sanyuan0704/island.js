@@ -1,5 +1,5 @@
 import path from 'path';
-import { PageModule } from '../../shared/types';
+import { PageModule } from '@shared/types';
 import type { Plugin } from 'vite';
 import { normalizePath } from 'vite';
 import { RouteService } from './RouteService';
@@ -32,14 +32,14 @@ export const DEFAULT_PAGE_EXTENSIONS = ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'];
 export let routeService: RouteService;
 
 export function pluginRoutes(options: RouteOptions = {}): Plugin {
-  const { root = 'src', prefix = '' } = options;
+  const { root = 'src' } = options;
   let scanDir: string;
   return {
     name: 'island:vite-plugin-routes',
     async configResolved() {
       scanDir = path.isAbsolute(root)
-        ? path.join(root, prefix)
-        : path.join(process.cwd(), root, prefix);
+        ? path.join(root)
+        : path.join(process.cwd(), root);
       routeService = new RouteService(normalizePath(scanDir), options);
       await routeService.init();
     },

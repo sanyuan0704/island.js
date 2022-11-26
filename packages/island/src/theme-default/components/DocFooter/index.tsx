@@ -1,5 +1,5 @@
 import styles from './index.module.scss';
-import { usePageData, normalizeHref } from '@client';
+import { usePageData, normalizeHref } from '@runtime';
 import { useEditLink, useLocaleSiteData, usePrevNextPage } from '../../logic';
 
 export function DocFooter() {

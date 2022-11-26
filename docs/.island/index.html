@@ -7,7 +7,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="">
   <script>
-    var langPrefixList = ['/zh', '/en'];
+    var base = '';
+    const withBase = p => base + p;
+    var langPrefixList = [withBase('/zh'), withBase('/en')];
     var isIncludeLangPrefix = langPrefixList.some(function (langPrefix) {
       return window.location.pathname.startsWith(langPrefix);
     });
@@ -18,14 +20,14 @@
         var langs = window.navigator.languages || [window.navigator.language]
         if (langs.some(function (lang) { return lang.includes('zh') }))
         {
-          window.location.href = '/zh/';
+          window.location.href = withBase('/zh');
         } else
         {
-          window.location.href = '/en/';
+          window.location.href = withBase('/en');
         }
       } else
       {
-        window.location.href = '/zh/';
+        window.location.href = withBase('/zh/');
       }
     }
   </script>

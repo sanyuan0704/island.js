@@ -1,4 +1,4 @@
-import { usePageData, normalizeHref } from '@client';
+import { usePageData, normalizeHref, withBase } from '@runtime';
 import { ComponentType, useEffect, useState } from 'react';
 import { Header, PageModule } from 'shared/types';
 import { useSidebarData } from '../../logic';
@@ -22,12 +22,11 @@ export function APILayout() {
   const { subModules: apiPageModules = [] } = usePageData();
   const { pathname } = useLocation();
   const { items: apiSidebarGroups } = useSidebarData(pathname);
-
   const initialGroups: Group[] = apiSidebarGroups.map((sidebarGroup) => ({
     name: sidebarGroup.text || '',
     items: sidebarGroup.items.map((item) => {
       const pageModule = apiPageModules.find((m) =>
-        isEqualPath(m.routePath as string, item.link || '')
+        isEqualPath(m.routePath as string, withBase(item.link || ''))
       );
       return {
         ...item,

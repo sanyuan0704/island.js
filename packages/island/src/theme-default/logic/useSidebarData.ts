@@ -1,6 +1,7 @@
 import { DefaultTheme } from 'shared/types/default-theme';
 import { useLocaleSiteData } from './useLocaleSiteData';
 import { isEqualPath } from './utils';
+import { withBase } from '@runtime';
 
 interface SidebarData {
   // The group name for the sidebar
@@ -13,7 +14,7 @@ export function useSidebarData(currentPathname: string): SidebarData {
   const sidebar = localeData.sidebar ?? {};
   for (const name of Object.keys(sidebar)) {
     // Such as `/api/`，it will return all the sidebar group
-    if (isEqualPath(name, currentPathname)) {
+    if (isEqualPath(withBase(name), currentPathname)) {
       return {
         group: '',
         items: sidebar[name]
@@ -22,7 +23,7 @@ export function useSidebarData(currentPathname: string): SidebarData {
     // Such as `/guide/getting-started`, it will return the guide groups and the group name `Introduction`
     const result = sidebar[name].find((group) =>
       group.items.some(
-        (item) => item.link && isEqualPath(item.link, currentPathname)
+        (item) => item.link && isEqualPath(withBase(item.link), currentPathname)
       )
     );
     if (result) {

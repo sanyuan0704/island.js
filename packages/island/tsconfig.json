@@ -15,7 +15,8 @@
     "jsx": "react-jsx",
     "lib": ["ESNext", "DOM"],
     "paths": {
-      "@client": ["runtime/index.ts"],
+      "@runtime": ["runtime/index.ts"],
+      "@shared/*": ["shared/*"],
     }
   },
   "include": ["src/**/*"],

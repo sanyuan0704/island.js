@@ -1,4 +1,4 @@
-import { normalizeHref } from '@client';
+import { normalizeHref } from '@runtime';
 
 export function isEqualPath(a: string, b: string) {
   return normalizeHref(a) === normalizeHref(b);

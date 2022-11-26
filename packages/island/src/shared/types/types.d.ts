@@ -23,6 +23,11 @@ declare module 'island:site-data' {
   export default siteData;
 }
 
+declare module 'island:base' {
+  const baseUrl: string;
+  export default baseUrl;
+}
+
 declare module 'island/jsx-runtime' {
   export const data : {
     islandToPathMap: MediaRecord<string, string>,

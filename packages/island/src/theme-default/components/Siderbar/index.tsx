@@ -1,10 +1,11 @@
 import styles from './index.module.scss';
 import React from 'react';
 import { Link } from '../Link/index';
-import { DefaultTheme } from '../../../shared/types';
-import { normalizeHref } from '@client';
+import { DefaultTheme } from '../@shared/types';
+import { normalizeHref } from '@runtime';
 import { isActive } from '../../logic/index';
 import { ComponentPropsWithIsland } from 'shared/types/index';
+import { withBase } from '@runtime';
 
 interface Props {
   isSidebarOpen?: boolean;
@@ -26,7 +27,7 @@ export function SideBar(props: Props & ComponentPropsWithIsland) {
     // TODO: base url
     const active = isActive(
       pathname.replace(langRoutePrefix, ''),
-      item.link?.replace(langRoutePrefix, '')
+      withBase(item.link?.replace(langRoutePrefix, ''))
     );
     return (
       <div style={{ marginLeft }}>

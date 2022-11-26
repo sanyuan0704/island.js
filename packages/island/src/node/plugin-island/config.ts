@@ -71,7 +71,8 @@ export function pluginConfig(
             exclude: [
               'islandjs',
               '@theme',
-              '@client',
+              '@runtime',
+              '@shared',
               'island/routes',
               'island/jsx-runtime'
             ]
@@ -89,7 +90,8 @@ export function pluginConfig(
           resolve: {
             alias: {
               '@theme': config.themeDir!,
-              '@client': `${CLIENT_EXPORTS_PATH}`,
+              '@runtime': `${CLIENT_EXPORTS_PATH}`,
+              '@shared': `${SHARED_PATH}`,
               'island/jsx-runtime': join(
                 ISLAND_JSX_RUNTIME_PATH,
                 'jsx-runtime.js'

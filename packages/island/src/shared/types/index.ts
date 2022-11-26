@@ -5,6 +5,7 @@ import type { PluggableList } from 'unified';
 import { IslandPlugin } from './Plugin';
 
 export { DefaultTheme } from './default-theme';
+
 export { IslandPlugin };
 
 export interface Header {
@@ -185,7 +186,7 @@ export interface RouteOptions {
    */
   root?: string;
   /**
-   * The prefix of the filepath that will be converted to a route
+   * The basename of the site
    */
   prefix?: string;
   /**

@@ -7,11 +7,11 @@ import { getRelativePagePath, omit } from './utils';
 import { PageData } from '../shared/types';
 import { HelmetProvider } from 'react-helmet-async';
 import { useContext, useLayoutEffect } from 'react';
-import { DataContext } from '@client';
+import { DataContext } from '@runtime';
 import { cleanUrl } from '../shared/utils';
 
 export async function waitForApp(routePath: string): Promise<PageData> {
-  const matched = matchRoutes(routes, routePath, siteData.base)!;
+  const matched = matchRoutes(routes, routePath)!;
   if (matched) {
     // Preload route component
     const matchedRoute = matched[0].route;

@@ -125,7 +125,7 @@ export function resolveSiteData(
     description: userConfig.description || 'Island',
     themeConfig: userConfig.themeConfig || {},
     head: resolveSiteDataHead(userConfig),
-    base: userConfig.base || '/',
+    base: userConfig.base || '',
     icon: userConfig.icon || '',
     root,
     appearance: userConfig.appearance ?? true
@@ -171,8 +171,12 @@ export async function resolveConfig(
     themeDir,
     configPath,
     configDeps,
+    base: userConfig.base || '',
     tempDir: resolve(root, 'node_modules', '.island'),
-    vite: userConfig.vite ?? {},
+    vite: {
+      ...userConfig.vite,
+      base: userConfig.base ?? '/'
+    },
     allowDeadLinks: userConfig.allowDeadLinks ?? false,
     siteData: resolveSiteData(userConfig, root),
     enableSpa: userConfig.enableSpa ?? false,

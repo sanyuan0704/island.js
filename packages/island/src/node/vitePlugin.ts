@@ -43,7 +43,11 @@ export async function createVitePlugins(
     // Svg component support
     pluginSvgr(),
     // Conventional Route
-    pluginRoutes({ prefix: '', root: config.root, ...config.route }),
+    pluginRoutes({
+      prefix: config.base ?? '/',
+      root: config.root,
+      ...config.route
+    }),
     ...(pluginsFromIslandPlugins || [])
   ];
 }
