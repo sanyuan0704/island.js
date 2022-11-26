@@ -1,5 +1,6 @@
 
 declare module 'island:site-data' {
-  const siteData: unknown;
+  import type { UserConfig } from 'shared/types';
+  const siteData: UserConfig;
   export default siteData;
 }
