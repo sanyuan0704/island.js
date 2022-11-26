@@ -1,3 +1,14 @@
+## [0.7.11](https://github.com/sanyuan0704/island.js/compare/v0.7.10...v0.7.11) (2022-11-26)
+
+
+### Features
+
+* inject NODE_ENV in production build ([d804bb0](https://github.com/sanyuan0704/island.js/commit/d804bb03f766d7070276d20ad71934ae202331e1))
+* more backtop options and backtop animation demo ([#154](https://github.com/sanyuan0704/island.js/issues/154)) ([ad57a24](https://github.com/sanyuan0704/island.js/commit/ad57a24d97b06bd09bf4e64f983c70bb3b18cbf3))
+* support config.base ([#155](https://github.com/sanyuan0704/island.js/issues/155)) ([11d3127](https://github.com/sanyuan0704/island.js/commit/11d312711801001ee784702d4f2365f22d9441d6))
+
+
+
 ## [0.7.10](https://github.com/sanyuan0704/island.js/compare/v0.7.9...v0.7.10) (2022-11-24)
 
 

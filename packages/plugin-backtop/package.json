@@ -1,6 +1,6 @@
 {
   "name": "@islandjs/plugin-backtop",
-  "version": "0.7.10",
+  "version": "0.7.11",
   "description": "Back top plugin for islandjs",
   "packageManager": "pnpm@7.9.2",
   "type": "module",
@@ -40,7 +40,7 @@
     "react": "^18.2.0"
   },
   "peerDependencies": {
-    "islandjs": "0.7.10"
+    "islandjs": "0.7.11"
   },
   "files": [
     "dist",
