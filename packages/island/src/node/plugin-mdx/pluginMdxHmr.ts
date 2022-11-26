@@ -39,7 +39,8 @@ export function pluginMdxHMR(config: SiteConfig): Plugin {
       if (/\.mdx?/.test(ctx.file)) {
         const routePath = RouteService.getRoutePathFromFile(
           ctx.file,
-          config.root
+          config.root,
+          config.base || '/'
         );
         ctx.server.ws!.send({
           type: 'custom',

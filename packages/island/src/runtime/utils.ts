@@ -1,4 +1,9 @@
-import { cleanUrl } from '../shared/utils';
+import {
+  cleanUrl,
+  addLeadingSlash,
+  removeTrailingSlash,
+  normalizeSlash
+} from '../shared/utils';
 
 export const isProduction = () => import.meta.env.PROD;
 
@@ -26,18 +31,6 @@ export const getRelativePagePath = (
   return pagePath.replace(/^\//, '');
 };
 
-export function addLeadingSlash(url: string) {
-  return url.charAt(0) === '/' ? url : '/' + url;
-}
-
-export function removeTrailingSlash(url: string) {
-  return url.charAt(url.length - 1) === '/' ? url.slice(0, -1) : url;
-}
-
-export function normalizeSlash(url: string) {
-  return removeTrailingSlash(addLeadingSlash(url));
-}
-
 export function normalizeHref(url?: string) {
   if (!url) {
     return '/';
@@ -55,3 +48,5 @@ export function normalizeHref(url?: string) {
   }
   return addLeadingSlash(`${url}${suffix}`);
 }
+
+export { addLeadingSlash, removeTrailingSlash, normalizeSlash };

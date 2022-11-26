@@ -1,6 +1,7 @@
 import { DefaultTheme } from 'shared/types';
-import { usePageData, addLeadingSlash, removeTrailingSlash } from '@client';
+import { usePageData, withBase } from '@runtime';
 import { useLocation } from 'react-router-dom';
+import { normalizeSlash } from '@shared/utils/index';
 
 export function useLocaleSiteData(): DefaultTheme.LocaleConfig {
   const pageData = usePageData();
@@ -19,11 +20,12 @@ export function useLocaleSiteData(): DefaultTheme.LocaleConfig {
   const localeKeys = Object.keys(locales);
   const localeKey =
     localeKeys.find((locale) => {
-      return pathname.startsWith(addLeadingSlash(removeTrailingSlash(locale)));
+      const normalizedLocalePrefix = withBase(normalizeSlash(locale));
+      return pathname.startsWith(normalizedLocalePrefix);
     }) || localeKeys[0];
 
   return {
     ...locales[localeKey],
-    routePrefix: localeKey
+    langRoutePrefix: localeKey
   };
 }

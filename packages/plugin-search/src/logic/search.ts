@@ -2,7 +2,7 @@ import FlexSearch from 'flexsearch';
 import type { Index as SearchIndex, CreateOptions } from 'flexsearch';
 import { uniqBy } from 'lodash-es';
 import { Header } from 'islandjs';
-import { normalizeHref, getAllPages } from 'islandjs/runtime';
+import { normalizeHref, getAllPages, withBase } from 'islandjs/runtime';
 import { backTrackHeaders } from './util';
 
 const THRESHOLD_CONTENT_LENGTH = 100;
@@ -52,7 +52,7 @@ export class PageSearcher {
   async init(options: CreateOptions = {}) {
     // Initial pages data and create index
     const pages = await getAllPages((route) =>
-      route.path.startsWith(this.#langRoutePrefix)
+      route.path.startsWith(withBase(this.#langRoutePrefix))
     );
     const pagesForSearch: PageDataForSearch[] = pages
       .filter((page) => {

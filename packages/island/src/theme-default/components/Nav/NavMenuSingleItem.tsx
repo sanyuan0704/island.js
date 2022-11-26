@@ -1,5 +1,5 @@
 import { DefaultTheme } from 'shared/types';
-import { normalizeHref } from '@client';
+import { normalizeHref } from '@runtime';
 import { Link } from '../Link/index';
 
 interface Props {

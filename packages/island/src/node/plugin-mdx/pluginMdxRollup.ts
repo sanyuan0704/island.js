@@ -14,9 +14,9 @@ import { remarkPluginTip } from './remarkPlugins/tip';
 import shiki from 'shiki';
 import { rehypePluginShiki } from './rehypePlugins/shiki';
 import { rehypePluginLineNumbers } from './rehypePlugins/lineNumbers';
-import { SiteConfig } from 'shared/types/index';
 import { Plugin } from 'vite';
 import { TARGET_BLANK_WHITE_LIST } from '../../shared/constants';
+import { SiteConfig } from '@shared/types/index';
 
 export async function pluginMdxRollup(
   config: SiteConfig,

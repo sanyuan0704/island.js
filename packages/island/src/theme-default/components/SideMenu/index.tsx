@@ -1,8 +1,8 @@
 import styles from './index.module.scss';
 import { SideBar } from '../Siderbar';
 import { Fragment, useState } from 'react';
-import { ComponentPropsWithIsland } from '../../../shared/types';
-import { DefaultTheme } from '../../../shared/types';
+import { ComponentPropsWithIsland } from '../@shared/types';
+import { DefaultTheme } from '../@shared/types';
 
 interface Props {
   pathname: string;

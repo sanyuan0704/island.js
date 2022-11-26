@@ -1,7 +1,7 @@
 import { Button } from '../Button';
 import { useFrontmatter } from '../../logic/index';
 import styles from './index.module.scss';
-import { normalizeHref } from '@client';
+import { normalizeHref, withBase } from '@runtime';
 
 const DEFAULT_HERO = {
   name: 'Island',
@@ -59,7 +59,7 @@ export function HomeHero() {
                 <Button
                   type="a"
                   text={action.text}
-                  href={normalizeHref(action.link)}
+                  href={normalizeHref(withBase(action.link))}
                   theme={action.theme}
                 ></Button>
               </div>

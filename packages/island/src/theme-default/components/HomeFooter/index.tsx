@@ -1,4 +1,4 @@
-import { usePageData } from '@client';
+import { usePageData } from '@runtime';
 
 export function Footer() {
   const { siteData } = usePageData();

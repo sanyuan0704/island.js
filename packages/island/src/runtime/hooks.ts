@@ -1,8 +1,9 @@
 import { ComponentType, createContext, useContext } from 'react';
 import { PageData } from '../shared/types';
-import { inBrowser } from '../shared/utils';
+import { inBrowser, addLeadingSlash, normalizeSlash } from '../shared/utils';
 import { routes } from 'virtual:routes';
 import { Route } from 'node/plugin-routes';
+import baseUrl from 'island:base';
 
 // Type shim for window.ISLANDS
 declare global {
@@ -45,3 +46,9 @@ export const getAllPages = (
     })
   );
 };
+
+export function withBase(url = '/'): string {
+  const normalizedBase = normalizeSlash(baseUrl);
+  const normalizedUrl = addLeadingSlash(url);
+  return `${normalizedBase}${normalizedUrl}`;
+}

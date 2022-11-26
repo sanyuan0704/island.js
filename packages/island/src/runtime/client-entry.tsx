@@ -11,7 +11,7 @@ async function renderInBrowser() {
     const { waitForApp, App } = await import('./app');
     const { useState } = await import('react');
     const { BrowserRouter } = await import('react-router-dom');
-    const { DataContext } = await import('@client');
+    const { DataContext } = await import('@runtime');
 
     const initialPageData = await waitForApp(window.location.pathname);
 

@@ -1,4 +1,4 @@
-import { usePageData } from '@client';
+import { usePageData } from '@runtime';
 
 export function NotFoundLayout() {
   const { siteData } = usePageData();

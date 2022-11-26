@@ -5,6 +5,7 @@ import { RUNTIME_BUNDLE_OUTDIR } from '../constants';
 import path from 'path';
 import { DEFAULT_EXCLUDE, DEFAULT_PAGE_EXTENSIONS } from '.';
 import { RouteOptions } from 'shared/types';
+import { normalizeSlash } from '../../shared/utils';
 
 export interface RouteMeta {
   routePath: string;
@@ -31,10 +32,13 @@ export class RouteService {
   #extensions: string[] = [];
   #include: string[] = [];
   #exclude: string[] = [];
+  #base = '';
+
   constructor(private scanDir: string, options: RouteOptions) {
     this.#extensions = options.extensions || DEFAULT_PAGE_EXTENSIONS;
     this.#include = options.include || [];
     this.#exclude = options.exclude || [];
+    this.#base = options.prefix || '';
   }
 
   async init() {
@@ -50,11 +54,17 @@ export class RouteService {
 
   static getRoutePathFromFile(
     filePath: string,
-    root: string
+    root: string,
+    base: string
   ): string | undefined {
     const fileRelativePath = path.relative(root, filePath);
     const routePath = normalizeRoutePath(fileRelativePath);
-    return routePath;
+    return RouteService.withBase(routePath, base);
+  }
+
+  static withBase(url: string, base: string) {
+    const normalizedBase = normalizeSlash(base);
+    return normalizedBase ? `${normalizedBase}${url}` : url;
   }
 
   addRoute(filePath: string) {
@@ -121,7 +131,12 @@ ${this.#routeData
      *   filePath: '/Users/xxx/xxx/index.md'
      * }
      */
-    return `{ path: '${route.routePath}', element: React.createElement(${component}), filePath: '${route.absolutePath}', preload: ${preload} }`;
+    return `{ path: '${RouteService.withBase(
+      route.routePath,
+      this.#base
+    )}', element: React.createElement(${component}), filePath: '${
+      route.absolutePath
+    }', preload: ${preload} }`;
   })
   .join(',\n')}
 ];

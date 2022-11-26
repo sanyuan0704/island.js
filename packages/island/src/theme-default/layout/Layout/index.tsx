@@ -1,7 +1,7 @@
 import React from 'react';
 import { Nav } from '../../components/Nav';
 import { DocLayout } from '../DocLayout';
-import { usePageData, Content } from '@client';
+import { usePageData, Content } from '@runtime';
 import { Helmet } from 'react-helmet-async';
 import { HomeLayout, NotFoundLayout } from '@theme';
 import { APILayout } from '../APILayout';

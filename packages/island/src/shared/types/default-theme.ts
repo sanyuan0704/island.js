@@ -91,7 +91,7 @@ export namespace DefaultTheme {
   export interface LocaleConfig {
     lang?: string;
     title?: string;
-    routePrefix?: string;
+    langRoutePrefix?: string;
     description?: string;
     head?: HeadConfig[];
     label: string;

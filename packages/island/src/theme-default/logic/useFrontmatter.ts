@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { usePageData, removeTrailingSlash } from '@client';
+import { usePageData } from '@runtime';
 
 export const useFrontmatter = () => {
   const pageData = usePageData();
@@ -10,6 +10,7 @@ export const useFrontmatter = () => {
   useEffect(() => {
     if (import.meta.env.DEV) {
       import.meta.hot?.on('md(x)-changed', ({ filePath, routePath }) => {
+        console.log(pageData.routePath, routePath);
         import(/* @vite-ignore */ `${filePath}?import&t=${Date.now()}`).then(
           (mod) => {
             // fix: updates to non-Home md documents will trigger this event,resulting in loss of Home data

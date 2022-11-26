@@ -1,12 +1,11 @@
 import styles from './index.module.scss';
 import { Aside } from '../../components/Aside/index';
 import { DocFooter } from '../../components/DocFooter/index';
-import { Content, usePageData } from '@client';
+import { Content, usePageData } from '@runtime';
 import { useHeaders, useLocaleSiteData, useSidebarData } from '../../logic';
 import { SideMenu } from '../../components/LocalSideBar';
-import { normalizeSlash } from '@client';
+import { normalizeSlash } from '@runtime';
 import { useLocation } from 'react-router-dom';
-import { Header } from 'shared/types/index';
 
 export interface DocLayoutProps {
   beforeDocFooter?: React.ReactNode;

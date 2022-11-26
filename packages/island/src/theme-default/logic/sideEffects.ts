@@ -1,5 +1,5 @@
 import { throttle } from 'lodash-es';
-import { inBrowser } from '../../shared/utils';
+import { inBrowser } from '@shared/utils';
 import { setupCopyCodeButton } from './copyCode';
 import mediumZoom from 'medium-zoom';
 
