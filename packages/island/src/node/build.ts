@@ -363,6 +363,9 @@ class SSGBuilder {
     ): Promise<InlineConfig> => ({
       ...options,
       mode: 'production',
+      define: {
+        NODE_ENV: process.env.NODE_ENV || JSON.stringify('production')
+      },
       root: this.#root,
       optimizeDeps: { force: this.#cliOptions?.force },
       plugins: [
