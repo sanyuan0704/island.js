@@ -1,3 +1,5 @@
 import { defineConfig } from '../dist';
 
-export default defineConfig({});
+export default defineConfig({
+  title: 'xxx'
+});
