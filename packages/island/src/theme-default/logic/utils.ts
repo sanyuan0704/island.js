@@ -8,7 +8,7 @@ export function isActive(currentPath: string, targetLink?: string) {
   if (!targetLink) {
     return false;
   }
-  if (targetLink === '' || targetLink === '/') {
+  if (targetLink === '' || targetLink.endsWith('/')) {
     return currentPath === targetLink;
   }
   return currentPath.startsWith(targetLink);

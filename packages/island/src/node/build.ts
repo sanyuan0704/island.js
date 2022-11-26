@@ -36,7 +36,7 @@ import { performance } from 'perf_hooks';
 import pc from 'picocolors';
 import { pathToFileURL } from 'url';
 import { CLIBuildOption } from './cli';
-import { withBase } from '../shared/utils';
+import { normalizeSlash, withBase } from '../shared/utils';
 
 const debug = createDebugger('island:build');
 const islandInjectId = 'island:inject';
@@ -331,10 +331,12 @@ class SSGBuilder {
       if (path === '/') {
         return 'index.html';
       }
+      const normalizedBase = normalizeSlash(this.#config.base || '/');
+
       if (path.endsWith('/')) {
-        return `${path}index.html`;
+        return `${path}index.html`.replace(normalizedBase, '');
       }
-      return `${path}.html`;
+      return `${path}.html`.replace(normalizedBase, '');
     };
     const fileName = normalizeHtmlFilePath(routePath);
     await fs.ensureDir(join(this.#root, DIST_PATH, dirname(fileName)));

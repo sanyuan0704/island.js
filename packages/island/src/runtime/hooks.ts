@@ -52,3 +52,8 @@ export function withBase(url = '/'): string {
   const normalizedUrl = addLeadingSlash(url);
   return `${normalizedBase}${normalizedUrl}`;
 }
+
+export function removeBase(url: string): string {
+  const normalizedBase = normalizeSlash(baseUrl);
+  return url.replace(normalizedBase, '');
+}

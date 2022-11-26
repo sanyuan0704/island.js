@@ -1,11 +1,11 @@
 import styles from './index.module.scss';
 import React from 'react';
 import { Link } from '../Link/index';
-import { DefaultTheme } from '../@shared/types';
+import { DefaultTheme } from 'shared/types';
 import { normalizeHref } from '@runtime';
 import { isActive } from '../../logic/index';
 import { ComponentPropsWithIsland } from 'shared/types/index';
-import { withBase } from '@runtime';
+import { removeBase } from '@runtime';
 
 interface Props {
   isSidebarOpen?: boolean;
@@ -24,10 +24,9 @@ export function SideBar(props: Props & ComponentPropsWithIsland) {
       children = item.items.map((child) => renderGroupItem(child, depth + 1));
     }
     // Extract lang route prefix
-    // TODO: base url
     const active = isActive(
-      pathname.replace(langRoutePrefix, ''),
-      withBase(item.link?.replace(langRoutePrefix, ''))
+      removeBase(pathname.replace(langRoutePrefix, '')),
+      item.link?.replace(langRoutePrefix, '')
     );
     return (
       <div style={{ marginLeft }}>
