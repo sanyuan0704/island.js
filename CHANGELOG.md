@@ -1,3 +1,12 @@
+## [0.7.12](https://github.com/sanyuan0704/island.js/compare/v0.7.11...v0.7.12) (2022-11-26)
+
+
+### Bug Fixes
+
+* base url preview in production ([90f65a7](https://github.com/sanyuan0704/island.js/commit/90f65a7e9285be87c48b5f1696e527a8ccb6ea43))
+
+
+
 ## [0.7.11](https://github.com/sanyuan0704/island.js/compare/v0.7.10...v0.7.11) (2022-11-26)
 
 
