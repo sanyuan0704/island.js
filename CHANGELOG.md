@@ -1,3 +1,12 @@
+## [0.7.14](https://github.com/sanyuan0704/island.js/compare/v0.7.13...v0.7.14) (2022-11-26)
+
+
+### Bug Fixes
+
+* add leading slash for url in `withBase` ([26bcd96](https://github.com/sanyuan0704/island.js/commit/26bcd965772c773c5917b5261e2ebda11832a30b))
+
+
+
 ## [0.7.13](https://github.com/sanyuan0704/island.js/compare/v0.7.12...v0.7.13) (2022-11-26)
 
 
