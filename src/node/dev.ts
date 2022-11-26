@@ -4,8 +4,8 @@ import pluginReact from '@vitejs/plugin-react';
 import { PACKAGE_ROOT } from './constants';
 import { resolveConfig } from './config';
 
-export function createDevServer(root: string) {
-  const config = resolveConfig(root, 'serve', 'development');
+export async function createDevServer(root: string) {
+  const config = await resolveConfig(root, 'serve', 'development');
   return createServer({
     root,
     plugins: [pluginIndexHtml(), pluginReact()],
