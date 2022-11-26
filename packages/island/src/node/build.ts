@@ -328,14 +328,12 @@ class SSGBuilder {
   </html>`.trim();
 
     const normalizeHtmlFilePath = (path: string) => {
-      if (path === '/') {
-        return 'index.html';
-      }
       const normalizedBase = normalizeSlash(this.#config.base || '/');
 
       if (path.endsWith('/')) {
         return `${path}index.html`.replace(normalizedBase, '');
       }
+
       return `${path}.html`.replace(normalizedBase, '');
     };
     const fileName = normalizeHtmlFilePath(routePath);

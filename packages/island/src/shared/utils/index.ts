@@ -20,6 +20,6 @@ export function normalizeSlash(url: string) {
 
 export function withBase(url: string, base: string) {
   const normalizedBase = normalizeSlash(base);
-  const normalizedUrl = normalizeSlash(url);
+  const normalizedUrl = addLeadingSlash(url);
   return normalizedBase ? `${normalizedBase}${normalizedUrl}` : normalizedUrl;
 }
