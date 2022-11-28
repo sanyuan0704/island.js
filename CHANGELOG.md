@@ -1,3 +1,12 @@
+## [0.7.17](https://github.com/sanyuan0704/island.js/compare/v0.7.16...v0.7.17) (2022-11-28)
+
+
+### Bug Fixes
+
+* initial scroll position in dev ([a5b0521](https://github.com/sanyuan0704/island.js/commit/a5b052183d52cd352e54b3e393125de38cb63683))
+
+
+
 ## [0.7.16](https://github.com/sanyuan0704/island.js/compare/v0.7.15...v0.7.16) (2022-11-28)
 
 
