@@ -78,7 +78,7 @@ export function APILayout() {
             {group.items.map((item) => (
               <div className={styles.apiGroup} key={item.link}>
                 <h3>
-                  <a href={normalizeHref(item.link)}>{item.text}</a>
+                  <Link href={normalizeHref(item.link)}>{item.text}</Link>
                 </h3>
                 <ul list="none">
                   {item.headers?.map((header) => (
