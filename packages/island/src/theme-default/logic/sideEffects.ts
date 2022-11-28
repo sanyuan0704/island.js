@@ -7,6 +7,17 @@ const DEFAULT_NAV_HEIGHT = 60;
 
 // Control the scroll behavior of the browser when user clicks on a link
 function bindingWindowScroll() {
+  // Initial scroll position
+  if (import.meta.env.DEV && !import.meta.env.SSR) {
+    const hash = window.location.hash;
+    if (hash) {
+      const element = document.getElementById(hash.slice(1));
+      const link = element?.getElementsByTagName('a')[0];
+      if (link) {
+        scrollTo(link, hash);
+      }
+    }
+  }
   // eslint-disable-next-line no-inner-declarations
   function scrollTo(el: HTMLElement, hash: string, isSmooth = false) {
     let target: HTMLElement | null = null;
@@ -14,17 +25,16 @@ function bindingWindowScroll() {
       target = el.classList.contains('header-anchor')
         ? el
         : document.getElementById(decodeURIComponent(hash.slice(1)));
-
       target;
     } catch (e) {
       console.warn(e);
     }
-
     if (target) {
       const targetPadding = parseInt(
         window.getComputedStyle(target).paddingTop,
         10
       );
+
       const targetTop =
         window.scrollY +
         target.getBoundingClientRect().top -

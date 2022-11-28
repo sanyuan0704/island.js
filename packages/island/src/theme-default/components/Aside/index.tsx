@@ -21,7 +21,9 @@ export function Aside(
         markerRef.current.style.opacity = '0';
       }
       const unbinding = bindingAsideScroll();
-      window.scrollTo(0, 0);
+      if (!window.location.hash) {
+        window.scrollTo(0, 0);
+      }
       return unbinding;
     }, [headers]);
   }
