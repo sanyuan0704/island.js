@@ -1,3 +1,12 @@
+## [0.7.16](https://github.com/sanyuan0704/island.js/compare/v0.7.15...v0.7.16) (2022-11-28)
+
+
+### Features
+
+* add link for group name in api page ([30628bf](https://github.com/sanyuan0704/island.js/commit/30628bf89ef98286dc562927dc7ece72b1ffb230))
+
+
+
 ## [0.7.15](https://github.com/sanyuan0704/island.js/compare/v0.7.14...v0.7.15) (2022-11-26)
 
 

@@ -113,8 +113,8 @@ importers:
       '@babel/preset-react': 7.18.6
       '@babel/traverse': ^7.19.0
       '@iconify-json/carbon': 1.1.8
-      '@islandjs/plugin-backtop': 0.7.15
-      '@islandjs/plugin-search': 0.7.15
+      '@islandjs/plugin-backtop': 0.7.16
+      '@islandjs/plugin-search': 0.7.16
       '@mdx-js/mdx': 2.1.3
       '@mdx-js/react': 2.1.3
       '@mdx-js/rollup': '2'
