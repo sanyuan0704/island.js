@@ -43,10 +43,10 @@ const getUserConfigPath = (root: string, customizePath?: string) => {
   try {
     const supportExtensions = ['js', 'ts'];
     const configFileName = getConfigFileName(customizePath);
-    const [configPath] = supportExtensions
+    const configPath = supportExtensions
       .map((extension) => resolve(root, `${configFileName}.${extension}`))
-      .filter(pathExistsSync);
-    if (configFileName !== 'config' && !pathExistsSync(configPath)) {
+      .find(pathExistsSync);
+    if (configFileName !== 'config' && !pathExistsSync(configPath!)) {
       const errorPath = resolve(root, `${customizePath}`);
       throw new Error(`failed to load config from ${errorPath}`);
     }
@@ -65,7 +65,7 @@ export async function resolveUserConfig(
   mode: 'development' | 'production',
   customizeConfig?: string
 ): Promise<[string, UserConfig<DefaultTheme.Config>, string[]]> {
-  const configPath = getUserConfigPath(root, customizeConfig);
+  const configPath = getUserConfigPath(root, customizeConfig)!;
   // Use vite internal config loader
   const result = await loadConfigFromFile({ command, mode }, configPath, root);
   if (result) {

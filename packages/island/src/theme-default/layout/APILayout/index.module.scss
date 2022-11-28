@@ -24,12 +24,23 @@
     border-top: 1px solid var(--island-c-divider-light);
   }
 
-  h3 {
+  h3,
+  h3 > a {
     letter-spacing: -0.01em;
     color: var(--island-c-brand);
     font-size: 18px;
     margin-bottom: 1em;
     transition: color 0.5s;
+  }
+
+  h3 > a {
+    margin: 0;
+    line-height: 1;
+  }
+
+  h3 > a:hover {
+    transition: color 0.5s;
+    color: var(--island-c-brand-dark);
   }
 
   h3:before {
