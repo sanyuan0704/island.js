@@ -26,7 +26,9 @@ export const remarkPluginToc: Plugin = () => {
       }
 
       if (node.type === 'heading' && node.depth > 1 && node.depth < 5) {
-        const originText = node.children[0].value;
+        const originText = node.children
+          .map((child: { value: string }) => child.value)
+          .join('');
         const id = slugger.slug(originText);
         const depth = node.depth;
         toc.push({ id, text: originText, depth });
