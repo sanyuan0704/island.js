@@ -140,6 +140,8 @@ export namespace DefaultTheme {
   export interface SidebarGroup {
     text?: string;
     items: SidebarItem[];
+    collapsed?: boolean;
+    collapsible?: boolean;
   }
 
   export type SidebarItem =

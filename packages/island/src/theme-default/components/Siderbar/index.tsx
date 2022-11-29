@@ -15,7 +15,16 @@ interface Props {
 }
 
 export function SideBar(props: Props & ComponentPropsWithIsland) {
-  const { isSidebarOpen, langRoutePrefix, pathname, sidebarData } = props;
+  const {
+    isSidebarOpen,
+    langRoutePrefix,
+    pathname,
+    sidebarData: rawSidebarData
+  } = props;
+  const sidebarData = rawSidebarData.filter(Boolean).flat();
+  const [collapseList, setCollapseList] = React.useState<boolean[]>(
+    sidebarData.map((item) => item.collapsed ?? false)
+  );
 
   const renderGroupItem = (item: DefaultTheme.SidebarItem, depth = 0) => {
     const marginLeft = `${depth * 20}px`;
@@ -44,15 +53,49 @@ export function SideBar(props: Props & ComponentPropsWithIsland) {
     );
   };
 
-  const renderGroup = (item: DefaultTheme.SidebarGroup) => {
+  const renderGroup = (item: DefaultTheme.SidebarGroup, index: number) => {
+    const collapsed = collapseList[index];
+    const toggleCollapse = () => {
+      const newCollapseList = [...collapseList];
+      newCollapseList[index] = !newCollapseList[index];
+      setCollapseList(newCollapseList);
+    };
+    const collapsibleIcon =
+      item.collapsible || collapsed ? (
+        collapsed ? (
+          <div
+            className="i-carbon-chevron-right"
+            onClick={toggleCollapse}
+            cursor-pointer="~"
+          ></div>
+        ) : (
+          <div
+            className="i-carbon-chevron-down"
+            cursor-pointer="~"
+            onClick={toggleCollapse}
+          ></div>
+        )
+      ) : null;
     return (
       <section key={item.text} block="~" not-first="divider-top mt-4">
-        <div flex="~" justify="between" items-start="~">
+        <div
+          flex="~"
+          justify="between"
+          items-start="~"
+          className="items-center"
+        >
           <h2 m="t-3 b-2" text="1rem text-1" font="bold">
             {item.text}
           </h2>
+          {collapsibleIcon}
         </div>
-        <div mb="1.4 sm:1">
+        <div
+          mb="1.4 sm:1"
+          style={{
+            height: collapsed ? 0 : 'auto',
+            display: collapsed ? 'none' : 'block'
+          }}
+        >
           {item?.items?.map((item) => (
             <div key={item.link}>{renderGroupItem(item)}</div>
           ))}
@@ -64,12 +107,10 @@ export function SideBar(props: Props & ComponentPropsWithIsland) {
   return (
     <aside className={`${styles.sidebar} ${isSidebarOpen ? styles.open : ''}`}>
       <nav>
-        {[sidebarData]
-          .filter(Boolean)
-          .flat()
-          .map((item: DefaultTheme.SidebarGroup | undefined) =>
-            renderGroup(item!)
-          )}
+        {sidebarData.map(
+          (item: DefaultTheme.SidebarGroup | undefined, index: number) =>
+            renderGroup(item!, index)
+        )}
       </nav>
     </aside>
   );
