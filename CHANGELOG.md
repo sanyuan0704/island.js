@@ -1,3 +1,12 @@
+## [0.7.18](https://github.com/sanyuan0704/island.js/compare/v0.7.17...v0.7.18) (2022-11-29)
+
+
+### Bug Fixes
+
+* inline code in toc cannot show ([4ba68a8](https://github.com/sanyuan0704/island.js/commit/4ba68a8a4bb177c297ccb9ee0dda490b2e78e4bf))
+
+
+
 ## [0.7.17](https://github.com/sanyuan0704/island.js/compare/v0.7.16...v0.7.17) (2022-11-28)
 
 
