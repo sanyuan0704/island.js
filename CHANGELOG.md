@@ -1,3 +1,13 @@
+## [0.7.19](https://github.com/sanyuan0704/island.js/compare/v0.7.18...v0.7.19) (2022-12-01)
+
+
+### Features
+
+* ssr entry esm format ([7ba2061](https://github.com/sanyuan0704/island.js/commit/7ba20616b06b2b808e00009abb7a3bee0c3b2dee))
+* support sidebar collapse ([e2e1fd7](https://github.com/sanyuan0704/island.js/commit/e2e1fd736ea112c98cb4791f4b38c6c2a8eec1e6))
+
+
+
 ## [0.7.18](https://github.com/sanyuan0704/island.js/compare/v0.7.17...v0.7.18) (2022-11-29)
 
 
