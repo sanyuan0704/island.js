@@ -90,8 +90,13 @@ class SSGBuilder {
 
       // Get complete css from server bundle
       await copy(
-        join(this.#root, TEMP_PATH, 'ssr', 'assets'),
+        join(TEMP_PATH, 'ssr', 'assets'),
         join(this.#root, DIST_PATH, 'assets')
+      );
+
+      await fs.writeFile(
+        join(TEMP_PATH, 'package.json'),
+        JSON.stringify({ type: 'module' })
       );
 
       // Copy public assets
@@ -100,7 +105,7 @@ class SSGBuilder {
         await copy(publicDirInRoot, join(this.#root, DIST_PATH));
       }
 
-      const serverEntryPath = join(this.#root, SERVER_OUTPUT_PATH);
+      const serverEntryPath = join(SERVER_OUTPUT_PATH);
       const { render, routes } = (await dynamicImport(
         pathToFileURL(serverEntryPath)
       )) as ServerEntryExports;
@@ -152,7 +157,7 @@ class SSGBuilder {
 
   async end() {
     if (!process.env.DEBUG) {
-      await remove(join(this.#root, TEMP_PATH));
+      await remove(join(TEMP_PATH));
     }
   }
 
@@ -160,7 +165,7 @@ class SSGBuilder {
     return this.#baseBuild(false, {
       build: {
         minify: !process.env.NO_MINIFY,
-        outDir: join(this.#root, TEMP_PATH),
+        outDir: join(TEMP_PATH),
         ssrManifest: false,
         rollupOptions: {
           external: DEFAULT_EXTERNALS,
@@ -233,7 +238,7 @@ class SSGBuilder {
           try {
             // Move island_inject chunk
             await copy(
-              join(this.#root, TEMP_PATH, 'assets'),
+              join(TEMP_PATH, 'assets'),
               join(this.#root, DIST_PATH, 'assets')
             );
           } catch (e) {
@@ -384,22 +389,18 @@ class SSGBuilder {
         await createVitePlugins(this.#config, isServer),
         ...(options?.plugins || [])
       ],
-      ssr: {
-        noExternal: ['lodash-es', 'react-router-dom']
-      },
+      ssr: {},
       build: {
         minify: !process.env.NO_MINIFY && !isServer,
         ssr: isServer,
-        outDir: isServer
-          ? join(this.#root, TEMP_PATH, 'ssr')
-          : join(this.#root, DIST_PATH),
+        outDir: isServer ? join(TEMP_PATH, 'ssr') : join(this.#root, DIST_PATH),
         cssCodeSplit: false,
         ssrManifest: !isServer,
         emptyOutDir: true,
         rollupOptions: {
           output: {
-            entryFileNames: isServer ? '[name].js' : undefined,
-            format: isServer ? 'cjs' : 'es'
+            entryFileNames: isServer ? '[name].mjs' : undefined,
+            format: 'es'
           },
           input: isServer ? SERVER_ENTRY_PATH : CLIENT_ENTRY_PATH
         },

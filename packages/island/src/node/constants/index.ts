@@ -26,11 +26,11 @@ export const DEFAULT_THEME_PATH = join(PACKAGE_ROOT_PATH, 'src/theme-default');
 
 export const PUBLIC_DIR = 'public';
 
-export const TEMP_PATH = join('node_modules', '.island');
+export const TEMP_PATH = join(PACKAGE_ROOT_PATH, 'node_modules', '.island');
 
 export const DIST_PATH = join('.island', 'dist');
 
-export const SERVER_BUNDLE_FILE = 'ssr-entry.js';
+export const SERVER_BUNDLE_FILE = 'ssr-entry.mjs';
 
 export const SERVER_OUTPUT_PATH = join(TEMP_PATH, 'ssr', SERVER_BUNDLE_FILE);
 
