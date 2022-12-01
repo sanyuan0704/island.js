@@ -8,8 +8,10 @@ const isObject = (val: unknown): val is DefaultTheme.BackTopOptions =>
 
 export function BackTop({
   backTop
-}: { backTop?: DefaultTheme.BackTopOptions } & ComponentPropsWithIsland) {
-  const backTopCtrl = isObject(backTop) ? true : backTop ?? true;
+}: {
+  backTop?: DefaultTheme.BackTopOptions | boolean;
+} & ComponentPropsWithIsland) {
+  const backTopEnabled = isObject(backTop) ? true : backTop ?? true;
 
   let visibleHeight = 200;
   let duration = 500;
@@ -55,7 +57,7 @@ export function BackTop({
     };
   });
 
-  return backTopCtrl && visible ? (
+  return backTopEnabled && visible ? (
     <div
       className="fixed bottom-10 right-30 z-10"
       display="none md:block"
