@@ -1,17 +1,24 @@
 import { build as viteBuild, InlineConfig } from 'vite';
 import type { RollupOutput } from 'rollup';
 import { CLIENT_ENTRY_PATH, SERVER_ENTRY_PATH } from './constants';
-import { join } from 'path';
+import path, { join } from 'path';
 import fs from 'fs-extra';
 // import ora from 'ora';
+import { pluginConfig } from './plugin-island/config';
+import { SiteConfig } from 'shared/types';
 
-export async function bundle(root: string) {
+export async function bundle(root: string, config: SiteConfig) {
   const resolveViteConfig = (isServer: boolean): InlineConfig => ({
     mode: 'production',
     root,
+    plugins: [pluginConfig(config)],
+    ssr: {
+      noExternal: ['react-router-dom']
+    },
     build: {
+      minify: false,
       ssr: isServer,
-      outDir: isServer ? '.temp' : 'build',
+      outDir: isServer ? path.join(root, '.temp') : 'build',
       rollupOptions: {
         input: isServer ? SERVER_ENTRY_PATH : CLIENT_ENTRY_PATH,
         output: {
@@ -65,12 +72,16 @@ export async function renderPage(
   await fs.remove(join(root, '.temp'));
 }
 
-export async function build(root: string = process.cwd()) {
+export async function build(root: string = process.cwd(), config: SiteConfig) {
   // 1. bundle - client 端 + server 端
-  const [clientBundle] = await bundle(root);
+  const [clientBundle] = await bundle(root, config);
   // 2. 引入 server-entry 模块
   const serverEntryPath = join(root, '.temp', 'ssr-entry.js');
   const { render } = await import(serverEntryPath);
   // 3. 服务端渲染，产出 HTML
-  await renderPage(render, root, clientBundle);
+  try {
+    await renderPage(render, root, clientBundle);
+  } catch (e) {
+    console.log('Render page error.\n', e);
+  }
 }

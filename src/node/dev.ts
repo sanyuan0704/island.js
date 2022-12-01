@@ -11,10 +11,11 @@ export async function createDevServer(
 ) {
   const config = await resolveConfig(root, 'serve', 'development');
   return createServer({
-    root,
     plugins: [
       pluginIndexHtml(),
-      pluginReact(),
+      pluginReact({
+        jsxRuntime: 'automatic'
+      }),
       pluginConfig(config, restartServer)
     ],
     server: {
