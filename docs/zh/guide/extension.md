@@ -7,8 +7,7 @@ Island.js 使用很简单，同时它也是灵活和可扩展的，因为它公�
 作为 Island.js 的构建工具，Vite 也是可扩展的。你可以使用根配置中的 `vite` 字段来自定义 Vite 的行为。例如：
 
 ```ts
-import { defineC
-onfig } from 'islandjs';
+import { defineConfig } from 'islandjs';
 
 export default defineConfig({
   vite: {
