@@ -4,3 +4,9 @@ declare module 'island:site-data' {
   const siteData: UserConfig;
   export default siteData;
 }
+
+
+declare module 'island:routes' {
+  import type { Route } from 'node/plugin-routes';
+  export const routes: Route[];
+}
