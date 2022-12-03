@@ -6,12 +6,13 @@ import fs from 'fs-extra';
 // import ora from 'ora';
 import { pluginConfig } from './plugin-island/config';
 import { SiteConfig } from 'shared/types';
+import pluginReact from '@vitejs/plugin-react';
 
 export async function bundle(root: string, config: SiteConfig) {
   const resolveViteConfig = (isServer: boolean): InlineConfig => ({
     mode: 'production',
     root,
-    plugins: [pluginConfig(config)],
+    plugins: [pluginReact(), pluginConfig(config)],
     ssr: {
       noExternal: ['react-router-dom']
     },

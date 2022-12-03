@@ -15,9 +15,6 @@ export function pluginConfig(
     config() {
       return {
         root: PACKAGE_ROOT,
-        esbuild: {
-          jsx: 'automatic'
-        },
         resolve: {
           alias: {
             '@runtime': join(PACKAGE_ROOT, 'src', 'runtime', 'index.ts')
