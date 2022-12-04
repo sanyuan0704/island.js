@@ -1,4 +1,4 @@
-import { Content } from '@runtime';
+import { Content } from '../../runtime';
 export function Layout() {
   return (
     <div>
