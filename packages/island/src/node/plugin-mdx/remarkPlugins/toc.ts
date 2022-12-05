@@ -12,6 +12,12 @@ interface TocItem {
   depth: number;
 }
 
+interface ChildNode {
+  type: 'link' | 'text' | 'inlineCode';
+  value: string;
+  children?: ChildNode[];
+}
+
 export const remarkPluginToc: Plugin = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return (tree: any) => {
@@ -27,7 +33,13 @@ export const remarkPluginToc: Plugin = () => {
 
       if (node.type === 'heading' && node.depth > 1 && node.depth < 5) {
         const originText = node.children
-          .map((child: { value: string }) => child.value)
+          .map((child: ChildNode) => {
+            if (child.type === 'link') {
+              return child.children?.map((item) => item.value).join('');
+            } else {
+              return child.value;
+            }
+          })
           .join('');
         const id = slugger.slug(originText);
         const depth = node.depth;
