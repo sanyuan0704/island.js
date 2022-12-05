@@ -1,3 +1,12 @@
+## [0.7.20](https://github.com/sanyuan0704/island.js/compare/v0.7.19...v0.7.20) (2022-12-05)
+
+
+### Features
+
+* support inlineCode & link in toc ([7bad736](https://github.com/sanyuan0704/island.js/commit/7bad73660bd6d9c41dc26946c319c455eb75d8b7))
+
+
+
 ## [0.7.19](https://github.com/sanyuan0704/island.js/compare/v0.7.18...v0.7.19) (2022-12-01)
 
 
