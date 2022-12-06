@@ -60,7 +60,7 @@ export function SideBar(props: Props & ComponentPropsWithIsland) {
       newCollapseList[index] = !newCollapseList[index];
       setCollapseList(newCollapseList);
     };
-    const collapsibleIcon = (item.collapsible || collapsed) && (
+    const collapsableIcon = (item.collapsable || collapsed) && (
       <div
         className="i-carbon-chevron-right"
         onClick={toggleCollapse}
@@ -82,7 +82,7 @@ export function SideBar(props: Props & ComponentPropsWithIsland) {
           <h2 m="t-3 b-2" text="1rem text-1" font="bold">
             {item.text}
           </h2>
-          {collapsibleIcon}
+          {collapsableIcon}
         </div>
         <div
           mb="1.4 sm:1"
