@@ -1,4 +1,4 @@
-import { defineConfig } from 'islandjs';
+import { defineConfig, DefaultTheme } from 'islandjs';
 import { pluginCheckLinks } from '@islandjs/plugin-check-links';
 import { createRequire } from 'module';
 
@@ -76,7 +76,6 @@ export default defineConfig({
         content: 'https://discord.gg/Nvy4YSerjM'
       }
     ],
-
     footer: {
       message: 'Released under the MIT License.',
       copyright: 'Copyright © 2022-present Xingyuan Yang'
@@ -84,7 +83,7 @@ export default defineConfig({
   }
 });
 
-function getSidebar(lang: 'zh' | 'en') {
+function getSidebar(lang: 'zh' | 'en'): DefaultTheme.Sidebar {
   const { getLink, getText } = getI18nHelper(lang);
 
   return {
