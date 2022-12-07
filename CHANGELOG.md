@@ -16,6 +16,15 @@
 
 
 
+## [0.7.21](https://github.com/sanyuan0704/island.js/compare/v0.7.20...v0.7.21) (2022-12-07)
+
+
+### Features
+
+* add transition for collapsible sidebar ([ba0d095](https://github.com/sanyuan0704/island.js/commit/ba0d09568d39ed5f5ddff5255754b44450c3b1d1))
+
+
+
 ## [0.7.20](https://github.com/sanyuan0704/island.js/compare/v0.7.19...v0.7.20) (2022-12-05)
 
 

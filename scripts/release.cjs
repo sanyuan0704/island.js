@@ -206,7 +206,9 @@ async function publishPackage(pkgName, version, runIfNotDry) {
   step(`Publishing ${pkgName}...`);
   try {
     await runIfNotDry(
-      'pnpm',
+      // note: use of yarn is intentional here as we rely on its publishing
+      // behavior.
+      'yarn',
       [
         'publish',
         '--new-version',
