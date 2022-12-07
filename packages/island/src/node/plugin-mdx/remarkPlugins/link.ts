@@ -4,6 +4,11 @@ import path from 'path';
 import { isProduction } from '../../constants';
 import { parseUrl } from '../../utils';
 
+interface LinkNode {
+  type: string;
+  url?: string;
+}
+
 /**
  * Remark plugin to normalize a link href
  */
@@ -14,11 +19,13 @@ export const remarkPluginNormalizeLink: Plugin<
   (tree) => {
     visit(
       tree,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (node: any) => node.type === 'link',
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (node: any) => {
-        if (node.url.startsWith('http') || node.url.startsWith('#')) {
+      (node: LinkNode) => node.type === 'link',
+      (node: LinkNode) => {
+        if (
+          !node.url ||
+          node.url.startsWith('http') ||
+          node.url.startsWith('#')
+        ) {
           return;
         }
         // eslint-disable-next-line prefer-const

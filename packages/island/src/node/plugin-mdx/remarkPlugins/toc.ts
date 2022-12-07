@@ -1,8 +1,9 @@
 import type { Plugin } from 'unified';
 import { visitChildren } from 'unist-util-visit-children';
-import type { MdxjsEsm, Program } from 'mdast-util-mdxjs-esm';
 import { parse } from 'acorn';
 import Slugger from 'github-slugger';
+import type { Root } from 'hast';
+import type { MdxjsEsm, Program } from 'mdast-util-mdxjs-esm';
 
 const slugger = new Slugger();
 
@@ -18,20 +19,27 @@ interface ChildNode {
   children?: ChildNode[];
 }
 
-export const remarkPluginToc: Plugin = () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return (tree: any) => {
+interface Heading {
+  type: string;
+  depth?: number;
+  children?: ChildNode[];
+}
+
+export const remarkPluginToc: Plugin<[], Root> = () => {
+  return (tree: Root) => {
     const toc: TocItem[] = [];
     let title = '';
     slugger.reset();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    visitChildren((node: any) => {
+    visitChildren((node: Heading) => {
+      if (node.type !== 'heading' || !node.depth || !node.children) {
+        return;
+      }
       // Collect h2 ~ h5
-      if (node.type === 'heading' && node.depth === 1) {
+      if (node.depth === 1) {
         title = node.children[0].value;
       }
 
-      if (node.type === 'heading' && node.depth > 1 && node.depth < 5) {
+      if (node.depth > 1 && node.depth < 5) {
         const originText = node.children
           .map((child: ChildNode) => {
             if (child.type === 'link') {
