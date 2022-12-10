@@ -30,6 +30,7 @@
     "@commitlint/config-conventional": "^17.2.0",
     "@playwright/test": "1.26.1",
     "@types/fs-extra": "^9.0.13",
+    "@types/hast": "^2.3.4",
     "@types/node": "^18.11.7",
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",
@@ -43,6 +44,7 @@
     "eslint-plugin-react": "^7.31.10",
     "eslint-plugin-react-hooks": "^4.6.0",
     "execa": "5.1.1",
+    "hast": "^1.0.0",
     "husky": "^8.0.2",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
@@ -56,6 +58,7 @@
     "tsx": "^3.12.1",
     "typescript": "^4.8.4",
     "unified": "^10.1.2",
+    "unist-util-visit": "^4.1.1",
     "vitest": "^0.25.2"
   },
   "dependencies": {
