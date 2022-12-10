@@ -28,21 +28,12 @@ A note[^1]
 
 - [ ] to do
 - [x] done
-- [ ] to do
-- [x] done
-- [x] done
-- [x] done
-- [x] done
-- [x] done
-- [x] done
-- [x] done
-- [x] done
-- [x] done
-- [x] done
-- [x] done
-- [x] done
-- [x] done
-- [x] done
-- [x] done
-- [x] done
-- [x] done
+
+```ts
+import { Plugin } from 'vite';
+import { pluginMdxRollup } from './pluginMdxRollup';
+
+export async function pluginMdx(): Promise<Plugin[]> {
+  return [await pluginMdxRollup()];
+}
+```
