@@ -7,7 +7,7 @@ export const cleanUrl = (url: string): string =>
 export const inBrowser = () => typeof window !== 'undefined';
 
 export function addLeadingSlash(url: string) {
-  return url.charAt(0) === '/' ? url : '/' + url;
+  return url.charAt(0) === '/' || url.startsWith('https') ? url : '/' + url;
 }
 
 export function removeTrailingSlash(url: string) {
