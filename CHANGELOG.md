@@ -1,3 +1,12 @@
+## [0.7.22](https://github.com/sanyuan0704/island.js/compare/v0.7.21...v0.7.22) (2022-12-10)
+
+
+### Bug Fixes
+
+* home jump to github ([#157](https://github.com/sanyuan0704/island.js/issues/157)) ([5d8d3de](https://github.com/sanyuan0704/island.js/commit/5d8d3deae23ef7c1dcfe555f1120a0cf47568844))
+
+
+
 ## [0.7.21](https://github.com/sanyuan0704/island.js/compare/v0.7.20...v0.7.21) (2022-12-07)
 
 
