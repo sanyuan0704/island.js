@@ -246,3 +246,20 @@ export default defineConfig({
 });
 ```
 
+## babel
+
+You can use this option to add some babel options, such as babel plugins. For example:
+
+```js
+import { defineConfig } from 'islandjs';
+
+export default defineConfig({
+  babel: {
+    plugins: [
+      // ...
+    ]
+  }
+});
+```
+
+The config will be merged into the default babel config in [`@vitejs/plugin-react`](https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react), which is internally used by `Island.js`.

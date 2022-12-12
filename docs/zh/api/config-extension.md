@@ -252,3 +252,21 @@ export default defineConfig({
   }
 });
 ```
+
+## babel
+
+你可以通过 `babel` 字段配置 babel 相关的选项，控制 JS(X)/TS(X) 的编译行为。比如：
+
+```js
+import { defineConfig } from 'islandjs';
+
+export default defineConfig({
+  babel: {
+    plugins: [
+      // ...
+    ]
+  }
+});
+```
+
+你传入的 babel 配置会被合并到默认的 [`@vitejs/plugin-react`](https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react) 的 babel 配置中

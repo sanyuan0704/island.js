@@ -33,9 +33,10 @@ export function pluginIslandTransform(
                 runtime: 'automatic',
                 importSource: isServer ? ISLAND_JSX_RUNTIME_PATH : 'react'
               }
-            ]
+            ],
+            ...(config.babel?.presets || [])
           ],
-          plugins: [babelPluginIsland]
+          plugins: [babelPluginIsland, ...(config.babel?.plugins || [])]
         });
         return {
           code: result?.code || code,

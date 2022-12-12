@@ -36,8 +36,12 @@ export async function createVitePlugins(
           jsxImportSource:
             isServer && !config.enableSpa ? ISLAND_JSX_RUNTIME_PATH : 'react',
           babel: {
+            ...(config.babel || {}),
             // Babel plugin for island(mpa) mode
-            plugins: [...(config.enableSpa ? [] : [babelPluginIsland])]
+            plugins: [
+              ...(config.enableSpa ? [] : [babelPluginIsland]),
+              ...(config.babel?.plugins || [])
+            ]
           }
         }),
     // Svg component support
