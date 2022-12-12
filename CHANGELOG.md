@@ -1,3 +1,12 @@
+## [0.7.23](https://github.com/sanyuan0704/island.js/compare/v0.7.22...v0.7.23) (2022-12-12)
+
+
+### Features
+
+* support custom babel options ([af54cb5](https://github.com/sanyuan0704/island.js/commit/af54cb5275ed95e45940d7f16b11e5d471746959))
+
+
+
 ## [0.7.22](https://github.com/sanyuan0704/island.js/compare/v0.7.21...v0.7.22) (2022-12-10)
 
 
