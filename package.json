@@ -22,7 +22,7 @@
   "license": "ISC",
   "lint-staged": {
     "**/*.{js,jsx,tsx,ts}": [
-      "npm run lint"
+      "eslint --fix --quiet"
     ]
   },
   "devDependencies": {
