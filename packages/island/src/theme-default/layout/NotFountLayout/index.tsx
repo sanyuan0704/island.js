@@ -1,7 +1,4 @@
-import { usePageData } from '@runtime';
-
 export function NotFoundLayout() {
-  const { siteData } = usePageData();
   return (
     <div
       m="auto t-50"
@@ -32,7 +29,7 @@ export function NotFoundLayout() {
           font-medium=""
           transition="border-color duration-300 color duration-300"
           hover="border-color-brand-dark color-brand-dark"
-          href={siteData.base}
+          href="/"
           aria-label="go to home"
         >
           Take me home
