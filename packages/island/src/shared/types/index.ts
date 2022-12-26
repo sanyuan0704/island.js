@@ -3,6 +3,7 @@ import { UserConfig as ViteConfiguration } from 'vite';
 import { DefaultTheme } from './default-theme';
 import type { PluggableList } from 'unified';
 import { IslandPlugin } from './Plugin';
+import { BabelOptions } from '@vitejs/plugin-react';
 
 export { DefaultTheme } from './default-theme';
 
@@ -94,6 +95,10 @@ export interface UserConfig<ThemeConfig = unknown> {
    * Island plugins
    */
   plugins?: IslandPlugin[];
+  /**
+   * Babel plugins which will be applied to @vitejs/plugin-react
+   */
+  babel?: BabelOptions;
 }
 
 export interface SiteData<ThemeConfig = unknown> {

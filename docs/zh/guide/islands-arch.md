@@ -42,7 +42,7 @@ export function Layout() {
 - `Client hydration bundle`，用于客户端 hydration。
 - `Islands bundle`，用于注册孤岛组件的客户端脚本，所有孤岛组件将会挂载在 `window` 对象上。
 
-在 Island.js 中，收集完所有的孤岛组件后，会构造一个虚拟模块，作用是将将所有的孤岛组件注册到 window 对象上，因此在客户端 hydration bundle 中，我们可以从 window 对象上获取到所有的孤岛组件，然后对其进行 hydration。
+在 Island.js 中，收集完所有的孤岛组件后，会构造一个虚拟模块，作用是将所有的孤岛组件注册到 window 对象上，因此在客户端 hydration bundle 中，我们可以从 window 对象上获取到所有的孤岛组件，然后对其进行 hydration。
 
 **3. Client runtime**。客户端运行时主要是负责孤岛组件的 hydration，也就是将孤岛组件变得可以交互。
 

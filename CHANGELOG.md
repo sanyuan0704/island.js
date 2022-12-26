@@ -1,3 +1,57 @@
+## [0.7.23](https://github.com/sanyuan0704/island.js/compare/v0.7.22...v0.7.23) (2022-12-12)
+
+
+### Features
+
+* support custom babel options ([af54cb5](https://github.com/sanyuan0704/island.js/commit/af54cb5275ed95e45940d7f16b11e5d471746959))
+
+
+
+## [0.7.22](https://github.com/sanyuan0704/island.js/compare/v0.7.21...v0.7.22) (2022-12-10)
+
+
+### Bug Fixes
+
+* home jump to github ([#157](https://github.com/sanyuan0704/island.js/issues/157)) ([5d8d3de](https://github.com/sanyuan0704/island.js/commit/5d8d3deae23ef7c1dcfe555f1120a0cf47568844))
+
+
+
+## [0.7.21](https://github.com/sanyuan0704/island.js/compare/v0.7.20...v0.7.21) (2022-12-07)
+
+
+### Features
+
+* add transition for collapsible sidebar ([ba0d095](https://github.com/sanyuan0704/island.js/commit/ba0d09568d39ed5f5ddff5255754b44450c3b1d1))
+
+
+
+## [0.7.21](https://github.com/sanyuan0704/island.js/compare/v0.7.20...v0.7.21) (2022-12-07)
+
+
+### Features
+
+* add transition for collapsible sidebar ([ba0d095](https://github.com/sanyuan0704/island.js/commit/ba0d09568d39ed5f5ddff5255754b44450c3b1d1))
+
+
+
+## [0.7.21](https://github.com/sanyuan0704/island.js/compare/v0.7.20...v0.7.21) (2022-12-07)
+
+
+### Features
+
+* add transition for collapsible sidebar ([ba0d095](https://github.com/sanyuan0704/island.js/commit/ba0d09568d39ed5f5ddff5255754b44450c3b1d1))
+
+
+
+## [0.7.20](https://github.com/sanyuan0704/island.js/compare/v0.7.19...v0.7.20) (2022-12-05)
+
+
+### Features
+
+* support inlineCode & link in toc ([7bad736](https://github.com/sanyuan0704/island.js/commit/7bad73660bd6d9c41dc26946c319c455eb75d8b7))
+
+
+
 ## [0.7.19](https://github.com/sanyuan0704/island.js/compare/v0.7.18...v0.7.19) (2022-12-01)
 
 

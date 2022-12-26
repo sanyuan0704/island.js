@@ -1,6 +1,6 @@
 import type { PlaywrightTestConfig } from '@playwright/test';
 
-const siteUrl = 'http://localhost:5173/';
+const siteUrl = 'http://localhost:1234/';
 
 const config: PlaywrightTestConfig = {
   testDir: './packages/island/src/node/__tests__/e2e',

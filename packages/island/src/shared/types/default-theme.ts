@@ -141,7 +141,7 @@ export namespace DefaultTheme {
     text?: string;
     items: SidebarItem[];
     collapsed?: boolean;
-    collapsible?: boolean;
+    collapsable?: boolean;
   }
 
   export type SidebarItem =

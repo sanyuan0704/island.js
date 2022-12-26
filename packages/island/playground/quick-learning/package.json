@@ -7,7 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "dev": "island dev docs",
+    "dev": "island dev docs --port=1234",
     "build": "island build docs",
     "preview": "island start docs"
   },

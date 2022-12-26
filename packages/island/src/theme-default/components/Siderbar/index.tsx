@@ -60,22 +60,17 @@ export function SideBar(props: Props & ComponentPropsWithIsland) {
       newCollapseList[index] = !newCollapseList[index];
       setCollapseList(newCollapseList);
     };
-    const collapsibleIcon =
-      item.collapsible || collapsed ? (
-        collapsed ? (
-          <div
-            className="i-carbon-chevron-right"
-            onClick={toggleCollapse}
-            cursor-pointer="~"
-          ></div>
-        ) : (
-          <div
-            className="i-carbon-chevron-down"
-            cursor-pointer="~"
-            onClick={toggleCollapse}
-          ></div>
-        )
-      ) : null;
+    const collapsableIcon = (item.collapsable || collapsed) && (
+      <div
+        className="i-carbon-chevron-right"
+        onClick={toggleCollapse}
+        cursor-pointer="~"
+        style={{
+          transition: 'transform 0.2s ease-out',
+          transform: collapsed ? 'rotate(0deg)' : 'rotate(90deg)'
+        }}
+      ></div>
+    );
     return (
       <section key={item.text} block="~" not-first="divider-top mt-4">
         <div
@@ -87,13 +82,14 @@ export function SideBar(props: Props & ComponentPropsWithIsland) {
           <h2 m="t-3 b-2" text="1rem text-1" font="bold">
             {item.text}
           </h2>
-          {collapsibleIcon}
+          {collapsableIcon}
         </div>
         <div
           mb="1.4 sm:1"
           style={{
-            height: collapsed ? 0 : 'auto',
-            display: collapsed ? 'none' : 'block'
+            transition: 'height 0.2s ease-out',
+            height: collapsed ? 0 : `${(item?.items.length || 0) * 28}px`,
+            overflow: 'hidden'
           }}
         >
           {item?.items?.map((item) => (
