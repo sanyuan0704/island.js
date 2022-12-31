@@ -14,7 +14,7 @@ export async function bundle(root: string, config: SiteConfig) {
   ): Promise<InlineConfig> => ({
     mode: 'production',
     root,
-    plugins: await createVitePlugins(config, undefined, true),
+    plugins: await createVitePlugins(config, undefined, isServer),
     ssr: {
       noExternal: ['react-router-dom']
     },
