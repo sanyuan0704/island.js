@@ -30,7 +30,7 @@ export function APILayout() {
       );
       return {
         ...item,
-        headers: (pageModule?.toc as Header[]).filter(
+        headers: (pageModule?.toc as Header[] | undefined)?.filter(
           (header) => header.depth === 2
         )
       };
