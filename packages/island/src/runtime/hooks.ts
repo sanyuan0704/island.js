@@ -4,6 +4,7 @@ import { inBrowser, addLeadingSlash, normalizeSlash } from '../shared/utils';
 import { routes } from 'virtual:routes';
 import { Route } from 'node/plugin-routes';
 import baseUrl from 'island:base';
+import { EXTERNAL_URL_RE } from '@shared/constants';
 
 // Type shim for window.ISLANDS
 declare global {
@@ -48,6 +49,9 @@ export const getAllPages = (
 };
 
 export function withBase(url = '/'): string {
+  if (EXTERNAL_URL_RE.test(url)) {
+    return url;
+  }
   const normalizedBase = normalizeSlash(baseUrl);
   const normalizedUrl = addLeadingSlash(url);
   return `${normalizedBase}${normalizedUrl}`;

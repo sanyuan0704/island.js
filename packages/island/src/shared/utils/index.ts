@@ -1,3 +1,5 @@
+import { EXTERNAL_URL_RE } from '@shared/constants';
+
 export const queryRE = /\?.*$/s;
 export const hashRE = /#.*$/s;
 
@@ -19,6 +21,9 @@ export function normalizeSlash(url: string) {
 }
 
 export function withBase(url: string, base: string) {
+  if (EXTERNAL_URL_RE.test(url)) {
+    return url;
+  }
   const normalizedBase = normalizeSlash(base);
   const normalizedUrl = addLeadingSlash(url);
   return normalizedBase ? `${normalizedBase}${normalizedUrl}` : normalizedUrl;

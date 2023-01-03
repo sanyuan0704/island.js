@@ -1,8 +1,7 @@
 import styles from './index.module.scss';
 import { SideBar } from '../Siderbar';
 import { Fragment, useState } from 'react';
-import { ComponentPropsWithIsland } from '../@shared/types';
-import { DefaultTheme } from '../@shared/types';
+import { ComponentPropsWithIsland, DefaultTheme } from '@shared/types';
 
 interface Props {
   pathname: string;
@@ -30,7 +29,6 @@ export function SideMenu(_props: ComponentPropsWithIsland & Props) {
         </button>
       </div>
       <SideBar
-        __island
         langRoutePrefix={langRoutePrefix}
         pathname={pathname}
         sidebarData={sidebarData}

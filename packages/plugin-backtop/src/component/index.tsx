@@ -59,7 +59,7 @@ export function BackTop({
 
   return backTopEnabled && visible ? (
     <div
-      className="fixed bottom-10 right-30 z-10"
+      className="fixed bottom-10 right-20 z-10"
       display="none md:block"
       onClick={scrollToTop}
     >

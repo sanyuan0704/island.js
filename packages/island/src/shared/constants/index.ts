@@ -5,3 +5,5 @@ export const TARGET_BLANK_WHITE_LIST = [
   'https://island.sanyuan0704.top',
   'https://islandjs.dev'
 ];
+
+export const EXTERNAL_URL_RE = /^(https?:)?\/\//;

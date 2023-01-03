@@ -4,14 +4,13 @@ import { Link as RouterLink } from 'react-router-dom';
 import { withBase } from '@runtime';
 import { TARGET_BLANK_WHITE_LIST } from '@shared/constants';
 import { inBrowser } from '@shared/utils';
+import { EXTERNAL_URL_RE } from '@shared/constants';
 
 export interface LinkProps {
   href?: string;
   children?: React.ReactNode;
   className?: string;
 }
-
-const EXTERNAL_URL_RE = /^(https?:)?\/\//;
 
 export function Link(props: LinkProps) {
   const { href = '/', children, className = '' } = props;
