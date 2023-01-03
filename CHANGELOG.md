@@ -1,3 +1,7 @@
+## [0.7.24](https://github.com/sanyuan0704/island.js/compare/v0.7.23...v0.7.24) (2023-01-03)
+
+
+
 ## [0.7.23](https://github.com/sanyuan0704/island.js/compare/v0.7.22...v0.7.23) (2022-12-12)
 
 
