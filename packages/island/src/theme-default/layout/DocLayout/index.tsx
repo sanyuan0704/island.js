@@ -6,6 +6,7 @@ import { useHeaders, useLocaleSiteData, useSidebarData } from '../../logic';
 import { SideMenu } from '../../components/LocalSideBar';
 import { normalizeSlash } from '@runtime';
 import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export interface DocLayoutProps {
   beforeDocFooter?: React.ReactNode;
@@ -19,7 +20,7 @@ export function DocLayout(props: DocLayoutProps) {
   const { beforeDocFooter, beforeDoc, afterDoc, beforeOutline, afterOutline } =
     props;
   const { toc = [], siteData, pagePath, frontmatter } = usePageData();
-  const [headers] = useHeaders(toc, pagePath);
+  const [headers, setHeaders] = useHeaders(toc, pagePath);
   const themeConfig = siteData.themeConfig;
   const localesData = useLocaleSiteData();
   const sidebar = localesData.sidebar || [];
@@ -41,6 +42,13 @@ export function DocLayout(props: DocLayoutProps) {
     (frontmatter?.outline ?? themeConfig?.outline ?? true);
   const isDisableLineNumbers =
     frontmatter?.lineNumbers === undefined ? false : !frontmatter.lineNumbers;
+
+  if (import.meta.env.ENABLE_SPA) {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useEffect(() => {
+      setHeaders(toc);
+    }, [setHeaders, toc]);
+  }
 
   return (
     <div p="t-0 x-6 b-24 sm:6" className={styles.docLayout}>

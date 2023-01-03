@@ -31,10 +31,10 @@ export function Aside(
       return unbinding;
     }, [headers]);
   }
-
   useEffect(() => {
+    console.log(props.headers);
     setHeaders(props.headers);
-  }, [props.headers, setHeaders]);
+  }, [props.headers, setHeaders, props.pagePath]);
 
   const renderHeader = (header: Header) => {
     return (

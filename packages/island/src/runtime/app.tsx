@@ -6,7 +6,7 @@ import { Route } from '../node/plugin-routes';
 import { getRelativePagePath, omit } from './utils';
 import { PageData } from '../shared/types';
 import { HelmetProvider } from 'react-helmet-async';
-import { useContext, useLayoutEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { DataContext } from '@runtime';
 import { cleanUrl } from '../shared/utils';
 
@@ -77,7 +77,7 @@ export function App({ helmetContext }: { helmetContext?: object }) {
   const { pathname } = useLocation();
   const { setData: setPageData } = useContext(DataContext);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     async function refetchData() {
       try {
         const pageData = await waitForApp(pathname);
