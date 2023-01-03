@@ -13,20 +13,6 @@
   outline: none;
 }
 
-.island-doc h1::before,
-.island-doc h2::before,
-.island-doc h3::before,
-.island-doc h4::before,
-.island-doc h5::before,
-.island-doc h6::before {
-  display: block;
-  content: '';
-  margin-top: -56px;
-  height: 56px;
-  visibility: hidden;
-  pointer-events: none;
-}
-
 .island-doc h1 {
   letter-spacing: -0.02em;
   line-height: 40px;

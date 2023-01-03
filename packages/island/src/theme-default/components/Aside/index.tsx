@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { ComponentPropsWithIsland, Header } from 'shared/types/index';
-import { bindingAsideScroll, useHeaders } from '../../logic';
+import { bindingAsideScroll, useHeaders, scrollToTarget } from '../../logic';
 
 export function Aside(
   props: ComponentPropsWithIsland<{
@@ -23,6 +23,10 @@ export function Aside(
       const unbinding = bindingAsideScroll();
       if (!window.location.hash) {
         window.scrollTo(0, 0);
+      } else {
+        const headerId = window.location.hash.slice(1);
+        const target = document.getElementById(headerId);
+        target && scrollToTarget(target, false);
       }
       return unbinding;
     }, [headers]);
@@ -45,6 +49,11 @@ export function Aside(
           transition="color duration-300"
           style={{
             paddingLeft: (header.depth - 2) * 12
+          }}
+          onClick={(e) => {
+            e.preventDefault();
+            const target = document.getElementById(header.id);
+            target && scrollToTarget(target, false);
           }}
         >
           {header.text}

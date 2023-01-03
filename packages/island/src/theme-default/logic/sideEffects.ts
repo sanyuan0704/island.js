@@ -1,51 +1,42 @@
 import { throttle } from 'lodash-es';
-import { inBrowser } from '@shared/utils';
 import { setupCopyCodeButton } from './copyCode';
-import mediumZoom from 'medium-zoom';
+import { inBrowser } from '../../shared/utils';
 
-const DEFAULT_NAV_HEIGHT = 60;
+const DEFAULT_NAV_HEIGHT = 56;
+
+export function scrollToTarget(target: HTMLElement, isSmooth: boolean) {
+  const targetPadding = parseInt(
+    window.getComputedStyle(target).paddingTop,
+    10
+  );
+
+  const targetTop =
+    window.scrollY +
+    target.getBoundingClientRect().top -
+    DEFAULT_NAV_HEIGHT +
+    targetPadding;
+  // Only scroll smoothly in page header anchor
+  window.scrollTo({
+    left: 0,
+    top: targetTop,
+    ...(isSmooth ? { behavior: 'smooth' } : {})
+  });
+}
 
 // Control the scroll behavior of the browser when user clicks on a link
 function bindingWindowScroll() {
   // Initial scroll position
-  if (import.meta.env.DEV && !import.meta.env.SSR) {
-    const hash = window.location.hash;
-    if (hash) {
-      const element = document.getElementById(hash.slice(1));
-      const link = element?.getElementsByTagName('a')[0];
-      if (link) {
-        scrollTo(link, hash);
-      }
-    }
-  }
-  // eslint-disable-next-line no-inner-declarations
   function scrollTo(el: HTMLElement, hash: string, isSmooth = false) {
     let target: HTMLElement | null = null;
     try {
       target = el.classList.contains('header-anchor')
         ? el
         : document.getElementById(decodeURIComponent(hash.slice(1)));
-      target;
     } catch (e) {
       console.warn(e);
     }
     if (target) {
-      const targetPadding = parseInt(
-        window.getComputedStyle(target).paddingTop,
-        10
-      );
-
-      const targetTop =
-        window.scrollY +
-        target.getBoundingClientRect().top -
-        DEFAULT_NAV_HEIGHT +
-        targetPadding;
-      // Only scroll smoothly in page header anchor
-      window.scrollTo({
-        left: 0,
-        top: targetTop,
-        ...(isSmooth ? { behavior: 'smooth' } : {})
-      });
+      scrollToTarget(target, isSmooth);
     }
   }
 
@@ -92,12 +83,17 @@ export function bindingAsideScroll() {
       document.documentElement.scrollHeight
     );
   }
-  const NAV_HEIGHT = 60;
+  const NAV_HEIGHT = 56;
   const marker = document.getElementById('aside-marker');
   const aside = document.getElementById('aside-container');
-  const links = document.querySelectorAll<HTMLAnchorElement>(
-    '.island-doc .header-anchor'
-  );
+  const links = Array.from(
+    document.querySelectorAll<HTMLAnchorElement>('.island-doc .header-anchor')
+  ).filter((item) => item.parentElement?.tagName !== 'H1');
+
+  if (!aside || !links.length) {
+    return;
+  }
+
   let prevActiveLink: null | HTMLAnchorElement = null;
   const headers = Array.from(aside?.getElementsByTagName('a') || []).map(
     (item) => decodeURIComponent(item.hash)
@@ -107,7 +103,7 @@ export function bindingAsideScroll() {
     return;
   }
   // Util function to set dom ref after determining the active link
-  const activate = (links: NodeListOf<HTMLAnchorElement>, index: number) => {
+  const activate = (links: HTMLAnchorElement[], index: number) => {
     if (prevActiveLink) {
       prevActiveLink.classList.remove('aside-active');
     }
@@ -137,8 +133,9 @@ export function bindingAsideScroll() {
         const scrollTop = window.scrollY;
         const currentAnchorTop =
           currentAnchor.parentElement!.offsetTop - NAV_HEIGHT;
-        if (i === 0 && scrollTop === 0) {
+        if ((i === 0 && scrollTop < currentAnchorTop) || scrollTop === 0) {
           activate(links, 0);
+          break;
         }
 
         if (!nextAnchor) {
@@ -155,33 +152,20 @@ export function bindingAsideScroll() {
       }
     }
   };
-  const throttledSetLink = throttle(setActiveLink, 100);
-  requestAnimationFrame(setActiveLink);
+  const throttledSetLink = throttle(setActiveLink, 200);
 
   window.addEventListener('scroll', throttledSetLink);
 
+  // eslint-disable-next-line consistent-return
   return () => {
     window.removeEventListener('scroll', throttledSetLink);
   };
-}
-
-function bindingImagePreview() {
-  const imageList = document.querySelectorAll<HTMLImageElement>('img');
-  mediumZoom(imageList, {
-    margin: 100,
-    background: 'rgba(0, 0, 0, 0.7)'
-  });
 }
 
 export function setup() {
   if (!inBrowser()) {
     return;
   }
-  // In spa, we set the logic in useEffect instead here because the event should be rebind when the page is changed
-  if (!import.meta.env.DEV && !import.meta.env.ENABLE_SPA) {
-    bindingAsideScroll();
-  }
   bindingWindowScroll();
   setupCopyCodeButton();
-  bindingImagePreview();
 }
