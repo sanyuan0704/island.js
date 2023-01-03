@@ -9,6 +9,7 @@ import { DocLayoutProps } from '../DocLayout/index';
 import { HomeLayoutProps } from '../HomeLayout/index';
 import type { NavProps } from '../../components/Nav/index';
 import { BackTop } from '@back-top';
+import 'nprogress/nprogress.css';
 import 'virtual:custom-styles';
 
 export type LayoutProps = {

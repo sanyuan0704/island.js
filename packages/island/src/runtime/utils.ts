@@ -49,4 +49,8 @@ export function normalizeHref(url?: string) {
   return addLeadingSlash(`${url}${suffix}`);
 }
 
+export function normalizeRoutePath(routePath: string) {
+  return routePath.replace(/\.html$/, '').replace(/\/index$/, '/');
+}
+
 export { addLeadingSlash, removeTrailingSlash, normalizeSlash };

@@ -32,7 +32,6 @@ export function Aside(
     }, [headers]);
   }
   useEffect(() => {
-    console.log(props.headers);
     setHeaders(props.headers);
   }, [props.headers, setHeaders, props.pagePath]);
 

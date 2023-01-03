@@ -1,16 +1,24 @@
 import React from 'react';
 import styles from './index.module.scss';
-import { Link as RouterLink } from 'react-router-dom';
-import { withBase } from '@runtime';
+import {
+  matchRoutes,
+  normalizeRoutePath,
+  useNavigate,
+  withBase
+} from '@runtime';
 import { TARGET_BLANK_WHITE_LIST } from '@shared/constants';
-import { inBrowser } from '@shared/utils';
 import { EXTERNAL_URL_RE } from '@shared/constants';
+import nprogress from 'nprogress';
+import { routes } from 'virtual:routes';
+import { Route } from 'node/plugin-routes';
 
 export interface LinkProps {
   href?: string;
   children?: React.ReactNode;
   className?: string;
 }
+
+nprogress.configure({ showSpinner: false });
 
 export function Link(props: LinkProps) {
   const { href = '/', children, className = '' } = props;
@@ -20,19 +28,35 @@ export function Link(props: LinkProps) {
   );
   const target = isExternal && !isWhiteList ? '_blank' : '';
   const rel = isExternal ? 'noopener noreferrer' : undefined;
-  const pathname = inBrowser() ? window.location.pathname : '';
   const withBaseUrl = isExternal ? href : withBase(href);
+  const navigate = useNavigate();
+
+  const handleNavigate = async (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+    const matchedRoutes = matchRoutes(routes, normalizeRoutePath(withBaseUrl));
+    if (matchedRoutes?.length) {
+      const timer = setTimeout(() => {
+        nprogress.start();
+      }, 200);
+      await (matchedRoutes[0].route as Route).preload();
+      clearTimeout(timer);
+      nprogress.done();
+    }
+    navigate(withBaseUrl, { replace: false });
+  };
   if (import.meta.env.ENABLE_SPA && !isExternal) {
     return (
-      <RouterLink
+      <a
         className={`${styles.link} ${className}`}
-        to={withBaseUrl}
         rel={rel}
         target={target}
-        state={{ from: pathname }}
+        onClick={handleNavigate}
+        cursor="pointer"
       >
         {children}
-      </RouterLink>
+      </a>
     );
   } else {
     return (
