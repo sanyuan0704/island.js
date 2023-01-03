@@ -16,7 +16,6 @@ function getI18nHelper(lang: 'zh' | 'en') {
 export default defineConfig({
   lang: 'en-US',
   title: 'Island.js',
-  base: '/modern/',
   icon: '/island.png',
   vite: {
     // custom config for vite
