@@ -1,3 +1,20 @@
+## [0.7.26](https://github.com/sanyuan0704/island.js/compare/v0.7.25...v0.7.26) (2023-01-03)
+
+
+### Bug Fixes
+
+* cannot click the link before title ([e833b03](https://github.com/sanyuan0704/island.js/commit/e833b038361566352068157d4756627acb6f6389))
+* doc base ([23e467b](https://github.com/sanyuan0704/island.js/commit/23e467b31e1c26b6eafb0b5c5db08c42e4811f9a))
+* header cannot update in spa mode ([ed8f445](https://github.com/sanyuan0704/island.js/commit/ed8f445938916de7b0d2962872b4bab56bc48294))
+* island mode crash in production ([e80e2a1](https://github.com/sanyuan0704/island.js/commit/e80e2a1ba304ada338280d7ac6005737e071422a))
+
+
+### Features
+
+* optimize link component ([1625802](https://github.com/sanyuan0704/island.js/commit/1625802d0cb108ac154da0240cbcb6377bfbeaa2))
+
+
+
 ## [0.7.25](https://github.com/sanyuan0704/island.js/compare/v0.7.23...v0.7.25) (2023-01-03)
 
 
