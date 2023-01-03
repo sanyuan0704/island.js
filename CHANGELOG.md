@@ -1,3 +1,12 @@
+## [0.7.25](https://github.com/sanyuan0704/island.js/compare/v0.7.23...v0.7.25) (2023-01-03)
+
+
+### Bug Fixes
+
+* spa route leave api layout ([#160](https://github.com/sanyuan0704/island.js/issues/160)) ([ab4e79b](https://github.com/sanyuan0704/island.js/commit/ab4e79bcc62796e79213aa3bf00439c0f90d8ab8))
+
+
+
 ## [0.7.24](https://github.com/sanyuan0704/island.js/compare/v0.7.23...v0.7.24) (2023-01-03)
 
 
