@@ -179,7 +179,7 @@ export async function resolveConfig(
     },
     allowDeadLinks: userConfig.allowDeadLinks ?? false,
     siteData: resolveSiteData(userConfig, root),
-    enableSpa: userConfig.enableSpa ?? false,
+    enableSpa: userConfig.enableSpa ?? true,
     route: userConfig.route ?? {},
     markdown: userConfig.markdown ?? {},
     plugins: DEFAULT_PLUGINS.concat(userConfig.plugins || [])

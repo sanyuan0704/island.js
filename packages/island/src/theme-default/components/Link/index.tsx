@@ -9,7 +9,6 @@ import {
 import { TARGET_BLANK_WHITE_LIST } from '@shared/constants';
 import { EXTERNAL_URL_RE } from '@shared/constants';
 import nprogress from 'nprogress';
-import { routes } from 'virtual:routes';
 import { Route } from 'node/plugin-routes';
 
 export interface LinkProps {
@@ -29,24 +28,31 @@ export function Link(props: LinkProps) {
   const target = isExternal && !isWhiteList ? '_blank' : '';
   const rel = isExternal ? 'noopener noreferrer' : undefined;
   const withBaseUrl = isExternal ? href : withBase(href);
-  const navigate = useNavigate();
 
-  const handleNavigate = async (
-    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
-  ) => {
-    e.preventDefault();
-    const matchedRoutes = matchRoutes(routes, normalizeRoutePath(withBaseUrl));
-    if (matchedRoutes?.length) {
-      const timer = setTimeout(() => {
-        nprogress.start();
-      }, 200);
-      await (matchedRoutes[0].route as Route).preload();
-      clearTimeout(timer);
-      nprogress.done();
-    }
-    navigate(withBaseUrl, { replace: false });
-  };
+  // SPA Mode
   if (import.meta.env.ENABLE_SPA && !isExternal) {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const navigate = useNavigate();
+
+    const handleNavigate = async (
+      e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+    ) => {
+      e.preventDefault();
+      const { routes } = await import('virtual:routes');
+      const matchedRoutes = matchRoutes(
+        routes,
+        normalizeRoutePath(withBaseUrl)
+      );
+      if (matchedRoutes?.length) {
+        const timer = setTimeout(() => {
+          nprogress.start();
+        }, 200);
+        await (matchedRoutes[0].route as Route).preload();
+        clearTimeout(timer);
+        nprogress.done();
+      }
+      navigate(withBaseUrl, { replace: false });
+    };
     return (
       <a
         className={`${styles.link} ${className}`}
