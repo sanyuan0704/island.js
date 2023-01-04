@@ -1,3 +1,12 @@
+## [0.7.27](https://github.com/sanyuan0704/island.js/compare/v0.7.26...v0.7.27) (2023-01-04)
+
+
+### Bug Fixes
+
+* prebundle nprogress dep ([5b7e678](https://github.com/sanyuan0704/island.js/commit/5b7e6784c10405ea4bef27ffea60560c1eac6840))
+
+
+
 ## [0.7.26](https://github.com/sanyuan0704/island.js/compare/v0.7.25...v0.7.26) (2023-01-03)
 
 
