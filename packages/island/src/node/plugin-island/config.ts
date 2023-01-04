@@ -66,7 +66,8 @@ export function pluginConfig(
               'lodash-es',
               'copy-to-clipboard',
               'medium-zoom',
-              'body-scroll-lock'
+              'body-scroll-lock',
+              'nprogress'
             ],
             exclude: [
               'islandjs',
