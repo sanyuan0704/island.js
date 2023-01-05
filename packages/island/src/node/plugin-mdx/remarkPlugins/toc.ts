@@ -14,7 +14,7 @@ interface TocItem {
 }
 
 interface ChildNode {
-  type: 'link' | 'text' | 'inlineCode';
+  type: 'link' | 'text' | 'inlineCode' | 'emphasis' | 'strong';
   value: string;
   children?: ChildNode[];
 }
@@ -42,10 +42,21 @@ export const remarkPluginToc: Plugin<[], Root> = () => {
       if (node.depth > 1 && node.depth < 5) {
         const originText = node.children
           .map((child: ChildNode) => {
-            if (child.type === 'link') {
-              return child.children?.map((item) => item.value).join('');
-            } else {
-              return child.value;
+            switch (child.type) {
+              // child with value
+              case 'text':
+              case 'inlineCode':
+                return child.value;
+
+              // child without value, but can get value from children property
+              case 'emphasis':
+              case 'strong':
+              case 'link':
+                return child.children?.map((c) => c.value).join('') || '';
+
+              // child without value and can not get value from children property
+              default:
+                return '';
             }
           })
           .join('');
