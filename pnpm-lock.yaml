@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@commitlint/cli': ^17.2.0
   '@commitlint/config-conventional': ^17.2.0
+  '@iconify-json/carbon': ^1.1.13
   '@loadable/component': ^5.15.2
   '@mdx-js/mdx': ^2.1.5
   '@mdx-js/rollup': 2.1.3
@@ -50,6 +51,7 @@ specifiers:
   remark-rehype: ^10.1.0
   remark-stringify: ^10.0.2
   rollup: ^3.2.3
+  sass: ^1.57.1
   serve: ^14.0.1
   shiki: ^0.11.1
   tsup: ^6.5.0
@@ -62,6 +64,7 @@ specifiers:
   vitest: ^0.25.2
 
 dependencies:
+  '@iconify-json/carbon': 1.1.13
   '@loadable/component': 5.15.2_react@18.2.0
   '@mdx-js/rollup': 2.1.3_rollup@3.2.3
   '@vitejs/plugin-react': registry.npmmirror.com/@vitejs/plugin-react/2.2.0_vite@3.1.4
@@ -81,7 +84,7 @@ dependencies:
   remark-mdx-frontmatter: 2.1.1
   shiki: 0.11.1
   unocss: 0.48.0_rollup@3.2.3+vite@3.1.4
-  vite: 3.1.4
+  vite: 3.1.4_sass@1.57.1
 
 devDependencies:
   '@commitlint/cli': registry.npmmirror.com/@commitlint/cli/17.2.0
@@ -116,13 +119,14 @@ devDependencies:
   remark-rehype: 10.1.0
   remark-stringify: 10.0.2
   rollup: registry.npmmirror.com/rollup/3.2.3
+  sass: 1.57.1
   serve: registry.npmmirror.com/serve/14.0.1
   tsup: registry.npmmirror.com/tsup/6.5.0_typescript@4.8.4
   tsx: registry.npmmirror.com/tsx/3.12.1
   typescript: registry.npmmirror.com/typescript/4.8.4
   unified: 10.1.2
   unist-util-visit: 4.1.1
-  vitest: registry.npmmirror.com/vitest/0.25.2_@vitest+ui@0.25.2
+  vitest: registry.npmmirror.com/vitest/0.25.2_32gh2zcpukhblhn23iosdzyuvy
 
 packages:
 
@@ -171,6 +175,12 @@ packages:
     os: [linux]
     requiresBuild: true
     optional: true
+
+  /@iconify-json/carbon/1.1.13:
+    resolution: {integrity: sha512-qPR7n3JkCqIrvjxnyUPIejhn0wrZJsLmija59U/zwFm5SMOITCfLx+Jp6VecnL0Sm76zRE5Kv54VzolQljB97A==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: false
 
   /@iconify/types/2.0.0:
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -514,7 +524,7 @@ packages:
       chokidar: 3.5.3
       fast-glob: 3.2.12
       magic-string: 0.27.0
-      vite: 3.1.4
+      vite: 3.1.4_sass@1.57.1
     transitivePeerDependencies:
       - rollup
     dev: false
@@ -537,7 +547,6 @@ packages:
     dependencies:
       normalize-path: 3.0.0
       picomatch: 2.3.1
-    dev: false
 
   /astring/1.8.3:
     resolution: {integrity: sha512-sRpyiNrx2dEYIMmUXprS8nlpRg2Drs8m9ElX9vVEXaCB4XEAJhKfs7IcX0IwShjuOAjLR6wzIrgoptz1n19i1A==}
@@ -549,7 +558,6 @@ packages:
   /binary-extensions/2.2.0:
     resolution: {integrity: sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==}
     engines: {node: '>=8'}
-    dev: false
 
   /braces/3.0.2:
     resolution: {integrity: sha512-b8um+L1RzM3WDSzvhm6gIz1yfTbBt6YTlcEKAvsmqCZZFw46z626lVj9j1yEPW33H5H+lBQpZMP1k8l+78Ha0A==}
@@ -597,7 +605,6 @@ packages:
       readdirp: 3.6.0
     optionalDependencies:
       fsevents: 2.3.2
-    dev: false
 
   /colorette/2.0.19:
     resolution: {integrity: sha512-3tlv/dIP7FWvj3BsbHrGLJ6l/oKh1O3TcgBqMn+yyCagOxc23fyzDS6HypQbgxWbkpDnf52p1LuR4eWDQ/K9WQ==}
@@ -1122,6 +1129,9 @@ packages:
     engines: {node: '>=10.17.0'}
     dev: false
 
+  /immutable/4.2.2:
+    resolution: {integrity: sha512-fTMKDwtbvO5tldky9QZ2fMX7slR0mYpY5nbnFWYp0fOzDhHqhgIw9KoYgxLWsoNTS9ZHGauHj18DTyEw6BK3Og==}
+
   /inline-style-parser/0.1.1:
     resolution: {integrity: sha512-7NXolsK4CAS5+xvdj5OMMbI962hU/wvwoxk+LWR9Ek9bVtyuuYScDN6eS0rUm6TxApFpw7CX1o4uJzcd4AyD3Q==}
 
@@ -1139,7 +1149,6 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       binary-extensions: 2.2.0
-    dev: false
 
   /is-buffer/2.0.5:
     resolution: {integrity: sha512-i2R6zNFDwgEHJyQUtJEk0XFi1i0dPFn/oqjK3/vPCcDeJvW5NQ83V8QbicfF1SupOaB0h8ntgBC2YiE7dfyctQ==}
@@ -1762,7 +1771,6 @@ packages:
   /normalize-path/3.0.0:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
     engines: {node: '>=0.10.0'}
-    dev: false
 
   /npm-run-path/4.0.1:
     resolution: {integrity: sha512-S48WzZW777zhNIrn7gxOlISNAqi9ZC/uQFnRdbeIHhZhCA6UqpkOT8T1G7BvfdgP4Er8gF4sUbaS0i7QvIfCWw==}
@@ -1899,7 +1907,6 @@ packages:
     engines: {node: '>=8.10.0'}
     dependencies:
       picomatch: 2.3.1
-    dev: false
 
   /regenerator-runtime/0.13.11:
     resolution: {integrity: sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==}
@@ -2040,6 +2047,15 @@ packages:
     engines: {node: '>=6'}
     dependencies:
       mri: 1.2.0
+
+  /sass/1.57.1:
+    resolution: {integrity: sha512-O2+LwLS79op7GI0xZ8fqzF7X2m/m8WFfI02dHOdsK5R2ECeS5F62zrwg/relM1rjSLy7Vd/DiMNIvPrQGsA0jw==}
+    engines: {node: '>=12.0.0'}
+    hasBin: true
+    dependencies:
+      chokidar: 3.5.3
+      immutable: 4.2.2
+      source-map-js: 1.0.2
 
   /shebang-command/2.0.0:
     resolution: {integrity: sha512-kHxr2zZpYtdmrN1qDjrrX/Z1rR1kG8Dx+gkpK1G4eXmvXswmcE1hTWBWYUzlraYw1/yZp6YuDY77YtvbN0dmDA==}
@@ -2268,7 +2284,7 @@ packages:
       unist-util-stringify-position: 3.0.2
       vfile-message: 3.1.3
 
-  /vite/3.1.4:
+  /vite/3.1.4_sass@1.57.1:
     resolution: {integrity: sha512-JoQI08aBjY9lycL7jcEq4p9o1xUjq5aRvdH4KWaXtkSx7e7RpAh9D3IjzDWRD4Fg44LS3oDAIOG/Kq1L+82psA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -2291,11 +2307,12 @@ packages:
       postcss: 8.4.18
       resolve: 1.22.1
       rollup: 2.78.1
+      sass: 1.57.1
     optionalDependencies:
       fsevents: 2.3.2
     dev: false
 
-  /vite/3.2.1:
+  /vite/3.2.1_sass@1.57.1:
     resolution: {integrity: sha512-ADtMkfHuWq4tskJsri2n2FZkORO8ZyhI+zIz7zTrDAgDEtct1jdxOg3YsZBfHhKjmMoWLOSCr+64qrEDGo/DbQ==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -2321,6 +2338,7 @@ packages:
       postcss: 8.4.18
       resolve: 1.22.1
       rollup: 2.79.1
+      sass: 1.57.1
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
@@ -3348,7 +3366,7 @@ packages:
       '@babel/plugin-transform-react-jsx-source': registry.npmmirror.com/@babel/plugin-transform-react-jsx-source/7.19.6_@babel+core@7.19.6
       magic-string: registry.npmmirror.com/magic-string/0.26.7
       react-refresh: registry.npmmirror.com/react-refresh/0.14.0
-      vite: 3.1.4
+      vite: 3.1.4_sass@1.57.1
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -7311,7 +7329,7 @@ packages:
     engines: {node: '>= 0.8'}
     dev: true
 
-  registry.npmmirror.com/vitest/0.25.2_@vitest+ui@0.25.2:
+  registry.npmmirror.com/vitest/0.25.2_32gh2zcpukhblhn23iosdzyuvy:
     resolution: {integrity: sha512-qqkzfzglEFbQY7IGkgSJkdOhoqHjwAao/OrphnHboeYHC5JzsVFoLCaB2lnAy8krhj7sbrFTVRApzpkTOeuDWQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vitest/-/vitest-0.25.2.tgz}
     id: registry.npmmirror.com/vitest/0.25.2
     name: vitest
@@ -7350,7 +7368,7 @@ packages:
       tinybench: registry.npmmirror.com/tinybench/2.3.1
       tinypool: registry.npmmirror.com/tinypool/0.3.0
       tinyspy: registry.npmmirror.com/tinyspy/1.0.2
-      vite: 3.2.1
+      vite: 3.2.1_sass@1.57.1
     transitivePeerDependencies:
       - less
       - sass
