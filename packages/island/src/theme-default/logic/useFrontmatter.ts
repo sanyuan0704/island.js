@@ -18,8 +18,10 @@ export const useFrontmatter = () => {
           }
         );
       });
+    } else {
+      setFrontmatter(pageData.frontmatter);
     }
-  }, [pageData.routePath]);
+  }, [pageData.frontmatter, pageData.routePath]);
 
   return frontmatter;
 };

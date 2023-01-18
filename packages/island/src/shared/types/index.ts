@@ -14,13 +14,6 @@ export interface Header {
   text: string;
   depth: number;
 }
-export interface SiteSiteData {
-  title: string;
-  description: string;
-  frontmatter: Record<string, unknown>;
-  lastUpdated?: number;
-  headers: Header[];
-}
 
 export type HeadConfig =
   | [string, Record<string, string>]

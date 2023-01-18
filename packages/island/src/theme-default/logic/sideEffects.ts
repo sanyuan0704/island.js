@@ -145,7 +145,7 @@ export function bindingAsideScroll() {
 
         const nextAnchorTop = nextAnchor.parentElement!.offsetTop - NAV_HEIGHT;
 
-        if (scrollTop > currentAnchorTop && scrollTop < nextAnchorTop) {
+        if (scrollTop >= currentAnchorTop && scrollTop < nextAnchorTop) {
           activate(links, i);
           break;
         }

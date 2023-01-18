@@ -29,7 +29,8 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'warn', // Checks effect dependencies
     '@typescript-eslint/no-namespace': 'off',
     'padding-line-between-statements': 'error',
-    'import/newline-after-import': 'error'
+    'import/newline-after-import': 'error',
+    'react/no-unknown-property': 'off'
   },
   settings: {
     react: {

@@ -2,7 +2,7 @@ import { Switch } from '../Switch';
 import styles from './index.module.scss';
 import SunSvg from '../../assets/sun.svg';
 import MoonSvg from '../../assets/moon.svg';
-import { ComponentPropsWithIsland } from '../@shared/types';
+import { ComponentPropsWithIsland } from '@shared/types';
 import { getToggle } from '../../logic/useAppearance';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
