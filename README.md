@@ -1,4 +1,8 @@
-1. 接入 Eslint
-2. 接入 Prettier
-3. Git 提交规范
-   > Husky + Lint Staged + Commit Lint
+1. UnoCSS shortcuts 配置 & theme 配置
+2. Home 页面组件
+   - HomeHero
+   - HomeFeatures
+3. 基础组件开发
+   - Button
+   - Link
+4. 接入静态资源中间件
