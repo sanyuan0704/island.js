@@ -4,14 +4,14 @@
 
 ## 自定义导航菜单
 
-你可以在 `themeConfig.navbar` 中添加自定义的导航菜单，配置为一个数组，如下：
+你可以在 `themeConfig.nav` 中添加自定义的导航菜单，配置为一个数组，如下：
 
 ```js
 import { defineConfig } from 'islandjs';
 
 export default defineConfig({
   themeConfig: {
-    navbar: []
+    nav: []
   }
 });
 ```
@@ -65,7 +65,7 @@ import { defineConfig } from 'islandjs';
 
 export default defineConfig({
   themeConfig: {
-    navbar: [
+    nav: [
       {
         text: 'Home',
         link: '/',
