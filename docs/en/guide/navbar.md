@@ -4,14 +4,14 @@ The nav bar is very important for a website. It allows users to quickly jump bet
 
 ## Custom NavBar
 
-You can add custom navbar in `themeConfig.navbar`:
+You can add custom navbar in `themeConfig.nav`:
 
 ```js
 import { defineConfig } from 'islandjs';
 
 export default defineConfig({
   themeConfig: {
-    navbar: []
+    nav: []
   }
 });
 ```
@@ -65,7 +65,7 @@ import { defineConfig } from 'islandjs';
 
 export default defineConfig({
   themeConfig: {
-    navbar: [
+    nav: [
       {
         text: 'Home',
         link: '/',
