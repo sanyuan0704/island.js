@@ -1,3 +1,14 @@
+.nav {
+  padding-left: max(
+    32px,
+    calc(32px + (100vw - var(--island-layout-max-width)) / 2)
+  );
+  padding-right: max(
+    32px,
+    calc(32px + (100vw - var(--island-layout-max-width)) / 2)
+  );
+}
+
 .link:hover {
   color: var(--island-c-brand);
   transition: color 0.2s;
