@@ -23,7 +23,10 @@ interface NavBarTitleProps {
 
 const NavBarTitle = ({ title, langRoutePrefix }: NavBarTitleProps) => {
   return (
-    <div shrink="0" border="border t-0 b-1 border-solid transparent">
+    <div
+      border="border t-0 b-1 border-solid transparent"
+      className={styles.navBarTitle}
+    >
       <a
         href={withBase(langRoutePrefix)}
         w="100%"
