@@ -5,7 +5,7 @@ import { Hero } from 'shared/types/index';
 export function HomeHero({ hero }: { hero: Hero }) {
   const hasImage = hero.image !== undefined;
   return (
-    <div m="auto" p="t-20 x-16 b-16">
+    <div m="auto" p="t-4 x-16 b-16">
       <div className="max-w-1152px" m="auto" flex="~">
         <div m="auto md:0" text="left" flex="~ col" className="max-w-592px">
           <h1 font="bold" text="6xl" className="max-w-576px">

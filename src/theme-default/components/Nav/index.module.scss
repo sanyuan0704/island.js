@@ -29,3 +29,9 @@
     color: var(--island-c-text-1);
   }
 }
+
+.nav-title {
+  height: var(--island-nav-height);
+  margin-right: 32px;
+  width: calc(var(--island-sidebar-width) - 64px);
+}

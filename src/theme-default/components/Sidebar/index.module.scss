@@ -23,7 +23,7 @@
 @media (min-width: 960px) {
   .sidebar {
     z-index: 1;
-    padding-top: var(--island-nav-height-desktop);
+    padding-top: var(--island-nav-height);
     padding-bottom: 128px;
     width: var(--island-sidebar-width);
     max-width: 100%;
@@ -39,11 +39,11 @@
   .sidebar {
     padding-left: max(
       32px,
-      calc(32px + (100% - var(--island-layout-max-width)) / 2)
+      calc(32px + (100vw - var(--island-layout-max-width)) / 2)
     );
     width: calc(
       var(--island-sidebar-width) +
-        ((100% - var(--island-layout-max-width)) / 2)
+        ((100vw - var(--island-layout-max-width)) / 2)
     );
   }
 }

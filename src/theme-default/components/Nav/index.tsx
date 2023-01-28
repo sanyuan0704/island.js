@@ -14,17 +14,22 @@ export function MenuItem(item: NavItemWithLink) {
 }
 
 export function Nav() {
-  const { siteData } = usePageData();
+  const { siteData, pageType } = usePageData();
   const nav = siteData.themeConfig.nav || [];
+  const hasSidebar =
+    siteData.themeConfig.sidebar !== undefined && pageType === 'doc';
   return (
-    <header relative="~" fixed="~" pos="t-0 l-0" w="full" z="10">
+    <header fixed="~" pos="t-0 l-0" w="full" z="10">
       <div
         flex="~"
         items="center"
         justify="between"
         className={`h-14 divider-bottom ${styles.nav}`}
+        style={{
+          background: hasSidebar ? 'transparent' : 'var(--island-c-bg)'
+        }}
       >
-        <div>
+        <div className={styles.navTitle}>
           <a
             href="/"
             hover="opacity-60"
@@ -33,7 +38,7 @@ export function Nav() {
             Island.js
           </a>
         </div>
-        <div flex="~">
+        <div flex="~ 1" justify="end" items="center" h="full" bg="bg-default">
           {/* 普通菜单 */}
           <div flex="~">
             {nav.map((item) => (

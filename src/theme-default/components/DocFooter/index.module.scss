@@ -1,0 +1,44 @@
+.prev,
+.next {
+  width: 50%;
+}
+
+.pager-link {
+  display: block;
+  border: 1px solid var(--island-c-divider-light);
+  border-radius: 8px;
+  padding: 8px 16px 8px;
+  width: 100%;
+  height: 100%;
+  transition: border-color 0.25s;
+}
+
+.pager-link:hover {
+  border-color: var(--island-c-brand);
+}
+
+.pager-link:hover .title {
+  color: var(--island-c-brand-dark);
+}
+
+.pager-link.next {
+  margin-left: auto;
+  text-align: right;
+}
+
+.desc {
+  display: block;
+  line-height: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--island-c-text-2);
+}
+
+.title {
+  display: block;
+  line-height: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--island-c-brand);
+  transition: color 0.25s;
+}

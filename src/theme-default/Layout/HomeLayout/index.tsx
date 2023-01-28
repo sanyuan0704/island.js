@@ -13,7 +13,7 @@ export function HomeLayout() {
   const { frontmatter } = usePageData();
   const { hero, features } = frontmatter;
   return (
-    <div className="pb-12">
+    <div className="py-6">
       <HomeHero hero={hero} />
       <HomeFeature features={features} />
     </div>
