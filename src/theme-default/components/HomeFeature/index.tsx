@@ -32,24 +32,19 @@ export function HomeFeature({ features }: { features: Feature[] }) {
           >
             <article
               key={title}
-              h="full"
-              p="6"
               bg="bg-soft"
               border="~ bg-soft solid rounded-xl"
+              className="p-6 h-full "
             >
               <div
-                flex="~ center"
-                m="b-5"
-                w="12"
-                h="12"
-                text="3xl"
                 bg="gray-light-4 dark:bg-white"
                 border="rounded-md"
+                className="mb-5 w-12 w-12 h-12 text-3xl flex-center"
               >
                 {icon}
               </div>
               <h2 font="bold">{title}</h2>
-              <p p="t-2" text="sm text-2" font="medium" className="leading-6">
+              <p text="sm text-2" font="medium" className="pt-2 leading-6">
                 {details}
               </p>
             </article>
