@@ -49,14 +49,7 @@ export function SideBar(props: Props) {
             {item.text}
           </h2>
         </div>
-        <div
-          mb="1.4 sm:1"
-          style={{
-            transition: 'height 0.2s ease-out',
-            height: 'auto',
-            overflow: 'hidden'
-          }}
-        >
+        <div mb="1">
           {item?.items?.map((item) => (
             <div key={item.link}>{renderGroupItem(item)}</div>
           ))}
