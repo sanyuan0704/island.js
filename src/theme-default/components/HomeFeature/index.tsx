@@ -27,7 +27,7 @@ export function HomeFeature({ features }: { features: Feature[] }) {
           <div
             key={title}
             border="rounded-md"
-            p="r-0 md:r-4 b-4"
+            p="r-4 b-4"
             className={`${gridClass ? styles[gridClass] : 'w-full'}`}
           >
             <article
