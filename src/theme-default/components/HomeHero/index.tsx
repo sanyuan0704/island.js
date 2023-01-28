@@ -5,14 +5,10 @@ import { Hero } from 'shared/types/index';
 export function HomeHero({ hero }: { hero: Hero }) {
   const hasImage = hero.image !== undefined;
   return (
-    <div
-      m="auto"
-      p="t-12 x-6 b-12 sm:t-0 sm:x-8 sm:x-16 md:t-20 md:x-16 md:b-16"
-    >
-      <div className="max-w-1152px" m="auto" flex="~ col md:row">
+    <div m="auto" p="t-20 x-16 b-16">
+      <div className="max-w-1152px" m="auto" flex="~">
         <div
           m="auto md:0"
-          order="2 md:1"
           text="center md:left"
           flex="~ col lt-sm:c"
           className="max-w-592px"
@@ -57,14 +53,7 @@ export function HomeHero({ hero }: { hero: Hero }) {
         </div>
 
         {hasImage ? (
-          <div
-            w="sm:max-96"
-            h="sm:max-96"
-            flex="md:center"
-            m="auto"
-            order="1 md:2"
-            display="flex sm:flex md:none lg:flex"
-          >
+          <div w="max-96" h="max-96" flex="center" m="auto">
             <img src={hero.image?.src} alt={hero.image?.alt} />
           </div>
         ) : null}
