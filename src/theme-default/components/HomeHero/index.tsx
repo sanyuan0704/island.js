@@ -7,38 +7,22 @@ export function HomeHero({ hero }: { hero: Hero }) {
   return (
     <div m="auto" p="t-20 x-16 b-16">
       <div className="max-w-1152px" m="auto" flex="~">
-        <div
-          m="auto md:0"
-          text="center md:left"
-          flex="~ col lt-sm:c"
-          className="max-w-592px"
-        >
-          <h1
-            font="bold"
-            text="3xl sm:5xl md:6xl"
-            m="auto md:0"
-            className="max-w-392px sm:max-w-576px"
-          >
+        <div m="auto md:0" text="left" flex="~ col" className="max-w-592px">
+          <h1 font="bold" text="6xl" className="max-w-576px">
             <span className={styles.clip}>{hero.name}</span>
           </h1>
-          <p
-            m="auto md:0"
-            text="3xl sm:5xl md:6xl"
-            font="bold"
-            className="max-w-392px sm:max-w-576px"
-          >
+          <p text="6xl" font="bold" className="max-w-576px">
             {hero.text}
           </p>
           <p
             p="t-3"
-            m="auto md:0"
-            text="sm sm:xl md:2xl text-2"
+            text="2xl text-2"
             font="medium"
-            className="whitespace-pre-wrap max-w-392px sm:max-w-576px"
+            className="whitespace-pre-wrap max-w-576px"
           >
             {hero.tagline}
           </p>
-          <div flex="~ wrap" justify="center md:start" m="-1.5" p="t-8">
+          <div flex="~ wrap" justify="start" m="-1.5" p="t-8">
             {hero.actions.map((action) => (
               <div p="1" flex="shrink-0" key={action.link}>
                 <Button
