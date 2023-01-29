@@ -311,15 +311,7 @@
  * -------------------------------------------------------------------------- */
 
 :root {
-  --island-nav-height: var(--island-nav-height-mobile);
-  --island-nav-height-mobile: 56px;
-  --island-nav-height-desktop: 60px;
-}
-
-@media (min-width: 960px) {
-  :root {
-    --island-nav-height: var(--island-nav-height-desktop);
-  }
+  --island-nav-height: 56px;
 }
 
 /**
