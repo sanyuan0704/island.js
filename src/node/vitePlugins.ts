@@ -23,6 +23,6 @@ export async function createVitePlugins(
       root: config.root,
       isSSR
     }),
-    await pluginMdx()
+    await pluginMdx(config.root)
   ];
 }

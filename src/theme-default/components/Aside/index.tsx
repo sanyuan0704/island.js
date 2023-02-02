@@ -1,9 +1,10 @@
 import { useEffect, useRef } from 'react';
 import { Header } from 'shared/types';
 import { scrollToTarget, bindingAsideScroll } from '../../logic/asideScroll';
+import { useHeaders } from '../../logic/useHeaders';
 
 export function Aside(props: { headers: Header[]; pagePath: string }) {
-  const { headers = [] } = props;
+  const headers = useHeaders(props.headers || [], props.pagePath);
   const hasOutline = headers.length > 0;
   // For outline text highlight
   const markerRef = useRef<HTMLDivElement>(null);
@@ -11,6 +12,7 @@ export function Aside(props: { headers: Header[]; pagePath: string }) {
     const unbinding = bindingAsideScroll();
     return unbinding;
   }, []);
+
   const renderHeader = (header: Header) => {
     return (
       <li key={header.id}>

@@ -27,7 +27,7 @@ export class RouteService {
         path.relative(this.#scanDir, file)
       );
       // 1. 路由路径
-      const routePath = this.normalizeRoutePath(fileRelativePath);
+      const routePath = RouteService.normalizeRoutePath(fileRelativePath);
       // 2. 文件绝对路径
       this.#routeData.push({
         routePath,
@@ -36,11 +36,20 @@ export class RouteService {
     });
   }
 
+  static getRoutePathFromFile(
+    filePath: string,
+    root: string
+  ): string | undefined {
+    const fileRelativePath = path.relative(root, filePath);
+    const routePath = RouteService.normalizeRoutePath(fileRelativePath);
+    return routePath;
+  }
+
   getRouteMeta(): RouteMeta[] {
     return this.#routeData;
   }
 
-  normalizeRoutePath(rawPath: string) {
+  static normalizeRoutePath(rawPath: string) {
     const routePath = rawPath.replace(/\.(.*)?$/, '').replace(/index$/, '');
     return routePath.startsWith('/') ? routePath : `/${routePath}`;
   }

@@ -1,8 +1,9 @@
 import { MD_REGEX } from '../constants';
 import { Plugin } from 'vite';
 import assert from 'assert';
+import { RouteService } from '../plugin-routes/RouteService';
 
-export function pluginMdxHMR(): Plugin {
+export function pluginMdxHMR(root: string): Plugin {
   let viteReactPlugin: Plugin;
   return {
     name: 'vite-plugin-mdx-hmr',
@@ -30,6 +31,19 @@ export function pluginMdxHMR(): Plugin {
           result!.code += selfAcceptCode;
         }
         return result;
+      }
+    },
+    handleHotUpdate(ctx) {
+      if (/\.mdx?/.test(ctx.file)) {
+        const routePath = RouteService.getRoutePathFromFile(ctx.file, root);
+        ctx.server.ws!.send({
+          type: 'custom',
+          event: 'md(x)-changed',
+          data: {
+            filePath: ctx.file,
+            routePath
+          }
+        });
       }
     }
   };
