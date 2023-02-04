@@ -5,7 +5,6 @@ import { normalizePath } from 'vite';
 import { RouteService } from './RouteService';
 import type { ComponentType } from 'react';
 import { RouteOptions } from 'shared/types/index';
-import { watch } from 'chokidar';
 
 export const DEFAULT_EXCLUDE = ['**/node_modules/**', '**/.*', '**/dist/**'];
 
@@ -71,13 +70,13 @@ export function pluginRoutes(options: RouteOptions = {}): Plugin {
           });
         }
       };
-      watch(scanDir, {
-        ignored: [...DEFAULT_EXCLUDE, ...(options.exclude || [])],
-        ignoreInitial: true
-      })
+      server.watcher
+        .add(scanDir)
         .on('add', async (file) => {
-          await routeService.addRoute(file);
-          fileChange();
+          if (file.startsWith(scanDir)) {
+            await routeService.addRoute(file);
+            fileChange();
+          }
         })
         .on('unlink', async (file) => {
           await routeService.removeRoute(file);
