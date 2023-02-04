@@ -137,4 +137,8 @@ ${this.#routeData
 ];
 `;
   }
+
+  getExtensions() {
+    return this.#extensions;
+  }
 }

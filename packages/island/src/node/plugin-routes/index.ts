@@ -30,6 +30,8 @@ export const DEFAULT_PAGE_EXTENSIONS = ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'];
 // It is convenient for other plugins to obtain route information
 export let routeService: RouteService;
 
+let pageExtensionsReg: RegExp;
+
 export function pluginRoutes(options: RouteOptions = {}): Plugin {
   const { root = 'src' } = options;
   let scanDir: string;
@@ -41,6 +43,9 @@ export function pluginRoutes(options: RouteOptions = {}): Plugin {
         : path.join(process.cwd(), root);
       routeService = new RouteService(normalizePath(scanDir), options);
       await routeService.init();
+      pageExtensionsReg = new RegExp(
+        `\\.(${routeService.getExtensions().join('|')})$`
+      );
     },
 
     resolveId(id: string) {
@@ -73,14 +78,16 @@ export function pluginRoutes(options: RouteOptions = {}): Plugin {
       server.watcher
         .add(scanDir)
         .on('add', async (file) => {
-          if (file.startsWith(scanDir)) {
+          if (file.startsWith(scanDir) && pageExtensionsReg.test(file)) {
             await routeService.addRoute(file);
             fileChange();
           }
         })
         .on('unlink', async (file) => {
-          await routeService.removeRoute(file);
-          fileChange();
+          if (file.startsWith(scanDir) && pageExtensionsReg.test(file)) {
+            await routeService.removeRoute(file);
+            fileChange();
+          }
         });
     }
   };
