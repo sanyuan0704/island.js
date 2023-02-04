@@ -1,0 +1,16 @@
+$sidebarWidth: calc(
+  var(--island-sidebar-width) + ((100vw - var(--island-layout-max-width)) / 2)
+);
+
+$sidebarPadding: calc(32px + (100vw - var(--island-layout-max-width)) / 2);
+
+.content {
+  padding: 48px 24px;
+  margin-left: calc(
+    var(--island-sidebar-width) + ((100vw - var(--island-layout-max-width)) / 2) +
+      48px
+  );
+  padding-right: $sidebarPadding;
+  // 100 vw - sidebar 的宽度  - 右侧大纲栏的宽度 - padding-right
+  max-width: calc(100vw - $sidebarWidth - var(--island-aside-width) - 100px);
+}

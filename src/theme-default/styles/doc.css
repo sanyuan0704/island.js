@@ -1,0 +1,405 @@
+/**
+ * Headings
+ * -------------------------------------------------------------------------- */
+
+.island-doc h1,
+.island-doc h2,
+.island-doc h3,
+.island-doc h4,
+.island-doc h5,
+.island-doc h6 {
+  position: relative;
+  font-weight: 600;
+  outline: none;
+}
+
+.island-doc h1 {
+  letter-spacing: -0.02em;
+  line-height: 40px;
+  font-size: 28px;
+  margin-bottom: 40px;
+}
+
+.island-doc h2 {
+  margin: 48px 0 16px;
+  /* padding-top: 24px; */
+  letter-spacing: -0.02em;
+  line-height: 32px;
+  font-size: 24px;
+}
+
+.island-doc h3 {
+  margin: 32px 0 0;
+  letter-spacing: -0.01em;
+  line-height: 28px;
+  font-size: 20px;
+}
+
+.island-doc .header-anchor {
+  float: left;
+  margin-left: -0.87em;
+  padding-right: 0.23em;
+  font-weight: 500;
+  opacity: 0;
+  transition: color 0.25s, opacity 0.25s;
+}
+
+.island-doc h1:hover .header-anchor,
+.island-doc h1 .header-anchor:focus,
+.island-doc h2:hover .header-anchor,
+.island-doc h2 .header-anchor:focus,
+.island-doc h3:hover .header-anchor,
+.island-doc h3 .header-anchor:focus,
+.island-doc h4:hover .header-anchor,
+.island-doc h4 .header-anchor:focus,
+.island-doc h5:hover .header-anchor,
+.island-doc h5 .header-anchor:focus,
+.island-doc h6:hover .header-anchor,
+.island-doc h6 .header-anchor:focus {
+  opacity: 1;
+}
+
+@media (min-width: 768px) {
+  .island-doc h1 {
+    letter-spacing: -0.02em;
+    line-height: 40px;
+    font-size: 32px;
+  }
+}
+
+/**
+   * Paragraph and inline elements
+   * -------------------------------------------------------------------------- */
+
+.island-doc p,
+.island-doc summary {
+  margin: 16px 0;
+}
+
+.island-doc p {
+  z-index: 2;
+  line-height: 28px;
+}
+
+.island-doc blockquote {
+  margin: 16px 0;
+  border-left: 2px solid var(--island-c-divider);
+  padding-left: 16px;
+  transition: border-color 0.5s;
+}
+
+.island-doc blockquote > p {
+  margin: 0;
+  font-size: 16px;
+  color: var(--island-c-text-2);
+  transition: color 0.5s;
+}
+
+.island-doc a {
+  font-weight: 500;
+  color: var(--island-c-brand);
+  text-decoration-style: dotted;
+  transition: color 0.25s;
+}
+
+.island-doc a:hover {
+  color: var(--island-c-brand-dark);
+}
+
+.island-doc strong {
+  font-weight: 600;
+}
+
+/**
+   * Lists
+   * -------------------------------------------------------------------------- */
+
+.island-doc ul,
+.island-doc ol {
+  padding-left: 1.25rem;
+  margin: 16px 0;
+}
+
+.island-doc ul {
+  list-style: disc;
+}
+
+.island-doc ol {
+  list-style: decimal;
+}
+
+.island-doc li + li {
+  margin-top: 8px;
+}
+
+.island-doc li > ol,
+.island-doc li > ul {
+  margin: 8px 0 0;
+}
+
+/**
+   * Table
+   * -------------------------------------------------------------------------- */
+
+.island-doc table {
+  display: block;
+  border-collapse: collapse;
+  margin: 20px 0;
+  overflow-x: auto;
+}
+
+.island-doc tr {
+  border-top: 1px solid var(--island-c-divider);
+  transition: background-color 0.5s;
+}
+
+.island-doc tr:nth-child(2n) {
+  background-color: var(--island-c-bg-soft);
+}
+
+.island-doc th,
+.island-doc td {
+  border: 1px solid var(--island-c-divider);
+  padding: 12px 16px;
+}
+
+.island-doc th {
+  font-size: 16px;
+  font-weight: 600;
+  background-color: var(--island-c-white-soft);
+}
+
+.dark .island-doc th {
+  background-color: var(--island-c-black);
+}
+
+/**
+   * Decorational elements
+   * -------------------------------------------------------------------------- */
+
+.island-doc hr {
+  margin: 16px 0;
+  border: none;
+  border-top: 1px solid var(--island-c-divider-light);
+}
+
+/**
+   * Custom Block
+   * -------------------------------------------------------------------------- */
+
+.island-doc .custom-block {
+  margin: 16px 0;
+}
+
+.island-doc .custom-block p {
+  margin: 8px 0;
+  line-height: 24px;
+}
+
+.island-doc .custom-block p:first-child {
+  margin: 0;
+}
+
+.island-doc .custom-block a {
+  color: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  transition: opacity 0.25s;
+}
+
+.island-doc .custom-block a:hover {
+  opacity: 0.6;
+}
+
+.island-doc .custom-block code {
+  font-size: var(--island-custom-block-code-font-size);
+  font-weight: 700;
+  color: inherit;
+}
+
+.island-doc .custom-block div[class*='language-'] {
+  margin: 8px 0;
+}
+
+.island-doc .custom-block div[class*='language-'] code {
+  font-weight: 400;
+  background-color: transparent;
+}
+
+/**
+   * Code
+   * -------------------------------------------------------------------------- */
+
+/* inline code */
+.island-doc :not(pre, h1, h2, h3, h4, h5, h6) > code {
+  font-size: var(--island-code-font-size);
+}
+
+.island-doc :not(pre, div) > code {
+  border-radius: 4px;
+  padding: 3px 6px;
+  color: var(--island-c-text-code);
+  background-color: var(--island-c-bg-mute);
+  transition: color 0.5s, background-color 0.5s;
+}
+
+.island-doc h1 > code,
+.island-doc h2 > code,
+.island-doc h3 > code {
+  font-size: 0.9em;
+}
+
+.island-doc a > code {
+  color: var(--island-c-brand);
+  transition: color 0.25s;
+}
+
+.island-doc a:hover > code {
+  color: var(--island-c-brand-dark);
+}
+
+.island-doc div[class*='language-'] {
+  position: relative;
+  margin: 16px -24px;
+  background-color: var(--island-code-block-bg);
+  overflow-x: auto;
+  transition: background-color 0.5s;
+}
+
+@media (min-width: 640px) {
+  .island-doc div[class*='language-'] {
+    border-radius: 8px;
+    margin: 16px 0;
+  }
+}
+
+@media (max-width: 639px) {
+  .island-doc li div[class*='language-'] {
+    border-radius: 8px 0 0 8px;
+  }
+}
+
+.island-doc div[class*='language-'] + div[class*='language-'],
+.island-doc div[class$='-api'] + div[class*='language-'],
+.island-doc
+  div[class*='language-']
+  + div[class$='-api']
+  > div[class*='language-'] {
+  margin-top: -8px;
+}
+
+.island-doc [class*='language-'] pre,
+.island-doc [class*='language-'] code {
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+.island-doc [class*='language-'] pre {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: 16px 0;
+  background: transparent;
+  overflow-x: auto;
+}
+
+.island-doc [class*='language-'] code {
+  display: block;
+  padding: 0 24px;
+  width: fit-content;
+  min-width: 100%;
+  line-height: var(--island-code-line-height);
+  font-size: var(--island-code-font-size);
+  color: var(--island-code-block-color);
+  transition: color 0.5s;
+}
+
+.island-doc [class*='language-'] code .highlighted {
+  background-color: var(--island-code-line-highlight-color);
+  transition: background-color 0.5s;
+  margin: 0 -24px;
+  padding: 0 24px;
+  width: calc(100% + 2 * 24px);
+  display: inline-block;
+}
+
+.island-doc [class*='language-'] > button.copy {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 3;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  width: 40px;
+  height: 40px;
+  background-color: var(--island-code-block-bg);
+  opacity: 0;
+  cursor: pointer;
+  background-image: var(--island-icon-copy);
+  background-position: 50%;
+  background-size: 20px;
+  background-repeat: no-repeat;
+  transition: opacity 0.4s;
+}
+
+.island-doc [class*='language-']:hover > button.copy,
+.island-doc [class*='language-'] > button.copy:focus {
+  opacity: 1;
+}
+
+.island-doc [class*='language-'] > button.copy:hover {
+  background-color: var(--island-code-copy-code-hover-bg);
+}
+
+.island-doc [class*='language-'] > button.copy.copied,
+.island-doc [class*='language-'] > button.copy:hover.copied {
+  border-radius: 0 4px 4px 0;
+  background-color: var(--island-code-copy-code-hover-bg);
+  background-image: var(--island-icon-copied);
+}
+
+.island-doc [class*='language-'] > button.copy.copied::before,
+.island-doc [class*='language-'] > button.copy:hover.copied::before {
+  position: relative;
+  left: -65px;
+  display: block;
+  border-radius: 4px 0 0 4px;
+  padding-top: 8px;
+  width: 64px;
+  height: 40px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--island-code-copy-code-active-text);
+  background-color: var(--island-code-copy-code-hover-bg);
+  white-space: nowrap;
+  content: 'Copied';
+}
+
+.island-doc [class*='language-'] > span.lang {
+  position: absolute;
+  top: 6px;
+  right: 12px;
+  z-index: 2;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--island-c-text-dark-3);
+  transition: color 0.4s, opacity 0.4s;
+}
+
+.island-doc [class*='language-']:hover > button.copy + span.lang,
+.island-doc [class*='language-'] > button.copy:focus + span.lang {
+  opacity: 0;
+}
