@@ -10,6 +10,7 @@ specifiers:
   '@playwright/test': 1.26.1
   '@types/fs-extra': ^9.0.13
   '@types/hast': ^2.3.4
+  '@types/lodash-es': ^4.17.6
   '@types/mdast': ^3.0.10
   '@types/node': ^18.11.7
   '@types/react': ^18.0.24
@@ -34,6 +35,7 @@ specifiers:
   hast-util-from-html: ^1.0.0
   husky: ^8.0.2
   lint-staged: ^13.0.3
+  lodash-es: ^4.17.21
   mdast-util-mdxjs-esm: ^1.3.0
   ora: ^6.1.2
   prettier: ^2.7.1
@@ -75,6 +77,7 @@ dependencies:
   fs-extra: registry.npmmirror.com/fs-extra/10.1.0
   github-slugger: 2.0.0
   hast-util-from-html: 1.0.0
+  lodash-es: 4.17.21
   ora: registry.npmmirror.com/ora/6.1.2
   react: registry.npmmirror.com/react/18.2.0
   react-dom: registry.npmmirror.com/react-dom/18.2.0_react@18.2.0
@@ -95,6 +98,7 @@ devDependencies:
   '@playwright/test': registry.npmmirror.com/@playwright/test/1.26.1
   '@types/fs-extra': registry.npmmirror.com/@types/fs-extra/9.0.13
   '@types/hast': 2.3.4
+  '@types/lodash-es': 4.17.6
   '@types/mdast': 3.0.10
   '@types/node': registry.npmmirror.com/@types/node/18.11.7
   '@types/react': registry.npmmirror.com/@types/react/18.0.24
@@ -350,6 +354,16 @@ packages:
     resolution: {integrity: sha512-wLEm0QvaoawEDoTRwzTXp4b4jpwiJDvR5KMnFnVodm3scufTlBOWRD6N1OBf9TZMhjlNsSfcO5V+7AF4+Vy+9g==}
     dependencies:
       '@types/unist': 2.0.6
+
+  /@types/lodash-es/4.17.6:
+    resolution: {integrity: sha512-R+zTeVUKDdfoRxpAryaQNRKk3105Rrgx2CFRClIgRGaqDTdjsm8h6IYA8ir584W3ePzkZfst5xIgDwYrlh9HLg==}
+    dependencies:
+      '@types/lodash': 4.14.191
+    dev: true
+
+  /@types/lodash/4.14.191:
+    resolution: {integrity: sha512-BdZ5BCCvho3EIXw6wUCXHe7rS53AIDPLE+JzwgT+OsJk53oBfbSmZZ7CX4VaRoN78N+TJpFi9QPlfIVNmJYWxQ==}
+    dev: true
 
   /@types/mdast/3.0.10:
     resolution: {integrity: sha512-W864tg/Osz1+9f4lrGTZpCSO5/z4608eUp19tbozkq2HJK6i3z1kT0H9tlADXuYIb1YYOBByU4Jsqkk75q48qA==}
@@ -1225,6 +1239,10 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       p-locate: 5.0.0
+    dev: false
+
+  /lodash-es/4.17.21:
+    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
     dev: false
 
   /longest-streak/3.1.0:
