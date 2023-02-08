@@ -69,6 +69,10 @@
     "vitest": "^0.25.2"
   },
   "dependencies": {
+    "@babel/core": "7.19.0",
+    "@babel/helper-plugin-utils": "7.19.0",
+    "@babel/preset-react": "^7.18.6",
+    "@babel/traverse": "7.19.0",
     "@iconify-json/carbon": "^1.1.13",
     "@loadable/component": "^5.15.2",
     "@mdx-js/rollup": "2.1.3",
