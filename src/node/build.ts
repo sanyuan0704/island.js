@@ -13,6 +13,13 @@ import { createVitePlugins } from './vitePlugins';
 import { Route } from './plugin-routes';
 import { RenderResult } from '../runtime/ssr-entry';
 
+const SERVER_OUTPUT = '.temp';
+const CLIENT_OUTPUT = 'build';
+
+// Client entry -> react & react-dom
+// Island bundle -> react
+// 会产生多实例问题
+
 export async function bundle(root: string, config: SiteConfig) {
   const resolveViteConfig = async (
     isServer: boolean
@@ -26,7 +33,9 @@ export async function bundle(root: string, config: SiteConfig) {
     build: {
       minify: false,
       ssr: isServer,
-      outDir: isServer ? path.join(root, '.temp') : path.join(root, 'build'),
+      outDir: isServer
+        ? path.join(root, SERVER_OUTPUT)
+        : path.join(root, CLIENT_OUTPUT),
       rollupOptions: {
         input: isServer ? SERVER_ENTRY_PATH : CLIENT_ENTRY_PATH,
         output: {
@@ -45,6 +54,11 @@ export async function bundle(root: string, config: SiteConfig) {
       // server build
       viteBuild(await resolveViteConfig(true))
     ]);
+    const publicDirInRoot = join(root, 'public');
+    if (fs.pathExistsSync(publicDirInRoot)) {
+      await fs.copy(publicDirInRoot, join(root, CLIENT_OUTPUT));
+    }
+
     return [clientBundle, serverBundle] as [RollupOutput, RollupOutput];
   } catch (e) {
     console.log(e);
@@ -124,11 +138,27 @@ export async function renderPages(
   const clientChunk = clientBundle.output.find(
     (chunk) => chunk.type === 'chunk' && chunk.isEntry
   );
+  const styleAssets = clientBundle.output.filter(
+    (asset) => asset.type === 'asset' && asset.fileName.endsWith('.css')
+  );
   return Promise.all(
     routes.map(async (route) => {
       const routePath = route.path;
-      const { appHtml, islandToPathMap, propsData } = await render(routePath);
-      await buildIslands(root, islandToPathMap);
+      const {
+        appHtml,
+        islandToPathMap,
+        propsData = []
+      } = await render(routePath);
+      const islandBundle = await buildIslands(root, islandToPathMap);
+      const islandBundlePath = (islandBundle as RollupOutput).output[0]
+        .fileName;
+      if (!fs.pathExistsSync(join(root, CLIENT_OUTPUT, islandBundlePath))) {
+        await fs.copyFile(
+          path.join(root, SERVER_OUTPUT, islandBundlePath),
+          path.join(root, CLIENT_OUTPUT, islandBundlePath)
+        );
+      }
+
       const html = `
 <!DOCTYPE html>
 <html>
@@ -137,10 +167,15 @@ export async function renderPages(
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>title</title>
     <meta name="description" content="xxx">
+    ${styleAssets
+      .map((item) => `<link rel="stylesheet" href="/${item.fileName}">`)
+      .join('\n')}
   </head>
   <body>
     <div id="root">${appHtml}</div>
+    <script type="module" src="/${islandBundlePath}"></script>
     <script type="module" src="/${clientChunk?.fileName}"></script>
+    <script id="island-props">${JSON.stringify(propsData)}</script>
   </body>
 </html>`.trim();
       const fileName = routePath.endsWith('/')
