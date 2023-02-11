@@ -5,6 +5,8 @@ import { DataContext } from './hooks';
 // For ssr component render
 export async function render(pagePath: string) {
   const pageData = await initPageData(pagePath);
+  const { clearIslandData } = await import('./jsx-runtime');
+  clearIslandData();
   return renderToString(
     <DataContext.Provider value={pageData}>
       <StaticRouter location={pagePath}>
