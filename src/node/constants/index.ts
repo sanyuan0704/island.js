@@ -13,3 +13,5 @@ export const DEFAULT_HTML_PATH = join(PACKAGE_ROOT, 'template.html');
 export const MD_REGEX = /\.mdx?$/;
 
 export const MASK_SPLITTER = '!!ISLAND!!';
+
+export const ISLAND_JSX_RUNTIME_PATH = join(PACKAGE_ROOT, 'src', 'runtime');

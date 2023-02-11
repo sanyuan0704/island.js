@@ -6,6 +6,9 @@ import { SiteConfig } from 'shared/types';
 import { pluginMdx } from './plugin-mdx';
 import pluginUnocss from 'unocss/vite';
 import unocssOptions from './unocssOptions';
+import babelPluginIsland from './babel-plugin-island';
+import { ISLAND_JSX_RUNTIME_PATH } from './constants';
+import path from 'path';
 
 export async function createVitePlugins(
   config: SiteConfig,
@@ -16,7 +19,11 @@ export async function createVitePlugins(
     pluginUnocss(unocssOptions),
     pluginIndexHtml(),
     pluginReact({
-      jsxRuntime: 'automatic'
+      jsxRuntime: 'automatic',
+      jsxImportSource: isSSR ? path.join(ISLAND_JSX_RUNTIME_PATH) : 'react',
+      babel: {
+        plugins: [[babelPluginIsland]]
+      }
     }),
     pluginConfig(config, restartServer),
     pluginRoutes({
