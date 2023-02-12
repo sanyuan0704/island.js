@@ -2,7 +2,9 @@ import { build as viteBuild, InlineConfig } from 'vite';
 import type { RollupOutput } from 'rollup';
 import {
   CLIENT_ENTRY_PATH,
+  EXTERNALS,
   MASK_SPLITTER,
+  PACKAGE_ROOT,
   SERVER_ENTRY_PATH
 } from './constants';
 import path, { dirname, join } from 'path';
@@ -14,6 +16,7 @@ import { Route } from './plugin-routes';
 import { RenderResult } from '../runtime/ssr-entry';
 
 const CLIENT_OUTPUT = 'build';
+const VENDOR_OUTPUT = 'vendors';
 
 // Client entry -> react & react-dom
 // Island bundle -> react
@@ -35,6 +38,7 @@ export async function bundle(root: string, config: SiteConfig) {
         ? path.join(root, '.temp')
         : path.join(root, CLIENT_OUTPUT),
       rollupOptions: {
+        external: EXTERNALS,
         input: isServer ? SERVER_ENTRY_PATH : CLIENT_ENTRY_PATH,
         output: {
           format: isServer ? 'cjs' : 'esm'
@@ -56,6 +60,7 @@ export async function bundle(root: string, config: SiteConfig) {
     if (fs.pathExistsSync(publicDir)) {
       await fs.copy(publicDir, join(root, CLIENT_OUTPUT));
     }
+    await fs.copy(join(PACKAGE_ROOT, VENDOR_OUTPUT), join(root, CLIENT_OUTPUT));
     return [clientBundle, serverBundle] as [RollupOutput, RollupOutput];
   } catch (e) {
     console.log(e);
@@ -88,10 +93,15 @@ window.ISLAND_PROPS = JSON.parse(
   const injectId = 'island:inject';
   return viteBuild({
     mode: 'production',
+    esbuild: {
+      jsx: 'automatic'
+    },
     build: {
+      minify: false,
       outDir: path.join(root, '.temp'),
       rollupOptions: {
-        input: injectId
+        input: injectId,
+        external: EXTERNALS
       }
     },
     plugins: [
@@ -141,13 +151,16 @@ export async function renderPages(
       const {
         appHtml,
         islandToPathMap,
-        propsData = []
+        islandProps = []
       } = await render(routePath);
       const styleAssets = clientBundle.output.filter(
         (chunk) => chunk.type === 'asset' && chunk.fileName.endsWith('.css')
       );
       const islandBundle = await buildIslands(root, islandToPathMap);
       const islandsCode = (islandBundle as RollupOutput).output[0].code;
+      const normalizeVendorFilename = (fileName: string) =>
+        fileName.replace(/\//g, '_') + '.js';
+
       const html = `
 <!DOCTYPE html>
 <html>
@@ -159,12 +172,21 @@ export async function renderPages(
     ${styleAssets
       .map((item) => `<link rel="stylesheet" href="/${item.fileName}">`)
       .join('\n')}
+    <script type="importmap">
+        {
+          "imports": {
+            ${EXTERNALS.map(
+              (name) => `"${name}": "/${normalizeVendorFilename(name)}"`
+            ).join(',')}
+          }
+        }
+      </script>
   </head>
   <body>
     <div id="root">${appHtml}</div>
     <script type="module">${islandsCode}</script>
     <script type="module" src="/${clientChunk?.fileName}"></script>
-    <script id="island-props">${JSON.stringify(propsData)}</script>
+    <script id="island-props">${JSON.stringify(islandProps)}</script>
   </body>
 </html>`.trim();
       const fileName = routePath.endsWith('/')

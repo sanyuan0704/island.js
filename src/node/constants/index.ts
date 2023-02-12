@@ -13,3 +13,10 @@ export const DEFAULT_HTML_PATH = join(PACKAGE_ROOT, 'template.html');
 export const MD_REGEX = /\.mdx?$/;
 
 export const MASK_SPLITTER = '!!ISLAND!!';
+
+export const EXTERNALS = [
+  'react',
+  'react-dom',
+  'react-dom/client',
+  'react/jsx-runtime'
+];
