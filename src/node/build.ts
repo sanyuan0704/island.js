@@ -37,7 +37,7 @@ export async function bundle(root: string, config: SiteConfig) {
       ssr: isServer,
       outDir: isServer
         ? path.join(root, '.temp')
-        : path.join(root, CLIENT_OUTPUT),
+        : config.outDir ?? path.join(root, CLIENT_OUTPUT),
       rollupOptions: {
         external: EXTERNALS,
         input: isServer ? SERVER_ENTRY_PATH : CLIENT_ENTRY_PATH,
@@ -147,7 +147,12 @@ export async function renderPages(
     (chunk) => chunk.type === 'chunk' && chunk.isEntry
   );
   return Promise.all(
-    routes.map(async (route) => {
+    [
+      ...routes,
+      {
+        path: '/404'
+      }
+    ].map(async (route) => {
       const routePath = route.path;
       const helmetContext: HelmetData = {
         context: {}

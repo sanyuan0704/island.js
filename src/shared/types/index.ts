@@ -41,12 +41,14 @@ export interface UserConfig {
   description?: string;
   themeConfig?: ThemeConfig;
   vite?: ViteConfiguration;
+  outDir?: string;
 }
 
 export interface SiteConfig {
   root: string;
   configPath: string;
   siteData: UserConfig;
+  outDir: string;
 }
 
 export type PageType = 'home' | 'doc' | 'custom' | '404';

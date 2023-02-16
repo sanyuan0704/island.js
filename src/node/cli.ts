@@ -2,6 +2,7 @@ import cac from 'cac';
 import { resolve } from 'path';
 import { build } from './build';
 import { resolveConfig } from './config';
+import { CLIPreviewOption, preview } from './preview';
 
 const cli = cac('island').version('0.0.1').help();
 
@@ -25,6 +26,19 @@ cli
       root = resolve(root);
       const config = await resolveConfig(root, 'build', 'production');
       await build(root, config);
+    } catch (e) {
+      console.log(e);
+    }
+  });
+
+cli
+  .command('preview [root]', 'build in production')
+  .option('--port <port>', 'port to use for serve')
+  .option('--host <host>', '[string] specify hostname')
+  .action(async (root: string, options: CLIPreviewOption) => {
+    try {
+      root = resolve(root);
+      await preview(root, options);
     } catch (e) {
       console.log(e);
     }
