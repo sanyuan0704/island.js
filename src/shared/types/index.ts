@@ -88,12 +88,14 @@ export interface PageData {
   frontmatter: FrontMatter;
   pageType: PageType;
   toc?: Header[];
+  title: string;
 }
 
 export interface PageModule {
   default: ComponentType;
   frontmatter?: FrontMatter;
   toc?: Header[];
+  title?: string;
   [key: string]: unknown;
 }
 
