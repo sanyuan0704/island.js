@@ -1,8 +1,10 @@
 {
   "name": "island-dev",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.0.0",
+  "description": "Vite SSG framework based on islands architecture",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "scripts": {
     "dev": "tsup --watch",
     "build": "tsup && pnpm build:deps",
@@ -13,19 +15,27 @@
     "prepare": "husky install",
     "test:unit": "vitest run",
     "test:e2e": "playwright test",
-    "prepare:e2e": "tsx ./scripts/prepare-e2e.cts"
+    "prepare:e2e": "tsx ./scripts/prepare-e2e.cts",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "release": "tsx ./scripts/release.ts"
   },
   "bin": {
     "island": "bin/island.js"
   },
-  "keywords": [],
+  "keywords": ["islands architecture", "ssg", "vite"],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "lint-staged": {
     "**/*.{js,jsx,tsx,ts}": [
       "eslint --fix --quiet"
     ]
   },
+  "files": [
+    "dist",
+    "bin",
+    "CHANGELOG.md",
+    "README.md"
+  ],
   "devDependencies": {
     "@commitlint/cli": "^17.2.0",
     "@commitlint/config-conventional": "^17.2.0",
@@ -45,7 +55,10 @@
     "@typescript-eslint/eslint-plugin": "^5.43.0",
     "@typescript-eslint/parser": "^5.43.0",
     "@vitest/ui": "^0.25.2",
+    "chalk": "^5.2.0",
     "commitlint": "^17.2.0",
+    "conventional-changelog-cli": "^2.2.2",
+    "enquirer": "^2.3.6",
     "eslint": "^8.27.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
@@ -56,6 +69,7 @@
     "husky": "^8.0.2",
     "lint-staged": "^13.0.3",
     "mdast-util-mdxjs-esm": "^1.3.0",
+    "minimist": "^1.2.8",
     "prettier": "^2.7.1",
     "rehype-slug": "^5.1.0",
     "rehype-stringify": "^9.0.3",
@@ -65,6 +79,7 @@
     "remark-stringify": "^10.0.2",
     "rollup": "^3.2.3",
     "sass": "^1.57.1",
+    "semver": "^7.3.8",
     "serve": "^14.0.1",
     "tsup": "^6.5.0",
     "tsx": "^3.12.1",
