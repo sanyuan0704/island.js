@@ -1,0 +1,17 @@
+{
+  "name": "island-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "island dev docs",
+    "build": "island build docs",
+    "preview": "island start docs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "islandjs": "^0.7.6"
+  }
+}

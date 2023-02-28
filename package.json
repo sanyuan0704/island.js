@@ -12,6 +12,7 @@
     "island": "./bin/island.js"
   },
   "scripts": {
+    "test1": "pnpm -F test create-island",
     "pnpm-install": "pnpm install",
     "lint": "eslint --ext .ts,.tsx,.js,.jsx --cache ./",
     "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx --quiet --cache ./",

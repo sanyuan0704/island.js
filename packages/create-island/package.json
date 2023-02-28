@@ -1,0 +1,55 @@
+{
+  "name": "@islandjs/create-island",
+  "version": "0.0.1",
+  "description": "create template for islandjs",
+  "packageManager": "pnpm@7.9.2",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "create-island": "index.js"
+  },
+  "files": [
+    "template-*",
+    "index.js",
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./dist/*": "./dist/*",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "pnpm-install": "pnpm install",
+    "dev": "tsup --watch --format=cjs,esm",
+    "build": "cross-env NODE_ENV=production tsup --format=cjs,esm"
+  },
+  "keywords": [
+    "vite",
+    "ssg",
+    "island architecture",
+    "cli",
+    "template"
+  ],
+  "author": "Shiinama",
+  "license": "MIT",
+  "lint-staged": {
+    "**/*.{js,jsx,tsx,ts,json}": [
+      "eslint --fix"
+    ]
+  },
+  "devDependencies": {
+    "@types/prompts": "^2.4.2",
+    "@types/minimist": "^1.2.2",
+    "download-git-repo": "^3.0.2",
+    "execa": "5",
+    "kolorist": "^1.7.0",
+    "minimist": "^1.2.7",
+    "prompts": "^2.4.2"
+  }
+}
