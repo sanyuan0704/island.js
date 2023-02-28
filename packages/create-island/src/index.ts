@@ -24,7 +24,6 @@ const renameFiles: Record<string, string | undefined> = {
 };
 
 async function init() {
-  console.log(111);
   console.log(`  ${cyan('●') + blue('■') + yellow('▲')}`);
   console.log(`${bold('  island') + dim(' Creator')}  ${blue(`v${version}`)}`);
   console.log();

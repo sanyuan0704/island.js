@@ -8,7 +8,7 @@
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "create-island": "index.js"
+    "create-island": "./bin/index.js"
   },
   "files": [
     "template-*",
