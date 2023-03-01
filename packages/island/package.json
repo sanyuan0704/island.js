@@ -1,6 +1,6 @@
 {
   "name": "islandjs",
-  "version": "0.7.27",
+  "version": "0.7.28",
   "description": "Vite & Islands architecture SSG framework",
   "packageManager": "pnpm@7.9.2",
   "type": "module",
@@ -45,12 +45,11 @@
   "author": "Sanyuan0704",
   "license": "MIT",
   "dependencies": {
-    "@babel/core": "7.19.0",
-    "@babel/helper-plugin-utils": "7.19.0",
-    "@babel/preset-react": "7.18.6",
+    "@babel/core": "7.18.6",
+    "@babel/helper-plugin-utils": "7.18.6",
     "@iconify-json/carbon": "1.1.8",
-    "@islandjs/plugin-backtop": "0.7.27",
-    "@islandjs/plugin-search": "0.7.27",
+    "@islandjs/plugin-backtop": "0.7.28",
+    "@islandjs/plugin-search": "0.7.28",
     "@mdx-js/mdx": "2.1.3",
     "@mdx-js/react": "2.1.3",
     "@mdx-js/rollup": "2",
@@ -105,6 +104,7 @@
     "vite-plugin-inspect": "0.7.4"
   },
   "devDependencies": {
+    "@babel/preset-react": "7.18.6",
     "@babel/traverse": "^7.19.0",
     "@types/babel__core": "^7.1.19",
     "@types/babel__helper-plugin-utils": "^7.10.0",
