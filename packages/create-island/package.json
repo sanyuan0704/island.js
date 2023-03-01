@@ -11,8 +11,8 @@
     "create-island": "./bin/index.js"
   },
   "files": [
-    "template-*",
-    "index.js",
+    "template",
+    "bin",
     "dist"
   ],
   "exports": {
@@ -46,7 +46,6 @@
   "devDependencies": {
     "@types/prompts": "^2.4.2",
     "@types/minimist": "^1.2.2",
-    "download-git-repo": "^3.0.2",
     "execa": "5",
     "kolorist": "^1.7.0",
     "minimist": "^1.2.7",

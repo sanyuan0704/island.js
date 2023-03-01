@@ -41,6 +41,7 @@
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
     "@islandjs/plugin-check-links": "workspace:*",
+    "@islandjs/create-island": "workspace:*",
     "@playwright/test": "^1.26.1",
     "@types/babel__core": "^7.1.19",
     "@types/babel__helper-plugin-utils": "^7.10.0",
