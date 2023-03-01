@@ -8,6 +8,7 @@ import minimist from 'minimist';
 import prompts from 'prompts';
 import execa from 'execa';
 import { cyan, blue, yellow, bold, dim, green } from 'kolorist';
+import { fileURLToPath } from 'node:url';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { version } = require('../package.json');
 
@@ -62,14 +63,16 @@ async function init() {
 
   console.log(dim('  Scaffolding project in ') + targetDir + dim(' ...'));
 
-  const templateDir = path.join(__dirname, 'template');
+  const templateDir = path.resolve(
+    fileURLToPath(import.meta.url),
+    '../..',
+    'template'
+  );
 
   const write = (file: string, content?: string) => {
     const targetPath = path.join(root, renameFiles[file] ?? file);
-    if (content) {
-      if (content) fs.writeFileSync(targetPath, content);
-      else copy(path.join(templateDir, file), targetPath);
-    }
+    if (content) fs.writeFileSync(targetPath, content);
+    else copy(path.join(templateDir, file), targetPath);
   };
   const files = fs.readdirSync(templateDir);
   for (const file of files.filter((f) => f !== 'package.json')) {
