@@ -1,3 +1,12 @@
+## [0.7.29](https://github.com/sanyuan0704/island.js/compare/v0.7.28...v0.7.29) (2023-03-01)
+
+
+### Bug Fixes
+
+* fix template cli ([#167](https://github.com/sanyuan0704/island.js/issues/167)) ([2f2aa92](https://github.com/sanyuan0704/island.js/commit/2f2aa92574960ba73e7df340c2582baa00b7a068)), closes [#165](https://github.com/sanyuan0704/island.js/issues/165) [#165](https://github.com/sanyuan0704/island.js/issues/165) [#165](https://github.com/sanyuan0704/island.js/issues/165)
+
+
+
 ## [0.7.28](https://github.com/sanyuan0704/island.js/compare/v0.7.27...v0.7.28) (2023-03-01)
 
 
