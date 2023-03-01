@@ -1,6 +1,6 @@
 {
   "name": "@islandjs/create-island",
-  "version": "0.0.1",
+  "version": "0.7.28",
   "description": "create template for islandjs",
   "packageManager": "pnpm@7.9.2",
   "type": "module",

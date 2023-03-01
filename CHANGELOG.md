@@ -1,3 +1,18 @@
+## [0.7.28](https://github.com/sanyuan0704/island.js/compare/v0.7.27...v0.7.28) (2023-03-01)
+
+
+### Bug Fixes
+
+* frontmatter not change ([c0fcb25](https://github.com/sanyuan0704/island.js/commit/c0fcb251cc46c0aaf7d67621d6c7f0680d2851bc))
+* **remark-toc:** support display emphasis and strong in toc ([#161](https://github.com/sanyuan0704/island.js/issues/161)) ([59d0327](https://github.com/sanyuan0704/island.js/commit/59d0327655348bc28262e4e7572650e6b353099a))
+
+
+### Features
+
+* add create-island ([#166](https://github.com/sanyuan0704/island.js/issues/166)) ([7cfbee2](https://github.com/sanyuan0704/island.js/commit/7cfbee2e73eb3bcb56ed8e8eaa9e3cc2cfe9d82f)), closes [#165](https://github.com/sanyuan0704/island.js/issues/165) [#165](https://github.com/sanyuan0704/island.js/issues/165)
+
+
+
 ## [0.7.27](https://github.com/sanyuan0704/island.js/compare/v0.7.26...v0.7.27) (2023-01-04)
 
 
