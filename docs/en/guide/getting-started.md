@@ -17,13 +17,36 @@ At present, we also provide independent tutorial documents to complete project i
 
 ## 1. Init project
 
-First, you can create a new directory by following command:
+Island.js has two installation methods, you only need to choose one. We recommend using the `create-island` cli because it can help you quickly and easily install Island.js and build a website framework.
+
+### Use `create-island` cli
+
+Using the `create-island` cli tool can help you quickly and easily install island and build a website framework. You can create a repository and run this command, which will create a new directory containing template files.
+
+```bash
+# npm
+npx @islandjs/create-island@latest island-app
+# yarn
+yarn create @islandjs/island island-app
+```
+
+Answer the questions asked by the cli, and wait for the installation to complete. It will automatically install dependencies and start the development server.
+
+If you name your new site `island-app`, then you will create a new directory called `island-app` in the current directory. You can enter the directory by the following command:
+
+```bash
+cd island-app
+```
+
+### Manual installation
+
+Of course, you can also manually initialize the project. First, you can create a new directory by the following command:
 
 ```bash
 mkdir island-app && cd island-app
 ```
 
-Execute `npm init -y` to init a project. You can install Island with npm, yarn or pnpm:
+Run `npm init -y` to initialize a project. You can use npm, yarn or pnpm to install Island.js:
 
 ```bash
 # npm
@@ -34,13 +57,13 @@ yarn add islandjs
 pnpm add islandjs
 ```
 
-Then you can create file:
+Then create files and directories as follows:
 
 ```bash
 mkdir docs && echo '# Hello World' > docs/index.md
 ```
 
-And then you can add the following scripts in `package.json`:
+Add the following scripts to `package.json`:
 
 ```json
 {
@@ -60,7 +83,9 @@ Serve the documentation site in the local server.
 yarn dev
 ```
 
-Island will start a development server at http://localhost:5173.
+Island will start a development server at <http://localhost:5173>.
+
+If you use the `create-island` cli to create a project, you will see a page with a navigation bar and contents (like this document). If you choose to create a project manually, you will see `Hello World` printed on the page. This means that you have successfully started the development server of Island.js.
 
 ## 3. Build for production
 

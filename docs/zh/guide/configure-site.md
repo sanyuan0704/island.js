@@ -2,9 +2,29 @@
 
 ## 创建配置文件
 
-在没有任何配置的情况，页面是非常简陋的，没有导航，也没有侧边栏。但是，通过 `.island/config.ts` 文件，你可以配置并自定义站点的各种信息。
+如果你使用 `create-island` 创建项目，那么你将得到下面的模板目录结构:  
 
-例如，在上一小节创建的初始化项目中，你可以添加配置文件，项目结构如下：
+```bash
+.
+├── docs
+│   ├── .island
+│   │   └── config.ts
+│   ├── article
+│   │   ├── astro.md
+│   │   └── fresh.md
+│   ├── public
+│   │   └── logo.png
+│   └── index.md
+├── package.json
+├── pnpm-lock.yaml
+└── README.md
+```
+
+模板中已经包含了配置文件了，即 `.island/config.ts` 。因此，你也就不需要手动创建配置文件了。你可以跳过这一小节剩下的内容。
+
+如果你选择手动初始化项目，在没有任何配置的情况，页面是非常简陋的，没有导航，也没有侧边栏。但是，通过 `.island/config.ts` 文件，你可以配置并自定义站点的各种信息。
+
+例如，在上一小节你手动创建的初始化项目中，你可以添加配置文件，项目结构如下：
 
 ```bash
 .
@@ -29,7 +49,7 @@ export default defineConfig({
 
 另外，关于配置文件有以下两个注意事项:
 
-- 1. Island.js 支持 `.js`、`.ts`、`.mjs`、`.cjs` 文件作为配置文件。但是推荐使用 TypeScript 配置，因为可以使用`defineConfig`获取类型提示。
+- 1. Island.js 支持 `.js`、`.ts`、`.mjs`、`.cjs` 文件作为配置文件。但是推荐使用 TypeScript 配置，因为可以使用`defineConfig` 获取类型提示。
 
 - 2. 配置文件应该有一个默认导出，即默认导出一个 `SiteConfig` 对象。
 
@@ -84,5 +104,7 @@ export default defineConfig({
   }
 });
 ```
+
+对于以上的配置选项，`create-island` 模板中已经有了一些默认的配置，你可以直接使用。但同时，你也可以根据自己的需求进行修改，使其满足你的需求。
 
 当然，还有很多自定义站点的配置，你可以在 [API 页面](/zh/api/index) 中获取更多配置细节。
