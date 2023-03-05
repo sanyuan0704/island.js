@@ -28,6 +28,8 @@ Using the `create-island` cli tool can help you quickly and easily install islan
 npx @islandjs/create-island@latest island-app
 # yarn
 yarn create @islandjs/island island-app
+# pnpm
+pnpm create @islandjs/island island-app
 ```
 
 Answer the questions asked by the cli, and wait for the installation to complete. It will automatically install dependencies and start the development server.

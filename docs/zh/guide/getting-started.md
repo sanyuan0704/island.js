@@ -28,6 +28,8 @@ Island.js 有如下两种安装方式，你只需要选择一种即可。我们�
 npx @islandjs/create-island@latest island-app
 # yarn
 yarn create @islandjs/island island-app
+# pnpm
+pnpm create @islandjs/island island-app
 ```
 
 回答脚手架询问的问题，然后等待安装完成。它会自动安装依赖并启动开发服务。  
