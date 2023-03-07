@@ -17,7 +17,32 @@
 
 ## 1. 初始化项目
 
-首先，你可以通过以下命令创建一个新目录：
+Island.js 有如下两种安装方式，你只需要选择一种即可。我们推荐使用 `create-island` 脚手架，因为它可以帮助你快速简单地安装 Island.js 并搭建网站框架。
+
+### 使用 `create-island` 脚手架
+
+使用 `create-island` 脚手架工具可以帮助你快速简单地安装 island 并搭建网站框架。你可以创建一个仓库并运行这个命令，它会创建一个包含模板文件的新目录。
+
+```bash
+# npm
+npx @islandjs/create-island@latest island-app
+# yarn
+yarn create @islandjs/island island-app
+# pnpm
+pnpm create @islandjs/island island-app
+```
+
+回答脚手架询问的问题，然后等待安装完成。它会自动安装依赖并启动开发服务。  
+
+假设你将新网站命名为 `island-app`，那么你将会在当前目录下创建一个名为 `island-app` 的新目录。你可以通过如下命令进入该目录:
+
+```bash
+cd island-app
+```
+
+### 手动安装
+
+当然，你也可以手动初始化项目。首先，你可以通过以下命令创建一个新目录：
 
 ```bash
 mkdir island-app && cd island-app
@@ -40,7 +65,7 @@ pnpm add islandjs
 mkdir docs && echo '# Hello World' > docs/index.md
 ```
 
-在`package.json`中加上如下的脚本:
+在 `package.json` 中加上如下的脚本:
 
 ```json
 {
@@ -60,7 +85,9 @@ mkdir docs && echo '# Hello World' > docs/index.md
 yarn dev
 ```
 
-这样 Island.js 将在 http://localhost:5173 启动开发服务。
+这样 Island.js 将在 <http://localhost:5173> 启动开发服务。
+
+如果你使用了 `create-island` 脚手架创建项目，那么你就能看到一个带有导航栏以及内容的页面（像这个文档一样）。如果你选择了手动创建项目，那么你将会看到页面上打印的 `Hello World`。这表示你已经成功地启动了 Island.js 的开发服务。
 
 ## 3. 生产环境构建
 

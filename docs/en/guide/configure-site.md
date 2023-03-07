@@ -2,9 +2,27 @@
 
 ## Create config file
 
-Without any configuration, the page is pretty minimal, which has no navigation and no sidebar. However, you can configure the site by `.island/config.ts` file and custom your own site.
+If you use `create-island` to create a project, you will get the following template directory structure:
 
-For example, in the initial project created by previous guide, you can add the config file and the project structure will be like this:
+```bash
+.
+├── docs
+│   ├── .island
+│   │   └── config.ts
+│   ├── article
+│   │   ├── astro.md
+│   │   └── fresh.md
+│   ├── public
+│   │   └── logo.png
+│   └── index.md
+├── package.json
+├── pnpm-lock.yaml
+└── README.md
+```
+
+The template already contains the config file, which is `.island/config.ts`. Therefore, you don't need to create a config file manually. You can skip the rest of this section.
+
+But if you initialize the project manually, the page is very simple without any config. You can config and customize the site by adding a config file `.island/config.ts`.
 
 ```bash
 .
@@ -81,5 +99,7 @@ export default defineConfig({
   }
 });
 ```
+
+For the above config options, the `create-island` template already has some default config, you can use it directly. But at the same time, you can also modify it according to your needs to meet your needs.
 
 You can get more config details about the sidebar config in [API Page](/en/api/index).
