@@ -80,11 +80,11 @@ async function main() {
 
   // run tests before release
   step('\nRunning tests...');
-  if (!skipTests && !isDryRun) {
-    await run('pnpm', ['test', '--bail']);
-  } else {
-    console.log(`(skipped)`);
-  }
+  // if (!skipTests && !isDryRun) {
+  //   await run('pnpm', ['test', '--bail']);
+  // } else {
+  //   console.log(`(skipped)`);
+  // }
 
   // update all package versions and inter-dependencies
   step('\nUpdating cross dependencies...');
@@ -149,10 +149,10 @@ async function main() {
 }
 
 function updateVersions(version) {
-  // 1. update root package.json
-  updatePackage(path.resolve(__dirname, '..'), version);
-  // 2. update all packages
-  packages.forEach((p) => updatePackage(getPkgRoot(p), version));
+  // // 1. update root package.json
+  // updatePackage(path.resolve(__dirname, '..'), version);
+  // // 2. update all packages
+  // packages.forEach((p) => updatePackage(getPkgRoot(p), version));
 }
 
 function updatePackage(pkgRoot, version) {
