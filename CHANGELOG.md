@@ -1,300 +1,205 @@
 ## [0.7.30](https://github.com/sanyuan0704/island.js/compare/v0.7.28...v0.7.30) (2023-03-15)
 
-
 ### Bug Fixes
 
-* fix template cli ([#167](https://github.com/sanyuan0704/island.js/issues/167)) ([2f2aa92](https://github.com/sanyuan0704/island.js/commit/2f2aa92574960ba73e7df340c2582baa00b7a068)), closes [#165](https://github.com/sanyuan0704/island.js/issues/165) [#165](https://github.com/sanyuan0704/island.js/issues/165) [#165](https://github.com/sanyuan0704/island.js/issues/165)
-
-
+- fix template cli ([#167](https://github.com/sanyuan0704/island.js/issues/167)) ([2f2aa92](https://github.com/sanyuan0704/island.js/commit/2f2aa92574960ba73e7df340c2582baa00b7a068)), closes [#165](https://github.com/sanyuan0704/island.js/issues/165) [#165](https://github.com/sanyuan0704/island.js/issues/165) [#165](https://github.com/sanyuan0704/island.js/issues/165)
 
 ## [0.7.29](https://github.com/sanyuan0704/island.js/compare/v0.7.28...v0.7.29) (2023-03-15)
 
-
 ### Bug Fixes
 
-* fix template cli ([#167](https://github.com/sanyuan0704/island.js/issues/167)) ([2f2aa92](https://github.com/sanyuan0704/island.js/commit/2f2aa92574960ba73e7df340c2582baa00b7a068)), closes [#165](https://github.com/sanyuan0704/island.js/issues/165) [#165](https://github.com/sanyuan0704/island.js/issues/165) [#165](https://github.com/sanyuan0704/island.js/issues/165)
-
-
+- fix template cli ([#167](https://github.com/sanyuan0704/island.js/issues/167)) ([2f2aa92](https://github.com/sanyuan0704/island.js/commit/2f2aa92574960ba73e7df340c2582baa00b7a068)), closes [#165](https://github.com/sanyuan0704/island.js/issues/165) [#165](https://github.com/sanyuan0704/island.js/issues/165) [#165](https://github.com/sanyuan0704/island.js/issues/165)
 
 ## [0.7.29](https://github.com/sanyuan0704/island.js/compare/v0.7.28...v0.7.29) (2023-03-01)
 
-
 ### Bug Fixes
 
-* fix template cli ([#167](https://github.com/sanyuan0704/island.js/issues/167)) ([2f2aa92](https://github.com/sanyuan0704/island.js/commit/2f2aa92574960ba73e7df340c2582baa00b7a068)), closes [#165](https://github.com/sanyuan0704/island.js/issues/165) [#165](https://github.com/sanyuan0704/island.js/issues/165) [#165](https://github.com/sanyuan0704/island.js/issues/165)
-
-
+- fix template cli ([#167](https://github.com/sanyuan0704/island.js/issues/167)) ([2f2aa92](https://github.com/sanyuan0704/island.js/commit/2f2aa92574960ba73e7df340c2582baa00b7a068)), closes [#165](https://github.com/sanyuan0704/island.js/issues/165) [#165](https://github.com/sanyuan0704/island.js/issues/165) [#165](https://github.com/sanyuan0704/island.js/issues/165)
 
 ## [0.7.28](https://github.com/sanyuan0704/island.js/compare/v0.7.27...v0.7.28) (2023-03-01)
 
-
 ### Bug Fixes
 
-* frontmatter not change ([c0fcb25](https://github.com/sanyuan0704/island.js/commit/c0fcb251cc46c0aaf7d67621d6c7f0680d2851bc))
-* **remark-toc:** support display emphasis and strong in toc ([#161](https://github.com/sanyuan0704/island.js/issues/161)) ([59d0327](https://github.com/sanyuan0704/island.js/commit/59d0327655348bc28262e4e7572650e6b353099a))
-
+- frontmatter not change ([c0fcb25](https://github.com/sanyuan0704/island.js/commit/c0fcb251cc46c0aaf7d67621d6c7f0680d2851bc))
+- **remark-toc:** support display emphasis and strong in toc ([#161](https://github.com/sanyuan0704/island.js/issues/161)) ([59d0327](https://github.com/sanyuan0704/island.js/commit/59d0327655348bc28262e4e7572650e6b353099a))
 
 ### Features
 
-* add create-island ([#166](https://github.com/sanyuan0704/island.js/issues/166)) ([7cfbee2](https://github.com/sanyuan0704/island.js/commit/7cfbee2e73eb3bcb56ed8e8eaa9e3cc2cfe9d82f)), closes [#165](https://github.com/sanyuan0704/island.js/issues/165) [#165](https://github.com/sanyuan0704/island.js/issues/165)
-
-
+- add create-island ([#166](https://github.com/sanyuan0704/island.js/issues/166)) ([7cfbee2](https://github.com/sanyuan0704/island.js/commit/7cfbee2e73eb3bcb56ed8e8eaa9e3cc2cfe9d82f)), closes [#165](https://github.com/sanyuan0704/island.js/issues/165) [#165](https://github.com/sanyuan0704/island.js/issues/165)
 
 ## [0.7.27](https://github.com/sanyuan0704/island.js/compare/v0.7.26...v0.7.27) (2023-01-04)
 
-
 ### Bug Fixes
 
-* prebundle nprogress dep ([5b7e678](https://github.com/sanyuan0704/island.js/commit/5b7e6784c10405ea4bef27ffea60560c1eac6840))
-
-
+- prebundle nprogress dep ([5b7e678](https://github.com/sanyuan0704/island.js/commit/5b7e6784c10405ea4bef27ffea60560c1eac6840))
 
 ## [0.7.26](https://github.com/sanyuan0704/island.js/compare/v0.7.25...v0.7.26) (2023-01-03)
 
-
 ### Bug Fixes
 
-* cannot click the link before title ([e833b03](https://github.com/sanyuan0704/island.js/commit/e833b038361566352068157d4756627acb6f6389))
-* doc base ([23e467b](https://github.com/sanyuan0704/island.js/commit/23e467b31e1c26b6eafb0b5c5db08c42e4811f9a))
-* header cannot update in spa mode ([ed8f445](https://github.com/sanyuan0704/island.js/commit/ed8f445938916de7b0d2962872b4bab56bc48294))
-* island mode crash in production ([e80e2a1](https://github.com/sanyuan0704/island.js/commit/e80e2a1ba304ada338280d7ac6005737e071422a))
-
+- cannot click the link before title ([e833b03](https://github.com/sanyuan0704/island.js/commit/e833b038361566352068157d4756627acb6f6389))
+- doc base ([23e467b](https://github.com/sanyuan0704/island.js/commit/23e467b31e1c26b6eafb0b5c5db08c42e4811f9a))
+- header cannot update in spa mode ([ed8f445](https://github.com/sanyuan0704/island.js/commit/ed8f445938916de7b0d2962872b4bab56bc48294))
+- island mode crash in production ([e80e2a1](https://github.com/sanyuan0704/island.js/commit/e80e2a1ba304ada338280d7ac6005737e071422a))
 
 ### Features
 
-* optimize link component ([1625802](https://github.com/sanyuan0704/island.js/commit/1625802d0cb108ac154da0240cbcb6377bfbeaa2))
-
-
+- optimize link component ([1625802](https://github.com/sanyuan0704/island.js/commit/1625802d0cb108ac154da0240cbcb6377bfbeaa2))
 
 ## [0.7.25](https://github.com/sanyuan0704/island.js/compare/v0.7.23...v0.7.25) (2023-01-03)
 
-
 ### Bug Fixes
 
-* spa route leave api layout ([#160](https://github.com/sanyuan0704/island.js/issues/160)) ([ab4e79b](https://github.com/sanyuan0704/island.js/commit/ab4e79bcc62796e79213aa3bf00439c0f90d8ab8))
-
-
+- spa route leave api layout ([#160](https://github.com/sanyuan0704/island.js/issues/160)) ([ab4e79b](https://github.com/sanyuan0704/island.js/commit/ab4e79bcc62796e79213aa3bf00439c0f90d8ab8))
 
 ## [0.7.24](https://github.com/sanyuan0704/island.js/compare/v0.7.23...v0.7.24) (2023-01-03)
 
-
-
 ## [0.7.23](https://github.com/sanyuan0704/island.js/compare/v0.7.22...v0.7.23) (2022-12-12)
-
 
 ### Features
 
-* support custom babel options ([af54cb5](https://github.com/sanyuan0704/island.js/commit/af54cb5275ed95e45940d7f16b11e5d471746959))
-
-
+- support custom babel options ([af54cb5](https://github.com/sanyuan0704/island.js/commit/af54cb5275ed95e45940d7f16b11e5d471746959))
 
 ## [0.7.22](https://github.com/sanyuan0704/island.js/compare/v0.7.21...v0.7.22) (2022-12-10)
 
-
 ### Bug Fixes
 
-* home jump to github ([#157](https://github.com/sanyuan0704/island.js/issues/157)) ([5d8d3de](https://github.com/sanyuan0704/island.js/commit/5d8d3deae23ef7c1dcfe555f1120a0cf47568844))
-
-
+- home jump to github ([#157](https://github.com/sanyuan0704/island.js/issues/157)) ([5d8d3de](https://github.com/sanyuan0704/island.js/commit/5d8d3deae23ef7c1dcfe555f1120a0cf47568844))
 
 ## [0.7.21](https://github.com/sanyuan0704/island.js/compare/v0.7.20...v0.7.21) (2022-12-07)
 
-
 ### Features
 
-* add transition for collapsible sidebar ([ba0d095](https://github.com/sanyuan0704/island.js/commit/ba0d09568d39ed5f5ddff5255754b44450c3b1d1))
-
-
+- add transition for collapsible sidebar ([ba0d095](https://github.com/sanyuan0704/island.js/commit/ba0d09568d39ed5f5ddff5255754b44450c3b1d1))
 
 ## [0.7.21](https://github.com/sanyuan0704/island.js/compare/v0.7.20...v0.7.21) (2022-12-07)
 
-
 ### Features
 
-* add transition for collapsible sidebar ([ba0d095](https://github.com/sanyuan0704/island.js/commit/ba0d09568d39ed5f5ddff5255754b44450c3b1d1))
-
-
+- add transition for collapsible sidebar ([ba0d095](https://github.com/sanyuan0704/island.js/commit/ba0d09568d39ed5f5ddff5255754b44450c3b1d1))
 
 ## [0.7.21](https://github.com/sanyuan0704/island.js/compare/v0.7.20...v0.7.21) (2022-12-07)
 
-
 ### Features
 
-* add transition for collapsible sidebar ([ba0d095](https://github.com/sanyuan0704/island.js/commit/ba0d09568d39ed5f5ddff5255754b44450c3b1d1))
-
-
+- add transition for collapsible sidebar ([ba0d095](https://github.com/sanyuan0704/island.js/commit/ba0d09568d39ed5f5ddff5255754b44450c3b1d1))
 
 ## [0.7.20](https://github.com/sanyuan0704/island.js/compare/v0.7.19...v0.7.20) (2022-12-05)
 
-
 ### Features
 
-* support inlineCode & link in toc ([7bad736](https://github.com/sanyuan0704/island.js/commit/7bad73660bd6d9c41dc26946c319c455eb75d8b7))
-
-
+- support inlineCode & link in toc ([7bad736](https://github.com/sanyuan0704/island.js/commit/7bad73660bd6d9c41dc26946c319c455eb75d8b7))
 
 ## [0.7.19](https://github.com/sanyuan0704/island.js/compare/v0.7.18...v0.7.19) (2022-12-01)
 
-
 ### Features
 
-* ssr entry esm format ([7ba2061](https://github.com/sanyuan0704/island.js/commit/7ba20616b06b2b808e00009abb7a3bee0c3b2dee))
-* support sidebar collapse ([e2e1fd7](https://github.com/sanyuan0704/island.js/commit/e2e1fd736ea112c98cb4791f4b38c6c2a8eec1e6))
-
-
+- ssr entry esm format ([7ba2061](https://github.com/sanyuan0704/island.js/commit/7ba20616b06b2b808e00009abb7a3bee0c3b2dee))
+- support sidebar collapse ([e2e1fd7](https://github.com/sanyuan0704/island.js/commit/e2e1fd736ea112c98cb4791f4b38c6c2a8eec1e6))
 
 ## [0.7.18](https://github.com/sanyuan0704/island.js/compare/v0.7.17...v0.7.18) (2022-11-29)
 
-
 ### Bug Fixes
 
-* inline code in toc cannot show ([4ba68a8](https://github.com/sanyuan0704/island.js/commit/4ba68a8a4bb177c297ccb9ee0dda490b2e78e4bf))
-
-
+- inline code in toc cannot show ([4ba68a8](https://github.com/sanyuan0704/island.js/commit/4ba68a8a4bb177c297ccb9ee0dda490b2e78e4bf))
 
 ## [0.7.17](https://github.com/sanyuan0704/island.js/compare/v0.7.16...v0.7.17) (2022-11-28)
 
-
 ### Bug Fixes
 
-* initial scroll position in dev ([a5b0521](https://github.com/sanyuan0704/island.js/commit/a5b052183d52cd352e54b3e393125de38cb63683))
-
-
+- initial scroll position in dev ([a5b0521](https://github.com/sanyuan0704/island.js/commit/a5b052183d52cd352e54b3e393125de38cb63683))
 
 ## [0.7.16](https://github.com/sanyuan0704/island.js/compare/v0.7.15...v0.7.16) (2022-11-28)
 
-
 ### Features
 
-* add link for group name in api page ([30628bf](https://github.com/sanyuan0704/island.js/commit/30628bf89ef98286dc562927dc7ece72b1ffb230))
-
-
+- add link for group name in api page ([30628bf](https://github.com/sanyuan0704/island.js/commit/30628bf89ef98286dc562927dc7ece72b1ffb230))
 
 ## [0.7.15](https://github.com/sanyuan0704/island.js/compare/v0.7.14...v0.7.15) (2022-11-26)
 
-
 ### Features
 
-* support single #xxx in md link ([d90d60d](https://github.com/sanyuan0704/island.js/commit/d90d60d3fbd568b4b618ba311d652a76d2686911))
-
-
+- support single #xxx in md link ([d90d60d](https://github.com/sanyuan0704/island.js/commit/d90d60d3fbd568b4b618ba311d652a76d2686911))
 
 ## [0.7.14](https://github.com/sanyuan0704/island.js/compare/v0.7.13...v0.7.14) (2022-11-26)
 
-
 ### Bug Fixes
 
-* add leading slash for url in `withBase` ([26bcd96](https://github.com/sanyuan0704/island.js/commit/26bcd965772c773c5917b5261e2ebda11832a30b))
-
-
+- add leading slash for url in `withBase` ([26bcd96](https://github.com/sanyuan0704/island.js/commit/26bcd965772c773c5917b5261e2ebda11832a30b))
 
 ## [0.7.13](https://github.com/sanyuan0704/island.js/compare/v0.7.12...v0.7.13) (2022-11-26)
 
-
 ### Bug Fixes
 
-* dist structure ([0bb0a25](https://github.com/sanyuan0704/island.js/commit/0bb0a252da55c57a25c9ad4bce4b193d6e83b6a1))
-
-
+- dist structure ([0bb0a25](https://github.com/sanyuan0704/island.js/commit/0bb0a252da55c57a25c9ad4bce4b193d6e83b6a1))
 
 ## [0.7.12](https://github.com/sanyuan0704/island.js/compare/v0.7.11...v0.7.12) (2022-11-26)
 
-
 ### Bug Fixes
 
-* base url preview in production ([90f65a7](https://github.com/sanyuan0704/island.js/commit/90f65a7e9285be87c48b5f1696e527a8ccb6ea43))
-
-
+- base url preview in production ([90f65a7](https://github.com/sanyuan0704/island.js/commit/90f65a7e9285be87c48b5f1696e527a8ccb6ea43))
 
 ## [0.7.11](https://github.com/sanyuan0704/island.js/compare/v0.7.10...v0.7.11) (2022-11-26)
 
-
 ### Features
 
-* inject NODE_ENV in production build ([d804bb0](https://github.com/sanyuan0704/island.js/commit/d804bb03f766d7070276d20ad71934ae202331e1))
-* more backtop options and backtop animation demo ([#154](https://github.com/sanyuan0704/island.js/issues/154)) ([ad57a24](https://github.com/sanyuan0704/island.js/commit/ad57a24d97b06bd09bf4e64f983c70bb3b18cbf3))
-* support config.base ([#155](https://github.com/sanyuan0704/island.js/issues/155)) ([11d3127](https://github.com/sanyuan0704/island.js/commit/11d312711801001ee784702d4f2365f22d9441d6))
-
-
+- inject NODE_ENV in production build ([d804bb0](https://github.com/sanyuan0704/island.js/commit/d804bb03f766d7070276d20ad71934ae202331e1))
+- more backtop options and backtop animation demo ([#154](https://github.com/sanyuan0704/island.js/issues/154)) ([ad57a24](https://github.com/sanyuan0704/island.js/commit/ad57a24d97b06bd09bf4e64f983c70bb3b18cbf3))
+- support config.base ([#155](https://github.com/sanyuan0704/island.js/issues/155)) ([11d3127](https://github.com/sanyuan0704/island.js/commit/11d312711801001ee784702d4f2365f22d9441d6))
 
 ## [0.7.10](https://github.com/sanyuan0704/island.js/compare/v0.7.9...v0.7.10) (2022-11-24)
 
-
 ### Bug Fixes
 
-* revert noExternal config ([ef9a779](https://github.com/sanyuan0704/island.js/commit/ef9a7795a019122d53d91870532d2c4653dce055))
-
-
+- revert noExternal config ([ef9a779](https://github.com/sanyuan0704/island.js/commit/ef9a7795a019122d53d91870532d2c4653dce055))
 
 ## [0.7.9](https://github.com/sanyuan0704/island.js/compare/v0.7.8...v0.7.9) (2022-11-24)
 
-
 ### Bug Fixes
 
-* lock react-router-dom version ([1838117](https://github.com/sanyuan0704/island.js/commit/183811703369b85b8738a71b1578da53f42792de))
-
-
+- lock react-router-dom version ([1838117](https://github.com/sanyuan0704/island.js/commit/183811703369b85b8738a71b1578da53f42792de))
 
 ## [0.7.8](https://github.com/sanyuan0704/island.js/compare/v0.7.7...v0.7.8) (2022-11-23)
 
-
 ### Bug Fixes
 
-* home page hmr ([087b5be](https://github.com/sanyuan0704/island.js/commit/087b5bec17bc1f4f9051be9d9b7f6969e1212ffe))
-
-
+- home page hmr ([087b5be](https://github.com/sanyuan0704/island.js/commit/087b5bec17bc1f4f9051be9d9b7f6969e1212ffe))
 
 ## [0.7.7](https://github.com/sanyuan0704/island.js/compare/v0.7.6...v0.7.7) (2022-11-20)
 
-
 ### Features
 
-* custom container supports custom titles ([#153](https://github.com/sanyuan0704/island.js/issues/153)) ([729a693](https://github.com/sanyuan0704/island.js/commit/729a693e8fff1748dad1aed1229f209a637b214f))
-* social links ([#149](https://github.com/sanyuan0704/island.js/issues/149)) ([9682e3d](https://github.com/sanyuan0704/island.js/commit/9682e3db6c175cee7e210e77bca9f9bf67f0f2fd))
-
-
+- custom container supports custom titles ([#153](https://github.com/sanyuan0704/island.js/issues/153)) ([729a693](https://github.com/sanyuan0704/island.js/commit/729a693e8fff1748dad1aed1229f209a637b214f))
+- social links ([#149](https://github.com/sanyuan0704/island.js/issues/149)) ([9682e3d](https://github.com/sanyuan0704/island.js/commit/9682e3db6c175cee7e210e77bca9f9bf67f0f2fd))
 
 ## [0.7.6](https://github.com/sanyuan0704/island.js/compare/v0.7.5...v0.7.6) (2022-11-12)
 
-
 ### Bug Fixes
 
-* aside hmr ([60bbdf2](https://github.com/sanyuan0704/island.js/commit/60bbdf2c0b829bf01e5866c30158c4518e44d8d0))
-* optimizeDeps for plugin ([273c9d2](https://github.com/sanyuan0704/island.js/commit/273c9d2c118b4f5b3f0f2c684be1f0960cb9b267))
-
+- aside hmr ([60bbdf2](https://github.com/sanyuan0704/island.js/commit/60bbdf2c0b829bf01e5866c30158c4518e44d8d0))
+- optimizeDeps for plugin ([273c9d2](https://github.com/sanyuan0704/island.js/commit/273c9d2c118b4f5b3f0f2c684be1f0960cb9b267))
 
 ### Features
 
-* theme optimization ([#148](https://github.com/sanyuan0704/island.js/issues/148)) ([297a821](https://github.com/sanyuan0704/island.js/commit/297a82189cca0d3b6ddf664f500dbfd3118b8664))
-
-
+- theme optimization ([#148](https://github.com/sanyuan0704/island.js/issues/148)) ([297a821](https://github.com/sanyuan0704/island.js/commit/297a82189cca0d3b6ddf664f500dbfd3118b8664))
 
 ## [0.7.5](https://github.com/sanyuan0704/island.js/compare/v0.7.4...v0.7.5) (2022-11-11)
 
-
 ### Bug Fixes
 
-* island error ([2201c2b](https://github.com/sanyuan0704/island.js/commit/2201c2b6993ddbb62c93fc7f9aeaf9b958b79ba8))
-
-
+- island error ([2201c2b](https://github.com/sanyuan0704/island.js/commit/2201c2b6993ddbb62c93fc7f9aeaf9b958b79ba8))
 
 ## [0.7.4](https://github.com/sanyuan0704/island.js/compare/v0.7.3...v0.7.4) (2022-11-11)
 
-
 ### Features
 
-* avoid loading after route navigation in spa mode ([2d704c1](https://github.com/sanyuan0704/island.js/commit/2d704c1d2f9c7a4fff02cdee06ce3e18e4ed549f))
-
-
+- avoid loading after route navigation in spa mode ([2d704c1](https://github.com/sanyuan0704/island.js/commit/2d704c1d2f9c7a4fff02cdee06ce3e18e4ed549f))
 
 ## [0.7.3](https://github.com/sanyuan0704/island.js/compare/v0.7.2...v0.7.3) (2022-11-10)
 
-
 ### Bug Fixes
 
-* custom style cannot work ([d1f3e8d](https://github.com/sanyuan0704/island.js/commit/d1f3e8de86a10a326fcdb73a1ec90d3040717835))
-
-
+- custom style cannot work ([d1f3e8d](https://github.com/sanyuan0704/island.js/commit/d1f3e8de86a10a326fcdb73a1ec90d3040717835))
 
 ## [0.7.2](https://github.com/sanyuan0704/island.js/compare/v0.7.0...v0.7.2) (2022-11-10)
 
