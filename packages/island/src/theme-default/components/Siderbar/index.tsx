@@ -71,6 +71,18 @@ export function SideBar(props: Props & ComponentPropsWithIsland) {
         }}
       ></div>
     );
+    const countItems = (items: DefaultTheme.SidebarItem[]) => {
+      if (!items) return 0;
+      let count = 0;
+      for (const item of items) {
+        count++;
+        if ('items' in item) {
+          count += countItems(item.items || []);
+        }
+      }
+      return count;
+    };
+    const count = countItems(item.items);
     return (
       <section key={item.text} block="~" not-first="divider-top mt-4">
         <div
@@ -88,7 +100,7 @@ export function SideBar(props: Props & ComponentPropsWithIsland) {
           mb="1.4 sm:1"
           style={{
             transition: 'height 0.2s ease-out',
-            height: collapsed ? 0 : `${(item?.items.length || 0) * 28}px`,
+            height: collapsed ? 0 : `${count * 28}px`,
             overflow: 'hidden'
           }}
         >
