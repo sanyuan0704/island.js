@@ -29,6 +29,15 @@ export function pluginIndexHtml(config: SiteConfig): Plugin {
         tags: [
           ...head,
           {
+            tag: 'link',
+            attrs: {
+              rel: 'icon',
+              href: `${config.siteData?.icon}`,
+              type: 'image/image/svg+xml'
+            },
+            injectTo: 'head'
+          },
+          {
             tag: 'script',
             attrs: {
               type: 'module',
