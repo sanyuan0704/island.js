@@ -17,7 +17,6 @@ export default defineConfig({
   lang: 'en-US',
   title: 'Island.js',
   icon: '/island.png',
-  outDir: 'doc_build',
   vite: {
     // custom config for vite
   },
