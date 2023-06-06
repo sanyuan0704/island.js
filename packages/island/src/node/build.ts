@@ -15,7 +15,7 @@ import { resolveConfig } from './config';
 import {
   CLIENT_ENTRY_PATH,
   DEFAULT_EXTERNALS,
-  DIST_PATH,
+  DIST_DIR,
   MASK_SPLITTER,
   PUBLIC_DIR,
   SERVER_ENTRY_PATH,
@@ -24,7 +24,7 @@ import {
   VENDOR_PATH
 } from './constants';
 import { createVitePlugins } from './vitePlugin';
-import { join, dirname } from 'path';
+import path, { join, dirname } from 'path';
 import { OutputAsset, OutputChunk, RollupOutput } from 'rollup';
 import { createHash, dynamicImport } from './utils';
 import { Route } from './plugin-routes';
@@ -65,12 +65,20 @@ class SSGBuilder {
   #cliOptions: CLIBuildOption;
   #clientBundle?: RollupOutput;
   #serverBundle?: RollupOutput;
+  #distPath: string;
   #islandsInjectCache: Map<string, Promise<string>> = new Map();
 
   constructor(config: SiteConfig<unknown>, cliOptions: CLIBuildOption) {
     this.#config = config;
     this.#root = this.#config.root;
     this.#cliOptions = cliOptions;
+    if (this.#config.outDir) {
+      this.#distPath = path.isAbsolute(this.#config.outDir)
+        ? this.#config.outDir
+        : join(this.#root, DIST_DIR, this.#config.outDir);
+    } else {
+      this.#distPath = join(this.#root, DIST_DIR, 'dist');
+    }
   }
 
   async build() {
@@ -91,7 +99,7 @@ class SSGBuilder {
       // Get complete css from server bundle
       await copy(
         join(TEMP_PATH, 'ssr', 'assets'),
-        join(this.#root, DIST_PATH, 'assets')
+        join(this.#distPath, 'assets')
       );
 
       await fs.writeFile(
@@ -102,7 +110,7 @@ class SSGBuilder {
       // Copy public assets
       const publicDirInRoot = join(this.#root, PUBLIC_DIR);
       if (await pathExists(publicDirInRoot)) {
-        await copy(publicDirInRoot, join(this.#root, DIST_PATH));
+        await copy(publicDirInRoot, this.#distPath);
       }
 
       const serverEntryPath = join(SERVER_OUTPUT_PATH);
@@ -124,7 +132,7 @@ class SSGBuilder {
       (chunk) => chunk.type === 'chunk' && chunk.isEntry
     );
     const clientChunkCode = await fs.readFile(
-      join(this.#root, DIST_PATH, clientEntryChunk!.fileName),
+      join(this.#distPath, clientEntryChunk!.fileName),
       'utf-8'
     );
     // We get style from server bundle because it will generate complete css
@@ -145,7 +153,7 @@ class SSGBuilder {
     );
     await this.#render404Page(render, clientChunkInfo, styleAssets);
     try {
-      await fs.copy(VENDOR_PATH, join(this.#root, DIST_PATH));
+      await fs.copy(VENDOR_PATH, this.#distPath);
     } catch (e) {
       console.log(e);
       throw e;
@@ -239,7 +247,7 @@ class SSGBuilder {
             // Move island_inject chunk
             await copy(
               join(TEMP_PATH, 'assets'),
-              join(this.#root, DIST_PATH, 'assets')
+              join(this.#distPath, 'assets')
             );
           } catch (e) {
             // noop
@@ -342,8 +350,8 @@ class SSGBuilder {
       return `${path}.html`.replace(normalizedBase, '');
     };
     const fileName = normalizeHtmlFilePath(routePath);
-    await fs.ensureDir(join(this.#root, DIST_PATH, dirname(fileName)));
-    await fs.writeFile(join(this.#root, DIST_PATH, fileName), html);
+    await fs.ensureDir(join(this.#distPath, dirname(fileName)));
+    await fs.writeFile(join(this.#distPath, fileName), html);
   }
 
   #render404Page(
@@ -393,7 +401,9 @@ class SSGBuilder {
       build: {
         minify: !process.env.NO_MINIFY && !isServer,
         ssr: isServer,
-        outDir: isServer ? join(TEMP_PATH, 'ssr') : join(this.#root, DIST_PATH),
+        outDir: isServer
+          ? join(TEMP_PATH, 'ssr')
+          : this.#distPath ?? join(this.#root, DIST_DIR),
         cssCodeSplit: false,
         ssrManifest: !isServer,
         emptyOutDir: true,

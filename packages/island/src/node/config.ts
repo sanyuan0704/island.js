@@ -2,7 +2,7 @@ import fs from 'fs-extra';
 import path from 'path';
 import pc from 'picocolors';
 import { APPEARANCE_KEY } from '../shared/constants';
-import { DEFAULT_THEME_PATH, DIST_PATH } from './constants';
+import { DEFAULT_THEME_PATH, DIST_DIR } from './constants';
 import {
   DefaultTheme,
   HeadConfig,
@@ -145,7 +145,6 @@ export async function resolveConfig(
     customizeConfig
   );
   const srcDir = path.resolve(root, userConfig.srcDir || '');
-  const outDir = path.resolve(root, userConfig.outDir || DIST_PATH);
   const userThemeDir = resolve(root, 'theme');
   const themeDir = pathExistsSync(userThemeDir)
     ? userThemeDir
@@ -167,7 +166,7 @@ export async function resolveConfig(
   const siteConfig: SiteConfig<DefaultTheme.Config> = {
     root,
     srcDir,
-    outDir,
+    outDir: userConfig.outDir,
     themeDir,
     configPath,
     configDeps,
