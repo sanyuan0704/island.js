@@ -1,6 +1,6 @@
 {
   "name": "@islandjs/plugin-search",
-  "version": "0.7.28",
+  "version": "0.7.30",
   "description": "Search plugin for islandjs",
   "packageManager": "pnpm@7.9.2",
   "type": "module",
@@ -40,7 +40,7 @@
     "react": "^18.2.0"
   },
   "peerDependencies": {
-    "islandjs": "0.7.28"
+    "islandjs": "0.7.30"
   },
   "files": [
     "dist",

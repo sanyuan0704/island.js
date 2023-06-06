@@ -1,6 +1,6 @@
 {
   "name": "islandjs",
-  "version": "0.7.28",
+  "version": "0.7.30",
   "description": "Vite & Islands architecture SSG framework",
   "packageManager": "pnpm@7.9.2",
   "type": "module",
@@ -48,8 +48,8 @@
     "@babel/core": "7.18.6",
     "@babel/helper-plugin-utils": "7.18.6",
     "@iconify-json/carbon": "1.1.8",
-    "@islandjs/plugin-backtop": "0.7.28",
-    "@islandjs/plugin-search": "0.7.28",
+    "@islandjs/plugin-backtop": "0.7.30",
+    "@islandjs/plugin-search": "0.7.30",
     "@mdx-js/mdx": "2.1.3",
     "@mdx-js/react": "2.1.3",
     "@mdx-js/rollup": "2",

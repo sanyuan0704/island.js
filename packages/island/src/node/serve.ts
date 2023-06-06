@@ -1,9 +1,10 @@
 import fs from 'fs';
-import path from 'path';
+import path, { join } from 'path';
 import sirv from 'sirv';
 import compression from 'compression';
 import polka from 'polka';
 import { resolveConfig } from './config';
+import { DIST_DIR } from './constants';
 
 export interface CLIServeOption {
   base?: string;
@@ -19,9 +20,16 @@ export async function serve(root: string, cliOptions: CLIServeOption) {
   const config = await resolveConfig(root, 'serve', 'production');
   const base = config.base?.replace(/^\//, '').replace(/\/$/, '') || '';
   const notAnAsset = (pathname: string) => !pathname.includes('/assets/');
-  const notFoundPage = fs.readFileSync(
-    path.resolve(config.outDir!, './404.html')
-  );
+
+  let distPath = '';
+  if (config.outDir) {
+    distPath = path.isAbsolute(config.outDir)
+      ? config.outDir
+      : join(config.root, DIST_DIR, config.outDir);
+  } else {
+    distPath = join(config.root, DIST_DIR, 'dist');
+  }
+  const notFoundPage = fs.readFileSync(path.resolve(distPath, './404.html'));
   const onNoMatch: polka.Options['onNoMatch'] = (req, res) => {
     res.statusCode = 404;
     if (notAnAsset(req.path)) {
@@ -30,7 +38,7 @@ export async function serve(root: string, cliOptions: CLIServeOption) {
   };
 
   const compress = compression();
-  const serve = sirv(config.outDir, {
+  const serve = sirv(distPath, {
     etag: true,
     maxAge: 31536000,
     immutable: true,

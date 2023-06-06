@@ -28,7 +28,7 @@ export const PUBLIC_DIR = 'public';
 
 export const TEMP_PATH = join(PACKAGE_ROOT_PATH, 'node_modules', '.island');
 
-export const DIST_PATH = join('.island', 'dist');
+export const DIST_DIR = join('.island');
 
 export const SERVER_BUNDLE_FILE = 'ssr-entry.mjs';
 
