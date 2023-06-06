@@ -2,7 +2,7 @@ import fs from 'fs-extra';
 import path from 'path';
 import pc from 'picocolors';
 import { APPEARANCE_KEY } from '../shared/constants';
-import { DEFAULT_THEME_PATH, DIST_DIR } from './constants';
+import { DEFAULT_THEME_PATH } from './constants';
 import {
   DefaultTheme,
   HeadConfig,
