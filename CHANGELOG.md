@@ -1,3 +1,16 @@
+## [0.7.31](https://github.com/sanyuan0704/island.js/compare/v0.7.28...v0.7.31) (2023-06-06)
+
+
+### Bug Fixes
+
+* calculate sidebar height error ([#176](https://github.com/sanyuan0704/island.js/issues/176)) ([584ffc9](https://github.com/sanyuan0704/island.js/commit/584ffc93fb97eaa0a85f7b40e0fb4446dfb4d94a))
+* fix template cli ([#167](https://github.com/sanyuan0704/island.js/issues/167)) ([2f2aa92](https://github.com/sanyuan0704/island.js/commit/2f2aa92574960ba73e7df340c2582baa00b7a068)), closes [#165](https://github.com/sanyuan0704/island.js/issues/165) [#165](https://github.com/sanyuan0704/island.js/issues/165) [#165](https://github.com/sanyuan0704/island.js/issues/165)
+* icon setting does not take effect ([#177](https://github.com/sanyuan0704/island.js/issues/177)) ([e0e2b1f](https://github.com/sanyuan0704/island.js/commit/e0e2b1f2cb54fb2640bb38b79d5d6713eee2634b))
+* outdir config not work ([#180](https://github.com/sanyuan0704/island.js/issues/180)) ([5ed9470](https://github.com/sanyuan0704/island.js/commit/5ed9470364b1f080fb848f3556ab3bd55f5830e3))
+* **plugin-routes:** :bug: Reload only modules that match the extension ([#164](https://github.com/sanyuan0704/island.js/issues/164)) ([06ec522](https://github.com/sanyuan0704/island.js/commit/06ec52238010c90958017860aa839bb590b77b97))
+
+
+
 ## [0.7.30](https://github.com/sanyuan0704/island.js/compare/v0.7.28...v0.7.30) (2023-03-15)
 
 ### Bug Fixes
