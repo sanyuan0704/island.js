@@ -132,6 +132,10 @@ export namespace DefaultTheme {
   // image -----------------------------------------------------------------------
   export type Image = string | { src: string; alt?: string };
 
+  export type FeatureIcon =
+    | string
+    | { src: string; alt?: string; width?: string; height: string };
+
   // sidebar -------------------------------------------------------------------
   export interface Sidebar {
     [path: string]: SidebarGroup[];

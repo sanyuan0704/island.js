@@ -122,7 +122,7 @@ export interface Hero {
 }
 
 export interface Feature {
-  icon: string;
+  icon: DefaultTheme.FeatureIcon;
   title: string;
   details: string;
 }
