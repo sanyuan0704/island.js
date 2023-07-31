@@ -82,6 +82,7 @@ export default defineConfig({
             text: 'Twitter',
             link: 'http://twitter.com/sanyuan0704',
           },
+        ]
       }
     ]
   }
