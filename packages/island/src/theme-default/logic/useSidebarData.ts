@@ -10,6 +10,8 @@ interface SidebarData {
 }
 
 export function useSidebarData(currentPathname: string): SidebarData {
+  currentPathname = decodeURIComponent(currentPathname)
+
   const localeData = useLocaleSiteData();
   const sidebar = localeData.sidebar ?? {};
   for (const name of Object.keys(sidebar)) {
