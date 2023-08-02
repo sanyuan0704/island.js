@@ -13,6 +13,7 @@ export function useLocaleSiteData(): DefaultTheme.LocaleConfig {
     return {
       nav: themeConfig.nav,
       sidebar: themeConfig.sidebar,
+      lastUpdatedText: themeConfig.lastUpdatedText,
       prevPageText: themeConfig.prevPageText,
       nextPageText: themeConfig.nextPageText
     } as DefaultTheme.LocaleConfig;
