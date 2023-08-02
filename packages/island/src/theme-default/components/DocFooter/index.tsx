@@ -42,6 +42,9 @@ export function DocFooter() {
           leading-6="~"
           leading-8="sm:~"
           font-medium=""
+          style={{
+            whiteSpace: 'pre-wrap'
+          }}
         >
           {
             <>
