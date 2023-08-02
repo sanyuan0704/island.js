@@ -1,6 +1,6 @@
-# Home 主页
+# 主页
 
-Island.js 默认主题内置了 Home 页面，你可以通过书写 markdown 的 Front Matter 来配置它。举个简单的例子：
+Island.js 默认主题内置了主页，你可以通过书写 markdown 的 Front Matter 来配置它。举个简单的例子：
 
 ```md
 ---
@@ -12,11 +12,11 @@ hero:
 ---
 ```
 
-首先你需要将 `pageType` 设为 `home`，这样 Island.js 会自动为你生成 Home 页面。除了 `pageType`，你还可以配置 `hero` 和 `features` 两个部分。
+首先你需要将 `pageType` 设为 `home`，这样 Island.js 会自动为你生成主页。除了 `pageType`，你还可以配置 `hero` 和 `features` 两个部分。
 
-## hero
+## 开屏
 
-`hero` 部分是 Home 页面的 Logo、简介及跳转按钮部分，它的配置是一个对象，有以下类型：
+开屏部分是主页的 Logo、简介及跳转按钮部分，它的配置是一个对象，有以下类型：
 
 ```ts
 export interface Hero {
@@ -70,9 +70,9 @@ hero:
 ---
 ```
 
-## features
+## 特性
 
-`features` 部分是 Home 页面的特性介绍部分，它的配置是一个数组，每个元素有以下类型：
+特性部分是主页的特性介绍部分，它的配置是一个数组，每个元素有以下类型：
 
 ```ts
 export interface Feature {
@@ -81,8 +81,12 @@ export interface Feature {
   // Feature 详细介绍
   details: string;
   // Feature 图标，一般为 emoji
-  icon: string;
+  icon: FeatureIcon;
 }
+
+export type FeatureIcon =
+    | string
+    | { src: string; alt?: string; width?: string; height: string };
 ```
 
 举个例子:
@@ -98,12 +102,13 @@ features:
   icon: 📦
 - title: 'Islands Arch: The higher performance in production'
   details: Designed to be islands architecture, means less javascript bundle, partial hydration and better performance about FCP, TTI.
-  icon: ✨
+  icon:
+    src: /islands-arch-feature-icon.svg
 ```
 
 ## 页脚
 
-你可以通过 `themeConfig.footer` 来自定义 Home 页面的页脚。它的配置是一个对象，有以下类型：
+你可以通过 `themeConfig.footer` 来自定义主页的页脚。它的配置是一个对象，有以下类型：
 
 ```ts
 export interface Footer {
