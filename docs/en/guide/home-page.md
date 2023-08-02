@@ -1,4 +1,4 @@
-# Home 页面
+# Home Page
 
 Island.js default theme has a built-in Home page, you can configure it by writing markdown Front Matter. Take a simple example:
 
@@ -81,8 +81,12 @@ export interface Feature {
   // Feature details
   details: string;
   // Feature icon, usually emoji
-  icon: string;
+  icon: FeatureIcon;
 }
+
+export type FeatureIcon =
+    | string
+    | { src: string; alt?: string; width?: string; height: string };
 ```
 
 For example:
@@ -98,7 +102,8 @@ features:
   icon: 📦
 - title: 'Islands Arch: The higher performance in production'
   details: Designed to be islands architecture, means less javascript bundle, partial hydration and better performance about FCP, TTI.
-  icon: ✨
+  icon:
+    src: /islands-arch-feature-icon.svg
 ```
 
 ## Footer
