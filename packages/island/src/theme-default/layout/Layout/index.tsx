@@ -1,9 +1,10 @@
 import React from 'react';
 import { Nav } from '../../components/Nav';
+import { HomeLayout } from '../HomeLayout';
 import { DocLayout } from '../DocLayout';
 import { usePageData, Content } from '@runtime';
 import { Helmet } from 'react-helmet-async';
-import { HomeLayout, NotFoundLayout } from '@theme';
+import { NotFoundLayout } from '@theme';
 import { APILayout } from '../APILayout';
 import { DocLayoutProps } from '../DocLayout/index';
 import { HomeLayoutProps } from '../HomeLayout/index';
@@ -23,6 +24,10 @@ export const Layout: React.FC<LayoutProps> = (props) => {
   const {
     top,
     bottom,
+    beforeHero,
+    afterHero,
+    beforeFeatures,
+    afterFeatures,
     beforeDocFooter,
     beforeDoc,
     afterDoc,
@@ -31,6 +36,12 @@ export const Layout: React.FC<LayoutProps> = (props) => {
     beforeNavTitle,
     afterNavTitle
   } = props;
+  const homeProps: HomeLayoutProps = {
+    beforeHero,
+    afterHero,
+    beforeFeatures,
+    afterFeatures
+  };
   const docProps: DocLayoutProps = {
     beforeDocFooter,
     beforeDoc,
@@ -53,7 +64,7 @@ export const Layout: React.FC<LayoutProps> = (props) => {
   const getContentLayout = () => {
     switch (pageType) {
       case 'home':
-        return <HomeLayout />;
+        return <HomeLayout {...homeProps} />;
       case 'doc':
         return <DocLayout {...docProps} />;
       case 'api':
