@@ -1,5 +1,6 @@
 import styles from './index.module.scss';
 import { useFrontmatter } from '../../logic';
+import { Image } from '../Image';
 
 const getGridClass = (count?: number) => {
   if (!count) {
@@ -50,7 +51,16 @@ export function HomeFeature() {
                 bg="gray-light-4 dark:bg-default"
                 rounded="md"
               >
-                {icon}
+                {typeof icon === 'string' ? (
+                  icon
+                ) : (
+                  <Image
+                    image={icon}
+                    alt={icon.alt}
+                    width={icon.width}
+                    height={icon.height}
+                  />
+                )}
               </div>
               <h2 font="bold">{title}</h2>
               <p pt="2" text="sm text-2" font="medium" leading-6="">
