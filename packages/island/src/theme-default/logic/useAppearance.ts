@@ -21,6 +21,12 @@ if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
 
 const setClass = (dark: boolean): void => {
   classList[dark ? 'add' : 'remove']('dark');
+
+  // When using Code Hike(a remark plugin for MDX v2) and its built-in themes, the two built-in themes both support switching light/dark mode by changing the CSS selector.
+  // see: https://codehike.org/docs/themes#lightdark-mode
+  const chThemeEls = document.querySelectorAll("[data-ch-theme='github-from-css'], [data-ch-theme='material-from-css']")
+  const mode = dark ? '' : 'light'
+  chThemeEls.forEach(el => el.setAttribute('data-theme', mode))
 };
 
 export const getToggle = () => {
