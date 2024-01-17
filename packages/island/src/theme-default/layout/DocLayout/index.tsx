@@ -62,7 +62,7 @@ export function DocLayout(props: DocLayoutProps) {
         ></SideMenu>
       ) : null}
       <div flex="~ 1 shrink-0" m="x-auto" className={`${styles.content}`}>
-        <div m="x-auto" flex="~ col" className="max-w-100%">
+        <div m="x-auto" flex="~ col" className="w-100% max-w-100%">
           <div
             relative="~"
             m="x-auto"
