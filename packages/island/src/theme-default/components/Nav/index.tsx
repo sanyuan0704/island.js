@@ -133,7 +133,13 @@ export function Nav(props: NavProps & ComponentPropsWithIsland) {
     );
   };
   return (
-    <header relative="" z="4" fixed="md:~" className="top-0 left-0" w="100%">
+    <header
+      relative=""
+      z="4"
+      fixed="md:~"
+      className={`top-0 left-0 ${hasSidebar ? '' : styles.nav}`}
+      w="100%"
+    >
       <div
         relative=""
         p="l-8 sm:x-8"
